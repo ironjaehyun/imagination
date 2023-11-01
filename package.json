@@ -8,6 +8,7 @@
     "src/**/*"
   ],
   "scripts": {
+    "back" : "yarn workspace back",
     "front" : "yarn workspace front",
     "lint:eslint": "eslint --ext .ts,.js,.tsx, src",
     "lint:prettier": "prettier src --check",
