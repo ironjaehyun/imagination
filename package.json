@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "imagination is perfect",
   "main": "index.js",
+  "private":true,
+  "workspaces":[
+    "src/**/*"
+  ],
   "scripts": {
-    "lint:eslint": "eslint --ext .ts, src",
+    "front" : "yarn workspace front",
+    "lint:eslint": "eslint --ext .ts,.js,.tsx, src",
     "lint:prettier": "prettier src --check",
     "lint": "npm-run-all -p lint:*",
     "prepare": "husky install"
