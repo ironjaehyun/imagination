@@ -1,14 +1,14 @@
-import React from 'react'
-import Gnb from './components/Gnb'
-import Lnb from './components/Lnb'
+import React from 'react';
+import Gnb from './components/Gnb';
+import Lnb from './components/Lnb';
 
 const Feed = () => {
   return (
     <div>
       <Lnb></Lnb>
-        <Gnb></Gnb>
+      <Gnb></Gnb>
     </div>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;
