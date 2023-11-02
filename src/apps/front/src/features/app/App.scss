@@ -2,11 +2,4 @@
 @import './styles/reset';
 @import './styles/normalize';
 @import './styles/system/color';
-
-// $을 입력하면 관련된게 나온다.
-// ex )  color : $b
-
-// .test{
-//     color: $blue;
-//     font-size: $font-size-12;
-// }
+@import '../feed/feed';
