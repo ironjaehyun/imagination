@@ -5,7 +5,9 @@ import Lnb from './components/Lnb';
 const Feed = () => {
   return (
     <div>
-      <Lnb></Lnb>
+      <main className="MainContainer">
+        <Lnb></Lnb>
+      </main>
       <Gnb></Gnb>
     </div>
   );
