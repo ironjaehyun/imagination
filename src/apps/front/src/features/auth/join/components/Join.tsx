@@ -13,6 +13,8 @@ const Join = () => {
     setPwCheck,
     setName,
     checkPassword,
+    duplicateId,
+    idPassMsg,
   } = useJoin();
 
   return (
@@ -32,7 +34,9 @@ const Join = () => {
           <div className="or-text">OR</div>
         </div>
         <div className="join-main">
-          <span id="join-check">중복체크</span>
+          <span id="join-check" onClick={duplicateId}>
+            중복체크
+          </span>
           <input
             type="id"
             placeholder="아이디"
@@ -81,9 +85,9 @@ const Join = () => {
             onChange={(event) => setName(event.target.value)}
             style={alertJoin('name')}
           />
-          <div className='join-msg'>
+          <div className="join-msg">
             <span className="join-alert">{alertMsg}</span>
-            <span className="join-pass">{}</span>
+            <span className="join-pass">{idPassMsg}</span>
           </div>
           <button
             className="join-btn"

@@ -7,6 +7,8 @@ const useJoin = () => {
   const [pwCheck, setPwCheck] = useState('');
   const [joinBtn, setJoinBtn] = useState(false);
   const [alertMsg, setAlertMsg] = useState('');
+  const [duplication, setDuplication] = useState(false);
+  const [idPassMsg, setIdPassMsg] = useState('');
 
   const handleJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,9 +30,11 @@ const useJoin = () => {
       !pw.match(/[A-Z]/)
     ) {
       setAlertMsg('비밀번호 기준을 맞춰주세요');
-    } else if(pw !== pwCheck) {
-      setAlertMsg('비밀번호를 다시 확인해주세요')
-    }else {
+    } else if (pw !== pwCheck) {
+      setAlertMsg('비밀번호를 다시 확인해주세요');
+    } else if (!duplication) {
+      setAlertMsg('아이디 중복체크 해주세요');
+    } else {
       setAlertMsg('');
     }
   };
@@ -58,6 +62,11 @@ const useJoin = () => {
           : '#e0e0e0',
     };
   };
+  const duplicateId = () => {
+    setDuplication(true);
+    setAlertMsg('존재하는 아이디입니다.');
+    setIdPassMsg('사용가능한 아이디입니다.');
+  };
 
   return {
     handleJoin,
@@ -70,6 +79,9 @@ const useJoin = () => {
     setName,
     setPwCheck,
     checkPassword,
+    setDuplication,
+    duplicateId,
+    idPassMsg,
   };
 };
 
