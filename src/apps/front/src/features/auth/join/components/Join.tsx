@@ -10,7 +10,7 @@ const Join = () => {
           공유해보세요
         </h4>
         <Link to={'google'} className="google">
-          <img src="google.jpg" alt="" />
+          <img src="join/google.jpg" alt="" />
           구글로 회원가입
         </Link>
         <div className="or">
