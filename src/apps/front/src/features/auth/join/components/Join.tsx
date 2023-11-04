@@ -81,8 +81,10 @@ const Join = () => {
             onChange={(event) => setName(event.target.value)}
             style={alertJoin('name')}
           />
-          <span className="join-alert">{alertMsg}</span>
-          <span className="join-pass">{}</span>
+          <div className='join-msg'>
+            <span className="join-alert">{alertMsg}</span>
+            <span className="join-pass">{}</span>
+          </div>
           <button
             className="join-btn"
             onClick={() => {

@@ -21,10 +21,16 @@ const useJoin = () => {
       setAlertMsg('닉네임을 입력해주세요');
     } else if (pwCheck.length === 0) {
       setAlertMsg('비밀번호 확인해주세요');
-    } else if(!pw.match(/[0-9]/) || !pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/) || pw.length < 8 || !pw.match(/[A-Z]/)) {
-      setAlertMsg('비밀번호 기준을 맞춰주세요')
-    } 
-    else {
+    } else if (
+      !pw.match(/[0-9]/) ||
+      !pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/) ||
+      pw.length < 8 ||
+      !pw.match(/[A-Z]/)
+    ) {
+      setAlertMsg('비밀번호 기준을 맞춰주세요');
+    } else if(pw !== pwCheck) {
+      setAlertMsg('비밀번호를 다시 확인해주세요')
+    }else {
       setAlertMsg('');
     }
   };
@@ -41,17 +47,17 @@ const useJoin = () => {
     };
   };
 
-  const checkPassword = (target : string) =>{
-    return{
-      color :
-      (target == 'more-8' && pw.length >=8 ) ||
-      (target == 'number' && pw.match(/[0-9]/)) || 
-      (target == 'special' && pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/)) ||
-      (target == 'upper' && pw.match(/[A-Z]/)) 
-      ? '#00C853' 
-      : '#e0e0e0'
-    }
-  }
+  const checkPassword = (target: string) => {
+    return {
+      color:
+        (target == 'more-8' && pw.length >= 8) ||
+        (target == 'number' && pw.match(/[0-9]/)) ||
+        (target == 'special' && pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/)) ||
+        (target == 'upper' && pw.match(/[A-Z]/))
+          ? '#00C853'
+          : '#e0e0e0',
+    };
+  };
 
   return {
     handleJoin,
@@ -63,7 +69,7 @@ const useJoin = () => {
     setPw,
     setName,
     setPwCheck,
-    checkPassword
+    checkPassword,
   };
 };
 
