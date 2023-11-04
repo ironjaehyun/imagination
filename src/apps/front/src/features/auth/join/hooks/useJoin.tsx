@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from '../../api/auth';
 
 const useJoin = () => {
   const [id, setId] = useState('');
@@ -64,6 +65,9 @@ const useJoin = () => {
   };
   const duplicateId = () => {
     setDuplication(true);
+    axios.post('join/checkId', {
+      id : id
+    })
     setAlertMsg('존재하는 아이디입니다.');
     setIdPassMsg('사용가능한 아이디입니다.');
   };
