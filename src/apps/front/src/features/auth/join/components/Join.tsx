@@ -4,8 +4,8 @@ const Join = () => {
   return (
     <div className="center-box">
       <form className="join">
-        <h1 className="join__title">Imagination</h1>
-        <h4 className="join__desc">
+        <h1 className="join-title">Imagination</h1>
+        <h4 className="join-desc">
           당신이 원하는 이미지를 생성하고<br></br>
           공유해보세요
         </h4>
@@ -17,16 +17,16 @@ const Join = () => {
           <hr className="or-line" />
           <div className="or-text">OR</div>
         </div>
-        <div className="join__main">
-          <span id="join__check">중복체크</span>
+        <div className="join-main">
+          <span id="join-check">중복체크</span>
           <input type="id" placeholder="아이디" />
           <input type="password" placeholder="비밀번호" />
-          <div className="password__check"></div>
+          <div className="password-check"></div>
           <input type="password" placeholder="비밀번호 확인" />
           <input type="text" placeholder="이름  ex) leechi" />
-          <span className="join__alert">{}</span>
-          <span className="join__pass">{}</span>
-          <button className="join__btn">회원가입</button>
+          <span className="join-alert">{}</span>
+          <span className="join-pass">{}</span>
+          <button className="join-btn">회원가입</button>
         </div>
       </form>
       <section className="question-box">
