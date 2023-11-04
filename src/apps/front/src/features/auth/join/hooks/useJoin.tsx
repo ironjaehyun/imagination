@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 const useJoin = () => {
   const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
   const [joinBtn, setJoinBtn] = useState(false);
   const [alertMsg, setAlertMsg] = useState('');
 
@@ -12,11 +13,18 @@ const useJoin = () => {
   const handleAlertMsg = () => {
     if (id.length === 0) {
       setAlertMsg('아이디를 입력해주세요');
+    } else if (pw.length === 0) {
+      setAlertMsg('비밀번호를 입력해주세요');
     }
   };
-  const alertJoin = () => {
+
+  const alertJoin = (target: string) => {
     return {
-      borderColor: id.length === 0 && joinBtn? '#f86d7d' : '#e0e0e0',
+      borderColor:
+        (target == 'id' && id.length === 0 && joinBtn) ||
+        (target == 'pw' && pw.length === 0 && joinBtn)
+          ? '#f86d7d'
+          : '#e0e0e0',
     };
   };
   return {
@@ -26,6 +34,8 @@ const useJoin = () => {
     setId,
     setJoinBtn,
     alertMsg,
+    pw,
+    setPw,
   };
 };
 

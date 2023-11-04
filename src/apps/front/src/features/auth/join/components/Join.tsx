@@ -2,7 +2,15 @@ import { Link } from 'react-router-dom';
 import useJoin from '../hooks/useJoin';
 
 const Join = () => {
-  const { handleJoin, setId, alertJoin, handleAlertMsg, alertMsg, setJoinBtn } = useJoin();
+  const {
+    handleJoin,
+    setId,
+    alertJoin,
+    handleAlertMsg,
+    alertMsg,
+    setJoinBtn,
+    setPw,
+  } = useJoin();
 
   return (
     <div className="center-box">
@@ -28,9 +36,16 @@ const Join = () => {
             onChange={(event) => {
               setId(event.target.value);
             }}
-            style={alertJoin()}
+            style={alertJoin('id')}
           />
-          <input type="password" placeholder="비밀번호" />
+          <input
+            type="password"
+            placeholder="비밀번호"
+            onChange={(event) => {
+              setPw(event.target.value);
+            }}
+            style={alertJoin('pw')}
+          />
           <div className="password-check"></div>
           <input type="password" placeholder="비밀번호 확인" />
           <input type="text" placeholder="이름  ex) leechi" />
