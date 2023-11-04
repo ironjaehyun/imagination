@@ -145,17 +145,16 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       color: #e0e0e0;
       font-size: 12px;
       margin-bottom: 10px;
+      padding: 0 2px;
 
       span {
-        margin-right: 17px;
         display: flex;
         align-items: center;
         color: #e0e0e0;
-
         img {
           margin-right: 5px;
         }
