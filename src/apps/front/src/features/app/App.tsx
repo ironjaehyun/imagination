@@ -2,13 +2,13 @@ import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Feed from '../feed/Feed';
 import Create from '../create/Create';
-import Chat from '../chat/chat';
-import Login from '../auth/login/login';
-import Imagination from '../imagination/imagination';
-import Leader from '../leader/leader';
-import Mypage from '../auth/mypage/mypage';
-import Join from '../auth/join/join';
-import Explore from '../feed/explore';
+import Chat from '../chat/Chat';
+import Login from '../auth/login/Login';
+import Imagination from '../imagination/Imagination';
+import Leader from '../leader/Leader';
+import Mypage from '../auth/mypage/Mypage';
+import Join from '../auth/join/components/Join';
+import Explore from '../feed/Explore';
 
 function App() {
   return (
