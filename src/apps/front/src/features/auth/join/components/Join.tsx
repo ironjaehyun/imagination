@@ -12,6 +12,7 @@ const Join = () => {
     setPw,
     setPwCheck,
     setName,
+    checkPassword,
   } = useJoin();
 
   return (
@@ -49,10 +50,22 @@ const Join = () => {
             style={alertJoin('pw')}
           />
           <div className="password-check">
-            <span><img src="join/check.png" />8자 이상</span>
-            <span><img src="join/check.png" />숫자</span>
-            <span><img src="join/check.png" />특수문자</span>
-            <span><img src="join/check.png" />대문자</span>
+            <span style={checkPassword('more-8')}>
+              <img src="join/check.png" alt="" />
+              8자 이상
+            </span>
+            <span style={checkPassword('number')}>
+              <img src="join/check.png" alt="" />
+              숫자
+            </span>
+            <span style={checkPassword('special')}>
+              <img src="join/check.png" alt="" />
+              특수문자
+            </span>
+            <span style={checkPassword('upper')}>
+              <img src="join/check.png" alt="" />
+              대문자
+            </span>
           </div>
           <input
             type="password"
