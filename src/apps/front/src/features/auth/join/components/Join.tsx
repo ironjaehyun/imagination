@@ -10,6 +10,7 @@ const Join = () => {
     alertMsg,
     setJoinBtn,
     setPw,
+    setName
   } = useJoin();
 
   return (
@@ -48,7 +49,7 @@ const Join = () => {
           />
           <div className="password-check"></div>
           <input type="password" placeholder="비밀번호 확인" />
-          <input type="text" placeholder="이름  ex) leechi" />
+          <input type="text" placeholder="닉네임" onChange={(event)=> setName(event.target.value)} style={alertJoin('name')} />
           <span className="join-alert">{alertMsg}</span>
           <span className="join-pass">{}</span>
           <button
