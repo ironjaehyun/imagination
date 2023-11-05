@@ -13,7 +13,9 @@ const useJoin = () => {
 
   const handleJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios.post('join', { id: id, pw: pw, name: name });
+    axios
+      .post('join', { id: id, password: pw, name: name })
+      .then((res) => console.log(res));
   };
 
   const handleAlertMsg = () => {
