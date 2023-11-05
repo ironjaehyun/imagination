@@ -63,11 +63,11 @@ const useJoin = () => {
           : '#e0e0e0',
     };
   };
-    const duplicateId = () => {
+  const duplicateId = () => {
     setDuplication(true);
     axios.post('join/checkId', {
-      id : id
-    })
+      id: id,
+    });
     setAlertMsg('존재하는 아이디입니다.');
     setIdPassMsg('사용가능한 아이디입니다.');
   };
