@@ -13,6 +13,7 @@ const useJoin = () => {
 
   const handleJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    axios.post('join', { id: id, pw: pw, name: name });
   };
 
   const handleAlertMsg = () => {
@@ -63,7 +64,8 @@ const useJoin = () => {
           : '#e0e0e0',
     };
   };
-const duplicateId = () => {
+
+  const duplicateId = () => {
     setDuplication(true);
     try {
       axios
