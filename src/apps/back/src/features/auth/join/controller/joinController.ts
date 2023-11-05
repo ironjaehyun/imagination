@@ -10,7 +10,6 @@ const createToken = (_id) => {
 const checkId = async (req, res) => {
   try {
     const user = await userModel.findOne({ id: req.body.id });
-    console.log(user);
 
     if (user) {
       res.status(200).send('User already exists');

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from '../../api/auth';
+import { useNavigate } from 'react-router-dom';
 
 const useJoin = () => {
   const [id, setId] = useState('');
@@ -10,12 +11,17 @@ const useJoin = () => {
   const [alertMsg, setAlertMsg] = useState('');
   const [duplication, setDuplication] = useState(false);
   const [idPassMsg, setIdPassMsg] = useState('');
+  const navigate = useNavigate()
 
   const handleJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios
       .post('join', { id: id, password: pw, name: name })
-      .then((res) => console.log(res));
+      .then((res) => {
+        if(res.status === 200){
+          navigate('/')
+        }
+      });
   };
 
   const handleAlertMsg = () => {
@@ -82,8 +88,6 @@ const useJoin = () => {
             setIdPassMsg('사용가능한 아이디입니다.');
             setAlertMsg('');
           }
-
-          console.log(res.data);
         });
     } catch (error) {
       console.log(error);
