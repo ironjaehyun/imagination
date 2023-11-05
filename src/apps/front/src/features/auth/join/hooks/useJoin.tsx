@@ -63,13 +63,27 @@ const useJoin = () => {
           : '#e0e0e0',
     };
   };
-  const duplicateId = () => {
+const duplicateId = () => {
     setDuplication(true);
-    axios.post('join/checkId', {
-      id: id,
-    });
-    setAlertMsg('존재하는 아이디입니다.');
-    setIdPassMsg('사용가능한 아이디입니다.');
+    try {
+      axios
+        .post('join/checkId', {
+          id: id,
+        })
+        .then((res) => {
+          if (res.data == 'User already exists') {
+            setAlertMsg('존재하는 아이디입니다.');
+            setIdPassMsg('');
+          } else if (res.data == 'User does not exist') {
+            setIdPassMsg('사용가능한 아이디입니다.');
+            setAlertMsg('');
+          }
+
+          console.log(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return {
