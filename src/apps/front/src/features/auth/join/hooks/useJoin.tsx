@@ -63,7 +63,7 @@ const useJoin = () => {
           : '#e0e0e0',
     };
   };
-  const duplicateId = () => {
+    const duplicateId = () => {
     setDuplication(true);
     axios.post('join/checkId', {
       id : id

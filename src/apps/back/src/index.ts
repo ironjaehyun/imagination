@@ -1,8 +1,21 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config(); // 이부분을 상단으로 이동
 
 const PORT = 3000;
+const uri = process.env.ATLAS_URI;
+
+mongoose.set('strictQuery', true);
+mongoose
+  .connect(uri)
+  .then(() => {
+    console.log('MongoDB connection established');
+  })
+  .catch((error) => console.log('MongoDB connection failed : ', error.message));
 
 const app = express();
 app.use(cors('*'));
@@ -15,9 +28,4 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running... ${PORT}`);
-});
-
-app.post('/join/checkId', (req, res) => {
-  console.log(req.body.id);
-  console.log(res.error);
 });
