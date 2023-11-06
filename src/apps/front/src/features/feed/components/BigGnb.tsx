@@ -1,6 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link ,useLocation } from 'react-router-dom';
 
 const BigGnb = () => {
+  const location = useLocation();
+  // checkActive 함수는 경로를 인자로 받는다
+  const checkActive = (path: string) => {
+    return location.pathname === path ? "hoverwhite active" : "hoverwhite";
+  };
   return (
     <div>
       <div className="open-sidebar">
@@ -36,7 +41,7 @@ const BigGnb = () => {
           </div>
           <div className="open-nav-icon">
             <Link to={'/feed'}>
-              <div className="hoverwhite">
+              <div className={checkActive('/feed')}>
                 <img src="./img/feed.png" className="nav-icon" />
                 <span>Feed</span>
               </div>
@@ -48,7 +53,7 @@ const BigGnb = () => {
               </div>
             </Link>
             <Link to={'/explore'}>
-              <div className="hoverwhite">
+              <div className={checkActive('/explore')}>
                 <img src="./img/explore.png" className="nav-icon" />
                 <span>Explore</span>
               </div>

@@ -18,7 +18,7 @@
 }
 
 .image-icon {
-  padding: 10px;
+  padding: 15px 10px;
 }
 
 .fropile {
@@ -112,4 +112,10 @@
 .open-nav-battom .hoverwhite:nth-child(3) {
   margin-bottom: 13px;
   padding-left: 16px;
+}
+.hoverwhite:hover,
+.hoverwhite.active {
+  background-color: white;
+    color: #0b7295;
+    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
 }

@@ -1,7 +1,6 @@
 import Lnb from './components/Lnb';
 import BigGnb from './components/BigGnb';
 import Post from './components/Post';
-
 const Feed = () => {
   return (
     <div>
