@@ -1,4 +1,4 @@
-import userModel from '../../../../Models/userModel';
+import userModel from '../../../Models/userModel';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -41,4 +41,8 @@ const joinId = async (req, res) => {
   }
 };
 
-export { checkId, joinId };
+const handleLogin = (req, res) => {
+  console.log(res, req);
+};
+
+export { checkId, joinId, handleLogin };

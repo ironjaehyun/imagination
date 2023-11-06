@@ -1,5 +1,5 @@
 import express from 'express';
-import { joinId, checkId } from '../controller/joinController';
+import { joinId, checkId } from '../controller/userController';
 
 const router = express.Router();
 
