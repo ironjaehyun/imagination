@@ -1,37 +1,45 @@
-import { useState, useRef, useEffect, FormEventHandler } from 'react';
+import { useState, useEffect, FormEventHandler } from 'react';
 import axios from 'axios';
-// import Side from "./Side";
 import { REST_API_KEY } from './components/constants';
 
-const Imagination = () => {
-  const [imageUrls, setImageUrls] = useState([]);
-  const [prompt, setPrompt] = useState('');
-  const [negative, setNegative] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const settingOptionRef = useRef('none');
-  const rotation = useRef('rotate(0deg)');
-  const buttonRef = useRef(null);
-  const imgref = useRef();
-  const texts = useRef();
+interface Image {
+  image: string;
+}
 
-  const generateImage: FormEventHandler = async (event) => {
+interface ResponseData {
+  images: Image[];
+}
+
+const Imagination = () => {
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [prompt, setPrompt] = useState<string>('');
+  const [negative, setNegative] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [settingOption, setSettingOption] = useState<string>('none');
+  const [rotationState, setRotationState] = useState<string>('rotate(0deg)');
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const [buttonBg, setButtonBg] = useState<string>('');
+  const [imgSrc, setImgSrc] = useState<string>('imagination/Geneal.png');
+  const [text, setText] = useState<string>('Generate');
+  const [selectedsamples, setSelectedSamples] = useState<number>(1);
+
+  const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
     try {
-      setIsLoading(true); // 로딩 상태를 true로 설정
-      buttonRef.current.disabled = true; // 버튼 비활성화
-      buttonRef.current.style.background = '#f5f5f5';
-      imgref.current.src = 'imagination/loading-loader.gif';
-      texts.current.innerText = '';
+      setIsLoading(true);
+      setButtonDisabled(true);
+      setButtonBg('#f5f5f6');
+      setImgSrc('imagination/loading-loader.gif');
+      setText('');
 
-      const response = await axios.post(
+      const response = await axios.post<ResponseData>(
         'https://api.kakaobrain.com/v2/inference/karlo/t2i',
         {
           prompt: prompt,
           negative_prompt: negative,
           image_format: 'png',
-          // upscale: upsacle,
-          // samples: size1,
+          samples : selectedsamples
         },
         {
           headers: {
@@ -41,44 +49,31 @@ const Imagination = () => {
         },
       );
 
-      // 이미지 인덱스
       setImageUrls(response.data.images.map((image) => image.image));
 
-      // 이미지 저장출력
-
-      console.log('upscale state : ', upsacle);
     } catch (error) {
       console.error(error);
     } finally {
-      setIsLoading(false); // 로딩 상태를 false로 설정
-      enableButton(); // 버튼 상태 업데이트
-      buttonRef.current.style.background = '#0288D1';
-      imgref.current.src = 'imagination/Geneal.png';
-      texts.current.innerText = 'Generate';
+      setIsLoading(false);
+      setButtonDisabled(false);
+      setButtonBg('#0288D1');
+      setImgSrc('imagination/Geneal.png');
+      setText('Generate');
     }
   };
 
   useEffect(() => {
-    enableButton(); // 컴포넌트 렌더링 시에도 버튼 상태를 업데이트하기 위해 enableButton 호출
+    setButtonDisabled(isLoading);
   }, [isLoading]);
 
   const handleButtonClick = () => {
-    // 버튼 클릭 시 .Setting__opstion 요소의 숨김 상태 변경
-    if (!settingOptionRef.current || !rotation.current) return;
-
-    const displayStyle = settingOptionRef.current.style.display;
-    const transformStyle = rotation.current.style.transform;
-    settingOptionRef.current.style.display =
-      displayStyle === 'flex' ? 'none' : 'flex';
-    rotation.current.style.transform =
-      transformStyle === 'rotate(0deg)' ? 'rotate(-180deg)' : 'rotate(0deg)';
+    setSettingOption(settingOption === 'flex' ? 'none' : 'flex');
+    setRotationState(rotationState === 'rotate(0deg)' ? 'rotate(-180deg)' : 'rotate(0deg)');
   };
 
-  const enableButton = () => {
-    if (buttonRef.current) {
-      buttonRef.current.disabled = isLoading;
-    }
-  };
+  const handleNumberClick =(num : number) =>{
+    setSelectedSamples(num)
+  }
 
   return (
     <div>
@@ -93,9 +88,9 @@ const Imagination = () => {
                 onChange={(e) => {
                   setPrompt(e.target.value);
                 }}
-                placeholder="ex. A cute cat in a blue house"
-                cols="15"
-                rows="3"
+                placeholder="ex. A cute cat in a house"
+                cols={15}
+                rows={3}
                 required
               ></textarea>
             </div>
@@ -109,8 +104,8 @@ const Imagination = () => {
                   setNegative(e.target.value);
                 }}
                 placeholder="ex. scary, dirty"
-                cols="15"
-                rows="3"
+                cols={15}
+                rows={3}
                 required
               ></textarea>
             </div>
@@ -121,47 +116,40 @@ const Imagination = () => {
               src="imagination/expand_less.png"
               alt=""
               onClick={handleButtonClick}
-              ref={rotation}
               className="active__img"
+              style={{transform: rotationState}}
             />
             <div></div>
           </div>
-          <div className="Setting__opstion" ref={settingOptionRef}>
+          <div className="Setting__opstion" style={{display: settingOption}}>
             <p>Image</p>
-            <button type="button">1</button>
-            <button type="button">2</button>
-            <button type="button">3</button>
-            <button type="button">4</button>
+            <button type="button" onClick={()=>handleNumberClick(1)}>1</button>
+            <button type="button" onClick={()=>handleNumberClick(2)}>2</button>
+            <button type="button" onClick={()=>handleNumberClick(3)}>3</button>
+            <button type="button" onClick={()=>handleNumberClick(4)}>4</button>
           </div>
           <div className="Api__Generate">
             <button
               type="submit"
               className="Generate-active"
-              ref={buttonRef}
-              onClick={enableButton}
+              disabled={buttonDisabled}
+              onClick={() => setButtonDisabled(isLoading)}
+              style={{background: buttonBg}}
             >
-              <img src="imagination/Geneal.png" ref={imgref} />
-              <p ref={texts}>Generate</p>
+              <img src={imgSrc || ''} alt="" />
+              <p>{text}</p>
             </button>
-            {/* <input
-            type="checkbox"
-            id="upscale"
-            onChange={(e) => {
-              setupsacle(e.target.checked);
-            }}
-          /> */}
           </div>
         </form>
       </div>
       <div className="imgs">
-        {isLoading ? ( // 로딩 상태에 따라 로딩 이미지 또는 생성된 이미지를 표시
+        {isLoading ? (
           <div className="loading">
             <img
               src="imagination/funder-the-sea-octopus.gif"
               alt="Loading"
               className="lodingimg"
             />
-            {/* <p>Loading...</p> */}
           </div>
         ) : (
           imageUrls &&

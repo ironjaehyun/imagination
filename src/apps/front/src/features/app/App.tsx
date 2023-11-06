@@ -8,7 +8,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/imagination" element={<Imagination></Imagination>}></Route>
+          <Route
+            path="/imagination"
+            element={<Imagination></Imagination>}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </>
