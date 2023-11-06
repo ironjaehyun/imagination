@@ -1,0 +1,61 @@
+.login {
+    width: 375px;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 0 4px #E0E0E0;
+
+    .login__title {
+        margin-bottom: 50px;
+        color: #1E88E5;
+    }
+
+    .login__button {
+        margin: 10px;
+        background-color: #1E88E5;
+        color: white;
+    }
+
+    .social__login {
+        margin-top: 16px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .google {
+            background-color: #F6F6F6;
+        }
+
+        .naver {
+            background-color: #36C304;
+            color: white;
+        }
+
+        .kakao {
+            background-color: #F7DF40;
+        }
+
+        a {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                width: 100px;
+            }
+
+            img {
+                width: 14px;
+                height: 14px;
+                margin-right: 10px;
+                margin-bottom: 2px;
+            }
+        }
+
+    }
+}
