@@ -125,6 +125,7 @@ h1 {
   height: 24px;
   transform: rotate(180deg);
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .side {
@@ -152,4 +153,12 @@ h1 {
   height: 51px;
   color: white;
   background: #0288d1;
+}
+
+.style-btn:hover {
+  background-color: #d4d4d4;
+}
+
+.style-btn.selected {
+  background-color: #0288d1;
 }

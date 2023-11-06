@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Imagination from '../imagination/Imagination';
+import Imagination from '../imagination/components/Imagination';
 
 function App() {
   return (

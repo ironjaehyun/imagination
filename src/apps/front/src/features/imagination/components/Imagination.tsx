@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEventHandler } from 'react';
 import axios from 'axios';
-import { REST_API_KEY } from './components/constants';
+import { REST_API_KEY } from './constants';
 
 interface Image {
   image: string;
@@ -39,7 +39,7 @@ const Imagination = () => {
           prompt: prompt,
           negative_prompt: negative,
           image_format: 'png',
-          samples : selectedsamples
+          samples: selectedsamples,
         },
         {
           headers: {
@@ -50,7 +50,6 @@ const Imagination = () => {
       );
 
       setImageUrls(response.data.images.map((image) => image.image));
-
     } catch (error) {
       console.error(error);
     } finally {
@@ -68,12 +67,14 @@ const Imagination = () => {
 
   const handleButtonClick = () => {
     setSettingOption(settingOption === 'flex' ? 'none' : 'flex');
-    setRotationState(rotationState === 'rotate(0deg)' ? 'rotate(-180deg)' : 'rotate(0deg)');
+    setRotationState(
+      rotationState === 'rotate(0deg)' ? 'rotate(-180deg)' : 'rotate(0deg)',
+    );
   };
 
-  const handleNumberClick =(num : number) =>{
-    setSelectedSamples(num)
-  }
+  const handleNumberClick = (num: number) => {
+    setSelectedSamples(num);
+  };
 
   return (
     <div>
@@ -106,7 +107,6 @@ const Imagination = () => {
                 placeholder="ex. scary, dirty"
                 cols={15}
                 rows={3}
-                required
               ></textarea>
             </div>
           </div>
@@ -117,16 +117,40 @@ const Imagination = () => {
               alt=""
               onClick={handleButtonClick}
               className="active__img"
-              style={{transform: rotationState}}
+              style={{ transform: rotationState }}
             />
             <div></div>
           </div>
-          <div className="Setting__opstion" style={{display: settingOption}}>
-            <p>Image</p>
-            <button type="button" onClick={()=>handleNumberClick(1)}>1</button>
-            <button type="button" onClick={()=>handleNumberClick(2)}>2</button>
-            <button type="button" onClick={()=>handleNumberClick(3)}>3</button>
-            <button type="button" onClick={()=>handleNumberClick(4)}>4</button>
+          <div className="Setting__opstion" style={{ display: settingOption }}>
+            <p>Samples</p>
+            <button
+              className={`style-btn ${selectedsamples === 1 ? 'selected' : ''}`}
+              type="button"
+              onClick={() => handleNumberClick(1)}
+            >
+              1
+            </button>
+            <button
+              className={`style-btn ${selectedsamples === 2 ? 'selected' : ''}`}
+              type="button"
+              onClick={() => handleNumberClick(2)}
+            >
+              2
+            </button>
+            <button
+              className={`style-btn ${selectedsamples === 3 ? 'selected' : ''}`}
+              type="button"
+              onClick={() => handleNumberClick(3)}
+            >
+              3
+            </button>
+            <button
+              className={`style-btn ${selectedsamples === 4 ? 'selected' : ''}`}
+              type="button"
+              onClick={() => handleNumberClick(4)}
+            >
+              4
+            </button>
           </div>
           <div className="Api__Generate">
             <button
@@ -134,9 +158,9 @@ const Imagination = () => {
               className="Generate-active"
               disabled={buttonDisabled}
               onClick={() => setButtonDisabled(isLoading)}
-              style={{background: buttonBg}}
+              style={{ background: buttonBg }}
             >
-              <img src={imgSrc || ''} alt="" />
+              <img src={imgSrc} alt="image" />
               <p>{text}</p>
             </button>
           </div>
