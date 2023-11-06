@@ -2,13 +2,25 @@ import { Link } from 'react-router-dom';
 import useLogin from '../hooks/useLogin';
 
 const Login = () => {
-  const { handleLogin } = useLogin();
+  const { handleLogin, setId, setPw } = useLogin();
   return (
     <div className="center-box">
       <form className="login" onSubmit={handleLogin}>
         <h1 className="login__title">leechi</h1>
-        <input type="text" placeholder="아이디" />
-        <input type="password" placeholder="비밀번호" />
+        <input
+          type="text"
+          placeholder="아이디"
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+        />
+        <input
+          type="password"
+          placeholder="비밀번호"
+          onChange={(e) => {
+            setPw(e.target.value);
+          }}
+        />
         <button className="login__button">로그인</button>
         <div className="or">
           <hr className="or-line" />
