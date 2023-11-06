@@ -1,14 +1,13 @@
 import React from 'react';
-import Gnb from './components/Gnb';
 import Lnb from './components/Lnb';
-
+import BigGnb from './components/BigGnb';
 const Feed = () => {
   return (
     <div>
       <main className="MainContainer">
         <Lnb></Lnb>
       </main>
-      <Gnb></Gnb>
+      <BigGnb></BigGnb>
     </div>
   );
 };
