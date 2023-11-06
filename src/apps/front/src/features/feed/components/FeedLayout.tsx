@@ -9,7 +9,7 @@ type Box = {
 
 const FeedLayout = () => {
   // 각각의 이미지에 대한 가로세로 비율
-  const aspectRatios = [0.5, 1.5, 1, 1.8, 0.4, 0.7, 0.9, 1.1, 1.7];
+  const aspectRatios = [1, 1.5, 1, 1.8, 1, 0.7, 0.9, 1.1, 1.7];
 
   // 이미지의 URL들
   const images = [
@@ -49,7 +49,7 @@ const FeedLayout = () => {
       style={{
         display: 'flex',
         justifyContent: 'left',
-        marginLeft : 70,
+        marginLeft: 70,
         height: '100vh', // 뷰포트 높이를 100%로 설정, 페이지의 전체 높이를 차지
       }}
     >
