@@ -38,8 +38,9 @@ const FeedLayout = () => {
   // JustifiedLayout 라이브러리를 사용하여 이미지의 배치를 계산
   // containerWidth는 레이아웃의 전체 너비를 설정
   const geometry = justifiedLayout(extendedAspectRatios, {
-    containerWidth: 1200,
-    containerPadding: 123, // 레이아웃의 여백 설정
+    containerWidth: 1600, // 컨테이너의 너비를 1300px로 설정
+    containerPadding: 123, 
+    targetRowHeight: 300, // 각 행의 높이를 300px로 설정
   });
 
   return (
@@ -61,7 +62,7 @@ const FeedLayout = () => {
               position: 'absolute',
               top: `${box.top}px`, // 상단 위치 설정
               left: `${box.left}px`, // 왼쪽 위치 설정
-              width: `${box.width}px`, // 너비 설정
+              width: `${box.width }px`, // 너비 설정
               height: `${box.height}px`, // 높이 설정
               objectFit: 'cover', // 이미지가 잘리지 않도록 설정
             }}
