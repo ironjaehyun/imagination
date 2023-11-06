@@ -3,6 +3,30 @@
   margin: 0;
 }
 
+@keyframes moveDown {
+  0% {
+    top: -277px;
+    /* 시작 위치: 화면 위쪽 */
+  }
+
+  100% {
+    top: 0;
+    /* 종료 위치: 화면 아래로 200px 내려감 */
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    bottom: -533px;
+    /* 시작 위치: 화면 하단 */
+  }
+
+  100% {
+    bottom: 0;
+    /* 종료 위치: 화면 위로 200px 올라감 */
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -36,6 +60,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  top: 0;
+  animation: moveDown 1.2s ease 1;
 }
 
 .bring-art-content {
@@ -106,6 +133,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+  animation: moveUp 1s ease-out 1;
 }
 
 .art-detail {
