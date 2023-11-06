@@ -1,5 +1,5 @@
 import BoardList from './component/BoardList';
-import SideTab from './component/SideTab';
+import SideTab from './component/sideTab';
 
 const Create = () => {
   return (

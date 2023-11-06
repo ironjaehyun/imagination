@@ -20,17 +20,19 @@ const Boardlist = () => {
       <div className="Board-content">
         <div className="Board-title">
           <textarea
-            className="art-title-textarea"
+            className="art-detail-textarea-title"
             style={{ width: '100%', height: '80%' }}
             placeholder="아티스트님의 작품의 제목을 입력하세요"
           ></textarea>
         </div>
         <div className="art-detail">
           <textarea
-            className="art-detail-textarea"
+            className="art-detail-textarea-details"
             style={{ width: '100%', height: '80%' }}
             placeholder="작품을 설명해 주세요"
           ></textarea>
+          <p># 해쉬태그 입력</p>
+          <button className="art-button">게시하기</button>
         </div>
       </div>
     </div>

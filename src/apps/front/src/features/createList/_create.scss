@@ -124,7 +124,19 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
-.art-detail_textarea {
+.art-detail-textarea-title {
+  font-size: 24px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-weight: bolder;
+  color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+}
+
+.art-detail-textarea-details {
   font-size: 16px;
   border: none;
   outline: none;
@@ -132,12 +144,13 @@
   font-weight: bolder;
 }
 
-.art-title-textarea {
-  font-size: 24px;
-  border: none;
-  outline: none;
-  resize: none;
-  font-weight: bolder;
-  padding-top: 5%;
-  color: #d9d9d9;
+.art-button {
+  float: right;
+  width: 123px;
+  height: 41px;
+  border-radius: 10px;
+  background-color: #0288d1;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 }
