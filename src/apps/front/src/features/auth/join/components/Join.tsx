@@ -101,7 +101,7 @@ const Join = () => {
       </form>
       <section className="question-box">
         <p>이미 계정을 가지고 계신가요?</p>
-        <Link to="/login">로그인</Link>
+        <Link to="/">로그인</Link>
       </section>
     </div>
   );

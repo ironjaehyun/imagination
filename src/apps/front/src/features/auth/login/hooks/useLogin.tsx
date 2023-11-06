@@ -7,7 +7,7 @@ const useLogin = () => {
   console.log(id, pw);
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios.post('/', { id: id, password: pw });
+    axios.post('/', { id: id, password: pw }).then((res) => console.log(res));
   };
 
   return {

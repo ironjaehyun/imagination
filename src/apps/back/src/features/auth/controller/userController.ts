@@ -31,18 +31,33 @@ const joinId = async (req, res) => {
     const user = new userModel({ id: id, password: hash, name: name });
 
     await user.save();
-
-    const token = createToken(user._id);
-
-    res.status(200).json({ _id: user._id, name, id, token });
   } catch (error) {
     console.log('함수 내 오류 : ', error);
     res.status(500).json(error);
   }
 };
 
-const handleLogin = (req, res) => {
-  console.log(res, req);
+const handleLogin = async (req, res) => {
+  try {
+    const { id, password } = req.body;
+    const user = await userModel.findOne({ id });
+    if (!user)
+      return res.status(400).json('Invalid email or password. user not found');
+
+    const isValidPassword = await bcrypt.compare(password, user.password);
+
+    if (!isValidPassword)
+      return res
+        .status(400)
+        .json('Invalid email or password. your password wrong');
+
+    const token = createToken(user._id);
+
+    res.status(200).json({ _id: user._id, name: user.name, id, token });
+  } catch (error) {
+    console.log('함수 내 오류 : ', error);
+    res.status(500).json(error);
+  }
 };
 
 export { checkId, joinId, handleLogin };
