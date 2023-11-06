@@ -7,7 +7,9 @@ const Lnb = () => {
         <input type="text" className="search-input" />
       </form>
       <button className="create-btn">
-        <Link to={'/create'}><span className='create-btn-plus'>+</span>Create</Link>
+        <Link to={'/create'}>
+          <span className="create-btn-plus">+</span>Create
+        </Link>
       </button>
       <div className="allim">
         <img src="./img/alarm.png" alt="" className="alarm" />

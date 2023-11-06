@@ -1,5 +1,37 @@
-.card{
+.card {
     width: 500px;
     height: 409px;
-    
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    padding: 19px;
+}
+
+.card-img {
+    margin-bottom: 10px;
+    width: 459px;
+    height: 305px;
+    border-radius: 4px;
+    background: url(<path-to-image>), lightgray 50% / cover no-repeat, #D9D9D9;
+}
+.card-bottom{
+    border-top: solid 1px #E9E9E9;;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-bottom>div{
+    display: flex;
+    align-items: center;
+}
+.card-bottom>div>span{
+    margin-left: 10px;
+}
+.feed-cards{
+    position: relative;
+    top: 60px;
+    right: 100px;
 }
