@@ -54,6 +54,7 @@ const handleLogin = async (req, res) => {
 
     const token = createToken(user._id);
 
+    res.cookie('token', token, { httpOnly: true });
     res.status(200).json({ _id: user._id, name: user.name, id, token });
   } catch (error) {
     console.log('함수 내 오류 : ', error);
