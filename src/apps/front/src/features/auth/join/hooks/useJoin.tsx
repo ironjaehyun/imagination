@@ -11,17 +11,15 @@ const useJoin = () => {
   const [alertMsg, setAlertMsg] = useState('');
   const [duplication, setDuplication] = useState(false);
   const [idPassMsg, setIdPassMsg] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios
-      .post('join', { id: id, password: pw, name: name })
-      .then((res) => {
-        if(res.status === 200){
-          navigate('/')
-        }
-      });
+    axios.post('join', { id: id, password: pw, name: name }).then((res) => {
+      if (res.status === 200) {
+        navigate('/');
+      }
+    });
   };
 
   const handleAlertMsg = () => {
