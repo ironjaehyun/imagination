@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "imagination is perfect",
   "main": "index.js",
-  "private":true,
-  "workspaces":[
+  "private": true,
+  "workspaces": [
     "src/**/*"
   ],
   "scripts": {
-    "back" : "yarn workspace back",
-    "front" : "yarn workspace front",
+    "back": "yarn workspace back",
+    "front": "yarn workspace front",
     "lint:eslint": "eslint --ext .ts,.js,.tsx, src",
     "lint:prettier": "prettier src --check",
     "lint": "npm-run-all -p lint:*",
