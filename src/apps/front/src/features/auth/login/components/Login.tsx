@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import useLogin from '../hooks/useLogin';
 
 const Login = () => {
+  const { handleLogin } = useLogin();
   return (
     <div className="center-box">
-      <form className="login">
+      <form className="login" onSubmit={handleLogin}>
         <h1 className="login__title">leechi</h1>
         <input type="text" placeholder="아이디" />
         <input type="password" placeholder="비밀번호" />
