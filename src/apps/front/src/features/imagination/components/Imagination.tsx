@@ -22,6 +22,8 @@ const Imagination = () => {
   const [imgSrc, setImgSrc] = useState<string>('imagination/Geneal.png');
   const [text, setText] = useState<string>('Generate');
   const [selectedsamples, setSelectedSamples] = useState<number>(1);
+  // const [size1, setSize1] = useState<number>(512);
+  // const [size2, setSize2] = useState<number>(512);
 
   const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -40,6 +42,8 @@ const Imagination = () => {
           negative_prompt: negative,
           image_format: 'png',
           samples: selectedsamples,
+          // width : size1,
+          // height : size2,
         },
         {
           headers: {
@@ -151,6 +155,9 @@ const Imagination = () => {
             >
               4
             </button>
+            <div>
+              <p>Size</p>
+            </div>
           </div>
           <div className="Api__Generate">
             <button
