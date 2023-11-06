@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Imagination = () => {
-  return <div>Imagination</div>;
+  return <div>Imaginationdd</div>;
 };
 
 export default Imagination;

@@ -4,10 +4,9 @@ import Feed from '../feed/Feed';
 import Create from '../create/Create';
 import Chat from '../chat/chat';
 import Login from '../auth/login/login';
-import Imagination from '../imagination/imagination';
+import Imagination from '../imagination/Imagination';
 import Leader from '../leader/leader';
 import Mypage from '../auth/mypage/mypage';
-import Join from '../auth/join/join';
 import Explore from '../feed/explore';
 
 function App() {
