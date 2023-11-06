@@ -30,7 +30,6 @@ const joinId = async (req, res) => {
 
     const user = new userModel({ id: id, password: hash, name: name });
     const token = createToken(user._id);
-
     res.status(200).json({ _id: user._id, name: user.name, id, token });
     await user.save();
   } catch (error) {
