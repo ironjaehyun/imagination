@@ -38,9 +38,9 @@ const FeedLayout = () => {
   // JustifiedLayout 라이브러리를 사용하여 이미지의 배치를 계산
   // containerWidth는 레이아웃의 전체 너비를 설정
   const geometry = justifiedLayout(extendedAspectRatios, {
-    containerWidth: 1600, // 컨테이너의 너비를 1300px로 설정
+    containerWidth: 1450, // 컨테이너의 너비
     containerPadding: 123,
-    targetRowHeight: 300, // 각 행의 높이를 300px로 설정
+    targetRowHeight: 300, // 각 행의 높이
   });
 
   return (

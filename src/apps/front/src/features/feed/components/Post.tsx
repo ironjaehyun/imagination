@@ -20,10 +20,22 @@ const Post = () => {
       username: 'leechi',
       likeCount: 23,
     },
+    {
+      image: './img/card-img.png',
+      profileImage: './img/Rectangle 17.png',
+      username: 'leechi',
+      likeCount: 23,
+    },
+    {
+      image: './img/card-img.png',
+      profileImage: './img/Rectangle 17.png',
+      username: 'leechi',
+      likeCount: 23,
+    },
   ];
 
   const [isLiked, setIsLiked] = useState(
-    Array.from({ length: posts.length }, () => false)
+    Array.from({ length: posts.length }, () => false),
   );
 
   const handleLike = (index: number) => {
@@ -45,9 +57,9 @@ const Post = () => {
               <span>{post.username}</span>
             </div>
             <div>
-              <img 
-                src={isLiked[index] ? "./img/filledlike.png" : "./img/like.png"} 
-                alt="" 
+              <img
+                src={isLiked[index] ? './img/filledlike.png' : './img/like.png'}
+                alt=""
                 onClick={() => handleLike(index)}
               />
               <span>{post.likeCount}</span>
