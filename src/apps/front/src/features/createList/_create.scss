@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+.create-List {
+  display: flex;
+}
+
+.side-tab {
+  display: flex;
+  width: 210px;
+  background-color: whitesmoke;
+  height: 100vh;
+}
+
+.Board-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bring-art {
+  width: 925px;
+  height: 277px;
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 0px 5px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bring-art-content {
+  height: 100%;
+  width: 820px;
+}
+
+.bring-art-title {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.briang-art-list {
+  display: flex;
+  height: 100%;
+  width: 820px;
+  justify-content: space-between;
+}
+
+.bring-art-image {
+  width: 178px;
+  height: 178px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  color: #d9d9d9;
+}
+
+.bring-art-prompt {
+  width: 624px;
+  height: 178px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bring-art-prompt-positive {
+  width: 624px;
+  height: 83px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: #d9d9d9;
+}
+
+.bring-art-prompt-negative {
+  width: 624px;
+  height: 83px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  color: #d9d9d9;
+}
+
+.Board-content {
+  margin-top: 3%;
+  width: 925px;
+  height: 534px;
+  border-radius: 5px 5px 0px 0px;
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.art-detail {
+  height: 80%;
+  width: 90%;
+  text-align: left;
+  color: #d9d9d9;
+  padding-top: 5%;
+  border-top: 1px solid #d9d9d9;
+}
+
+.Board-title {
+  width: 90%;
+  color: #d9d9d9;
+  border-bottom: #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.art-detail_textarea {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-weight: bolder;
+}
+
+.art-title-textarea {
+  font-size: 24px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-weight: bolder;
+  padding-top: 5%;
+  color: #d9d9d9;
+}
