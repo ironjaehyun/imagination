@@ -1,3 +1,4 @@
+import axios from '../../api/auth';
 import { useState } from 'react';
 
 const useLogin = () => {
@@ -6,6 +7,7 @@ const useLogin = () => {
   console.log(id, pw);
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    axios.post('/', { id: id, password: pw });
   };
 
   return {
