@@ -1,0 +1,74 @@
+.chatbar-container {
+  background-color: #f5f5f5;
+  height: 100vh;
+  width: 390px;
+  float: left;
+}
+
+.chatbar-topcontainer {
+  width: 390px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 10px;
+}
+
+.chatbar-topcontainer>strong {
+  padding: 10px;
+  font-size: 18px;
+}
+
+.chatbar-topcontainer>img {
+  position: fixed;
+  left: 340px;
+  width: 24px;
+  height: 24px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.chatbar-contents {
+  cursor: pointer;
+  display: flex;
+  background-color: white;
+  height: 70px;
+  width: 360px;
+  border-radius: 5px;
+  margin-left: 13px;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chatbar-contents:hover {
+  transform: scale(1.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.chatbar-contents>img {
+  margin-top: 8px;
+  margin-left: 8px;
+  width: 53px;
+  height: 53px;
+}
+
+.chat-detail {
+  padding: 10px;
+}
+
+.chat-id {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.chat-comments {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
