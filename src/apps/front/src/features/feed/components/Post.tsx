@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Post = () => {
   const posts = [
@@ -22,6 +22,16 @@ const Post = () => {
     },
   ];
 
+  const [isLiked, setIsLiked] = useState(
+    Array.from({ length: posts.length }, () => false)
+  );
+
+  const handleLike = (index: number) => {
+    const newIsLiked = [...isLiked];
+    newIsLiked[index] = !newIsLiked[index];
+    setIsLiked(newIsLiked);
+  };
+
   return (
     <div className="feed-cards">
       {posts.map((post, index) => (
@@ -35,7 +45,11 @@ const Post = () => {
               <span>{post.username}</span>
             </div>
             <div>
-              <img src="./img/like.png" alt="" />
+              <img 
+                src={isLiked[index] ? "./img/filledlike.png" : "./img/like.png"} 
+                alt="" 
+                onClick={() => handleLike(index)}
+              />
               <span>{post.likeCount}</span>
             </div>
           </div>
