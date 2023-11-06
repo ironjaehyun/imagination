@@ -5,7 +5,7 @@
   transform: translate(-50%, -50%);
   width: 450px;
   height: 640px;
-  background-color: gray;
+  background-color: white;
   border-radius: 5px;
 }
 
@@ -20,7 +20,7 @@
   font-size: 18px;
 }
 
-.invitemodal-topcontainer>img {
+.invitemodal-topcontainer > img {
   position: absolute;
   cursor: pointer;
   margin-left: 400px;
@@ -50,7 +50,7 @@
   align-items: center;
   gap: 10px;
   border-radius: 20px;
-  background: rgba(2, 136, 209, 0.30);
+  background: rgba(2, 136, 209, 0.3);
   margin-left: 20px;
   color: white;
 }
