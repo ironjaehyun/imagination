@@ -1,4 +1,3 @@
-import React from 'react';
 import Lnb from './components/Lnb';
 import BigGnb from './components/BigGnb';
 const Feed = () => {

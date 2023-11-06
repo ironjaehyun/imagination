@@ -1,4 +1,3 @@
-import React from 'react';
 import Lnb from './components/Lnb';
 import BigGnb from './components/BigGnb';
 import FeedLayout from './components/FeedLayout';
@@ -7,10 +6,9 @@ const Explore = () => {
     <div>
       <main className="MainContainer">
         <Lnb></Lnb>
-        <FeedLayout/>
+        <FeedLayout />
       </main>
       <BigGnb></BigGnb>
-
     </div>
   );
 };

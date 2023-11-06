@@ -1,0 +1,16 @@
+* {
+  margin: 0px;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+main {
+  margin-left: 400px;
+}
+
+@import './BigGnb.scss';
+@import './Gnb.scss';
+@import './Lnb.scss'
+
+
+
