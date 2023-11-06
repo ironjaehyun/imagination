@@ -29,7 +29,9 @@ const joinId = async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
 
     const user = new userModel({ id: id, password: hash, name: name });
+    const token = createToken(user._id);
 
+    res.status(200).json({ _id: user._id, name: user.name, id, token });
     await user.save();
   } catch (error) {
     console.log('함수 내 오류 : ', error);
