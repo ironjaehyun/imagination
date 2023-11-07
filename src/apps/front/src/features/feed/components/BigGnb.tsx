@@ -4,19 +4,18 @@ const BigGnb = () => {
   const location = useLocation();
   // checkActive 함수는 경로를 인자로 받는다
   const checkActive = (path: string) => {
-    return location.pathname === path ? 'Gnb-hoverwhite active' : 'Gnb-hoverwhite';
+    return location.pathname === path
+      ? 'BigGnb-hoverwhite active'
+      : 'BigGnb-hoverwhite';
   };
   return (
     <div>
-      <div className="Gnb">
-        <div className="Gnb-main">
-          <div className="Gnb-imagination-icon">
-            <img
-              src="./img/Imagination.png"
-              className="imagination"
-            ></img>
+      <div className="BigGnb">
+        <div className="BigGnb-main">
+          <div className="BigGnb-imagination-icon">
+            <img src="./img/Imagination.png" className="imagination"></img>
           </div>
-          <div className="Gnb-profile">
+          <div className="BigGnb-profile">
             <img
               src="https://user-images.githubusercontent.com/134245586/280886621-3114e7a5-0beb-483c-b038-6ca2a4e08176.png"
               alt=""
@@ -38,42 +37,45 @@ const BigGnb = () => {
               </div>
             </div>
           </div>
-          <div className="Gnb-btn">
+          <div className="BigGnb-btn">
             <Link to={'/feed'}>
               <div className={checkActive('/feed')}>
-                <img src="./img/feed.png" className="Gnb-icon" />
+                <img src="./img/feed.png" className="BigGnb-icon" />
                 <span>Feed</span>
               </div>
             </Link>
             <Link to={'/leader'}>
               <div className={checkActive('/leader')}>
-                <img src="./img/rank.png" className="Gnb-icon" />
+                <img src="./img/rank.png" className="BigGnb-icon" />
                 <span>Rank</span>
               </div>
             </Link>
             <Link to={'/explore'}>
               <div className={checkActive('/explore')}>
-                <img src="./img/explore.png" className="Gnb-icon" />
+                <img src="./img/explore.png" className="BigGnb-icon" />
                 <span>Explore</span>
               </div>
             </Link>
             <Link to={'/imagination'}>
               <div className={checkActive('/imagination')}>
-                <img src="./img/ai.png" className="Gnb-icon" />
+                <img src="./img/ai.png" className="BigGnb-icon" />
                 <span>AI</span>
               </div>
             </Link>
           </div>
         </div>
 
-        <div className="Gnb-footer">
+        <div className="BigGnb-footer">
           <div className="Gnb-line"></div>
-          <div className="Gnb-hoverwhite Gnb-setting" style={{ paddingRight: 20 }}>
-            <img src="./img/setting.png" className="Gnb-icon" />
+          <div
+            className="BigGnb-hoverwhite Gnb-setting"
+            style={{ paddingRight: 20 }}
+          >
+            <img src="./img/setting.png" className="BigGnb-icon" />
             <span>설정</span>
           </div>
-          <div className="Gnb-hoverwhite">
-            <img src="./img/logout.png" className="Gnb-icon" />
+          <div className="BigGnb-hoverwhite">
+            <img src="./img/logout.png" className="BigGnb-icon" />
             <span>로그아웃</span>
           </div>
         </div>

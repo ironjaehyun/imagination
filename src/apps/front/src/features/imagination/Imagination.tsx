@@ -1,8 +1,10 @@
-import BigGnb from "../feed/components/BigGnb";
+import BigGnb from '../feed/components/BigGnb';
 const Imagination = () => {
-  return <div>
-    <BigGnb/>
-  </div>;
+  return (
+    <div>
+      <BigGnb />
+    </div>
+  );
 };
 
 export default Imagination;

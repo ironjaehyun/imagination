@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const Gnb = () => {
   return (
-    <div >
-      <nav className="sidebar" style={{marginLeft:400}}>
+    <div>
+      <nav className="sidebar" style={{ marginLeft: 400 }}>
         <div className="nav-main">
           <div className="icon">
             <img src="./img/I.png" alt="" className="i"></img>
