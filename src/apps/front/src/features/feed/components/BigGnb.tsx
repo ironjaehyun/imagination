@@ -8,6 +8,7 @@ const BigGnb = () => {
       ? 'BigGnb-hoverwhite active'
       : 'BigGnb-hoverwhite';
   };
+
   return (
     <div>
       <div className="BigGnb">

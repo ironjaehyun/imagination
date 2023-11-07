@@ -1,5 +1,6 @@
 import justifiedLayout from 'justified-layout';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { useFeedHover } from '../hooks/useFeedHover';
 
 type Box = {
   top: number;
@@ -12,18 +13,7 @@ const FeedLayout = () => {
   // 각각의 이미지에 대한 가로세로 비율
   const aspectRatios = [1, 1.5, 1, 1.8, 1, 0.7, 0.9, 1.1, 1.7];
 
-  // 마우스 호버 상태를 추적하는 state
-  const [hoverIndex, setHoverIndex] = useState<null | number>(null);
-
-  // 이미지에 마우스가 올라갔을 때 실행되는 함수
-  const handleMouseOver = (index: number) => {
-    setHoverIndex(index);
-  };
-
-  // 이미지에서 마우스가 벗어났을 때 실행되는 함수
-  const handleMouseOut = () => {
-    setHoverIndex(null);
-  };
+  const { hoverIndex, handleMouseOver, handleMouseOut } = useFeedHover();
 
   // 이미지의 URL들
   const images = [
