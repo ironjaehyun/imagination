@@ -22,6 +22,8 @@ export const useImagination = () => {
   const [imgSrc, setImgSrc] = useState('imagination/Geneal.png');
   const [btnText, setBtnText] = useState('Generate');
   const [selectedsamples, setSelectedSamples] = useState(1);
+  const [sizeWidth, setSizeWidth] = useState(512);
+  const [sizeHeight, setSizeHeight] = useState(512);
 
   const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -40,6 +42,8 @@ export const useImagination = () => {
           negative_prompt: negative,
           image_format: 'png',
           samples: selectedsamples,
+          width: sizeWidth,
+          height: sizeHeight,
         },
         {
           headers: {
@@ -76,6 +80,11 @@ export const useImagination = () => {
     setSelectedSamples(num);
   };
 
+  const handleSizeClick = (num1: number, num2: number) => {
+    setSizeWidth(num1);
+    setSizeHeight(num2);
+  };
+
   return {
     imageUrls,
     setPrompt,
@@ -92,5 +101,7 @@ export const useImagination = () => {
     selectedsamples,
     isLoading,
     setButtonDisabled,
+    handleSizeClick,
+    sizeWidth,
   };
 };

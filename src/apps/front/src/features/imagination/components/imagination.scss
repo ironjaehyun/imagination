@@ -40,8 +40,10 @@ textarea::placeholder {
   display: flex;
   justify-content: center;
   .Generated-img {
-    width: 500px;
-    height: 500px;
+    max-width: 640px;
+    min-width: 384px;
+    max-height: 640px;
+    min-height: 384px;
   }
 }
 
@@ -70,24 +72,25 @@ textarea::placeholder {
 .settings-options {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* 요소들이 한 줄에 맞지 않을 경우 자동으로 다음 줄로 넘어감 */
   width: 100%;
   .sample-btn {
     width: 35px;
     height: 35px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
 }
 
+.settings-options-02 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .submit {
   background: #0288d1;
-  border: none;
-  border-radius: 10px;
-  width: 180px;
-  height: 51px;
-  color: white;
-  padding: 10px 15px;
 }
 
 .img-Generate {
@@ -116,8 +119,23 @@ textarea::placeholder {
 .sample-btn:hover {
   background-color: #d4d4d4;
 }
-
 .sample-btn.selected {
+  background-color: #0288d1;
+  color: white;
+}
+
+.size-btn {
+  height: 35px;
+  border-radius: 5px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.size-btn:hover {
+  background-color: #d4d4d4;
+}
+
+.size-btn.selectedSize {
   background-color: #0288d1;
   color: white;
 }

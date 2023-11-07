@@ -17,6 +17,8 @@ const Imagination = () => {
     selectedsamples,
     isLoading,
     setButtonDisabled,
+    handleSizeClick,
+    sizeWidth,
   } = useImagination();
 
   return (
@@ -64,7 +66,7 @@ const Imagination = () => {
             <hr />
           </div>
           <div className="settings-options" style={{ display: settingOption }}>
-            <p>Samples</p>
+            <p>Number of Images</p>
             <button
               className={`sample-btn ${
                 selectedsamples === 1 ? 'selected' : ''
@@ -101,7 +103,36 @@ const Imagination = () => {
             >
               4
             </button>
-            <p>Size</p>
+            <div className="settings-options-02">
+              <p>Image Dimensions</p>
+              <button
+                className={`size-btn ${
+                  sizeWidth === 512 ? 'selectedSize' : ''
+                }`}
+                type="button"
+                onClick={() => handleSizeClick(512, 512)}
+              >
+                512 X 512
+              </button>
+              <button
+                className={`size-btn ${
+                  sizeWidth === 384 ? 'selectedSize' : ''
+                }`}
+                type="button"
+                onClick={() => handleSizeClick(384, 640)}
+              >
+                384 X 640
+              </button>
+              <button
+                className={`size-btn ${
+                  sizeWidth === 640 ? 'selectedSize' : ''
+                }`}
+                type="button"
+                onClick={() => handleSizeClick(640, 384)}
+              >
+                640 X 384
+              </button>
+            </div>
           </div>
           <div className="img-Generate">
             <button
@@ -131,6 +162,10 @@ const Imagination = () => {
           imageUrls.map((imageUrl, index) => (
             <div className="Generated-img" key={index}>
               <img src={imageUrl} alt="Generated" className="img" />
+              <a href={imageUrl} download="image.jpg">
+                사진 다운로드
+              </a>
+              {/* 임시 기능 */}
             </div>
           ))
         )}
