@@ -1,5 +1,5 @@
 import axios from '../../api/auth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ const useLogin = () => {
   const [pw, setPw] = useState('');
   const [msgLogin, setMsgLogin] = useState('');
   const [msgPassword, setMsgPassword] = useState('');
+  const [isDisable, setIsDisable] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const navigate = useNavigate();
 
@@ -36,6 +37,12 @@ const useLogin = () => {
     }
   };
 
+  useEffect(() => {
+    if (id.length > 0 && pw.length > 0) {
+      setIsDisable(false);
+    }
+  }, [id, pw]);
+
   const handleLogout = () => {
     removeCookie('token');
   };
@@ -48,6 +55,7 @@ const useLogin = () => {
     handleLogout,
     msgLogin,
     msgPassword,
+    isDisable,
   };
 };
 

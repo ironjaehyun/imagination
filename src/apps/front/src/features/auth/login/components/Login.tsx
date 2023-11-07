@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import useLogin from '../hooks/useLogin';
 
 const Login = () => {
-  const { handleLogin, setId, setPw, msgLogin, msgPassword } = useLogin();
+  const { handleLogin, setId, setPw, msgLogin, msgPassword, isDisable } =
+    useLogin();
   return (
     <div className="center-box">
       <form className="login" onSubmit={handleLogin}>
@@ -26,7 +27,9 @@ const Login = () => {
           {msgPassword}
         </div>
 
-        <button className="login-button">로그인</button>
+        <button className="login-button" disabled={isDisable}>
+          로그인
+        </button>
         <div className="or">
           <hr className="or-line" />
           <div className="or-text">OR</div>
