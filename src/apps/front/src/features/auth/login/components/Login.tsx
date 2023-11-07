@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <div className="center-box">
       <form className="login" onSubmit={handleLogin}>
-        <h1 className="login-title">leechi</h1>
+        <h1 className="login-title">Imagination</h1>
         <input
           type="text"
           placeholder="아이디"

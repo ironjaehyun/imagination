@@ -9,13 +9,14 @@
 
   .login-title {
     margin-bottom: 50px;
-    color: #1e88e5;
+    color: $primary;
+    font-size: $font-size-24;
   }
 
   .login-button {
     margin: 10px;
-    background-color: #1e88e5;
-    color: white;
+    background-color: $primary;
+    color: $white;
   }
 
   .social-login {
