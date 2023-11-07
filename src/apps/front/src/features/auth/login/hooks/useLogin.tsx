@@ -9,7 +9,7 @@ const useLogin = () => {
   const [msgPassword, setMsgPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
-  
+  const [user, setUser] = useState();
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,6 +18,7 @@ const useLogin = () => {
         .post('/', { id: id, password: pw })
         .then((res) => {
           const newToken = res.data.token;
+          setUser(res.data);
           setCookie('token', newToken, { path: '/' });
         })
         .catch((error) => {
@@ -54,6 +55,7 @@ const useLogin = () => {
     msgLogin,
     msgPassword,
     isDisable,
+    user,
   };
 };
 
