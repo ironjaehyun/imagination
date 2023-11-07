@@ -6,7 +6,7 @@ const Lnb = () => {
       <form action="" className="Lnb-form">
         <input type="text" className="Lnb-search-input" />
       </form>
-      <div className='Lnb-right'>
+      <div className="Lnb-right">
         <button className="Lnb-create-btn">
           <Link to={'/create'}>
             <span className="Lnb-create-btn-plus">+</span>Create

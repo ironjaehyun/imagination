@@ -1,5 +1,5 @@
 import justifiedLayout from 'justified-layout';
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react';
 
 type Box = {
   top: number;
@@ -45,7 +45,6 @@ const FeedLayout = () => {
     { url: 'https://picsum.photos/500?r=15', likes: 140 },
     { url: 'https://picsum.photos/500?r=16', likes: 140 },
     { url: 'https://picsum.photos/500?r=17', likes: 140 },
-    
   ];
 
   // 이미지가 더 많을 경우를 대비해 가로세로 비율을 계속 반복
