@@ -9,6 +9,7 @@ const Feed = () => {
         <Post></Post>
       </main>
       <BigGnb></BigGnb>
+      
     </div>
   );
 };

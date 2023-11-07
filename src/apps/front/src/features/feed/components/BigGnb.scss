@@ -76,7 +76,7 @@ $border-radius: 10px;
   }
 
   > div > p:nth-child(2) {
-    font-family: Pretendard;
+    font-family: $font-main;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -105,5 +105,12 @@ $border-radius: 10px;
 
   .BigGnb-icon {
     margin-right: 20px;
+  }
+}
+.BigGnb-footer{
+  margin-bottom: 10px;
+  
+  .BigGnb-hoverwhite:nth-child(3){
+    padding-left: 15px;
   }
 }
