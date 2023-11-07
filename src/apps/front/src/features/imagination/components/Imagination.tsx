@@ -12,16 +12,16 @@ interface ResponseData {
 
 const Imagination = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [prompt, setPrompt] = useState<string>('');
-  const [negative, setNegative] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [settingOption, setSettingOption] = useState<string>('none');
-  const [rotationState, setRotationState] = useState<string>('rotate(0deg)');
-  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-  const [buttonBg, setButtonBg] = useState<string>('');
-  const [imgSrc, setImgSrc] = useState<string>('imagination/Geneal.png');
-  const [text, setText] = useState<string>('Generate');
-  const [selectedsamples, setSelectedSamples] = useState<number>(1);
+  const [prompt, setPrompt] = useState('');
+  const [negative, setNegative] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [settingOption, setSettingOption] = useState('flex');
+  const [rotationState, setRotationState] = useState('rotate(0deg)');
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [buttonBg, setButtonBg] = useState('');
+  const [imgSrc, setImgSrc] = useState('imagination/Geneal.png');
+  const [btnText, setbtnText] = useState('Generate');
+  const [selectedsamples, setSelectedSamples] = useState(1);
   // const [size1, setSize1] = useState<number>(512);
   // const [size2, setSize2] = useState<number>(512);
 
@@ -33,7 +33,7 @@ const Imagination = () => {
       setButtonDisabled(true);
       setButtonBg('#f5f5f6');
       setImgSrc('imagination/loading-loader.gif');
-      setText('');
+      setbtnText('');
 
       const response = await axios.post<ResponseData>(
         'https://api.kakaobrain.com/v2/inference/karlo/t2i',
@@ -61,7 +61,7 @@ const Imagination = () => {
       setButtonDisabled(false);
       setButtonBg('#0288D1');
       setImgSrc('imagination/Geneal.png');
-      setText('Generate');
+      setbtnText('Generate');
     }
   };
 
@@ -82,14 +82,14 @@ const Imagination = () => {
 
   return (
     <div>
-      <div className="container">
-        <form onSubmit={generateImage} className="form">
+      <div className="imagination-main">
+        <form onSubmit={generateImage} className="imagination-form">
           <div>
             <div className="prompt">
               <h1>Prompt</h1>
               <textarea
-                id="prom"
-                className="in-1 fontstyles"
+                id="prompt"
+                className="prompt-input"
                 onChange={(e) => {
                   setPrompt(e.target.value);
                 }}
@@ -99,12 +99,11 @@ const Imagination = () => {
                 required
               ></textarea>
             </div>
-
-            <div className="naprompt">
+            <div className="negative">
               <h1>Negative Propmt</h1>
               <textarea
                 id="native"
-                className="in-1 fontstyles"
+                className="prompt-input"
                 onChange={(e) => {
                   setNegative(e.target.value);
                 }}
@@ -114,78 +113,84 @@ const Imagination = () => {
               ></textarea>
             </div>
           </div>
-          <div className="Setting">
+          <div className="prompt-setting">
             <h3>Setting</h3>
             <img
               src="imagination/expand_less.png"
               alt=""
               onClick={handleButtonClick}
-              className="active__img"
+              className="prompt-setting-sample"
               style={{ transform: rotationState }}
             />
-            <div></div>
+            <hr />
           </div>
-          <div className="Setting__opstion" style={{ display: settingOption }}>
+          <div className="settings-options" style={{ display: settingOption }}>
             <p>Samples</p>
             <button
-              className={`style-btn ${selectedsamples === 1 ? 'selected' : ''}`}
+              className={`sample-btn ${
+                selectedsamples === 1 ? 'selected' : ''
+              }`}
               type="button"
               onClick={() => handleNumberClick(1)}
             >
               1
             </button>
             <button
-              className={`style-btn ${selectedsamples === 2 ? 'selected' : ''}`}
+              className={`sample-btn ${
+                selectedsamples === 2 ? 'selected' : ''
+              }`}
               type="button"
               onClick={() => handleNumberClick(2)}
             >
               2
             </button>
             <button
-              className={`style-btn ${selectedsamples === 3 ? 'selected' : ''}`}
+              className={`sample-btn ${
+                selectedsamples === 3 ? 'selected' : ''
+              }`}
               type="button"
               onClick={() => handleNumberClick(3)}
             >
               3
             </button>
             <button
-              className={`style-btn ${selectedsamples === 4 ? 'selected' : ''}`}
+              className={`sample-btn ${
+                selectedsamples === 4 ? 'selected' : ''
+              }`}
               type="button"
               onClick={() => handleNumberClick(4)}
             >
               4
             </button>
-            <div>
-              <p>Size</p>
-            </div>
+            <p>Size</p>
           </div>
-          <div className="Api__Generate">
+          <div className="img-Generate">
             <button
               type="submit"
-              className="Generate-active"
+              className="generate-btn-active"
               disabled={buttonDisabled}
               onClick={() => setButtonDisabled(isLoading)}
               style={{ background: buttonBg }}
             >
               <img src={imgSrc} alt="image" />
-              <p>{text}</p>
+              <p>{btnText}</p>
             </button>
           </div>
         </form>
       </div>
-      <div className="imgs">
+      <div className="Generated-imgs">
         {isLoading ? (
-          <div className="loading">
+          <div className="loading-img">
             <img
               src="imagination/funder-the-sea-octopus.gif"
               alt="Loading"
-              className="lodingimg"
+              className="loding-img"
             />
           </div>
         ) : (
           imageUrls &&
           imageUrls.map((imageUrl, index) => (
-            <div className="img" key={index}>
+            <div className="Generated-img" key={index}>
               <img src={imageUrl} alt="Generated" className="img" />
             </div>
           ))
