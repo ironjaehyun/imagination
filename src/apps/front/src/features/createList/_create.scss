@@ -200,7 +200,62 @@
   left: 290px;
   width: 1017px;
   height: 680px;
-  background-color: #0288d1;
+  background-color: white;
   opacity: 1;
   z-index: 10;
+  padding: 22px;
+}
+
+.Modal-close-button {
+  float: right;
+}
+
+.Modal-list {
+  padding-top: 77px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Modla-select-button {
+  width: 30px;
+  height: 30px;
+}
+
+.Modal-list-img {
+  width: 240px;
+  height: 240px;
+  background-color: #d9d9d9;
+  margin-left: 13px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.Modal-prompt-list {
+  display: flex;
+  flex-direction: column;
+  width: 624px;
+  height: 240px;
+  background-color: white;
+  justify-content: space-between;
+  margin-left: 32px;
+}
+
+.Modal-prompt-positive {
+  background-color: #d9d9d9;
+  width: 624px;
+  height: 115px;
+  border-radius: 5px;
+  padding: 13px;
+}
+
+.Modal-prompt-negative {
+  background-color: #d9d9d9;
+  width: 624px;
+  height: 115px;
+  border-radius: 5px;
+  padding: 13px;
 }
