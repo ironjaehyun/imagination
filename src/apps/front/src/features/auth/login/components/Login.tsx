@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <div className="center-box">
       <form className="login" onSubmit={handleLogin}>
-        <h1 className="login__title">leechi</h1>
+        <h1 className="login-title">leechi</h1>
         <input
           type="text"
           placeholder="아이디"
@@ -21,12 +21,12 @@ const Login = () => {
             setPw(e.target.value);
           }}
         />
-        <button className="login__button">로그인</button>
+        <button className="login-button">로그인</button>
         <div className="or">
           <hr className="or-line" />
           <div className="or-text">OR</div>
         </div>
-        <div className="social__login">
+        <div className="social-login">
           <Link to={'/google'} className="google">
             <img src="join/google.jpg" alt="" />
             <span>구글로 로그인</span>
