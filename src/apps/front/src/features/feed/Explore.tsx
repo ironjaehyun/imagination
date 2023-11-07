@@ -4,7 +4,7 @@ import FeedLayout from './components/FeedLayout';
 const Explore = () => {
   return (
     <div>
-      <main className="MainContainer">
+      <main>
         <Lnb></Lnb>
         <FeedLayout />
       </main>

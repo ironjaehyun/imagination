@@ -4,7 +4,7 @@ import Post from './components/Post';
 const Feed = () => {
   return (
     <div>
-      <main className="MainContainer">
+      <main>
         <Lnb></Lnb>
         <Post></Post>
       </main>

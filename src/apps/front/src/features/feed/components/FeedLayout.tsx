@@ -1,4 +1,5 @@
 import justifiedLayout from 'justified-layout';
+import { useMemo, useState } from 'react'
 
 type Box = {
   top: number;
@@ -11,35 +12,50 @@ const FeedLayout = () => {
   // 각각의 이미지에 대한 가로세로 비율
   const aspectRatios = [1, 1.5, 1, 1.8, 1, 0.7, 0.9, 1.1, 1.7];
 
+  // 마우스 호버 상태를 추적하는 state
+  const [hoverIndex, setHoverIndex] = useState<null | number>(null);
+
+  // 이미지에 마우스가 올라갔을 때 실행되는 함수
+  const handleMouseOver = (index: number) => {
+    setHoverIndex(index);
+  };
+
+  // 이미지에서 마우스가 벗어났을 때 실행되는 함수
+  const handleMouseOut = () => {
+    setHoverIndex(null);
+  };
+
   // 이미지의 URL들
   const images = [
-    'https://picsum.photos/500?r=0',
-    'https://picsum.photos/500?r=1',
-    'https://picsum.photos/500?r=2',
-    'https://picsum.photos/500?r=3',
-    'https://picsum.photos/500?r=4',
-    'https://picsum.photos/500?r=5',
-    'https://picsum.photos/500?r=6',
-    'https://picsum.photos/500?r=7',
-    'https://picsum.photos/500?r=8',
-    'https://picsum.photos/500?r=9',
-    'https://picsum.photos/500?r=10',
-    'https://picsum.photos/500?r=11',
-    'https://picsum.photos/500?r=12',
-    'https://picsum.photos/500?r=13',
-    'https://picsum.photos/500?r=14',
-    'https://picsum.photos/500?r=15',
-    'https://picsum.photos/500?r=16',
-    'https://picsum.photos/500?r=17',
+    { url: 'https://picsum.photos/500?r=0', likes: 100 },
+    { url: 'https://picsum.photos/500?r=1', likes: 101 },
+    { url: 'https://picsum.photos/500?r=2', likes: 102 },
+    { url: 'https://picsum.photos/500?r=3', likes: 103 },
+    { url: 'https://picsum.photos/500?r=4', likes: 104 },
+    { url: 'https://picsum.photos/500?r=5', likes: 105 },
+    { url: 'https://picsum.photos/500?r=6', likes: 106 },
+    { url: 'https://picsum.photos/500?r=7', likes: 107 },
+    { url: 'https://picsum.photos/500?r=8', likes: 108 },
+    { url: 'https://picsum.photos/500?r=9', likes: 109 },
+    { url: 'https://picsum.photos/500?r=10', likes: 110 },
+    { url: 'https://picsum.photos/500?r=11', likes: 120 },
+    { url: 'https://picsum.photos/500?r=12', likes: 130 },
+    { url: 'https://picsum.photos/500?r=13', likes: 140 },
+    { url: 'https://picsum.photos/500?r=14', likes: 140 },
+    { url: 'https://picsum.photos/500?r=15', likes: 140 },
+    { url: 'https://picsum.photos/500?r=16', likes: 140 },
+    { url: 'https://picsum.photos/500?r=17', likes: 140 },
+    
   ];
 
   // 이미지가 더 많을 경우를 대비해 가로세로 비율을 계속 반복
-  const extendedAspectRatios = Array(images.length)
-    .fill(null)
-    .map((_, index) => aspectRatios[index % aspectRatios.length]);
+  const extendedAspectRatios = useMemo(() => {
+    return Array(images.length)
+      .fill(null)
+      .map((_, index) => aspectRatios[index % aspectRatios.length]);
+  }, [images.length]);
 
   // JustifiedLayout 라이브러리를 사용하여 이미지의 배치를 계산
-  // containerWidth는 레이아웃의 전체 너비를 설정
   const geometry = justifiedLayout(extendedAspectRatios, {
     containerWidth: 1400, // 컨테이너의 너비
     containerPadding: 123,
@@ -47,30 +63,27 @@ const FeedLayout = () => {
   });
 
   return (
-    // 외부 div. 페이지의 중앙에 레이아웃을 배치하기 위한 스타일 적용
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'left',
-        marginLeft: 70,
-        height: '100vh', // 뷰포트 높이를 100%로 설정, 페이지의 전체 높이를 차지
-      }}
-    >
-      {/* 이미지 레이아웃이 위치할 div. 레이아웃의 너비와 위치를 설정 */}
+    <div className="layout-container">
       <div className="layout-position">
         {geometry.boxes.map((box: Box, index: number) => (
-          <img
+          <div
             key={index}
-            src={images[index]}
+            className={`image-box ${hoverIndex === index ? 'hover' : ''}`}
             style={{
-              position: 'absolute',
-              top: `${box.top}px`, // 상단 위치 설정
-              left: `${box.left}px`, // 왼쪽 위치 설정
-              width: `${box.width}px`, // 너비 설정
-              height: `${box.height}px`, // 높이 설정
-              objectFit: 'cover', // 이미지가 잘리지 않도록 설정
+              top: `${box.top}px`,
+              left: `${box.left}px`,
+              width: `${box.width}px`,
+              height: `${box.height}px`,
+              backgroundImage: `url(${images[index].url})`,
             }}
-          />
+            onMouseOver={() => handleMouseOver(index)}
+            onMouseOut={handleMouseOut}
+          >
+            <div className="overlay">
+              <img src="./img/whitelike.png" alt="" />
+              <span className="like-count">{images[index].likes}</span>
+            </div>
+          </div>
         ))}
       </div>
     </div>
