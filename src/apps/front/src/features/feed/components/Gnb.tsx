@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const Gnb = () => {
   return (
-    <div>
-      <nav className="sidebar">
+    <div >
+      <nav className="sidebar" style={{marginLeft:400}}>
         <div className="nav-main">
           <div className="icon">
             <img src="./img/I.png" alt="" className="i"></img>
@@ -36,7 +36,7 @@ const Gnb = () => {
           </div>
         </div>
         <div className="nav-battom">
-          <div className="line"></div>
+          <div className="Gnb-line"></div>
           <div className="setting white_hover">
             <Link to={'/setting'}>
               <img src="./img/setting.png" className="nav-i" />

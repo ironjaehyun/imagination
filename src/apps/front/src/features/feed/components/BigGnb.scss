@@ -1,5 +1,4 @@
-/* nav바 열렸을때 */
-.open-sidebar {
+.Gnb {
   width: 212px;
   height: 100vh;
   padding: 0px 20px;
@@ -17,61 +16,61 @@
   height: 30px;
 }
 
-.image-icon {
+.Gnb-imagination-icon {
   padding: 15px 10px;
 }
 
-.fropile {
+.Gnb-profile {
   background-color: white;
   border-radius: 25px;
   padding: 7px;
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
 }
 
-.fropile > .Rectangle {
+.Gnb-profile > .profile-img {
   width: 125px;
   height: 127px;
 }
 
-.fropile-cnt {
+.profile-status {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
 }
 
-.fropile-cnt-div {
+.profile-status-middle {
   border-left: solid 1px #d9d9d9;
   border-right: 1px solid #d9d9d9;
 }
 
-.fropile-cnt > div > p:nth-child(2) {
+.profile-status > div > p:nth-child(2) {
   font-size: 10px;
 }
 
-.fropile-cnt > div {
+.profile-status > div {
   padding: 5px 10px;
 }
 
-.open-nav-main .image-icon,
-.fropile {
+.Gnb-main .Gnb-imagination-icon,
+.Gnb-profile {
   text-align: center;
 }
 
-.nav-icon {
+.Gnb-icon {
   width: 25px;
   height: 25px;
 }
 
-.open-nav-icon {
+.Gnb-btn {
   padding: 20px 0px;
 }
 
-.open-nav-icon > a > .hoverwhite {
+.Gnb-btn > a > .Gnb-hoverwhite {
   margin-bottom: 15px;
 }
 
-.hoverwhite {
+.Gnb-hoverwhite {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,17 +78,17 @@
   border-radius: 10px;
 }
 
-.hoverwhite:hover {
+.Gnb-hoverwhite:hover {
   background-color: white;
   color: #0b7295;
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
 }
 
-.hoverwhite .nav-icon {
+.Gnb-hoverwhite .Gnb-icon {
   margin-right: 20px;
 }
 
-.fropile-cnt > div > p:nth-child(2) {
+.profile-status > div > p:nth-child(2) {
   color: #b9b9b9;
   font-family: Pretendard;
   font-size: 10px;
@@ -98,23 +97,22 @@
   line-height: normal;
 }
 
-.open-nav-icon a:nth-child(3) > .hoverwhite {
+.Gnb-btn a:nth-child(3) > .Gnb-hoverwhite {
   padding-left: 18px;
 }
 
-.open-nav-icon a:nth-child(4) > .hoverwhite {
+.Gnb-btn a:nth-child(4) > .Gnb-hoverwhite {
   padding-right: 22px;
 }
 
-.open-nav-battom > .setting {
+.Gnb-footer > .Gnb-setting {
   margin-bottom: 2px;
 }
-.open-nav-battom .hoverwhite:nth-child(3) {
+.Gnb-footer .Gnb-hoverwhite:nth-child(3) {
   margin-bottom: 13px;
   padding-left: 16px;
 }
-.hoverwhite:hover,
-.hoverwhite.active {
+.Gnb-hoverwhite.active {
   background-color: white;
   color: #0b7295;
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);

@@ -1,7 +1,8 @@
-import React from 'react';
-
+import BigGnb from "../feed/components/BigGnb";
 const Imagination = () => {
-  return <div>Imagination</div>;
+  return <div>
+    <BigGnb/>
+  </div>;
 };
 
 export default Imagination;

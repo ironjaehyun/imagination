@@ -1,7 +1,8 @@
-import React from 'react';
-
+import BigGnb from "../feed/components/BigGnb";
 const Leader = () => {
-  return <div>leader</div>;
+  return <div>
+    <BigGnb/>
+  </div>;
 };
 
 export default Leader;

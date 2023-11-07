@@ -28,6 +28,9 @@ const FeedLayout = () => {
     'https://picsum.photos/500?r=12',
     'https://picsum.photos/500?r=13',
     'https://picsum.photos/500?r=14',
+    'https://picsum.photos/500?r=15',
+    'https://picsum.photos/500?r=16',
+    'https://picsum.photos/500?r=17',
   ];
 
   // 이미지가 더 많을 경우를 대비해 가로세로 비율을 계속 반복
