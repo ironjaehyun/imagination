@@ -36,13 +36,19 @@ const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
           </button>
         </div>
         {/*여기서부터는 map 함수로 데이터를 가져올 생각입니다. */}
-        {ModalData.map(() => (
+        {ModalData.map((item, i) => (
           <div className="Modal-list">
-            <input className="Modla-select-button" type="radio" />
+            <input
+              className="Modla-select-button"
+              type="radio"
+              name="modalDataGroup"
+            />
             <div className="Modal-list-img">+</div>
             <div className="Modal-prompt-list">
               <div className="Modal-prompt-positive">
-                <h4>Prompt</h4>
+                <h4>
+                  Prompt{i} 작성자 {item.name}
+                </h4>
                 <p>
                   hyper-detailed front medium shot of Black short-haired girl,
                   front view, cente r composition, dress shirt, by loish,

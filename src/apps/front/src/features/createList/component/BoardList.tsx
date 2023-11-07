@@ -41,7 +41,11 @@ const Boardlist = () => {
             className="art-detail-textarea-details"
             placeholder="작품을 설명해 주세요"
           ></textarea>
-          <p># 해쉬태그 입력</p>
+          <textarea
+            className="art-detail-textarea-hashtag"
+            placeholder="# 해쉬태그 입력"
+          ></textarea>
+          {/* <p># 해쉬태그 입력</p> */}
           <button className="art-button">게시하기</button>
         </div>
       </div>
