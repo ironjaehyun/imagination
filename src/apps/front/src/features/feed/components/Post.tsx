@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Post = () => {
   const posts = [
@@ -47,11 +47,11 @@ const Post = () => {
   return (
     <div className="feed-cards">
       {posts.map((post, index) => (
-        <div className="card" key={index}>
-          <div className="card-img">
+        <div className="post-card" key={index}>
+          <div className="post-card-img">
             <img src={post.image} alt="" />
           </div>
-          <div className="card-bottom">
+          <div className="post-card-footer">
             <div>
               <img src={post.profileImage} alt="" />
               <span>{post.username}</span>
