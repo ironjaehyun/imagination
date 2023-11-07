@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react'
+import { useState } from 'react';
 const BigGnb = () => {
   const location = useLocation();
   // checkActive 함수는 경로를 인자로 받는다
@@ -10,12 +10,13 @@ const BigGnb = () => {
   };
 
   // 임시 사용자 데이터
-  const [userData, setUserData] = useState({
-    profileImg: "https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp",
-    name: "Leechi",
+  const [userData] = useState({
+    profileImg:
+      'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
+    name: 'Leechi',
     posts: 1,
     following: 123,
-    followers: 123
+    followers: 123,
   });
 
   return (
