@@ -3,47 +3,47 @@ import { Link } from 'react-router-dom';
 const Gnb = () => {
   return (
     <div>
-      <nav className="sidebar" style={{ marginLeft: 400 }}>
-        <div className="nav-main">
-          <div className="icon">
-            <img src="./img/I.png" alt="" className="i"></img>
+      <nav className="Gnb" style={{ marginLeft: 400 }}>
+        <div className="Gnb-main">
+          <div className="Gnb-icon">
+            <img src="./img/I.png" alt="" className="Gnb-i"></img>
           </div>
           <div>
             <img
               src="./img/Rectangle 17.png"
               alt=""
-              className="Rectangle"
+              className="Gnb-profile-img"
             ></img>
           </div>
-          <div className="white_hover">
+          <div className="Gnb-hoverwhite">
             <Link to={'/feed'}>
-              <img src="./img/feed.png" className="nav-i" />
+              <img src="./img/feed.png" className="Gnb-nav-icon" />
             </Link>
           </div>
-          <div className="white_hover">
+          <div className="Gnb-hoverwhite">
             <Link to={'/leader'}></Link>
-            <img src="./img/rank.png" className="nav-i" />
+            <img src="./img/rank.png" className="Gnb-nav-icon" />
           </div>
-          <div className="white_hover">
+          <div className="Gnb-hoverwhite">
             <Link to={'/explore'}>
-              <img src="./img/explore.png" className="nav-i" />
+              <img src="./img/explore.png" className="Gnb-nav-icon" />
             </Link>
           </div>
-          <div className="white_hover">
-            <Link to={'/ai'}>
-              <img src="./img/ai.png" className="nav-i" />
+          <div className="Gnb-hoverwhite">
+            <Link to={'/imagination'}>
+              <img src="./img/ai.png" className="Gnb-nav-icon" />
             </Link>
           </div>
         </div>
-        <div className="nav-battom">
+        <div className="Gnb-footer">
           <div className="Gnb-line"></div>
-          <div className="setting white_hover">
+          <div className="setting Gnb-hoverwhite">
             <Link to={'/setting'}>
-              <img src="./img/setting.png" className="nav-i" />
+              <img src="./img/setting.png" className="Gnb-nav-icon" />
             </Link>
           </div>
-          <div className="white_hover">
-            <img src="./img/logout.png" className="nav-i" />
+          <div className="Gnb-hoverwhite">
+            <img src="./img/logout.png" className="Gnb-nav-icon" />
           </div>
         </div>
       </nav>

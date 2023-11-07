@@ -1,5 +1,4 @@
-/* nav 바 접혔을 때 */
-.sidebar {
+.Gnb {
   width: 75px;
   height: 100vh;
   padding: 17px 10px;
@@ -12,42 +11,42 @@
   left: 0;
 }
 
-.i {
+.Gnb-i{
   width: 14px;
   height: 28px;
 }
 
-.Rectangle {
+.Gnb-profile-img {
   width: 50px;
   height: 50px;
 }
 
-.sidebar div {
+.Gnb div {
   text-align: center;
 }
 
-.nav-main > div {
+.Gnb-main > div {
   margin-bottom: 20px;
 }
 
-.nav-battom > .Gnb-setting {
+.Gnb-footer > .Gnb-setting {
   margin-bottom: 7px;
 }
 
-.nav-i {
+.Gnb-nav-icon {
   width: 24px;
   height: 24px;
 }
 
-.nav-main > .white_hover {
+.Gnb-main > .Gnb-hoverwhite {
   padding: 13px;
 }
 
-.nav-battom > .white_hover {
+.Gnb-footer > .Gnb-hoverwhite {
   padding: 13px;
 }
 
-.white_hover:hover {
+.Gnb-hoverwhite:hover {
   background: #fff;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
