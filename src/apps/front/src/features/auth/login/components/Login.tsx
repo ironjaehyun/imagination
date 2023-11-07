@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import useLogin from '../hooks/useLogin';
 
 const Login = () => {
-  const { handleLogin, setId, setPw, msgLogin, msgPassword, isDisable } =
+  const { handleLogin, setId, setPw,cookies, msgLogin, msgPassword, isDisable, handleLogout } =
     useLogin();
   return (
+    <div>
+      {cookies.token ? <div onClick={handleLogout}>로그아웃</div>:
     <div className="center-box">
       <form className="login" onSubmit={handleLogin}>
         <h1 className="login-title">Imagination</h1>
@@ -54,6 +56,8 @@ const Login = () => {
         <p>계정이 없으신가요?</p>
         <Link to="/join">회원가입</Link>
       </section>
+    </div>
+}
     </div>
   );
 };

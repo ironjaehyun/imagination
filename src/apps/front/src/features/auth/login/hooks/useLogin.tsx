@@ -1,7 +1,6 @@
 import axios from '../../api/auth';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 
 const useLogin = () => {
   const [id, setId] = useState('');
@@ -10,7 +9,7 @@ const useLogin = () => {
   const [msgPassword, setMsgPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
-  const navigate = useNavigate();
+  
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,7 +19,6 @@ const useLogin = () => {
         .then((res) => {
           const newToken = res.data.token;
           setCookie('token', newToken, { path: '/' });
-          cookies.token ? navigate('/feed') : null;
         })
         .catch((error) => {
           console.log(error.response.data);
