@@ -17,9 +17,7 @@ const Boardlist = () => {
       <section className="bring-art">
         <div className="bring-art-content">
           <h3 className="bring-art-title">작품 전시를 해주세요</h3>
-          {isModalOpen && (
-            <BoardModal isOpen={isModalOpen} onClose={closeModal} />
-          )}
+          {isModalOpen && <BoardModal onClose={closeModal} />}
           <div className="briang-art-list">
             <div className="bring-art-image" onClick={openModal}>
               <p>작품 이미지 가져오기</p>
