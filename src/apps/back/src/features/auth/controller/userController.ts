@@ -42,15 +42,11 @@ const handleLogin = async (req, res) => {
   try {
     const { id, password } = req.body;
     const user = await userModel.findOne({ id });
-    if (!user)
-      return res.status(400).json('Invalid email or password. user not found');
+    if (!user) return res.status(400).json('user not found');
 
     const isValidPassword = await bcrypt.compare(password, user.password);
 
-    if (!isValidPassword)
-      return res
-        .status(400)
-        .json('Invalid email or password. your password wrong');
+    if (!isValidPassword) return res.status(400).json('wrong password');
 
     const token = createToken(user._id);
 

@@ -7,6 +7,12 @@
   flex-direction: column;
   box-shadow: 0 0 4px #e0e0e0;
 
+  .login-alert {
+    height: 13px;
+    color: $red;
+    font-size: $font-size-12;
+    font-weight: 700;
+  }
   .login-title {
     margin-bottom: 50px;
     color: $primary;

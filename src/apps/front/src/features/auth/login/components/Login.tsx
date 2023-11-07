@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import useLogin from '../hooks/useLogin';
 
 const Login = () => {
-  const { handleLogin, setId, setPw } = useLogin();
+  const { handleLogin, setId, setPw, msgLogin, msgPassword } = useLogin();
   return (
     <div className="center-box">
       <form className="login" onSubmit={handleLogin}>
@@ -21,6 +21,11 @@ const Login = () => {
             setPw(e.target.value);
           }}
         />
+        <div className="login-alert">
+          {msgLogin}
+          {msgPassword}
+        </div>
+
         <button className="login-button">로그인</button>
         <div className="or">
           <hr className="or-line" />
