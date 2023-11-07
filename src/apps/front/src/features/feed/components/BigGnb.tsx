@@ -17,9 +17,9 @@ const BigGnb = () => {
           </div>
           <div className="BigGnb-profile">
             <img
-              src="https://user-images.githubusercontent.com/134245586/280886621-3114e7a5-0beb-483c-b038-6ca2a4e08176.png"
+              src="https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp"
               alt=""
-              className="profile-img"
+              className="BigGnb-profile-img"
             ></img>
             <p>Leechi</p>
             <div className="profile-status">

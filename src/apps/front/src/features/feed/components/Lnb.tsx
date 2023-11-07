@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 const Lnb = () => {
   return (
     <div className="Lnb">
-      <form action="" className="form">
-        <input type="text" className="search-input" />
+      <form action="" className="Lnb-form">
+        <input type="text" className="Lnb-search-input" />
       </form>
-      <button className="create-btn">
+      <button className="Lnb-create-btn">
         <Link to={'/create'}>
-          <span className="create-btn-plus">+</span>Create
+          <span className="Lnb-create-btn-plus">+</span>Create
         </Link>
       </button>
-      <div className="allim">
-        <img src="./img/alarm.png" alt="" className="alarm" />
-        <img src="./img/share.png" alt="" className="chat" />
+      <div className="Lnb-allim">
+        <img src="./img/alarm.png" alt="" className="Lnb-alarm" />
+        <img src="./img/share.png" alt="" className="Lnb-chat" />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const Gnb = () => {
           </div>
           <div>
             <img
-              src="./img/Rectangle 17.png"
+              src="https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp"
               alt=""
               className="Gnb-profile-img"
             ></img>
