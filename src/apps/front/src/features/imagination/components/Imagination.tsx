@@ -1,84 +1,23 @@
-import { useState, useEffect, FormEventHandler } from 'react';
-import axios from 'axios';
-import { REST_API_KEY } from './constants';
-
-interface Image {
-  image: string;
-}
-
-interface ResponseData {
-  images: Image[];
-}
+import { useImagination } from '../hooks/useImagination';
 
 const Imagination = () => {
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [prompt, setPrompt] = useState('');
-  const [negative, setNegative] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [settingOption, setSettingOption] = useState('flex');
-  const [rotationState, setRotationState] = useState('rotate(0deg)');
-  const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [buttonBg, setButtonBg] = useState('');
-  const [imgSrc, setImgSrc] = useState('imagination/Geneal.png');
-  const [btnText, setbtnText] = useState('Generate');
-  const [selectedsamples, setSelectedSamples] = useState(1);
-  // const [size1, setSize1] = useState<number>(512);
-  // const [size2, setSize2] = useState<number>(512);
-
-  const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
-
-    try {
-      setIsLoading(true);
-      setButtonDisabled(true);
-      setButtonBg('#f5f5f6');
-      setImgSrc('imagination/loading-loader.gif');
-      setbtnText('');
-
-      const response = await axios.post<ResponseData>(
-        'https://api.kakaobrain.com/v2/inference/karlo/t2i',
-        {
-          prompt: prompt,
-          negative_prompt: negative,
-          image_format: 'png',
-          samples: selectedsamples,
-          // width : size1,
-          // height : size2,
-        },
-        {
-          headers: {
-            Authorization: `KakaoAK ${REST_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-        },
-      );
-
-      setImageUrls(response.data.images.map((image) => image.image));
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-      setButtonDisabled(false);
-      setButtonBg('#0288D1');
-      setImgSrc('imagination/Geneal.png');
-      setbtnText('Generate');
-    }
-  };
-
-  useEffect(() => {
-    setButtonDisabled(isLoading);
-  }, [isLoading]);
-
-  const handleButtonClick = () => {
-    setSettingOption(settingOption === 'flex' ? 'none' : 'flex');
-    setRotationState(
-      rotationState === 'rotate(0deg)' ? 'rotate(-180deg)' : 'rotate(0deg)',
-    );
-  };
-
-  const handleNumberClick = (num: number) => {
-    setSelectedSamples(num);
-  };
+  const {
+    imageUrls,
+    setPrompt,
+    setNegative,
+    buttonDisabled,
+    buttonBg,
+    imgSrc,
+    btnText,
+    generateImage,
+    handleButtonClick,
+    handleNumberClick,
+    rotationState,
+    settingOption,
+    selectedsamples,
+    isLoading,
+    setButtonDisabled,
+  } = useImagination();
 
   return (
     <div>
@@ -169,7 +108,7 @@ const Imagination = () => {
               type="submit"
               className="generate-btn-active"
               disabled={buttonDisabled}
-              onClick={() => setButtonDisabled(isLoading)}
+              onClick={() => setButtonDisabled(isLoading)} // Fix the function call
               style={{ background: buttonBg }}
             >
               <img src={imgSrc} alt="image" />
