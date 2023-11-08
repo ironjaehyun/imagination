@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-const Post = () => {
+const Post = ({ onImageClick }: { onImageClick: () => void }) => {
   const posts = [
     {
       image: './img/card-img.png',
@@ -34,6 +33,8 @@ const Post = () => {
     },
   ];
 
+
+  //  좋아요 기능
   const [isLiked, setIsLiked] = useState(
     Array.from({ length: posts.length }, () => false),
   );
@@ -49,7 +50,7 @@ const Post = () => {
       {posts.map((post, index) => (
         <div className="post-card" key={index}>
           <div className="post-card-img">
-            <img src={post.image} alt="" />
+            <img src={post.image} alt="" onClick={onImageClick}/>
           </div>
           <div className="post-card-footer">
             <div>

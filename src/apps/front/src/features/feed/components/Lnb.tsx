@@ -14,7 +14,9 @@ const Lnb = () => {
         </button>
         <div className="Lnb-allim">
           <img src="./img/alarm.png" alt="" className="Lnb-alarm" />
-          <img src="./img/share.png" alt="" className="Lnb-chat" />
+          <Link to={'/chat'}>
+            <img src="./img/share.png" alt="" className="Lnb-chat" />
+          </Link>
         </div>
       </div>
     </div>

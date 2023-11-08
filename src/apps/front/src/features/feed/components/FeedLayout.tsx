@@ -68,9 +68,9 @@ const FeedLayout = () => {
             onMouseOver={() => handleMouseOver(index)}
             onMouseOut={handleMouseOut}
           >
-            <div className="overlay">
+            <div className="Feed-overlay">
               <img src="./img/whitelike.png" alt="" />
-              <span className="like-count">{images[index].likes}</span>
+              <span className="Feed-like-count">{images[index].likes}</span>
             </div>
           </div>
         ))}

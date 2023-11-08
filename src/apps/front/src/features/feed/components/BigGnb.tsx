@@ -26,28 +26,31 @@ const BigGnb = () => {
           <div className="BigGnb-imagination-icon">
             <img src="./img/Imagination.png" className="imagination"></img>
           </div>
-          <div className="BigGnb-profile">
-            <img
-              src={userData.profileImg}
-              alt=""
-              className="BigGnb-profile-img"
-            ></img>
-            <p>{userData.name}</p>
-            <div className="profile-status">
-              <div>
-                <p>{userData.posts}</p>
-                <p>게시물</p>
-              </div>
-              <div className="profile-status-middle">
-                <p>{userData.following}</p>
-                <p>팔로우</p>
-              </div>
-              <div>
-                <p>{userData.followers}</p>
-                <p>팔로워</p>
+            <div className="BigGnb-profile">
+          <Link to={'/mypage'}>
+              <img
+                src={userData.profileImg}
+                alt=""
+                className="BigGnb-profile-img"
+              ></img>
+              <p>{userData.name}</p>
+              </Link>
+              <div className="profile-status">
+                <div>
+                  <p>{userData.posts}</p>
+                  <p>게시물</p>
+                </div>
+                <div className="profile-status-middle">
+                  <p>{userData.following}</p>
+                  <p>팔로우</p>
+                </div>
+                <div>
+                  <p>{userData.followers}</p>
+                  <p>팔로워</p>
+                </div>
               </div>
             </div>
-          </div>
+          
           <div className="BigGnb-btn">
             <Link to={'/feed'}>
               <div className={checkActive('/feed')}>

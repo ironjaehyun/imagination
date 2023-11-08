@@ -5,10 +5,10 @@ const Explore = () => {
   return (
     <div>
       <main>
-        <Lnb></Lnb>
+        <Lnb/>
         <FeedLayout />
       </main>
-      <BigGnb></BigGnb>
+      <BigGnb/>
     </div>
   );
 };
