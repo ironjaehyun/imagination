@@ -90,6 +90,10 @@ const useJoin = () => {
   const isSpe = pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/);
   const isUpper = pw.match(/[A-Z]/);
 
+  const handleJoinBtn = () => {
+    setJoinBtn(true), handleAlertMsg();
+  };
+
   return {
     handleJoin,
     handleId,
@@ -97,6 +101,7 @@ const useJoin = () => {
     handlePwCheck,
     handleName,
     handleAlertMsg,
+    handleJoinBtn,
     setJoinBtn,
     alertMsg,
     isZero,

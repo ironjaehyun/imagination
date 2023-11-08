@@ -11,9 +11,8 @@ export const JoinForm = () => {
     handlePw,
     handlePwCheck,
     handleName,
-    handleAlertMsg,
     alertMsg,
-    setJoinBtn,
+    handleJoinBtn,
     duplicateId,
     idPassMsg,
     isValid,
@@ -69,12 +68,7 @@ export const JoinForm = () => {
           <span className="join-alert">{alertMsg}</span>
           <span className="join-pass">{idPassMsg}</span>
         </div>
-        <button
-          className="join-btn"
-          onClick={() => {
-            setJoinBtn(true), handleAlertMsg();
-          }}
-        >
+        <button className="join-btn" onClick={handleJoinBtn}>
           회원가입
         </button>
       </div>
