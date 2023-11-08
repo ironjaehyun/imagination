@@ -60,11 +60,6 @@ const useJoin = () => {
     };
   };
 
-  const isValid = pw.length >= 8;
-  const isNumber = pw.match(/[0-9]/);
-  const isSpe = pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/);
-  const isUpper = pw.match(/[A-Z]/);
-
   const duplicateId = () => {
     setDuplication(true);
     try {
@@ -85,6 +80,10 @@ const useJoin = () => {
       console.log(error);
     }
   };
+  const isValid = pw.length >= 8;
+  const isNumber = pw.match(/[0-9]/);
+  const isSpe = pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/);
+  const isUpper = pw.match(/[A-Z]/);
 
   return {
     handleJoin,
