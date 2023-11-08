@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Chat from '../chat/components/Chatbar';
+import Chat from '../chat/components/ChatList';
 
 function App() {
   return (

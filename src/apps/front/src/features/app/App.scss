@@ -3,6 +3,7 @@
 @import './styles/normalize';
 @import './styles/system/color';
 @import '../feed/feed';
-@import '../chat/scss/Chatbar.scss';
-@import '../chat/scss/ChatInvite.scss';
-@import '../chat/scss/Chatingroom.scss';
+@import '../chat/components/_chatList.scss';
+@import '../chat/components/_chatInvite.scss';
+@import '../chat/components/_chatRoom.scss';
+@import '../chat/components/_chat.scss';
