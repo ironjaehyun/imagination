@@ -20,7 +20,7 @@ export const useImagination = () => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [buttonBg, setButtonBg] = useState('');
   const [imgSrc, setImgSrc] = useState('imagination/Geneal.png');
-  const [btnText, setBtnText] = useState('Generate');
+  const [buttonText, setButtonText] = useState('Generate');
   const [selectedsamples, setSelectedSamples] = useState(1);
   const [sizeWidth, setSizeWidth] = useState(512);
   const [sizeHeight, setSizeHeight] = useState(512);
@@ -33,7 +33,7 @@ export const useImagination = () => {
       setButtonDisabled(true);
       setButtonBg('#f5f5f6');
       setImgSrc('imagination/loading-loader.gif');
-      setBtnText('');
+      setButtonText('');
 
       const response = await axios.post<ResponseData>(
         'https://api.kakaobrain.com/v2/inference/karlo/t2i',
@@ -61,7 +61,7 @@ export const useImagination = () => {
       setButtonDisabled(false);
       setButtonBg('#0288D1');
       setImgSrc('imagination/Geneal.png');
-      setBtnText('Generate');
+      setButtonText('Generate');
     }
   };
 
@@ -92,7 +92,7 @@ export const useImagination = () => {
     buttonDisabled,
     buttonBg,
     imgSrc,
-    btnText,
+    buttonText,
     generateImage,
     handleButtonClick,
     handleNumberClick,

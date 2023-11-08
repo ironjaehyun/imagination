@@ -8,7 +8,7 @@ const Imagination = () => {
     buttonDisabled,
     buttonBg,
     imgSrc,
-    btnText,
+    buttonText,
     generateImage,
     handleButtonClick,
     handleNumberClick,
@@ -143,7 +143,7 @@ const Imagination = () => {
               style={{ background: buttonBg }}
             >
               <img src={imgSrc} alt="image" />
-              <p>{btnText}</p>
+              <p>{buttonText}</p>
             </button>
           </div>
         </form>
@@ -162,7 +162,7 @@ const Imagination = () => {
           imageUrls.map((imageUrl, index) => (
             <div className="Generated-img" key={index}>
               <img src={imageUrl} alt="Generated" className="img" />
-              <a href={imageUrl} download="image.jpg">
+              <a href={imageUrl} download="image.jpg" target="#">
                 사진 다운로드
               </a>
               {/* 임시 기능 */}
