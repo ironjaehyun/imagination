@@ -42,3 +42,21 @@
     border-radius: 20px;
   }
 }
+
+.chat-invite-list {
+  height: 75%;
+}
+
+.chat-invite-btn {
+  height: 9%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button {
+    width: 95%;
+    height: 100%;
+    background-color: rgba(2, 136, 209, 0.3);
+    color: white;
+    border-radius: 10px;
+  }
+}
