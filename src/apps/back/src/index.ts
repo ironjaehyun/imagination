@@ -3,7 +3,8 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import joinRoute from './features/auth/join/route/joinRoute';
+import joinRoute from './features/auth/routes/joinRoute';
+import loginRoute from './features/auth/routes/loginRoute';
 
 dotenv.config(); // 이부분을 상단으로 이동
 
@@ -23,6 +24,7 @@ app.use(cors('*'));
 app.use(bodyParser.json());
 
 app.use('/join', joinRoute);
+app.use('/', loginRoute);
 
 app.get('/', (req, res) => {
   console.log(`REQ [ / ]:: ${JSON.stringify(req.query)}`);

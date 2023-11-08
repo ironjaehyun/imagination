@@ -5,19 +5,19 @@ import Create from '../create/Create';
 import Chat from '../chat/Chat';
 import Imagination from '../imagination/Imagination';
 import Leader from '../leader/Leader';
-import Mypage from '../auth/mypage/Mypage';
 import Join from '../auth/join/components/Join';
 import Explore from '../feed/Explore';
+import Login from '../auth/login/components/Login';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/feed" element={<Feed></Feed>}></Route>
           <Route path="/explore" element={<Explore></Explore>}></Route>
           <Route path="/join" element={<Join></Join>}></Route>
-          <Route path="/mypage" element={<Mypage></Mypage>}></Route>
           <Route
             path="/imagination"
             element={<Imagination></Imagination>}
