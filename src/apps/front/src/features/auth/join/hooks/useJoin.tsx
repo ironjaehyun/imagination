@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import axios from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const useJoin = () => {
     event.preventDefault();
     axios.post('join', { id: id, password: pw, name: name }).then((res) => {
       console.log(res.data);
-      if (res.status === 200) {
+      if (res.status === 200 && duplication) {
         navigate('/');
       }
     });
@@ -48,38 +48,43 @@ const useJoin = () => {
     }
   };
 
-  const alertJoin = (target: string) => {
-    return {
-      borderColor:
-        (target == 'id' && id.length === 0 && joinBtn) ||
-        (target == 'pw' && pw.length === 0 && joinBtn) ||
-        (target == 'name' && name.length === 0 && joinBtn) ||
-        (target == 'pw-check' && pwCheck.length === 0 && joinBtn)
-          ? '#f86d7d'
-          : '#e0e0e0',
-    };
-  };
-
-  const duplicateId = () => {
+  const duplicateId = async () => {
     setDuplication(true);
-    try {
-      axios
-        .post('join/checkId', {
-          id: id,
-        })
-        .then((res) => {
-          if (res.data == 'User already exists') {
-            setAlertMsg('존재하는 아이디입니다.');
-            setIdPassMsg('');
-          } else if (res.data == 'User does not exist') {
-            setIdPassMsg('사용가능한 아이디입니다.');
-            setAlertMsg('');
-          }
-        });
-    } catch (error) {
-      console.log(error);
+    const response = await axios.post('join/checkId', {
+      id: id,
+    });
+    console.log(response.data);
+    if (response.data === 'User does not exist') {
+      setIdPassMsg('사용가능한 아이디입니다.');
+      setDuplication(true);
+      setAlertMsg('');
+    }
+    if (response.data === 'User already exists') {
+      setAlertMsg('존재하는 아이디입니다.');
+      setIdPassMsg('');
     }
   };
+
+  const isZero =
+    (id.length === 0 && joinBtn) ||
+    (pw.length === 0 && joinBtn) ||
+    (name.length === 0 && joinBtn) ||
+    (pwCheck.length === 0 && joinBtn);
+
+  const handleId = (event: { target: { value: SetStateAction<string> } }) => {
+    setId(event.target.value);
+  };
+  const handlePw = (event: { target: { value: SetStateAction<string> } }) => {
+    setPw(event.target.value);
+  };
+  const handlePwCheck = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPwCheck(event.target.value);
+  };
+  const handleName = (event: { target: { value: SetStateAction<string> } }) =>
+    setName(event.target.value);
+
   const isValid = pw.length >= 8;
   const isNumber = pw.match(/[0-9]/);
   const isSpe = pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/);
@@ -87,14 +92,14 @@ const useJoin = () => {
 
   return {
     handleJoin,
+    handleId,
+    handlePw,
+    handlePwCheck,
+    handleName,
     handleAlertMsg,
-    alertJoin,
     setJoinBtn,
     alertMsg,
-    setId,
-    setPw,
-    setName,
-    setPwCheck,
+    isZero,
     isValid,
     setDuplication,
     duplicateId,

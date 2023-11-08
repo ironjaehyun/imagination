@@ -134,6 +134,13 @@
     flex-direction: column;
     position: relative;
 
+    .join-alert-off {
+      border: 1px solid $border;
+    }
+
+    .join-alert-on {
+      border: 1px solid $red;
+    }
     .join-btn {
       margin-top: 20px;
       color: white;

@@ -1,23 +1,26 @@
 import useJoin from '../hooks/useJoin';
 import PasswordRequirements from './PasswordRequirements';
-import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+import { AuthOrDiv } from '../../components/AuthOrDiv';
+import GoogleLogin from '../../components/GoogleLogin';
+
 export const JoinForm = () => {
   const {
     handleJoin,
-    alertJoin,
+    handleId,
+    handlePw,
+    handlePwCheck,
+    handleName,
     handleAlertMsg,
     alertMsg,
     setJoinBtn,
-    setId,
-    setPw,
-    setPwCheck,
-    setName,
     duplicateId,
     idPassMsg,
     isValid,
     isNumber,
     isSpe,
     isUpper,
+    isZero,
   } = useJoin();
   return (
     <form onSubmit={handleJoin} className="join">
@@ -26,14 +29,8 @@ export const JoinForm = () => {
         당신이 원하는 이미지를 생성하고<br></br>
         공유해보세요
       </h4>
-      <Link to={'google'} className="google">
-        <img src="join/google.jpg" alt="" />
-        구글로 회원가입
-      </Link>
-      <div className="or">
-        <hr className="or-line" />
-        <div className="or-text">OR</div>
-      </div>
+      <GoogleLogin />
+      <AuthOrDiv />
       <div className="join-main">
         <span id="join-check" onClick={duplicateId}>
           중복체크
@@ -41,18 +38,14 @@ export const JoinForm = () => {
         <input
           type="id"
           placeholder="아이디"
-          onChange={(event) => {
-            setId(event.target.value);
-          }}
-          style={alertJoin('id')}
+          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
+          onChange={handleId}
         />
         <input
           type="password"
           placeholder="비밀번호"
-          onChange={(event) => {
-            setPw(event.target.value);
-          }}
-          style={alertJoin('pw')}
+          onChange={handlePw}
+          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
         />
         <PasswordRequirements
           isValid={isValid}
@@ -63,16 +56,14 @@ export const JoinForm = () => {
         <input
           type="password"
           placeholder="비밀번호 확인"
-          onChange={(event) => {
-            setPwCheck(event.target.value);
-          }}
-          style={alertJoin('pw-check')}
+          onChange={handlePwCheck}
+          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
         />
         <input
           type="text"
           placeholder="닉네임"
-          onChange={(event) => setName(event.target.value)}
-          style={alertJoin('name')}
+          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
+          onChange={handleName}
         />
         <div className="join-msg">
           <span className="join-alert">{alertMsg}</span>
