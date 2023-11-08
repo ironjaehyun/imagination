@@ -14,8 +14,8 @@ const Lnb = () => {
         </button>
         <div className="Lnb-allim">
           <img src="./img/alarm.png" alt="" className="Lnb-alarm" />
-          <Link to={'/chat'}className="Lnb-chat">
-            <img src="./img/share.png" alt=""  />
+          <Link to={'/chat'} className="Lnb-chat">
+            <img src="./img/share.png" alt="" />
           </Link>
         </div>
       </div>

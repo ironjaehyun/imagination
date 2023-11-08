@@ -20,8 +20,10 @@
 
 .alertpop {
   animation: fadeOut 0.5s forwards; // fadeOut 애니메이션 추가
+
   &.open {
     animation: fadeIn 0.5s forwards; // 기존 fadeIn 애니메이션 유지
+
     .modal-bg {
       position: fixed;
       top: 0;
@@ -29,7 +31,6 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5); // 배경을 반투명하게 설정
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -39,7 +40,122 @@
         width: 1092px;
         height: 811px;
         border-radius: 10px;
+        padding: 28px 40px;
       }
     }
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  .modal-header-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .modal-header-profile {
+    display: flex;
+    align-items: center;
+  }
+
+  .modal-header-profile>span {
+    margin-left: 18px;
+  }
+}
+
+.modal-main {
+  padding: 15px 0px;
+  border-top: 1px solid #E9E9E9;
+  border-bottom: 1px solid #E9E9E9;
+  display: flex;
+
+  .modal-main-img {
+    width: 450px;
+    height: 450px;
+    border-radius: 4px;
+  }
+
+  .modal-main-right {
+    padding: 0px 50px;
+  }
+
+  .modal-main-right>h3 {
+    margin-bottom: 33px;
+  }
+
+  .modal-main-right-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .modal-main-right-battom {
+    padding-left: 50px;
+  }
+
+  .modal-main-right-battom>h5 {
+    padding: 15px 0px;
+  }
+}
+
+.modal-LikeBtn {
+  display: flex;
+  width: 224px;
+  height: 44px;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #F5F5F5;
+
+  span {
+    margin-left: 10px;
+  }
+}
+
+.modal-Btn {
+  display: flex;
+}
+
+.modal-CreateImage {
+  display: flex;
+  width: 220px;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #0288D1;
+  color: white;
+  margin-left: 15px;
+
+  span {
+    margin-left: 10px;
+  }
+}
+
+.modal-footer {
+  .modal-footer-prompt {
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+    padding: 15px 0px;
+  }
+
+  .modal-footer-prompt>div>img {
+    position: relative;
+    top: 3px;
+    right: 7px;
+  }
+
+  .modal-footer-prompt-text {
+    width: 449px;
+    height: 147px;
+    border-radius: 10px;
+    background: #F5F5F5;
+    padding: 18px 25px;
   }
 }
