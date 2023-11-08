@@ -6,6 +6,10 @@ const ChatInvite = () => {
           <span>New Messages</span>
           <img src="../chatimg/close.svg" />
         </div>
+
+        <div className="chat-invite-search">
+          <input></input>
+        </div>
       </div>
     </div>
   );
