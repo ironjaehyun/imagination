@@ -146,11 +146,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #e0e0e0;
       font-size: 12px;
       margin-bottom: 10px;
       padding: 0 2px;
-
+      .password-check-off {
+        color: #e0e0e0;
+      }
+      .password-check-on {
+        color: #00c853;
+      }
       span {
         display: flex;
         align-items: center;

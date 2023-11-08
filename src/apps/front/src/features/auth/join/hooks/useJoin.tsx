@@ -60,17 +60,10 @@ const useJoin = () => {
     };
   };
 
-  const checkPassword = (target: string) => {
-    return {
-      color:
-        (target == 'more-8' && pw.length >= 8) ||
-        (target == 'number' && pw.match(/[0-9]/)) ||
-        (target == 'special' && pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/)) ||
-        (target == 'upper' && pw.match(/[A-Z]/))
-          ? '#00C853'
-          : '#e0e0e0',
-    };
-  };
+  const isValid = pw.length >= 8;
+  const isNumber = pw.match(/[0-9]/);
+  const isSpe = pw.match(/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/);
+  const isUpper = pw.match(/[A-Z]/);
 
   const duplicateId = () => {
     setDuplication(true);
@@ -103,10 +96,13 @@ const useJoin = () => {
     setPw,
     setName,
     setPwCheck,
-    checkPassword,
+    isValid,
     setDuplication,
     duplicateId,
     idPassMsg,
+    isNumber,
+    isSpe,
+    isUpper,
   };
 };
 
