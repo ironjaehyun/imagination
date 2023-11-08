@@ -1,5 +1,5 @@
 const ChatInvite = () => {
-  return <div>ChatInvite</div>;
+  return <div className="chat-invite"></div>;
 };
 
 export default ChatInvite;

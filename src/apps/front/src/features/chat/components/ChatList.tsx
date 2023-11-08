@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
+import ChatInvite from './ChatInvite';
 
 const ChatList: React.FC = () => {
   const [chatRoomOpen, setChatRoomOpen] = useState(false);
+  const [chatInviteOpen, setChatInviteOpen] = useState(false);
+
+  const handleChatInviteToggle = () => {
+    setChatInviteOpen(!chatInviteOpen);
+  };
 
   const handleChatRoomToggle = () => {
     setChatRoomOpen(!chatRoomOpen);
@@ -13,7 +19,11 @@ const ChatList: React.FC = () => {
       <div className="chat-list">
         <div className="chat-list-title">
           <span>Message</span>
-          <img src="./chatimg/add_circle.svg" alt="Add" />
+          <img
+            onClick={handleChatInviteToggle}
+            src="./chatimg/add_circle.svg"
+            alt="Add"
+          />
         </div>
 
         <div className="chat-list-contents" onClick={handleChatRoomToggle}>
@@ -28,6 +38,7 @@ const ChatList: React.FC = () => {
       </div>
 
       {chatRoomOpen && <ChatRoom />}
+      {chatInviteOpen && <ChatInvite />}
     </>
   );
 };
