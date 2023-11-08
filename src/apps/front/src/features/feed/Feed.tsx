@@ -1,19 +1,12 @@
-import { useState } from 'react';
 import Lnb from './components/Lnb';
 import BigGnb from './components/BigGnb';
 import Post from './components/Post';
 import Alertpop from './components/Alertpop';
+import useModalAlert from './hooks/useModalAlert';
 
 const Feed = () => {
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
-  const handleOpenAlert = () => {
-    setIsAlertOpen(true);
-  };
-
-  const handleCloseAlert = () => {
-    setIsAlertOpen(false);
-  };
+  const { isAlertOpen, handleOpenAlert, handleCloseAlert } = useModalAlert(); 
 
   return (
     <div>

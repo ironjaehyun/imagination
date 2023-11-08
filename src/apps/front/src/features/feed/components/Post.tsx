@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import useLikes from '../hooks/useLikes';
+
 const Post = ({ onImageClick }: { onImageClick: () => void }) => {
   const posts = [
     {
@@ -33,24 +34,16 @@ const Post = ({ onImageClick }: { onImageClick: () => void }) => {
     },
   ];
 
-
-  //  좋아요 기능
-  const [isLiked, setIsLiked] = useState(
+  const [isLiked, handleLike] = useLikes(
     Array.from({ length: posts.length }, () => false),
   );
-
-  const handleLike = (index: number) => {
-    const newIsLiked = [...isLiked];
-    newIsLiked[index] = !newIsLiked[index];
-    setIsLiked(newIsLiked);
-  };
 
   return (
     <div className="feed-cards">
       {posts.map((post, index) => (
         <div className="post-card" key={index}>
           <div className="post-card-img">
-            <img src={post.image} alt="" onClick={onImageClick}/>
+            <img src={post.image} alt="" onClick={onImageClick} />
           </div>
           <div className="post-card-footer">
             <div>

@@ -15,7 +15,6 @@ $border-radius: 10px;
   top: 0;
   left: 0;
 
-
   &-imagination-icon {
     padding: 15px 10px;
   }
@@ -46,15 +45,15 @@ $border-radius: 10px;
   &-btn {
     padding: 20px 0px;
 
-    >a>.BigGnb-hoverwhite {
+    > a > .BigGnb-hoverwhite {
       margin-bottom: 15px;
     }
 
-    a:nth-child(3)>.BigGnb-hoverwhite {
+    a:nth-child(3) > .BigGnb-hoverwhite {
       padding-left: 18px;
     }
 
-    a:nth-child(4)>.BigGnb-hoverwhite {
+    a:nth-child(4) > .BigGnb-hoverwhite {
       padding-right: 22px;
     }
   }
@@ -76,7 +75,7 @@ $border-radius: 10px;
     border-right: 1px solid #d9d9d9;
   }
 
-  >div>p:nth-child(2) {
+  > div > p:nth-child(2) {
     font-family: $font-main;
     font-size: 10px;
     font-style: normal;
@@ -85,7 +84,7 @@ $border-radius: 10px;
     color: #b9b9b9;
   }
 
-  >div {
+  > div {
     padding: 5px 10px;
   }
 }
