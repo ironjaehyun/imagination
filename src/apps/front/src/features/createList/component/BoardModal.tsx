@@ -1,4 +1,4 @@
-import React from 'react';
+import BoardData from './BoardData';
 
 interface BoardModalProps {
   onClose: () => void;
@@ -12,20 +12,21 @@ const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
     }
   };
 
-  const ModalData = [
-    {
-      id: 1,
-      name: 'gd',
-    },
-    {
-      id: 2,
-      name: 'sun',
-    },
-    {
-      id: 3,
-      name: 'top',
-    },
-  ];
+  const ModalData = BoardData;
+  // const ModalData = [
+  //   {
+  //     id: 1,
+  //     name: 'gd',
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'sun',
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'top',
+  //   },
+  // ];
 
   return (
     <div className="board-modal-black-bg" onClick={ModalBgClose}>
@@ -47,7 +48,7 @@ const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
             <div className="Modal-prompt-list">
               <div className="Modal-prompt-positive">
                 <h4>
-                  Prompt{i} 작성자 {item.name}
+                  Prompt{i} 작성자 {item.title}{' '}
                 </h4>
                 <p>
                   hyper-detailed front medium shot of Black short-haired girl,
