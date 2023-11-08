@@ -13,65 +13,41 @@ const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
   };
 
   const ModalData = BoardData;
-  // const ModalData = [
-  //   {
-  //     id: 1,
-  //     name: 'gd',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'sun',
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'top',
-  //   },
-  // ];
 
   return (
     <div className="board-modal-black-bg" onClick={ModalBgClose}>
       <div className="board-modal-bg">
-        <div className="Modal-close-button-space">
-          <button className="Modal-close-button" onClick={onClose}>
+        <div className="modal-close-button-space">
+          <button className="modal-close-button" onClick={onClose}>
             ❌
           </button>
         </div>
         {/*여기서부터는 map 함수로 데이터를 가져올 생각입니다. */}
         {ModalData.map((item, i) => (
-          <div className="Modal-list">
+          <div className="modal-list">
             <input
-              className="Modla-select-button"
+              className="modal-select-button"
               type="radio"
               name="modalDataGroup"
             />
-            <div className="Modal-list-img">+</div>
-            <div className="Modal-prompt-list">
-              <div className="Modal-prompt-positive">
-                <h4>
+            <div className="modal-list-img ">
+              <img src={item.id} alt="description" />
+            </div>
+            <div className="modal-prompt-list">
+              <div className="modal-prompt-positive">
+                <h4 onClick={() => console.log(item.id)}>
                   Prompt{i} 작성자 {item.title}{' '}
                 </h4>
-                <p>
-                  hyper-detailed front medium shot of Black short-haired girl,
-                  front view, cente r composition, dress shirt, by loish,
-                  trending on artstation hd, photorealistic anime girl render,
-                  artgee m, highly detailed face, digital art,
-                  impressionism,deep gaze, school background
-                </p>
+                <p className="ellipsis">{item.detail}</p>
               </div>
-              <div className="Modal-prompt-negative">
+              <div className="modal-prompt-negative">
                 <h4>Negative Prompt</h4>
-                <p>
-                  hyper-detailed front medium shot of Black short-haired girl,
-                  front view, cente r composition, dress shirt, by loish,
-                  trending on artstation hd, photorealistic anime girl render,
-                  artgee m, highly detailed face, digital art,
-                  impressionism,deep gaze, school background
-                </p>
+                <p className="ellipsis">{item.negavibeDetail}</p>
               </div>
             </div>
           </div>
         ))}
-        <button className="Modal-select-sure">선택완료</button>
+        <button className="modal-select-sure">선택완료</button>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import SideTab from './component/sideTab';
 
 const Create = () => {
   return (
-    <div className="create-List">
+    <div className="create-list">
       <SideTab></SideTab>
       <BoardList></BoardList>
     </div>

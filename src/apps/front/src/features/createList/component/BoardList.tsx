@@ -13,24 +13,24 @@ const Boardlist = () => {
     setIsModalOpen(false);
   };
   return (
-    <div className="Board-main">
+    <div className="board-main">
       <section className="bring-art">
         <div className="bring-art-content">
           <h3 className="bring-art-title">작품 전시를 해주세요</h3>
           {isModalOpen && <BoardModal onClose={closeModal} />}
-          <div className="briang-art-list">
+          <div className="bring-art-list">
             <div className="bring-art-image" onClick={openModal}>
               <p>작품 이미지 가져오기</p>
             </div>
             <div className="bring-art-prompt">
               <div className="bring-art-prompt-positive">prompt</div>
-              <div className=" bring-art-prompt-negative">negative-prompt</div>
+              <div className="bring-art-prompt-negative">negative-prompt</div>
             </div>
           </div>
         </div>
       </section>
-      <div className="Board-content">
-        <div className="Board-title">
+      <div className="board-content">
+        <div className="board-title">
           <textarea
             className="art-detail-textarea-title"
             placeholder="아티스트님의 작품의 제목을 입력하세요"
