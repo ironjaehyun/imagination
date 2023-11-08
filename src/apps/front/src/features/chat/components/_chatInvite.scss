@@ -1,6 +1,11 @@
-.chat-invite {
-  width: 450px;
-  height: 650px;
-  border-radius: 10px;
-  background-color: #fff;
+.chat-invite-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
