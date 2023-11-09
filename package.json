@@ -27,6 +27,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "justified-layout": "^4.1.0"
+    "classnames": "^2.3.2",
+    "cors": "^2.8.5"
   }
 }

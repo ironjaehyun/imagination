@@ -1,0 +1,151 @@
+textarea {
+  border-radius: 0.8rem;
+  border: 1px solid black;
+  resize: vertical;
+
+  &::placeholder {
+    color: #d9d9d9;
+  }
+}
+
+.imagination-main {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+}
+
+.prompt-setting {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  hr {
+    border: none;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.255);
+    width: 100%;
+  }
+}
+
+.prompt-setting-sample {
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.Generated-imgs {
+  display: flex;
+  justify-content: center;
+
+  .Generated-img {
+    max-width: 640px;
+    min-width: 384px;
+    max-height: 640px;
+    min-height: 384px;
+  }
+}
+
+.prompt-input {
+  padding: 10px;
+  width: 1023px;
+  height: 100%;
+  resize: none;
+  border: none;
+  border-radius: 10px;
+  background: #f5f5f5;
+  font-size: larger;
+
+  .imagination-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.loading-img {
+  width: 500px;
+  height: 500px;
+}
+
+.settings-options {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .sample-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: #d4d4d4;
+    }
+
+    &.selected {
+      background-color: #0288d1;
+      color: white;
+    }
+  }
+}
+
+.settings-options-02 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.submit {
+  background: #0288d1;
+}
+
+.img-Generate {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.generate-btn-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  width: 180px;
+  height: 51px;
+  color: white;
+  background: #0288d1;
+}
+
+.size-btn {
+  height: 35px;
+  border-radius: 5px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background-color: #d4d4d4;
+  }
+
+  &.selectedSize {
+    background-color: #0288d1;
+    color: white;
+  }
+}
+
+.width {
+  width: 50px;
+}
