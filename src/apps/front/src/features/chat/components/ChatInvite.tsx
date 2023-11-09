@@ -1,10 +1,27 @@
+import { useState, MouseEvent } from 'react';
+
 const ChatInvite = () => {
-  return (
-    <div className="chat-invite-bg">
-      <div className="chat-invite-box">
+  const [isOpen, setIsOpen] = useState(true);
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleClickOutside = (e: MouseEvent) => {
+    e.stopPropagation();
+    handleClose();
+  };
+
+  const handleClickInside = (e: MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  return isOpen ? (
+    <div className="chat-invite-bg" onClick={handleClickOutside}>
+      <div className="chat-invite-box" onClick={handleClickInside}>
         <div className="chat-invite-title">
           <span>New Messages</span>
-          <img src="../chatimg/close.svg" />
+          <img src="../chatimg/close.svg" onClick={handleClose} />
         </div>
 
         <div className="chat-invite-search">
@@ -18,7 +35,7 @@ const ChatInvite = () => {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default ChatInvite;
