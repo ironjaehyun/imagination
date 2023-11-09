@@ -18,6 +18,21 @@ const Boardlist = () => {
   const HandleMaxtext = (e) => {
     setBoardMaxText(Array.from(e.target.value).length);
   };
+
+  const [hashtags, setHashtags] = useState<string[]>([]);
+  const [input, setInput] = useState<string>('');
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === ' ' && input.trim() !== '') {
+      setHashtags([...hashtags, input.trim()]);
+      setInput('');
+    }
+  };
+
   return (
     <div className="board-main">
       <section className="bring-art">
@@ -50,10 +65,18 @@ const Boardlist = () => {
             placeholder="작품을 설명해 주세요"
           ></textarea>
           <p>{boardMaxText}/50자</p>
-          <textarea
-            className="art-detail-textarea-hashtag"
-            placeholder="# 해쉬태그 입력"
-          ></textarea>
+          <div className="hashtag-div">
+            {hashtags.map((hashtag, index) => (
+              <button key={index}>{`#${hashtag}`}</button>
+            ))}
+            <input
+              className="art-detail-textarea-hashtag"
+              placeholder="해쉬태그 입력"
+              value={input}
+              onChange={onChange}
+              onKeyUp={onKeyUp}
+            />
+          </div>
           {/* <p># 해쉬태그 입력</p> */}
           <button className="art-button">게시하기</button>
         </div>
