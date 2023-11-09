@@ -1,0 +1,117 @@
+$box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
+$background-color: white;
+$color: #0b7295;
+$border-radius: 10px;
+
+.BigGnb {
+  width: 212px;
+  height: 100vh;
+  padding: 0px 20px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &-imagination-icon {
+    padding: 15px 10px;
+  }
+
+  &-profile {
+    background-color: $background-color;
+    border-radius: 25px;
+    padding: 7px;
+    box-shadow: $box-shadow;
+
+    &-img {
+      width: 125px;
+      height: 127px;
+      border-radius: 20px;
+    }
+  }
+
+  &-main .BigGnb-imagination-icon,
+  &-profile {
+    text-align: center;
+  }
+
+  &-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  &-btn {
+    padding: 20px 0px;
+
+    > a > .BigGnb-hoverwhite {
+      margin-bottom: 15px;
+    }
+
+    a:nth-child(3) > .BigGnb-hoverwhite {
+      padding-left: 18px;
+    }
+
+    a:nth-child(4) > .BigGnb-hoverwhite {
+      padding-right: 22px;
+    }
+  }
+}
+
+.imagination {
+  width: 135px;
+  height: 30px;
+}
+
+.profile-status {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+
+  &-middle {
+    border-left: solid 1px #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+  }
+
+  > div > p:nth-child(2) {
+    font-family: $font-main;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #b9b9b9;
+  }
+
+  > div {
+    padding: 5px 10px;
+  }
+}
+
+.BigGnb-hoverwhite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0px;
+  border-radius: $border-radius;
+
+  &.active,
+  &:hover {
+    background-color: $background-color;
+    color: $color;
+    box-shadow: $box-shadow;
+  }
+
+  .BigGnb-icon {
+    margin-right: 20px;
+  }
+}
+
+.BigGnb-footer {
+  margin-bottom: 10px;
+
+  .BigGnb-hoverwhite:nth-child(3) {
+    padding-left: 15px;
+  }
+}
