@@ -7,12 +7,13 @@ const createToken = (_id) => {
   return jwt.sign({ _id }, jwtkey, { expiresIn: '3d' });
 };
 
-const checkId = async (req, res) => {
+const checkId = async (req, res, next) => {
   const user = await userModel.findOne({ id: req.body.id });
   if (user) {
     res.json({ msg: 'User already exists' });
   } else {
     res.json({ msg: 'User does not exist' });
+    next();
   }
 };
 
