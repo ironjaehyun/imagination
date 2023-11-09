@@ -13,27 +13,22 @@ const useLogin = () => {
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      axios
-        .post('/', { id: id, password: pw })
-        .then((res) => {
-          const newToken = res.data.token;
-          setUser(res.data);
-          setCookie('token', newToken, { path: '/' });
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-          if (error.response.data === 'user not found') {
-            setMsgLogin('없는 아이디입니다.');
-            setMsgPassword('');
-          } else if (error.response.data === 'wrong password') {
-            setMsgPassword('비밀번호가 틀렸습니다.');
-            setMsgLogin('');
-          }
-        });
-    } catch (error) {
-      console.error('로그인 요청 중 오류 발생:', error);
-    }
+    axios
+      .post('/', { id: id, password: pw })
+      .then((res) => {
+        const newToken = res.data.token;
+        setUser(res.data);
+        setCookie('token', newToken, { path: '/' });
+      })
+      .catch((error) => {
+        if (error.response.data === 'user not found') {
+          setMsgLogin('없는 아이디입니다.');
+          setMsgPassword('');
+        } else if (error.response.data === 'wrong password') {
+          setMsgPassword('비밀번호가 틀렸습니다.');
+          setMsgLogin('');
+        }
+      });
   };
 
   useEffect(() => {

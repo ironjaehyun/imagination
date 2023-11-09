@@ -1,4 +1,4 @@
-import userModel from '../../../Models/userModel';
+import userModel from '../../shared/userModel';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -22,9 +22,9 @@ const joinId = async (req, res) => {
 
   const hash = await bcrypt.hash(password, 10);
 
-  const user = new userModel({ id: id, password: hash, name: name });
+  const user = new userModel({ id, password: hash, name });
   const token = createToken(user._id);
-  res.status(200).json({ _id: user._id, name: user.name, id, token });
+  res.status(200).json({ name: user.name, id, token });
   await user.save();
 };
 
