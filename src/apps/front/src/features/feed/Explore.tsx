@@ -1,14 +1,20 @@
-import Lnb from './components/Lnb';
-import BigGnb from './components/BigGnb';
+import Lnb from '../shared/Lnb';
+import BigGnb from '../shared/BigGnb';
 import FeedLayout from './components/FeedLayout';
+import Alertpop from '../shared/Alertpop';
+import useModalAlert from './hooks/useModalAlert';
+
 const Explore = () => {
+  const { isAlertOpen, handleOpenAlert, handleCloseAlert } = useModalAlert();
+
   return (
     <div>
-      <main>
+      <section>
         <Lnb />
-        <FeedLayout />
-      </main>
+        <FeedLayout onImageClick={handleOpenAlert} />
+      </section>
       <BigGnb />
+      <Alertpop isOpen={isAlertOpen} onClose={handleCloseAlert} />
     </div>
   );
 };

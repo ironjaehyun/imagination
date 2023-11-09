@@ -1,7 +1,7 @@
-import Lnb from './components/Lnb';
-import BigGnb from './components/BigGnb';
+import Lnb from '../shared/Lnb';
+import BigGnb from '../shared/BigGnb';
 import Post from './components/Post';
-import Alertpop from './components/Alertpop';
+import Alertpop from '../shared/Alertpop';
 import useModalAlert from './hooks/useModalAlert';
 
 const Feed = () => {
@@ -9,10 +9,10 @@ const Feed = () => {
 
   return (
     <div>
-      <main>
+      <section>
         <Lnb />
         <Post onImageClick={handleOpenAlert} />
-      </main>
+      </section>
       <BigGnb />
       <Alertpop isOpen={isAlertOpen} onClose={handleCloseAlert} />
     </div>

@@ -3,30 +3,35 @@ import useLikes from '../hooks/useLikes';
 const Post = ({ onImageClick }: { onImageClick: () => void }) => {
   const posts = [
     {
+      id: '1',
       image: './img/card-img.png',
       profileImage: './img/Rectangle 17.png',
       username: 'leechi',
       likeCount: 23,
     },
     {
+      id: '2',
       image: './img/card-img.png',
       profileImage: './img/Rectangle 17.png',
       username: 'leechi',
       likeCount: 23,
     },
     {
+      id: '3',
       image: './img/card-img.png',
       profileImage: './img/Rectangle 17.png',
       username: 'leechi',
       likeCount: 23,
     },
     {
+      id: '4',
       image: './img/card-img.png',
       profileImage: './img/Rectangle 17.png',
       username: 'leechi',
       likeCount: 23,
     },
     {
+      id: '5',
       image: './img/card-img.png',
       profileImage: './img/Rectangle 17.png',
       username: 'leechi',
@@ -34,9 +39,7 @@ const Post = ({ onImageClick }: { onImageClick: () => void }) => {
     },
   ];
 
-  const [isLiked, handleLike] = useLikes(
-    Array.from({ length: posts.length }, () => false),
-  );
+  const [isLiked, handleLike] = useLikes(posts);
 
   return (
     <div className="feed-cards">
@@ -52,9 +55,11 @@ const Post = ({ onImageClick }: { onImageClick: () => void }) => {
             </div>
             <div>
               <img
-                src={isLiked[index] ? './img/filledlike.png' : './img/like.png'}
+                src={
+                  isLiked[post.id] ? './img/filledlike.png' : './img/like.png'
+                }
                 alt=""
-                onClick={() => handleLike(index)}
+                onClick={() => handleLike(post.id)}
               />
               <span>{post.likeCount}</span>
             </div>

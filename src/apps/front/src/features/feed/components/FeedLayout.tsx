@@ -9,7 +9,7 @@ type Box = {
   height: number;
 };
 
-const FeedLayout = () => {
+const FeedLayout = ({ onImageClick }: { onImageClick: () => void }) => {
   // 각각의 이미지에 대한 가로세로 비율
   const aspectRatios = [1, 1.5, 1, 1.8, 1, 0.7, 0.9, 1.1, 1.7];
 
@@ -56,6 +56,7 @@ const FeedLayout = () => {
       <div className="layout-position">
         {geometry.boxes.map((box: Box, index: number) => (
           <div
+            onClick={onImageClick}
             key={index}
             className={`image-box ${hoverIndex === index ? 'hover' : ''}`}
             style={{
