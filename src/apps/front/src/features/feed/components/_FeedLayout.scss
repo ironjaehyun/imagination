@@ -1,0 +1,49 @@
+.layout-container {
+  display: flex;
+  justify-content: left;
+  margin-left: 70px;
+  height: 100vh;
+}
+
+.layout-position {
+  position: relative;
+}
+
+.image-box {
+  position: absolute;
+  background-size: cover;
+  transition: 0.5s;
+
+  &.hover .Feed-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .Feed-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
+}
+
+.Feed-overlay {
+  display: flex;
+  justify-content: center; // 수평 중앙 정렬
+  align-items: center; // 수직 중앙 정렬
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  img {
+    max-width: 80%;
+  }
+
+  .Feed-like-count {
+    color: white;
+    margin-left: 10px;
+  }
+
+  .image-box.hover & {
+    opacity: 1;
+  }
+}
