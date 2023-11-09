@@ -307,6 +307,15 @@
   font-weight: bold;
 }
 
+.modal-select-sure.disabled {
+  background-color: #0288d1;
+  opacity: 0.5;
+}
+
+.modal-select-sure.enabled {
+  background-color: #0288d1;
+}
+
 .ellipsis {
   display: -webkit-box;
   -webkit-line-clamp: 3;

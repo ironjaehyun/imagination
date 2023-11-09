@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import BoardData from '../constatns/BoardData';
 
 interface BoardModalProps {
@@ -6,6 +6,12 @@ interface BoardModalProps {
 }
 
 const BoardModal: FunctionComponent<BoardModalProps> = ({ onClose }) => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSelected(e.target.checked);
+  };
+
   const ModalBgClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
       // 배경 클릭 시 모달을 닫음
@@ -28,6 +34,7 @@ const BoardModal: FunctionComponent<BoardModalProps> = ({ onClose }) => {
               className="modal-select-button"
               type="radio"
               name="modalDataGroup"
+              onChange={handleRadioChange}
             />
             <div className="modal-list-img ">
               <img src={item.ima} alt="description" />
@@ -46,7 +53,15 @@ const BoardModal: FunctionComponent<BoardModalProps> = ({ onClose }) => {
             </div>
           </div>
         ))}
-        <button className="modal-select-sure">선택완료</button>
+        <button
+          onClick={() => {
+            console.log(1);
+          }}
+          className={`modal-select-sure ${isSelected ? 'enabled' : 'disabled'}`}
+          disabled={!isSelected}
+        >
+          선택완료
+        </button>
       </div>
     </div>
   );
