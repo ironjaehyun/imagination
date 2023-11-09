@@ -9,7 +9,7 @@ const Explore = () => {
 
   return (
     <div>
-      <section>
+      <section className='gnb-bug-protector'>
         <Lnb />
         <FeedLayout onImageClick={handleOpenAlert} />
       </section>

@@ -1,6 +1,7 @@
 import axios from '../../api/auth';
 import { useState, useEffect, SetStateAction } from 'react';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const useLogin = () => {
   const [id, setId] = useState('');
@@ -10,6 +11,7 @@ const useLogin = () => {
   const [isDisable, setIsDisable] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [user, setUser] = useState();
+  const navigate = useNavigate()
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,6 +41,7 @@ const useLogin = () => {
 
   const handleLogout = () => {
     removeCookie('token');
+    navigate('/')
   };
 
   const handleLoginId = (event: {

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import useLogin from '../auth/login/hooks/useLogin';
 const BigGnb = () => {
   const location = useLocation();
   // checkActive 함수는 경로를 인자로 받는다
@@ -18,7 +19,7 @@ const BigGnb = () => {
     following: 123,
     followers: 123,
   });
-
+const { handleLogout } = useLogin();
   return (
     <div>
       <div className="BigGnb">
@@ -53,7 +54,7 @@ const BigGnb = () => {
 
           <div className="BigGnb-btn">
             {[
-              { to: '/feed', img: './img/feed.png', text: 'Feed' },
+              { to: '/', img: './img/feed.png', text: 'Feed' },
               { to: '/leader', img: './img/rank.png', text: 'Rank' },
               { to: '/explore', img: './img/explore.png', text: 'Explore' },
               { to: '/imagination', img: './img/ai.png', text: 'AI' },
@@ -79,7 +80,7 @@ const BigGnb = () => {
           </div>
           <div className="BigGnb-hoverwhite">
             <img src="./img/logout.png" className="BigGnb-icon" />
-            <span>로그아웃</span>
+            <button onClick={handleLogout}>로그아웃</button>
           </div>
         </div>
       </div>
