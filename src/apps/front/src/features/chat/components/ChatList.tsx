@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import ChatRoom from './ChatRoom';
 import ChatInvite from './ChatInvite';
 
@@ -37,7 +38,15 @@ const ChatList: React.FC = () => {
         </div>
       </div>
 
-      {chatRoomOpen && <ChatRoom />}
+      <CSSTransition
+        in={chatRoomOpen}
+        timeout={500}
+        classNames="slide-in"
+        unmountOnExit
+      >
+        <ChatRoom />
+      </CSSTransition>
+
       {chatInviteOpen && <ChatInvite />}
     </>
   );
