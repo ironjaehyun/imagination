@@ -25,7 +25,8 @@ const ChatInvite = () => {
         </div>
 
         <div className="chat-invite-search">
-          <input></input>
+          <textarea placeholder="search"></textarea>
+          <img src="../chatimg/Vector.svg" />
         </div>
 
         <div className="chat-invite-list"></div>
