@@ -59,12 +59,12 @@ const Boardlist = () => {
         </div>
         <div className="art-detail">
           <textarea
-            maxLength={50}
+            maxLength={1500}
             onChange={HandleMaxtext}
             className="art-detail-textarea-details"
             placeholder="작품을 설명해 주세요"
           ></textarea>
-          <p>{boardMaxText}/50자</p>
+          <p>{boardMaxText}/1500자</p>
           <div className="hashtag-div">
             {hashtags.map((hashtag, index) => (
               <button key={index}>{`#${hashtag}`}</button>
