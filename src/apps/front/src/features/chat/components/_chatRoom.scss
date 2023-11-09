@@ -109,10 +109,10 @@
     height: 50%;
     border-radius: 10px;
     resize: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 50px;
-    padding-right: 70px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 4%;
+    padding-right: 6%;
 
     &:focus::placeholder {
       color: transparent;
