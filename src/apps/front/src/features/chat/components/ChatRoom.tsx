@@ -4,7 +4,7 @@ const ChatRoom = () => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<string[]>([]);
 
-  const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   };
 
@@ -50,14 +50,20 @@ const ChatRoom = () => {
         </div>
       </div>
 
-      <div>
+      <div className="chatroom-inputarea">
         <form className="chatroom-inputbox" onSubmit={handleSend}>
-          <input
+          <img src="../chatimg/smile.svg" />
+          <textarea
             className="chat-input"
-            type="text"
             placeholder="메시지를 입력해주세요"
             value={message}
             onChange={handleMessageChange}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                handleSend(event);
+              }
+            }}
           />
           <button type="submit">Send</button>
         </form>
