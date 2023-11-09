@@ -25,16 +25,16 @@ const Gnb = () => {
               <img src="./img/rank.png" className="Gnb-nav-icon" />
             </div>
           </Link>
-            <Link to={'/explore'}>
-          <div className="Gnb-hoverwhite">
+          <Link to={'/explore'}>
+            <div className="Gnb-hoverwhite">
               <img src="./img/explore.png" className="Gnb-nav-icon" />
-          </div>
-            </Link>
-            <Link to={'/imagination'}>
-          <div className="Gnb-hoverwhite">
+            </div>
+          </Link>
+          <Link to={'/imagination'}>
+            <div className="Gnb-hoverwhite">
               <img src="./img/ai.png" className="Gnb-nav-icon" />
-          </div>
-            </Link>
+            </div>
+          </Link>
         </div>
         <div className="Gnb-footer">
           <div className="Gnb-line"></div>

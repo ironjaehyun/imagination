@@ -15,21 +15,21 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
     event.stopPropagation();
   };
 
-  const data = 
-    {
-      userProfileImg: "https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp",
-      userName: "leechi",
-      MainImg: "./img/card-img.png",
-      title: "물감으로 만든 화려한 바다",
-      content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.",
-      hashtags: "#물감,#사랑,#바다",
-      likeCount: 22,
-      prompt: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.",
-      Nprompt: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit."
-    }
-
-
-
+  const data = {
+    userProfileImg:
+      'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
+    userName: 'leechi',
+    MainImg: './img/card-img.png',
+    title: '물감으로 만든 화려한 바다',
+    content:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.',
+    hashtags: '#물감,#사랑,#바다',
+    likeCount: 22,
+    prompt:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.',
+    Nprompt:
+      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.',
+  };
 
   return (
     <div className={`alertpop ${isOpen ? 'open' : ''}`} onClick={handleBgClick}>

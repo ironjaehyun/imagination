@@ -6,7 +6,7 @@ const Lnb = () => {
       <form action="" className="Lnb-form">
         <input type="text" className="Lnb-search-input" />
       </form>
-        <LnbRight/>
+      <LnbRight />
     </div>
   );
 };
