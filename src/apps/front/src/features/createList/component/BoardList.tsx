@@ -37,10 +37,10 @@ const Boardlist = () => {
       </section>
       <div className="board-content">
         <div className="board-title">
-          <textarea
+          <input
             className="art-detail-textarea-title"
             placeholder="아티스트님의 작품의 제목을 입력하세요"
-          ></textarea>
+          ></input>
         </div>
         <div className="art-detail">
           <textarea
