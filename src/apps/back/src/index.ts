@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import joinRoute from './features/auth/routes/joinRoute';
 import loginRoute from './features/auth/routes/loginRoute';
 
-dotenv.config(); // 이부분을 상단으로 이동
+dotenv.config();
 
 const PORT = 3000;
 const uri = process.env.ATLAS_URI;

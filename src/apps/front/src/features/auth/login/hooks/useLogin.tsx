@@ -1,5 +1,5 @@
 import axios from '../../api/auth';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 import { useCookies } from 'react-cookie';
 
 const useLogin = () => {
@@ -46,9 +46,21 @@ const useLogin = () => {
     removeCookie('token');
   };
 
+  const handleLoginId = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setId(event.target.value);
+  };
+  const handleLoginPw = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPw(event.target.value);
+  };
+
   return {
     handleLogin,
-    setId,
+    handleLoginId,
+    handleLoginPw,
     setPw,
     cookies,
     handleLogout,
