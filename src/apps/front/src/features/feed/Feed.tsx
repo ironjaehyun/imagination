@@ -11,7 +11,7 @@ const Feed = () => {
     <div>
       <main>
         <Lnb />
-        <Post onImageClick={handleOpenAlert} /> 
+        <Post onImageClick={handleOpenAlert} />
       </main>
       <BigGnb />
       <Alertpop isOpen={isAlertOpen} onClose={handleCloseAlert} />
