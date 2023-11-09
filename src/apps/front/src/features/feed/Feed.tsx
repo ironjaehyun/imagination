@@ -9,7 +9,7 @@ const Feed = () => {
 
   return (
     <div>
-      <section className='gnb-bug-protector'>
+      <section className="gnb-bug-protector">
         <Lnb />
         <Post onImageClick={handleOpenAlert} />
       </section>

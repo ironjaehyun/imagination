@@ -8,7 +8,7 @@ const Login = () => {
     <div>
       {cookies.token ? (
         <div>
-          <Feed/>
+          <Feed />
         </div>
       ) : (
         <div className="center-box">

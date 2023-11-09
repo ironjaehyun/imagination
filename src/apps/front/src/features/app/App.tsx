@@ -13,7 +13,7 @@ function App() {
           <Route path="/imagination" element={<Imagination />}></Route>
           <Route path="/" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/explore" element={<Explore/>}/>
+          <Route path="/explore" element={<Explore />} />
         </Routes>
       </BrowserRouter>
     </>

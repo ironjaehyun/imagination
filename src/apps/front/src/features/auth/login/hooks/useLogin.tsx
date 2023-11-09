@@ -11,7 +11,7 @@ const useLogin = () => {
   const [isDisable, setIsDisable] = useState(true);
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [user, setUser] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,7 +41,7 @@ const useLogin = () => {
 
   const handleLogout = () => {
     removeCookie('token');
-    navigate('/')
+    navigate('/');
   };
 
   const handleLoginId = (event: {
