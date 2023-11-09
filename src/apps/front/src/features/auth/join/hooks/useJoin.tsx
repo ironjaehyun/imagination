@@ -53,13 +53,12 @@ const useJoin = () => {
     const response = await axios.post('join/checkId', {
       id: id,
     });
-    console.log(response.data);
-    if (response.data === 'User does not exist') {
+    if (response.data.msg === 'User does not exist') {
       setIdPassMsg('사용가능한 아이디입니다.');
       setDuplication(true);
       setAlertMsg('');
     }
-    if (response.data === 'User already exists') {
+    if (response.data.msg === 'User already exists') {
       setAlertMsg('존재하는 아이디입니다.');
       setIdPassMsg('');
     }
