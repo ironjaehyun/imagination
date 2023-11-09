@@ -24,6 +24,7 @@ export const useImagination = () => {
   const [selectedsamples, setSelectedSamples] = useState(1);
   const [sizeWidth, setSizeWidth] = useState(512);
   const [sizeHeight, setSizeHeight] = useState(512);
+  const buttonList = [1, 2, 3, 4];
 
   const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -103,5 +104,6 @@ export const useImagination = () => {
     setButtonDisabled,
     handleSizeClick,
     sizeWidth,
+    buttonList,
   };
 };

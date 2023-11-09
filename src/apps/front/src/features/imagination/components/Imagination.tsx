@@ -1,4 +1,5 @@
 import { useImagination } from '../hooks/useImagination';
+import { SampleButtton } from './button/button';
 
 const Imagination = () => {
   const {
@@ -19,6 +20,7 @@ const Imagination = () => {
     setButtonDisabled,
     handleSizeClick,
     sizeWidth,
+    buttonList,
   } = useImagination();
 
   return (
@@ -67,42 +69,14 @@ const Imagination = () => {
           </div>
           <div className="settings-options" style={{ display: settingOption }}>
             <p>Number of Images</p>
-            <button
-              className={`sample-btn ${
-                selectedsamples === 1 ? 'selected' : ''
-              }`}
-              type="button"
-              onClick={() => handleNumberClick(1)}
-            >
-              1
-            </button>
-            <button
-              className={`sample-btn ${
-                selectedsamples === 2 ? 'selected' : ''
-              }`}
-              type="button"
-              onClick={() => handleNumberClick(2)}
-            >
-              2
-            </button>
-            <button
-              className={`sample-btn ${
-                selectedsamples === 3 ? 'selected' : ''
-              }`}
-              type="button"
-              onClick={() => handleNumberClick(3)}
-            >
-              3
-            </button>
-            <button
-              className={`sample-btn ${
-                selectedsamples === 4 ? 'selected' : ''
-              }`}
-              type="button"
-              onClick={() => handleNumberClick(4)}
-            >
-              4
-            </button>
+            {buttonList.map((_, idx) => (
+              <SampleButtton
+                key={idx}
+                value={idx + 1}
+                onClick={handleNumberClick}
+                selected={selectedsamples === idx + 1}
+              />
+            ))}
             <div className="settings-options-02">
               <p>Image Dimensions</p>
               <button
