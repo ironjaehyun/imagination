@@ -1,10 +1,11 @@
-import BoardData from './BoardData';
+import { FunctionComponent } from 'react';
+import BoardData from '../constatns/BoardData';
 
 interface BoardModalProps {
   onClose: () => void;
 }
 
-const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
+const BoardModal: FunctionComponent<BoardModalProps> = ({ onClose }) => {
   const ModalBgClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
       // 배경 클릭 시 모달을 닫음
@@ -29,7 +30,7 @@ const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
               name="modalDataGroup"
             />
             <div className="modal-list-img ">
-              <img src={item.id} alt="description" />
+              <img src={item.ima} alt="description" />
             </div>
             <div className="modal-prompt-list">
               <div className="modal-prompt-positive">

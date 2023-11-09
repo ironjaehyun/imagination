@@ -1,6 +1,7 @@
 const BoardData = [
   {
-    id: 'https://raw.githubusercontent.com/aischool-final-project-Imagination/Imagination/feact/create2/gdragon.webp',
+    id: 0,
+    ima: 'https://i.namu.wiki/i/xiwvHoWIIxDSchpVXoFEt1xYlP4n-_SJ8TsHNwut4M8K5LBa6MwYCU5p95cCqZ_EBmCvlaXyz6HvS2A3h_0OauUwGrNaxavUlG3SRSg01gQ9skU0KJe9MIYURdqmeb8O3Ou1Bdf7ejK07JOSX-IV-A.webp',
     title: 'gd',
     content: 'bigbang',
     detail:
@@ -9,7 +10,8 @@ const BoardData = [
       '2023년 10월, 지드래곤은 마약 사용 혐의로 논란에 휩싸였다. 이에 YG엔터테인먼트 측은 계약이 만료되어서 공식 대응이 어렵다는 입장을 밝혔다. 지드래곤과 엘르 코리아와의 공식 인터뷰 영상이 재조명을 받았으며, 현재 비공개 처리된 상태이다',
   },
   {
-    id: 'https://raw.githubusercontent.com/aischool-final-project-Imagination/Imagination/feact/create2/taeyang.webp',
+    id: 1,
+    ima: 'https://i.namu.wiki/i/xvoxl-3a4LfDwVO1j77XN702Cbj8xZv2wbKt3f4tZmPT_jb7ig4ffGCa0Xcg2B2n7gxkiYrp45LvAIX4V4rQ3qVd7AOW6w7XKsTPWWhkVb02xXJNPKtv6xZ56uyA__QmhT4EPvpQNmQwfjh9d2-2Vw.webp',
     title: 'sun',
     content: 'goated',
     detail:
@@ -18,7 +20,8 @@ const BoardData = [
       "빅뱅 유닛인 지디앤탑의 로고가 성인 잡지 플레이보이의 로고를 무단으로 도용했다가 플레이보이 본사가 항의의 표시를 전했다고 한다. YG도 시인, 로고 사용을 하지 않겠다고 했다. 이 사건으로 인해 이 로고가 자주 등장하는 지디앤탑의 'HIGH HIGH'와 '뻑이가요'의 뮤직비디오가 빅뱅 공식 유튜브 채널에서 내려가게 되었고, 이 로고가 박힌 피지컬앨범 또한 새로운 로고로 교체되어 재발매 되었으며 모든음원사이트에서 지디앤 탑 앨범의 앨범커버가 수정되었다",
   },
   {
-    id: 'https://raw.githubusercontent.com/aischool-final-project-Imagination/Imagination/feact/create2/toptop.webp',
+    id: 2,
+    ima: 'https://i.namu.wiki/i/3k1IuvwDxMSF0CbISLDEeOvRcPEY8Ft24QYbmymfM7-m4YsHoby1wCqSQZh9ypHhqA1CshJEUGM8DNleQOwTQ0IEWoXSjZr9DufMOfjo8aGxrATUSX3FANvjcsLarVTObLD3TpkAmrONshgQNVVlhA.webp',
     title: 'top',
     content: 'pill',
     detail:

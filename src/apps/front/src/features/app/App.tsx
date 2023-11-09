@@ -1,7 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Create from '../createList/Create';
+import Create from '../createBoardList/Create';
 
 function App() {
   return (
