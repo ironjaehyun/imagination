@@ -12,6 +12,12 @@ const Boardlist = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const [boardMaxText, setBoardMaxText] = useState(0);
+
+  const HandleMaxtext = (e) => {
+    setBoardMaxText(Array.from(e.target.value).length);
+  };
   return (
     <div className="board-main">
       <section className="bring-art">
@@ -38,9 +44,12 @@ const Boardlist = () => {
         </div>
         <div className="art-detail">
           <textarea
+            maxLength={50}
+            onChange={HandleMaxtext}
             className="art-detail-textarea-details"
             placeholder="작품을 설명해 주세요"
           ></textarea>
+          <p>{boardMaxText}/50자</p>
           <textarea
             className="art-detail-textarea-hashtag"
             placeholder="# 해쉬태그 입력"

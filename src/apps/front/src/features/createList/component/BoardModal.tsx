@@ -12,8 +12,6 @@ const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
     }
   };
 
-  const ModalData = BoardData;
-
   return (
     <div className="board-modal-black-bg" onClick={ModalBgClose}>
       <div className="board-modal-bg">
@@ -23,8 +21,8 @@ const BoardModal: React.FC<BoardModalProps> = ({ onClose }) => {
           </button>
         </div>
         {/*여기서부터는 map 함수로 데이터를 가져올 생각입니다. */}
-        {ModalData.map((item, i) => (
-          <div className="modal-list">
+        {BoardData.map((item, i) => (
+          <div className="modal-list" key={item.id}>
             <input
               className="modal-select-button"
               type="radio"

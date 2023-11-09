@@ -149,6 +149,10 @@
   color: #d9d9d9;
   padding-top: 5%;
   border-top: 1px solid #d9d9d9;
+
+  p {
+    float: right;
+  }
 }
 
 .board-title {
@@ -212,8 +216,8 @@
 
 .board-modal-bg {
   position: fixed;
-  top: 100px;
-  left: 290px;
+  top: 15%;
+  left: 20%;
   width: 1017px;
   height: 680px;
   background-color: white;
