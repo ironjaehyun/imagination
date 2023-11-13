@@ -27,31 +27,19 @@ textarea {
     background-color: rgba(0, 0, 0, 0.255);
     width: 100%;
   }
-}
-
-.prompt-setting-sample {
-  width: 24px;
-  height: 24px;
-  transform: rotate(180deg);
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.Generated-imgs {
-  display: flex;
-  justify-content: center;
-
-  .Generated-img {
-    max-width: 640px;
-    min-width: 384px;
-    max-height: 640px;
-    min-height: 384px;
+  
+  &-sample {
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
+    transition: all 0.3s;
+    cursor: pointer;
   }
 }
 
 .prompt-input {
   padding: 10px;
-  width: 1023px;
+  width: 1200px;
   height: 100%;
   resize: none;
   border: none;
@@ -88,18 +76,18 @@ textarea {
     &:hover {
       background-color: #d4d4d4;
     }
-
+    
     &.selected {
       background-color: #0288d1;
       color: white;
     }
   }
-}
-
-.settings-options-02 {
-  display: flex;
-  align-items: center;
-  width: 100%;
+  
+  &-02 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
 }
 
 .submit {
@@ -118,6 +106,23 @@ textarea {
   }
 }
 
+.Generated-imgs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .Generated-img, .loading-img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+  }
+
+  .Generated-img img, .loading-img img {
+    width: 300px;
+    height: 300px;
+  }
+}
+
 .generate-btn-active {
   display: flex;
   align-items: center;
@@ -128,6 +133,7 @@ textarea {
   height: 51px;
   color: white;
   background: #0288d1;
+  
   &:hover {
     background: #0a76b1;
   }

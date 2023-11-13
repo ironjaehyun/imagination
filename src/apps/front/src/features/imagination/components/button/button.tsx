@@ -11,7 +11,7 @@ export const SampleButtton: FunctionComponent<SampleButttonProps> = ({
   onClick,
   value,
   selected,
-  disabled, 
+  disabled,
 }) => {
   const handleNumberClick = () => onClick(value);
   return (
@@ -19,7 +19,7 @@ export const SampleButtton: FunctionComponent<SampleButttonProps> = ({
       className={`sample-btn ${selected ? 'selected' : ''}`}
       type="button"
       onClick={handleNumberClick}
-      disabled={disabled} 
+      disabled={disabled}
     >
       {value}
     </button>
@@ -36,7 +36,7 @@ export const SizeButton: FunctionComponent<SizeButtonProps> = ({
   size,
   onClick,
   selectedSize,
-  disabled
+  disabled,
 }) => {
   const handleSizeClick = () => onClick(size);
   const selected = size[0] === selectedSize[0] && size[1] === selectedSize[1];
@@ -48,7 +48,7 @@ export const SizeButton: FunctionComponent<SizeButtonProps> = ({
       onClick={handleSizeClick}
       disabled={disabled}
     >
-      {`${size[0]} X ${size[1]}`}
+      {`${size[0]*2} X ${size[1]*2}`}
     </button>
   );
 };

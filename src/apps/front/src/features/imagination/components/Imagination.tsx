@@ -1,6 +1,8 @@
+import BigGnb from '../../shared/BigGnb';
 import { useImagination } from '../hooks/useImagination';
 import { SampleButtton } from './button/button';
 import { SizeButton } from './button/button';
+
 const Imagination = () => {
   const {
     imageUrls,
@@ -26,6 +28,7 @@ const Imagination = () => {
 
   return (
     <div>
+      <BigGnb></BigGnb>
       <div className="imagination-main">
         <form onSubmit={generateImage} className="imagination-form">
           <div>
