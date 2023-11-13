@@ -3,13 +3,31 @@ import BoardData from '../constatns/BoardData';
 
 interface BoardModalProps {
   onClose: () => void;
+  onSelect: (data: unknown) => void;
 }
 
-const BoardModal: FunctionComponent<BoardModalProps> = ({ onClose }) => {
+const BoardModal: FunctionComponent<BoardModalProps> = ({
+  onClose,
+  onSelect,
+}) => {
   const [isSelected, setIsSelected] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null); // 선택한 아이템을 임시로 저장하는 상태
 
-  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRadioChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    item: unknown,
+  ) => {
     setIsSelected(e.target.checked);
+    if (e.target.checked) {
+      setSelectedItem(item); // 라디오 버튼이 선택되었을 때 선택한 아이템을 저장
+    }
+  };
+
+  const handleSelectSureClick = () => {
+    if (isSelected && selectedItem) {
+      onSelect(selectedItem);
+      onClose(); // 선택완료 버튼을 눌렀을 때 모달 창을 닫음
+    }
   };
 
   const ModalBgClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -34,15 +52,15 @@ const BoardModal: FunctionComponent<BoardModalProps> = ({ onClose }) => {
               className="modal-select-button"
               type="radio"
               name="modalDataGroup"
-              onChange={handleRadioChange}
+              onChange={(e) => handleRadioChange(e, item)}
             />
             <div className="modal-list-img ">
               <img src={item.ima} alt="description" />
             </div>
             <div className="modal-prompt-list">
               <div className="modal-prompt-positive">
-                <h4 onClick={() => console.log(item.id)}>
-                  Prompt{i} 작성자 {item.title}{' '}
+                <h4 onClick={() => console.log(item)}>
+                  Prompt{i} 작성자 {item.title}
                 </h4>
                 <p className="ellipsis">{item.detail}</p>
               </div>
@@ -54,9 +72,7 @@ const BoardModal: FunctionComponent<BoardModalProps> = ({ onClose }) => {
           </div>
         ))}
         <button
-          onClick={() => {
-            console.log(1);
-          }}
+          onClick={handleSelectSureClick} // 선택완료 버튼을 눌렀을 때 handleSelectSureClick 함수를 호출
           className={`modal-select-sure ${isSelected ? 'enabled' : 'disabled'}`}
           disabled={!isSelected}
         >

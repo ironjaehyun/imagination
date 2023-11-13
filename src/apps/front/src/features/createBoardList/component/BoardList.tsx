@@ -5,6 +5,8 @@ import BoardModal from './BoardModal'; // 모달 컴포넌트 임포트
 const Boardlist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [selectedData, setSelectedData] = useState(null);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -38,14 +40,29 @@ const Boardlist = () => {
       <section className="bring-art">
         <div className="bring-art-content">
           <h3 className="bring-art-title">작품 전시를 해주세요</h3>
-          {isModalOpen && <BoardModal onClose={closeModal} />}
+          {isModalOpen && (
+            <BoardModal onClose={closeModal} onSelect={setSelectedData} />
+          )}
           <div className="bring-art-list">
             <div className="bring-art-image" onClick={openModal}>
-              <p>작품 이미지 가져오기</p>
+              <p>
+                <img src={selectedData?.ima} alt="이미지를 넣어주세요" />
+              </p>
             </div>
             <div className="bring-art-prompt">
-              <div className="bring-art-prompt-positive">prompt</div>
-              <div className="bring-art-prompt-negative">negative-prompt</div>
+              <div className="bring-art-prompt-positive">
+                {isModalOpen && (
+                  <BoardModal onClose={closeModal} onSelect={setSelectedData} />
+                )}
+                {selectedData && (
+                  <div>{JSON.stringify(selectedData.detail)}</div>
+                )}
+              </div>
+              <div className="bring-art-prompt-negative">
+                {selectedData && (
+                  <div>{JSON.stringify(selectedData.negavibeDetail)}</div>
+                )}
+              </div>
             </div>
           </div>
         </div>
