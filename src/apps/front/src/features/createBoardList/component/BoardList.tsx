@@ -5,7 +5,7 @@ import BoardModal from './BoardModal'; // 모달 컴포넌트 임포트
 const Boardlist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [selectedData, setSelectedData] = useState(null);
+  const [selectedData, setSelectedData] = useState('null');
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -45,22 +45,26 @@ const Boardlist = () => {
           )}
           <div className="bring-art-list">
             <div className="bring-art-image" onClick={openModal}>
-              <p>
-                <img src={selectedData?.ima} alt="이미지를 넣어주세요" />
-              </p>
+              <img src={selectedData?.ima} alt="이미지를 넣어주세요" />
             </div>
             <div className="bring-art-prompt">
               <div className="bring-art-prompt-positive">
+                <h4>positive prompt</h4>
                 {isModalOpen && (
                   <BoardModal onClose={closeModal} onSelect={setSelectedData} />
                 )}
                 {selectedData && (
-                  <div>{JSON.stringify(selectedData.detail)}</div>
+                  <p className="ellipsis">
+                    {JSON.stringify(selectedData.detail)}
+                  </p>
                 )}
               </div>
               <div className="bring-art-prompt-negative">
+                <h4>negative prompt</h4>
                 {selectedData && (
-                  <div>{JSON.stringify(selectedData.negavibeDetail)}</div>
+                  <p className="ellipsis">
+                    {JSON.stringify(selectedData.negavibeDetail)}
+                  </p>
                 )}
               </div>
             </div>
