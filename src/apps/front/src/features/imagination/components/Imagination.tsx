@@ -1,4 +1,5 @@
 import BigGnb from '../../shared/BigGnb';
+import Lnb from '../../shared/Lnb';
 import { useImagination } from '../hooks/useImagination';
 import { SampleButtton } from './button/button';
 import { SizeButton } from './button/button';
@@ -28,7 +29,10 @@ const Imagination = () => {
 
   return (
     <div>
-      <BigGnb></BigGnb>
+      <BigGnb />
+      <div className="imagination-lnb">
+        <Lnb />
+      </div>
       <div className="imagination-main">
         <form onSubmit={generateImage} className="imagination-form">
           <div>
@@ -106,6 +110,21 @@ const Imagination = () => {
               <img src={imgSrc} alt="image" />
               <p>{buttonText}</p>
             </button>
+          </div>
+          <div className="image-history">
+            <h2>Image Generation History</h2>
+            <p>
+              <b>2023/11/01</b>
+            </p>
+            <textarea
+              readOnly={true}
+              cols={15}
+              rows={3}
+              className="prompt-input"
+              value={
+                '입력한 프롬프트 값입니다.입력한 프롬프트 값입니다.입력한 프롬프트 값입니다.'
+              }
+            />
           </div>
           <div className="Generated-imgs">
             {isLoading

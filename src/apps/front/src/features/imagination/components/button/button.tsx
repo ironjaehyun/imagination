@@ -48,7 +48,7 @@ export const SizeButton: FunctionComponent<SizeButtonProps> = ({
       onClick={handleSizeClick}
       disabled={disabled}
     >
-      {`${size[0]*2} X ${size[1]*2}`}
+      {`${size[0] * 2} X ${size[1] * 2}`}
     </button>
   );
 };

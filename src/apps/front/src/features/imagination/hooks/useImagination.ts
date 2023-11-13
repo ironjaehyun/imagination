@@ -53,7 +53,7 @@ export const useImagination = () => {
           samples: selectedsamples,
           width: selectedSize[0],
           height: selectedSize[1],
-          upscale : true
+          upscale: true,
         },
         {
           headers: {

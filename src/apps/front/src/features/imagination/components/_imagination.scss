@@ -1,8 +1,9 @@
 textarea {
   border-radius: 0.8rem;
-  border: 1px solid black;
   resize: vertical;
-
+  border: none;
+  border-radius: 10px;
+  background: #f5f5f5;
   &::placeholder {
     color: #d9d9d9;
   }
@@ -27,7 +28,7 @@ textarea {
     background-color: rgba(0, 0, 0, 0.255);
     width: 100%;
   }
-  
+
   &-sample {
     width: 24px;
     height: 24px;
@@ -41,18 +42,18 @@ textarea {
   padding: 10px;
   width: 1200px;
   height: 100%;
-  resize: none;
   border: none;
   border-radius: 10px;
   background: #f5f5f5;
   font-size: larger;
-
-  .imagination-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+  resize: none;
+}
+.imagination-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 3em;
 }
 
 .loading-img {
@@ -76,13 +77,13 @@ textarea {
     &:hover {
       background-color: #d4d4d4;
     }
-    
+
     &.selected {
       background-color: #0288d1;
       color: white;
     }
   }
-  
+
   &-02 {
     display: flex;
     align-items: center;
@@ -111,13 +112,15 @@ textarea {
   justify-content: center;
   flex-wrap: wrap;
 
-  .Generated-img, .loading-img {
+  .Generated-img,
+  .loading-img {
     width: 300px;
     height: 300px;
     object-fit: contain;
   }
 
-  .Generated-img img, .loading-img img {
+  .Generated-img img,
+  .loading-img img {
     width: 300px;
     height: 300px;
   }
@@ -133,7 +136,7 @@ textarea {
   height: 51px;
   color: white;
   background: #0288d1;
-  
+
   &:hover {
     background: #0a76b1;
   }
@@ -155,6 +158,22 @@ textarea {
   }
 }
 
+.image-history {
+  width: 100%;
+
+  & textarea {
+    pointer-events: none;
+  }
+}
+
 .width {
   width: 50px;
+}
+
+.imagination-lnb {
+  margin-left: 15.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 85%;
 }
