@@ -76,6 +76,7 @@ const Imagination = () => {
                 value={idx + 1}
                 onClick={handleNumberClick}
                 selected={selectedsamples === idx + 1}
+                disabled={isLoading}
               />
             ))}
             <div className="settings-options-02">
@@ -84,8 +85,9 @@ const Imagination = () => {
                 <SizeButton
                   key={idx}
                   size={size}
-                  onClick={() => handleSizeClick(size)} // 클릭하면 선택된 크기를 설정합니다.
-                  selectedSize={selectedSize} // 선택된 크기를 전달합니다.
+                  onClick={() => handleSizeClick(size)}
+                  selectedSize={selectedSize}
+                  disabled={isLoading}
                 />
               ))}
             </div>
