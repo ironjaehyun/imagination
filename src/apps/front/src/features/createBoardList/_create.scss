@@ -96,6 +96,7 @@
   align-items: center;
   border: 1px solid #d9d9d9;
   color: #d9d9d9;
+  position: relative;
 
   img {
     width: 178px;
@@ -327,4 +328,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.image-plus {
+  position: absolute;
+  top: 10%;
+  font-size: 59px;
+  z-index: -2;
 }

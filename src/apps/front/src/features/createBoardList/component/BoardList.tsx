@@ -45,7 +45,8 @@ const Boardlist = () => {
           )}
           <div className="bring-art-list">
             <div className="bring-art-image" onClick={openModal}>
-              <img src={selectedData?.ima} alt="이미지를 넣어주세요" />
+              <img src={selectedData?.ima} />
+              <h1 className="image-plus">+</h1>
             </div>
             <div className="bring-art-prompt">
               <div className="bring-art-prompt-positive">
@@ -97,6 +98,7 @@ const Boardlist = () => {
               onChange={onChange}
               onKeyUp={onKeyUp}
             />
+            {hashtags}
           </div>
           {/* <p># 해쉬태그 입력</p> */}
           <button className="art-button">게시하기</button>
