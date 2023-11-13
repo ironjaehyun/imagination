@@ -22,9 +22,17 @@ export const useImagination = () => {
   const [imgSrc, setImgSrc] = useState('imagination/Geneal.png');
   const [buttonText, setButtonText] = useState('Generate');
   const [selectedsamples, setSelectedSamples] = useState(1);
-  const [sizeWidth, setSizeWidth] = useState(512);
-  const [sizeHeight, setSizeHeight] = useState(512);
+  // const [sizeWidth, setSizeWidth] = useState(512);
+  // const [sizeHeight, setSizeHeight] = useState(512);
   const buttonList = [1, 2, 3, 4];
+  const [selectedSize, setSelectedSize] = useState<[number, number]>([
+    512, 512,
+  ]);
+  const sizeList: [number, number][] = [
+    [512, 512],
+    [384, 640],
+    [640, 384],
+  ];
 
   const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -43,8 +51,8 @@ export const useImagination = () => {
           negative_prompt: negative,
           image_format: 'png',
           samples: selectedsamples,
-          width: sizeWidth,
-          height: sizeHeight,
+          width: selectedSize[0],
+          height: selectedSize[1],
         },
         {
           headers: {
@@ -81,9 +89,8 @@ export const useImagination = () => {
     setSelectedSamples(num);
   };
 
-  const handleSizeClick = (num1: number, num2: number) => {
-    setSizeWidth(num1);
-    setSizeHeight(num2);
+  const handleSizeClick = (size: [number, number]) => {
+    setSelectedSize(size); // 선택된 크기를 selectedSize 상태에 설정
   };
 
   return {
@@ -103,7 +110,8 @@ export const useImagination = () => {
     isLoading,
     setButtonDisabled,
     handleSizeClick,
-    sizeWidth,
     buttonList,
+    selectedSize,
+    sizeList,
   };
 };

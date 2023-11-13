@@ -22,3 +22,27 @@ export const SampleButtton: FunctionComponent<SampleButttonProps> = ({
     </button>
   );
 };
+type SizeButtonProps = {
+  size: [number, number];
+  onClick: (size: [number, number]) => void;
+  selectedSize: [number, number];
+};
+
+export const SizeButton: FunctionComponent<SizeButtonProps> = ({
+  size,
+  onClick,
+  selectedSize,
+}) => {
+  const handleSizeClick = () => onClick(size);
+  const selected = size[0] === selectedSize[0] && size[1] === selectedSize[1];
+
+  return (
+    <button
+      className={`size-btn ${selected ? 'selectedSize' : ''}`}
+      type="button"
+      onClick={handleSizeClick}
+    >
+      {`${size[0]} X ${size[1]}`}
+    </button>
+  );
+};
