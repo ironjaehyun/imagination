@@ -2,8 +2,11 @@
 @import './styles/reset';
 @import './styles/normalize';
 @import './styles/system/color';
+@import '../feed/feed';
+@import '../createBoardList/create';
 @import '../auth/join/components/join';
 @import '../auth/login/components/login';
+@import '../feed/feed';
 @import '../chat/components/_chatList.scss';
 @import '../chat/components/_chatInvite.scss';
 @import '../chat/components/chatRoom';

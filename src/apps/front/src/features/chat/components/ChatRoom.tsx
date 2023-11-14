@@ -5,6 +5,7 @@ const ChatRoom = () => {
   const [messages, setMessages] = useState<string[]>([]);
 
   const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+
     setMessage(event.target.value);
   };
 

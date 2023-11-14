@@ -27,6 +27,17 @@ const ChatInvite = () => {
         <div className="chat-invite-search">
           <textarea placeholder="search"></textarea>
           <img src="../chatimg/Vector.svg" />
+const ChatInvite = () => {
+  return (
+    <div className="chat-invite-bg">
+      <div className="chat-invite-box">
+        <div className="chat-invite-title">
+          <span>New Messages</span>
+          <img src="../chatimg/close.svg" />
+        </div>
+
+        <div className="chat-invite-search">
+          <input></input>
         </div>
 
         <div className="chat-invite-list"></div>
@@ -37,6 +48,7 @@ const ChatInvite = () => {
       </div>
     </div>
   ) : null;
+  );
 };
 
 export default ChatInvite;
