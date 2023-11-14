@@ -3,7 +3,7 @@ import BoardModal from './BoardModal'; // 모달 컴포넌트 임포트
 
 const Boardlist: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedData, setSelectedData] = useState<any>(null);
+  const [selectedData, setSelectedData] = useState<unknown>(null);
   const [boardMaxText, setBoardMaxText] = useState<number>(0);
   const [hashtags, setHashtags] = useState<string[]>([]);
   const [input, setInput] = useState<string>('');
