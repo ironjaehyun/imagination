@@ -4,6 +4,13 @@ import EditUser from './components/EditUser';
 import useMypage from './hooks/useMypage';
 import classNames from 'classnames';
 
+//1. 팔로우 팔로워 리스트 모달창
+//2. 이미지 프론트 업로드 url 바꾸기 & 이름 바꾸기
+//3. jotai 학습해서 넣어보기
+//4. 타입스크립트 에러처리
+//5. multer 학습
+//6.
+
 const Mypage = () => {
   const {
     myPageModal,
