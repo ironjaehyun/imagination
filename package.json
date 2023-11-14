@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "imagination is perfect",
   "main": "index.js",
-  "private":true,
-  "workspaces":[
+  "private": true,
+  "workspaces": [
     "src/**/*"
   ],
   "scripts": {
-    "back" : "yarn workspace back",
-    "front" : "yarn workspace front",
+    "back": "yarn workspace back",
+    "front": "yarn workspace front",
     "lint:eslint": "eslint --ext .ts,.js,.tsx, src",
     "lint:prettier": "prettier src --check",
     "lint": "npm-run-all -p lint:*",
@@ -25,5 +25,8 @@
     "npm-run-all": "^4.1.5",
     "prettier": "3.0.3",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "justified-layout": "^4.1.0"
   }
 }
