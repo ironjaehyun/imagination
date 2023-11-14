@@ -1,12 +1,14 @@
 import ChatList from './components/ChatList';
-import ChatRoom from './components/ChatRoom';
+import Gnb from '../shared/Gnb';
 import './components/_chatList.scss';
 
 const Chat = () => {
   return (
-    <div className="chatpage">
-      <ChatList></ChatList>
-      <ChatRoom></ChatRoom>
+    <div>
+      <Gnb></Gnb>
+      <div className="chatpage">
+        <ChatList></ChatList>
+      </div>
     </div>
   );
 };

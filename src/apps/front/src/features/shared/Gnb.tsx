@@ -15,7 +15,7 @@ const Gnb = () => {
               className="Gnb-profile-img"
             ></img>
           </div>
-          <Link to={'/feed'}>
+          <Link to={'/'}>
             <div className="Gnb-hoverwhite">
               <img src="./img/feed.png" className="Gnb-nav-icon" />
             </div>
