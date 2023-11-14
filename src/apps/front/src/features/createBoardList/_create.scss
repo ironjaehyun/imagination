@@ -1,3 +1,17 @@
+@keyframes shake {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @keyframes movedown {
   0% {
     top: -277px;
@@ -74,6 +88,10 @@
 .bring-art-content {
   height: 100%;
   width: 820px;
+
+  .shake {
+    animation: shake 0.5s;
+  }
 }
 
 .bring-art-title {
@@ -181,6 +199,20 @@
   padding-top: 12px;
   width: 100%;
   height: 80%;
+
+  &.shake {
+    animation: shake 0.5s;
+  }
+
+  &::placeholder {
+    color: black;
+  }
+
+  &.error {
+    &::placeholder {
+      color: $black;
+    }
+  }
 }
 
 .art-detail-textarea-hashtag {
@@ -198,6 +230,12 @@
   font-weight: bolder;
   width: 100%;
   height: 80%;
+
+  &.shake {
+    animation: shake 0.5s;
+  }
+
+  // ... 나머지 스타일
 }
 
 .art-button {

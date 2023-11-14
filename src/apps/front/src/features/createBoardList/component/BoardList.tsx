@@ -1,23 +1,63 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 import BoardModal from './BoardModal'; // 모달 컴포넌트 임포트
 
+type SelectedDataType = {
+  ima: string;
+  detail: string;
+  negavibeDetail: string;
+};
+
 const Boardlist: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [selectedData, setSelectedData] = useState<unknown>(null);
+  const [selectedData, setSelectedData] = useState<SelectedDataType | null>(
+    null,
+  );
   const [boardMaxText, setBoardMaxText] = useState<number>(0);
   const [hashtags, setHashtags] = useState<string[]>([]);
   const [input, setInput] = useState<string>('');
+  const [artTitle, setArtTitle] = useState<string>('');
+  const [titleError, setTitleError] = useState<boolean>(false);
+  const [shake, setShake] = useState(false);
+  const [shakeImage, setShakeImage] = useState(false);
+  const [descriptionError, setDescriptionError] = useState<boolean>(false);
+  const [shakeDescription, setShakeDescription] = useState(false);
+  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setBoardMaxText(Array.from(e.target.value).length);
+    if (e.target.value.trim()) {
+      setDescriptionError(false);
+    }
+  };
 
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setArtTitle(e.target.value);
+    if (e.target.value.trim()) {
+      setTitleError(false);
+    }
+  };
+
+  const handlePostClick = () => {
+    if (!artTitle.trim()) {
+      setTitleError(true);
+      setShake(true);
+      setTimeout(() => setShake(false), 500); // 0.5초 후에 애니메이션 제거
+    }
+    if (!selectedData?.ima) {
+      setShakeImage(true);
+      setTimeout(() => setShakeImage(false), 500); // 0.5초 후에 애니메이션 제거
+    }
+    if (!boardMaxText) {
+      setDescriptionError(true);
+      setShakeDescription(true);
+      setTimeout(() => setShakeDescription(false), 500); // 0.5초 후에 애니메이션 제거
+    }
+    // ...
+  };
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const handleMaxText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setBoardMaxText(Array.from(e.target.value).length);
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,34 +71,13 @@ const Boardlist: React.FC = () => {
     }
   };
 
-  const handlePost = () => {
-    if (
-      !selectedData ||
-      !selectedData.ima ||
-      !selectedData.detail ||
-      !selectedData.negavibeDetail
-    ) {
-      alert('작품을 선택하세요');
-      return;
-    }
-
-    const titleInput = document.querySelector(
-      '.art-detail-textarea-title',
-    ) as HTMLInputElement;
-    const title = titleInput.value.trim();
-    if (!title) {
-      alert('제목을 입력해 주세요');
-      return;
-    }
-
-    // 게시 작업 수행...
-  };
-
   return (
     <div className="board-main">
       <section className="bring-art">
         <div className="bring-art-content">
-          <h3 className="bring-art-title">작품 전시를 해주세요</h3>
+          <h3 className={`bring-art-title ${shakeImage ? 'shake' : ''}`}>
+            작품 전시를 해주세요
+          </h3>
           {isModalOpen && (
             <BoardModal onClose={closeModal} onSelect={setSelectedData} />
           )}
@@ -94,15 +113,21 @@ const Boardlist: React.FC = () => {
       <div className="board-content">
         <div className="board-title">
           <input
-            className="art-detail-textarea-title"
+            className={`art-detail-textarea-title ${
+              titleError ? 'error' : ''
+            } ${shake ? 'shake' : ''}`}
             placeholder="아티스트님의 작품의 제목을 입력하세요"
+            value={artTitle}
+            onChange={handleTitleChange}
           ></input>
         </div>
         <div className="art-detail">
           <textarea
             maxLength={1500}
-            onChange={handleMaxText}
-            className="art-detail-textarea-details"
+            onChange={handleDescriptionChange}
+            className={`art-detail-textarea-details ${
+              descriptionError ? 'error' : ''
+            } ${shakeDescription ? 'shake' : ''}`}
             placeholder="작품을 설명해 주세요"
           ></textarea>
           <p>{boardMaxText}/1500자</p>
@@ -120,7 +145,7 @@ const Boardlist: React.FC = () => {
             {hashtags}
           </div>
           {/* <p># 해쉬태그 입력</p> */}
-          <button className="art-button" onClick={handlePost}>
+          <button className="art-button" onClick={handlePostClick}>
             게시하기
           </button>
         </div>
