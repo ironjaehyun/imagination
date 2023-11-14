@@ -75,6 +75,20 @@
     }
   }
 
+  .chatroom-btn {
+    height: 30px;
+    width: 30px;
+    background-color: $primary;
+    color: $white;
+    position: fixed;
+    top: 75%;
+    left: 60%;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .chatroom-inputarea {
     height: 15%;
   }

@@ -1,7 +1,13 @@
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useEffect } from 'react';
+import axios from 'axios';
+
+interface User {
+  id: string;
+}
 
 const ChatInvite = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [userList, setUserList] = useState<User[]>([]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -16,6 +22,19 @@ const ChatInvite = () => {
     e.stopPropagation();
   };
 
+  useEffect(() => {
+    const fetchUserList = async () => {
+      try {
+        const response = await axios.get('/api/users'); // 서버의 /api/users 엔드포인트로 GET 요청을 보냅니다.
+        setUserList(response.data); // 가져온 아이디 목록을 상태에 저장합니다.
+      } catch (error) {
+        console.error('Failed to fetch user list:', error);
+      }
+    };
+
+    fetchUserList();
+  }, []);
+
   return isOpen ? (
     <div className="chat-invite-bg" onClick={handleClickOutside}>
       <div className="chat-invite-box" onClick={handleClickInside}>
@@ -27,20 +46,13 @@ const ChatInvite = () => {
         <div className="chat-invite-search">
           <textarea placeholder="search"></textarea>
           <img src="../chatimg/Vector.svg" />
-const ChatInvite = () => {
-  return (
-    <div className="chat-invite-bg">
-      <div className="chat-invite-box">
-        <div className="chat-invite-title">
-          <span>New Messages</span>
-          <img src="../chatimg/close.svg" />
         </div>
 
-        <div className="chat-invite-search">
-          <input></input>
+        <div className="chat-invite-list">
+          {userList.map((user) => (
+            <div key={user.id}>{user.id}</div> // 아이디 목록을 동적으로 렌더링합니다.
+          ))}
         </div>
-
-        <div className="chat-invite-list"></div>
 
         <div className="chat-invite-btn">
           <button>Chat</button>
@@ -48,7 +60,6 @@ const ChatInvite = () => {
       </div>
     </div>
   ) : null;
-  );
 };
 
 export default ChatInvite;

@@ -1,15 +1,25 @@
 import Feed from '../../../feed/Feed';
-import useLogin from '../hooks/useLogin';
+import { useEffect, useState } from 'react';
+import axios from '../../api/auth';
 import { LoginForm } from './LoginForm';
 import { LoginQuestionBox } from './LoginQuestionBox';
+
 const Login = () => {
-  const { cookies } = useLogin();
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    axios.get('/login/success').then((res) => {
+      if (res.data) {
+        setIsLogin(true);
+      }
+    });
+  }, []);
+
   return (
     <div>
-      {cookies.token ? (
-        <div>
+      {isLogin ? (
+        <>
           <Feed />
-        </div>
+        </>
       ) : (
         <div className="center-box">
           <LoginForm />

@@ -17,6 +17,13 @@ const userSchema = new mongoose.Schema(
   },
 );
 
+// toJSON 메소드를 사용하여 반환되는 객체에서 password 필드 제외
+userSchema.methods.toJSON = function () {
+  const userObject = this.toObject();
+  delete userObject.password;
+  return userObject;
+};
+
 const userModel = mongoose.model('User', userSchema);
 
 export default userModel;

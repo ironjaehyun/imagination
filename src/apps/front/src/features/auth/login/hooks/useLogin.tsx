@@ -1,26 +1,22 @@
 import axios from '../../api/auth';
 import { useState, useEffect, SetStateAction } from 'react';
-import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 
 const useLogin = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+
   const [msgLogin, setMsgLogin] = useState('');
   const [msgPassword, setMsgPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
-  const [user, setUser] = useState();
-  const navigate = useNavigate();
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios
-      .post('/', { id: id, password: pw })
+    await axios
+      .post('/', { id: id, password: pw }, { withCredentials: true })
       .then((res) => {
-        const newToken = res.data.token;
-        setUser(res.data);
-        setCookie('token', newToken, { path: '/' });
+        if (res.status === 200) {
+          window.open('/', '_self');
+        }
       })
       .catch((error) => {
         if (error.response.data === 'user not found') {
@@ -33,16 +29,20 @@ const useLogin = () => {
       });
   };
 
+  const handleLogout = () => {
+    axios.post('/logout').then((result) => {
+      if (result.status === 200) {
+        window.open('/', '_self');
+      }
+      console.log('hi');
+    });
+  };
+
   useEffect(() => {
     if (id.length > 0 && pw.length > 0) {
       setIsDisable(false);
     }
   }, [id, pw]);
-
-  const handleLogout = () => {
-    removeCookie('token');
-    navigate('/');
-  };
 
   const handleLoginId = (event: {
     target: { value: SetStateAction<string> };
@@ -60,12 +60,10 @@ const useLogin = () => {
     handleLoginId,
     handleLoginPw,
     setPw,
-    cookies,
     handleLogout,
     msgLogin,
     msgPassword,
     isDisable,
-    user,
   };
 };
 

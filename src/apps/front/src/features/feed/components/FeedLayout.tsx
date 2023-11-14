@@ -42,7 +42,7 @@ const FeedLayout = ({ onImageClick }: { onImageClick: () => void }) => {
     return Array(images.length)
       .fill(null)
       .map((_, index) => aspectRatios[index % aspectRatios.length]);
-  }, [images.length]);
+  }, [images.length, aspectRatios]);
 
   // JustifiedLayout 라이브러리를 사용하여 이미지의 배치를 계산
   const geometry = justifiedLayout(extendedAspectRatios, {

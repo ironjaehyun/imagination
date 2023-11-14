@@ -1,11 +1,10 @@
-import { useState, FormEvent, ChangeEvent, useEffect } from 'react';
+import React, { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 
-const ChatRoom = () => {
+const ChatRoom: React.FC = () => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<string[]>([]);
 
   const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-
     setMessage(event.target.value);
   };
 
@@ -18,7 +17,6 @@ const ChatRoom = () => {
   };
 
   useEffect(() => {
-    // 새로운 메시지가 추가될 때마다 스크롤을 최하단으로 이동
     scrollToBottom();
   }, [messages]);
 
@@ -48,12 +46,15 @@ const ChatRoom = () => {
               <p>{message}</p>
             </div>
           ))}
+          <div className="chatroom-btn">
+            <span>↑</span>
+          </div>
         </div>
       </div>
 
       <div className="chatroom-inputarea">
         <form className="chatroom-inputbox" onSubmit={handleSend}>
-          <img src="../chatimg/smile.svg" />
+          <img src="../chatimg/sentiment_satisfied_alt.svg" alt="Emoji" />
           <textarea
             className="chat-input"
             placeholder="메시지를 입력해주세요"

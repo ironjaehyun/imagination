@@ -1,13 +1,12 @@
-// import { useRef, useState } from 'react';
-import { useState } from 'react';
+import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 import BoardModal from './BoardModal'; // 모달 컴포넌트 임포트
 
-const Boardlist = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [selectedData, setSelectedData] = useState('null');
-
-  const [modalLIstTitle, setModalLIstTitle] = useState('');
+const Boardlist: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedData, setSelectedData] = useState<any>(null);
+  const [boardMaxText, setBoardMaxText] = useState<number>(0);
+  const [hashtags, setHashtags] = useState<string[]>([]);
+  const [input, setInput] = useState<string>('');
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -17,28 +16,37 @@ const Boardlist = () => {
     setIsModalOpen(false);
   };
 
-  const [boardMaxText, setBoardMaxText] = useState(0);
-
-  const HandleMaxtext = (e) => {
+  const handleMaxText = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setBoardMaxText(Array.from(e.target.value).length);
   };
 
-  const [hashtags, setHashtags] = useState<string[]>([]);
-  const [input, setInput] = useState<string>('');
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const onKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === ' ' && input.trim() !== '') {
       setHashtags([...hashtags, input.trim()]);
       setInput('');
     }
   };
 
-  const handleListPost = () => {
-    if (!modalLIstTitle.trim()) {
+  const handlePost = () => {
+    if (
+      !selectedData ||
+      !selectedData.ima ||
+      !selectedData.detail ||
+      !selectedData.negavibeDetail
+    ) {
+      alert('작품을 선택하세요');
+      return;
+    }
+
+    const titleInput = document.querySelector(
+      '.art-detail-textarea-title',
+    ) as HTMLInputElement;
+    const title = titleInput.value.trim();
+    if (!title) {
       alert('제목을 입력해 주세요');
       return;
     }
@@ -88,14 +96,12 @@ const Boardlist = () => {
           <input
             className="art-detail-textarea-title"
             placeholder="아티스트님의 작품의 제목을 입력하세요"
-            value={modalLIstTitle}
-            onChange={(e) => setModalLIstTitle(e.target.value)}
           ></input>
         </div>
         <div className="art-detail">
           <textarea
             maxLength={1500}
-            onChange={HandleMaxtext}
+            onChange={handleMaxText}
             className="art-detail-textarea-details"
             placeholder="작품을 설명해 주세요"
           ></textarea>
@@ -114,7 +120,7 @@ const Boardlist = () => {
             {hashtags}
           </div>
           {/* <p># 해쉬태그 입력</p> */}
-          <button className="art-button" onClick={handleListPost}>
+          <button className="art-button" onClick={handlePost}>
             게시하기
           </button>
         </div>

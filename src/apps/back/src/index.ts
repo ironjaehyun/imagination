@@ -4,14 +4,20 @@ import dotenv from 'dotenv';
 import joinRoute from './features/auth/routes/joinRoute';
 import loginRoute from './features/auth/routes/loginRoute';
 import connectToMongoDB from './db';
-
+import { PORT } from '../../../packages/models/port';
+import cookieParser from 'cookie-parser';
 dotenv.config();
-
-const PORT = 3000;
 
 const app = express();
 
-app.use(cors());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST'],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
