@@ -1,13 +1,14 @@
+import Feed from '../../../feed/Feed';
 import useLogin from '../hooks/useLogin';
 import { LoginForm } from './LoginForm';
 import { LoginQuestionBox } from './LoginQuestionBox';
 const Login = () => {
-  const { cookies, handleLogout } = useLogin();
+  const { cookies } = useLogin();
   return (
     <div>
       {cookies.token ? (
         <div>
-          <button onClick={handleLogout}>로그아웃</button>
+          <Feed />
         </div>
       ) : (
         <div className="center-box">
