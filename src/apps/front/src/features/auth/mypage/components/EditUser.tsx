@@ -1,39 +1,14 @@
-import { useState, ChangeEvent } from 'react';
 import useMypage from '../hooks/useMypage';
 
 const EditUser = ({ close }: { close: () => void }) => {
-  const { modalBubbling } = useMypage();
-  const [imageSrc, setImageSrc] = useState<string>(
-    'https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph',
-  );
-  const [profileImageSrc, setProfileImageSrc] = useState<string>(
-    'https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph',
-  );
+  const {
+    modalBubbling,
+    imageSrc,
+    profileImageSrc,
+    profileUpload,
+    backgroundUpload,
+  } = useMypage();
 
-  const onBackgroundImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    const reader = new FileReader();
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setImageSrc(reader.result as string);
-      };
-    } else {
-      console.error('올바른 형식의 파일이 아닙니다.');
-    }
-  };
-  const onProfileImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    const reader = new FileReader();
-    if (file) {
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setProfileImageSrc(reader.result as string);
-      };
-    } else {
-      console.error('올바른 형식의 파일이 아닙니다.');
-    }
-  };
   return (
     <div className="edit-modal" onClick={modalBubbling(close)}>
       <section className="edit-modal-box">
@@ -42,7 +17,7 @@ const EditUser = ({ close }: { close: () => void }) => {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => onBackgroundImageUpload(e)}
+              onChange={backgroundUpload}
               className="edit-modal-upload--hidden-bg"
             />
             <div>
@@ -58,7 +33,7 @@ const EditUser = ({ close }: { close: () => void }) => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => onProfileImageUpload(e)}
+            onChange={profileUpload}
             className="edit-modal-upload--hidden"
           />
           <div className="edit-modal-upload">
