@@ -6,9 +6,19 @@
   height: 200vh;
   margin-left: 75px;
 
+  .mypage-line-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .mypage-line {
     border: 1px solid $line;
     margin: 30px 0;
+    width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mypage-tab {
@@ -147,12 +157,17 @@
   }
 
   .mypage-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     section {
-      width: 100%;
+      width: 1200px;
 
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
     }
     img {
       width: 330px;
