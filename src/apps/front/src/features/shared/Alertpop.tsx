@@ -1,11 +1,18 @@
-import { FunctionComponent, MouseEventHandler } from 'react';
-
+import { FunctionComponent, MouseEventHandler, useState } from 'react';
+import { Link } from 'react-router-dom';
 export type AlertpopProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
 const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
+  const [isLiked, setLiked] = useState(false);
+
+  const handleLikeClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    setLiked(!isLiked);
+  };
+
   const handleBgClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation();
     onClose();
@@ -59,14 +66,21 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
                 <div className="modal-main-right-battom">
                   <h5>{data.hashtags}</h5>
                   <div className="modal-Btn">
-                    <button className="modal-LikeBtn">
-                      <img src="./img/like.png" alt="" />
+                    <button className="modal-LikeBtn" onClick={handleLikeClick}>
+                      <img
+                        src={
+                          isLiked ? './img/filledlike.png' : './img/like.png'
+                        }
+                        alt=""
+                      />
                       <span>{data.likeCount}</span>
                     </button>
-                    <button className="modal-CreateImage">
-                      <img src="./img/CreateImage.png" alt="" />
-                      <span>Create Image</span>
-                    </button>
+                    <Link to={'/imagination'}>
+                      <button className="modal-CreateImage">
+                        <img src="./img/CreateImage.png" alt="" />
+                        <span>Create Image</span>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
