@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import MypageInfo from './components/MypageInfo';
 import Gnb from '../../shared/Gnb';
+import EditUser from './components/EditUser';
 
 const Mypage = () => {
   const [id] = useState<string>('hi');
@@ -8,8 +9,9 @@ const Mypage = () => {
     <div>
       <div className="page">
         <Gnb />
+        <EditUser />
         <div className="mypage">
-          <MypageInfo></MypageInfo>
+          <MypageInfo />
           <hr />
           <ul>
             <li>posts</li>

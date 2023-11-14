@@ -1,0 +1,117 @@
+.edit-modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+  z-index: 1;
+
+  .edit-modal-box {
+    width: 500px;
+    height: auto;
+    background-color: $white;
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    top: 20%;
+    left: 36%;
+  }
+
+  .edit-modal-background {
+    width: 470px;
+    height: 140px;
+    background-color: $background;
+  }
+
+  .edit-modal-white {
+    position: absolute;
+    top: 70px;
+    background-color: $white;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .edit-modal-photo {
+      border-radius: 50%;
+      width: 170px;
+      height: 170px;
+      background-color: $black;
+    }
+  }
+
+  .edit-modal-inputs {
+    margin-top: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    input {
+      text-align: center;
+      margin-bottom: 17px;
+      border-radius: 10px;
+      background-color: $background;
+      padding: 10px 0;
+    }
+  }
+}
+
+.edit-modal-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 28px;
+
+  button {
+    font-weight: 700;
+    border-radius: 10px;
+  }
+
+  .edit-modal-reset {
+    font-size: $font-size-12;
+    color: $background;
+  }
+
+  .edit-modal-cancel {
+    padding: 10px 15px;
+    background-color: $background;
+    margin-right: 20px;
+  }
+
+  .edit-modal-change {
+    padding: 10px 15px;
+    background-color: $primary;
+    color: white;
+  }
+}
+
+.edit-modal-upload {
+  position: absolute;
+  display: flex;
+
+  color: $placeholder;
+  font-size: $font-size-12;
+  flex-direction: column;
+  pointer-events: none;
+  font-weight: 700;
+
+  img {
+    width: 27px;
+    height: 27px;
+    margin-left: 20px;
+  }
+}
+
+.edit-modal-upload--hidden {
+  position: absolute;
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+  opacity: 0;
+}
