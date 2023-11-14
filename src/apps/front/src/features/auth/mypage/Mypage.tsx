@@ -3,12 +3,14 @@ import Gnb from '../../shared/Gnb';
 import EditUser from './components/EditUser';
 import useMypage from './hooks/useMypage';
 import { useState } from 'react';
-
+import classNames from 'classnames';
 const Mypage = () => {
   const { myPageModal, handleEditModalClose, handleEditModalOpen } =
     useMypage();
   const [clickTab, setClickTab] = useState(0);
-
+  const handleCheckTab = (number: number) => {
+    return number === clickTab;
+  };
   return (
     <div>
       <div className="mypage-box">
@@ -23,6 +25,9 @@ const Mypage = () => {
                 onClick={() => {
                   setClickTab(0);
                 }}
+                className={classNames('tab-uncheck', {
+                  'tab-check': handleCheckTab(0),
+                })}
               >
                 게시물
               </li>
@@ -30,6 +35,9 @@ const Mypage = () => {
                 onClick={() => {
                   setClickTab(1);
                 }}
+                className={classNames('tab-uncheck', {
+                  'tab-check': handleCheckTab(1),
+                })}
               >
                 좋아요
               </li>
@@ -37,6 +45,9 @@ const Mypage = () => {
                 onClick={() => {
                   setClickTab(2);
                 }}
+                className={classNames('tab-uncheck', {
+                  'tab-check': handleCheckTab(2),
+                })}
               >
                 저장된 이미지
               </li>
@@ -65,22 +76,10 @@ const Mypage = () => {
                   src="https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph"
                   alt=""
                 />
-                <img
-                  src="https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph"
-                  alt=""
-                />
-                <img
-                  src="https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph"
-                  alt=""
-                />
               </section>
             ) : null}
             {clickTab === 2 ? (
               <section className="mypage-images">
-                <img
-                  src="https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph"
-                  alt=""
-                />
                 <img
                   src="https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph"
                   alt=""
