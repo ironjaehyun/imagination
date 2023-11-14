@@ -1,0 +1,16 @@
+section {
+  margin-left: 500px;
+}
+
+@media screen and (max-width: 1536px) {
+  section {
+    margin-left: 240px;
+  }
+}
+
+@import '../shared/BigGnb';
+@import '../shared/Gnb';
+@import '../shared/Lnb';
+@import './components/_Post.scss';
+@import './components/_FeedLayout.scss';
+@import '../shared/AlertPop';
