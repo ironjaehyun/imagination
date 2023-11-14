@@ -5,10 +5,20 @@ const EditUser = ({ close }) => {
   return (
     <div className="edit-modal" onClick={modalBubbling(close)}>
       <section className="edit-modal-box">
-        <img
-          src="https://img.freepik.com/free-photo/flowing-purple-mountain-spiral-a-bright-imagination-generated-by-ai_188544-9853.jpg"
-          className="edit-modal-background"
-        ></img>
+        <div>
+          <div className="edit-modal-modla-upload-bg">
+            <input type="file" className="edit-modal-upload--hidden-bg" />
+            <div>
+              <img src="mypage/add.png" alt="" />
+              <span>배경 이미지</span>
+            </div>
+          </div>
+          <img
+            src="https://img.freepik.com/free-photo/flowing-purple-mountain-spiral-a-bright-imagination-generated-by-ai_188544-9853.jpg"
+            className="edit-modal-background"
+          ></img>
+        </div>
+
         <div className="edit-modal-white">
           <img
             src="https://img.freepik.com/premium-photo/cool-wolf-illustration-design_780593-1864.jpg"
