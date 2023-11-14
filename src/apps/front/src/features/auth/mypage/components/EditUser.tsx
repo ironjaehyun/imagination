@@ -1,6 +1,9 @@
-const EditUser = () => {
+import useMypage from '../hooks/useMypage';
+
+const EditUser = ({ close }) => {
+  const { modalBubbling } = useMypage();
   return (
-    <div className="edit-modal">
+    <div className="edit-modal" onClick={modalBubbling(close)}>
       <section className="edit-modal-box">
         <img
           src="https://img.freepik.com/free-photo/flowing-purple-mountain-spiral-a-bright-imagination-generated-by-ai_188544-9853.jpg"
@@ -24,7 +27,9 @@ const EditUser = () => {
         <div className="edit-modal-footer">
           <button className="edit-modal-reset">초기화하기</button>
           <div>
-            <button className="edit-modal-cancel">취소하기</button>
+            <button className="edit-modal-cancel" onClick={close}>
+              취소하기
+            </button>
             <button className="edit-modal-change">정보변경</button>
           </div>
         </div>

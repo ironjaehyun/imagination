@@ -1,4 +1,4 @@
-const MypageInfo = () => {
+const MypageInfo = ({ open }) => {
   return (
     <div>
       <header className="mypage-header">
@@ -11,8 +11,8 @@ const MypageInfo = () => {
             src="https://img.freepik.com/premium-photo/cool-wolf-illustration-design_780593-1864.jpg"
             className="mypage-profile-photo"
           ></img>
-          <button className="mypage-edit">
-            <img src="edit.png" alt="" />
+          <button className="mypage-edit" onClick={open}>
+            <img src="mypage/edit.png" alt="" />
           </button>
         </section>
         <section className="mypage-info">

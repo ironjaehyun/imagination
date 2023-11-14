@@ -2,16 +2,20 @@ import { useState } from 'react';
 import MypageInfo from './components/MypageInfo';
 import Gnb from '../../shared/Gnb';
 import EditUser from './components/EditUser';
+import useMypage from './hooks/useMypage';
 
 const Mypage = () => {
+  const { myPageModal, handleEditModalClose, handleEditModalOpen } =
+    useMypage();
+  console.log(myPageModal);
   const [id] = useState<string>('hi');
   return (
     <div>
       <div className="page">
         <Gnb />
-        <EditUser />
+        {myPageModal && <EditUser close={handleEditModalClose} />}
         <div className="mypage">
-          <MypageInfo />
+          <MypageInfo open={handleEditModalOpen} />
           <hr />
           <ul>
             <li>posts</li>
