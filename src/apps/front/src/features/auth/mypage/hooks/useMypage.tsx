@@ -1,14 +1,16 @@
 import { useState, ChangeEvent } from 'react';
-
+import { atom, useAtom } from 'jotai';
+const profileAtom = atom(
+  'https://img.freepik.com/premium-photo/cool-wolf-illustration-design_780593-1864.jpg',
+);
+const backGroundAtom = atom(
+  'https://img.freepik.com/free-photo/flowing-purple-mountain-spiral-a-bright-imagination-generated-by-ai_188544-9853.jpg',
+);
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useState<boolean>(false);
   const [clickTab, setClickTab] = useState(0);
-  const [imageSrc, setImageSrc] = useState<string>(
-    'https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph',
-  );
-  const [profileImageSrc, setProfileImageSrc] = useState<string>(
-    'https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph',
-  );
+  const [imageSrc, setImageSrc] = useAtom<string>(backGroundAtom);
+  const [profileImageSrc, setProfileImageSrc] = useAtom<string>(profileAtom);
   const handleEditModalOpen = () => {
     setMyPageModal(true);
   };

@@ -51,7 +51,9 @@ const EditUser = ({ close }: { close: () => void }) => {
             <button className="edit-modal-cancel" onClick={close}>
               취소하기
             </button>
-            <button className="edit-modal-change">정보변경</button>
+            <button className="edit-modal-change" onClick={close}>
+              정보변경
+            </button>
           </div>
         </div>
       </section>

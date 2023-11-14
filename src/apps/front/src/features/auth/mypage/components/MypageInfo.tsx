@@ -1,16 +1,13 @@
+import useMypage from '../hooks/useMypage';
+
 const MypageInfo = ({ open }) => {
+  const { imageSrc, profileImageSrc } = useMypage();
   return (
     <div>
       <header className="mypage-header">
-        <img
-          src="https://img.freepik.com/free-photo/flowing-purple-mountain-spiral-a-bright-imagination-generated-by-ai_188544-9853.jpg"
-          className="mypage-background"
-        ></img>
+        <img src={imageSrc} className="mypage-background"></img>
         <section className="mypage-profile">
-          <img
-            src="https://img.freepik.com/premium-photo/cool-wolf-illustration-design_780593-1864.jpg"
-            className="mypage-profile-photo"
-          ></img>
+          <img src={profileImageSrc} className="mypage-profile-photo"></img>
           <button className="mypage-edit" onClick={open}>
             <img src="mypage/edit.png" alt="" />
           </button>
