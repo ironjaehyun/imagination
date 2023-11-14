@@ -7,6 +7,8 @@ const Boardlist = () => {
 
   const [selectedData, setSelectedData] = useState('null');
 
+  const [modalLIstTitle, setModalLIstTitle] = useState('');
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -33,6 +35,15 @@ const Boardlist = () => {
       setHashtags([...hashtags, input.trim()]);
       setInput('');
     }
+  };
+
+  const handleListPost = () => {
+    if (!modalLIstTitle.trim()) {
+      alert('제목을 입력해 주세요');
+      return;
+    }
+
+    // 게시 작업 수행...
   };
 
   return (
@@ -77,6 +88,8 @@ const Boardlist = () => {
           <input
             className="art-detail-textarea-title"
             placeholder="아티스트님의 작품의 제목을 입력하세요"
+            value={modalLIstTitle}
+            onChange={(e) => setModalLIstTitle(e.target.value)}
           ></input>
         </div>
         <div className="art-detail">
@@ -101,7 +114,9 @@ const Boardlist = () => {
             {hashtags}
           </div>
           {/* <p># 해쉬태그 입력</p> */}
-          <button className="art-button">게시하기</button>
+          <button className="art-button" onClick={handleListPost}>
+            게시하기
+          </button>
         </div>
       </div>
     </div>
