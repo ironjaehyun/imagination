@@ -36,26 +36,28 @@ const ChatInvite = () => {
   }, []);
 
   return isOpen ? (
-    <div className="chat-invite-bg" onClick={handleClickOutside}>
-      <div className="chat-invite-box" onClick={handleClickInside}>
-        <div className="chat-invite-title">
-          <span>New Messages</span>
-          <img src="../chatimg/close.svg" onClick={handleClose} />
-        </div>
+    <div className={`alertpop ${isOpen ? 'open' : ''}`}>
+      <div className="chat-invite-bg" onClick={handleClickOutside}>
+        <div className="chat-invite-box" onClick={handleClickInside}>
+          <div className="chat-invite-title">
+            <span>New Messages</span>
+            <img src="../chatimg/close.svg" onClick={handleClose} />
+          </div>
 
-        <div className="chat-invite-search">
-          <textarea placeholder="search"></textarea>
-          <img src="../chatimg/Vector.svg" />
-        </div>
+          <div className="chat-invite-search">
+            <textarea placeholder="search"></textarea>
+            <img src="../chatimg/Vector.svg" />
+          </div>
 
-        <div className="chat-invite-list">
-          {userList.map((user) => (
-            <div key={user.id}>{user.id}</div> // 아이디 목록을 동적으로 렌더링합니다.
-          ))}
-        </div>
+          <div className="chat-invite-list">
+            {userList.map((user) => (
+              <div key={user.id}>{user.id}</div> // 아이디 목록을 동적으로 렌더링합니다.
+            ))}
+          </div>
 
-        <div className="chat-invite-btn">
-          <button>Chat</button>
+          <div className="chat-invite-btn">
+            <button>Chat</button>
+          </div>
         </div>
       </div>
     </div>
