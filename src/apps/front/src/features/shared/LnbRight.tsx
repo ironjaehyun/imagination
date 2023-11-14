@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-
-const LnbRight = () => {
+interface LnbRightProps {
+  onClick?: () => void;
+}
+const LnbRight: React.FC<LnbRightProps> = ({ onClick }) => {
   return (
     <div className="Lnb-right">
       <button className="Lnb-create-btn">
@@ -9,7 +11,12 @@ const LnbRight = () => {
         </Link>
       </button>
       <div className="Lnb-allim">
-        <img src="./img/alarm.png" alt="" className="Lnb-alarm" />
+        <img
+          src="./img/alarm.png"
+          alt=""
+          className="Lnb-alarm"
+          onClick={onClick}
+        />
         <span>6</span>
         <Link to={'/chat'} className="Lnb-chat">
           <img src="./img/share.png" alt="" />

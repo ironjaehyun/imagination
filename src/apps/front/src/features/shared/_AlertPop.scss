@@ -1,10 +1,10 @@
 @import './fadeinout';
 
 .alertpop {
-  animation: fadeOut 0.5s forwards; // fadeOut 애니메이션 추가
+  animation: fadeOut 0.5s; // fadeOut 애니메이션 추가
 
   &.open {
-    animation: fadeIn 0.5s forwards; // 기존 fadeIn 애니메이션 유지
+    animation: fadeIn 0.5s; // 기존 fadeIn 애니메이션 유지
 
     .modal-bg {
       position: fixed;

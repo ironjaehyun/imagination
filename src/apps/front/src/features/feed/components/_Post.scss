@@ -10,7 +10,11 @@ $background: #fff;
   background: $background;
   box-shadow: $box-shadow;
   padding: 19px;
+  transition: transform 0.3s ease-in-out;
 
+  &:hover {
+    transform: scale(1.04);
+  }
   &-img {
     margin-bottom: 10px;
     width: 459px;
