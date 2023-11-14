@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import MypageInfo from './components/MypageInfo';
+import Gnb from '../../shared/Gnb';
 
 const Mypage = () => {
   const [id] = useState<string>('hi');
   return (
     <div>
       <div className="page">
-        <nav className="nav">nav</nav>
+        <Gnb />
         <div className="mypage">
           <MypageInfo></MypageInfo>
           <hr />
