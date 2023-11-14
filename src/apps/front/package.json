@@ -11,6 +11,8 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@types/react-transition-group": "^4.4.9",
+    "add": "^2.0.6",
     "axios": "^1.6.0",
     "classnames": "^2.3.2",
     "jotai": "^2.5.1",
@@ -18,8 +20,13 @@
     "react": "^18.2.0",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.2.0",
+    "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.18.0",
-    "sass": "^1.69.5"
+    "react-transition-group": "^4.4.5",
+    "sass": "^1.69.5",
+    "winston": "^3.11.0",
+    "sass": "^1.69.5",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

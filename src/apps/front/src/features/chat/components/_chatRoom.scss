@@ -1,0 +1,121 @@
+@keyframes slideAndScale {
+  from {
+    transform: translateX(100%) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.chatroom {
+  position: absolute;
+  height: 100%;
+  width: 75%;
+  margin-left: 25%;
+  top: 0;
+
+  .chatroom-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 2px solid #e9e9e9;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 18px;
+        font-weight: 700;
+        margin-left: 15px;
+      }
+    }
+  }
+
+  .chatroom-contents {
+    height: 72%;
+  }
+
+  .chatroom-scroll-box {
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      background-color: #f9f9f9;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 10px;
+      background-color: $primary;
+      border-radius: 15px;
+    }
+  }
+
+  .chat-bubble-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    animation: slideAndScale 0.5s;
+
+    p {
+      max-width: 450px;
+      padding: 10px;
+      margin-top: 20px;
+      margin-right: 20px;
+      border-radius: 10px;
+      word-wrap: break-word;
+      color: $white;
+      background-color: $primary;
+    }
+  }
+
+  .chatroom-inputarea {
+    height: 15%;
+  }
+
+  .chatroom-inputbox {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      position: absolute;
+      left: 4%;
+    }
+
+    button {
+      border-radius: 10px;
+      background: #f5f5f5;
+      color: #6eaaf8;
+      position: absolute;
+      right: 4%;
+      padding: 10px 16px;
+    }
+  }
+
+  .chat-input {
+    border: 1px solid #e9e9e9;
+    width: 95%;
+    height: 50%;
+    border-radius: 10px;
+    resize: none;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 4%;
+    padding-right: 6%;
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+  }
+}

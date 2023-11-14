@@ -4,5 +4,11 @@
 @import './styles/system/color';
 @import '../feed/feed';
 @import '../imagination/components/imagination';
+@import '../createBoardList/create';
 @import '../auth/join/components/join';
 @import '../auth/login/components/login';
+@import '../feed/feed';
+@import '../chat/components/_chatList.scss';
+@import '../chat/components/_chatInvite.scss';
+@import '../chat/components/chatRoom';
+@import '../chat/components/_chat.scss';
