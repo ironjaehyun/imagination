@@ -2,15 +2,18 @@ import MypageInfo from './components/MypageInfo';
 import Gnb from '../../shared/Gnb';
 import EditUser from './components/EditUser';
 import useMypage from './hooks/useMypage';
-import { useState } from 'react';
 import classNames from 'classnames';
+
 const Mypage = () => {
-  const { myPageModal, handleEditModalClose, handleEditModalOpen } =
-    useMypage();
-  const [clickTab, setClickTab] = useState(0);
-  const handleCheckTab = (number: number) => {
-    return number === clickTab;
-  };
+  const {
+    myPageModal,
+    handleEditModalClose,
+    handleEditModalOpen,
+    clickTab,
+    setClickTab,
+    handleCheckTab,
+  } = useMypage();
+
   return (
     <div>
       <div className="mypage-box">
