@@ -53,15 +53,12 @@ const ChatInvite = () => {
           </div>
 
           <div className="chat-invite-list">
-            <div className="chat-invite-list">
-              <div className="chat-invite-list">
-                {userList.map((user) => (
-                  <div key={user.id}>
-                    {JSON.stringify(user, null, 2).replace(/"/g, '')}
-                  </div>
-                ))}
+            {userList.map((user) => (
+              <div className="chat-invite-elements" key={user.id}>
+                <span>{JSON.stringify(user, null, 2).replace(/"/g, '')}</span>
+                <input type="checkbox" id="myCheckbox" name="myCheckbox" />
               </div>
-            </div>
+            ))}
           </div>
 
           <div className="chat-invite-btn">
