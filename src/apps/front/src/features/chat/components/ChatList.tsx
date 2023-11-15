@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ChatRoom from './ChatRoom';
 import ChatInvite from './ChatInvite';
 
@@ -6,20 +6,12 @@ const ChatList: React.FC = () => {
   const [chatRoomOpen, setChatRoomOpen] = useState(false);
   const [chatInviteOpen, setChatInviteOpen] = useState(false);
 
-  useEffect(
-    function () {
-      console.log(chatInviteOpen);
-    },
-    [chatInviteOpen],
-  );
-
   const handleChatInviteToggle = () => {
-    setChatInviteOpen((prevChatInviteOpen) => !prevChatInviteOpen);
+    setChatInviteOpen(!chatInviteOpen);
   };
 
   const handleChatRoomToggle = () => {
     setChatRoomOpen(!chatRoomOpen);
-    setChatInviteOpen(false);
   };
 
   return (
