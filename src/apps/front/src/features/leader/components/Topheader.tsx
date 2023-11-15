@@ -1,9 +1,17 @@
 //Topheader.tsx
+import { useAtom } from 'jotai';
+import { periodAtom } from './Atoms';
 import { FunctionComponent } from 'react';
 
 const Topheader: FunctionComponent = () => {
-  const handleWeekendClick = () => {};
-  const handleAllTimeClick = () => {};
+  const [, setPeriod] = useAtom(periodAtom);
+
+  const handleWeekendClick = () => {
+    setPeriod(7);
+  };
+  const handleAllTimeClick = () => {
+    setPeriod(0);
+  };
 
   return (
     <div className="Topheader">
