@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import joinRoute from './features/auth/routes/joinRoute';
 import loginRoute from './features/auth/routes/loginRoute';
+import chatRoute from './features/chat/routes/chatRoute';
 import connectToMongoDB from './db';
 import { PORT } from '../../../packages/models/port';
 import cookieParser from 'cookie-parser';
@@ -22,7 +23,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const startServer = () => {
+  console.log('Starting the server...');
+  console.error('Test error message for debugging.');
+
   app.use('/join', joinRoute);
+  app.use('/chat', chatRoute);
   app.use('/', loginRoute);
 
   app.use((err, req, res, next) => {

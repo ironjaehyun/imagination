@@ -3,6 +3,7 @@ import axios from 'axios';
 
 interface User {
   id: string;
+  name: string;
 }
 
 const ChatInvite = () => {
@@ -23,16 +24,18 @@ const ChatInvite = () => {
   };
 
   useEffect(() => {
-    const fetchUserList = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get('/api/users'); // 서버의 /api/users 엔드포인트로 GET 요청을 보냅니다.
-        setUserList(response.data); // 가져온 아이디 목록을 상태에 저장합니다.
+        const response = await axios.get('http://localhost:3000/chat');
+        setUserList(response.data);
+        console.log('chicken', userList);
+        console.log('Response:', response.data);
       } catch (error) {
-        console.error('Failed to fetch user list:', error);
+        console.error('Error:', error);
       }
     };
 
-    fetchUserList();
+    fetchData();
   }, []);
 
   return isOpen ? (
@@ -50,9 +53,15 @@ const ChatInvite = () => {
           </div>
 
           <div className="chat-invite-list">
-            {userList.map((user) => (
-              <div key={user.id}>{user.id}</div> // 아이디 목록을 동적으로 렌더링합니다.
-            ))}
+            <div className="chat-invite-list">
+              <div className="chat-invite-list">
+                {userList.map((user) => (
+                  <div key={user.id}>
+                    {JSON.stringify(user, null, 2).replace(/"/g, '')}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="chat-invite-btn">
