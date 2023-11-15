@@ -58,6 +58,7 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
+    top: 0;
   }
 
   .mypage-background {
@@ -79,7 +80,7 @@
   }
 
   .mypage-profile-photo {
-    background-color: $black;
+    background-color: $background;
     width: 250px;
     height: 250px;
     border-radius: 50%;
@@ -105,6 +106,7 @@
 
   .mypage-info-header {
     margin-top: 100px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;

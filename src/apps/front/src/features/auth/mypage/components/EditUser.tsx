@@ -11,6 +11,8 @@ const EditUser = () => {
     handleEditModalClose,
     profileInput,
     backgroundInput,
+    userName,
+    statusMsg,
   } = useMypage();
 
   return (
@@ -46,12 +48,8 @@ const EditUser = () => {
           </div>
         </div>
         <div className="edit-modal-inputs">
-          <input type="text" placeholder="이름 변경" onChange={EditUserName} />
-          <input
-            type="text"
-            placeholder="상태메시지 변경하기"
-            onChange={EditStatusMsg}
-          />
+          <input type="text" placeholder={userName} onChange={EditUserName} />
+          <input type="text" placeholder={statusMsg} onChange={EditStatusMsg} />
         </div>
         <div className="edit-modal-footer">
           <button className="edit-modal-reset">초기화하기</button>
