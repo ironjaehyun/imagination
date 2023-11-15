@@ -1,8 +1,9 @@
+import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 interface LnbRightProps {
   onClick?: () => void;
 }
-const LnbRight: React.FC<LnbRightProps> = ({ onClick }) => {
+const LnbRight: FunctionComponent<LnbRightProps> = ({ onClick }) => {
   return (
     <div className="Lnb-right">
       <button className="Lnb-create-btn">

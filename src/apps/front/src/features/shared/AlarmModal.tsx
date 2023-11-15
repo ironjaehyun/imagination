@@ -15,6 +15,7 @@ const AlarmModal: FunctionComponent<AlarmModalProps> = ({
   const alarmData: AlarmData[] = [
     { user: 'leechi님이 좋아요를 누르셨습니다', img: './img/Rectangle 17.png' },
     { user: 'leechi님이 댓글을 남겼습니다', img: './img/Rectangle 17.png' },
+    { user: 'leechi님이 댓글을 남겼습니다', img: './img/Rectangle 17.png' },
     // 필요한 만큼 데이터 추가
   ];
 
