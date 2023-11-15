@@ -1,17 +1,23 @@
 import { useState, ChangeEvent, SetStateAction } from 'react';
 import { useAtom } from 'jotai';
-import editModal from './MypageAtom';
+import {
+  editModal,
+  profileImage,
+  backgroundImage,
+  nameAtom,
+  statusMsgAtom,
+} from './MypageAtom';
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [clickTab, setClickTab] = useState(0);
-  const [imageSrc, setImageSrc] = useState<string>(
-    'https://img.freepik.com/free-photo/flowing-purple-mountain-spiral-a-bright-imagination-generated-by-ai_188544-9853.jpg',
-  );
-  const [profileImageSrc, setProfileImageSrc] = useState<string>(
-    'https://img.freepik.com/premium-photo/cool-wolf-illustration-design_780593-1864.jpg',
-  );
-  const [userName, setUserName] = useState('leechi');
-  const [statusMsg, setStatusMsg] = useState('나는 최고다!');
+  const [backgroundImageSrc, setBackgroundImageSrc] = useAtom(backgroundImage);
+  const [profileImageSrc, setProfileImageSrc] = useAtom(profileImage);
+  const [userName, setUserName] = useAtom(nameAtom);
+  const [statusMsg, setStatusMsg] = useAtom(statusMsgAtom);
+  const [nameInput, setNameInput] = useState('');
+  const [msgInput, setMsgInput] = useState('');
+  const [profileInput, setProfileInput] = useState(profileImageSrc);
+  const [backgroundInput, setBackgroundInput] = useState(backgroundImageSrc);
 
   const handleEditModalOpen = () => {
     setMyPageModal(true);
@@ -34,7 +40,7 @@ const useMypage = () => {
     if (file) {
       reader.readAsDataURL(file);
       reader.onload = async () => {
-        setImageSrc(reader.result as string);
+        setBackgroundInput(reader.result as string);
       };
     } else {
       console.error('올바른 형식의 파일이 아닙니다.');
@@ -46,7 +52,7 @@ const useMypage = () => {
     if (file) {
       reader.readAsDataURL(file);
       reader.onload = () => {
-        setProfileImageSrc(reader.result as string);
+        setProfileInput(reader.result as string);
       };
     } else {
       console.error('올바른 형식의 파일이 아닙니다.');
@@ -62,15 +68,19 @@ const useMypage = () => {
   };
 
   const handleEditUser = () => {
+    setUserName(nameInput);
+    setStatusMsg(msgInput);
+    setProfileImageSrc(profileInput);
+    setBackgroundImageSrc(backgroundInput);
     setMyPageModal(false);
   };
 
   const EditUserName = (e: { target: { value: SetStateAction<string> } }) => {
-    setUserName(e.target.value);
+    setNameInput(e.target.value);
   };
 
   const EditStatusMsg = (e: { target: { value: SetStateAction<string> } }) => {
-    setStatusMsg(e.target.value);
+    setMsgInput(e.target.value);
   };
 
   return {
@@ -83,7 +93,7 @@ const useMypage = () => {
     handleCheckTab,
     onBackgroundImageUpload,
     onProfileImageUpload,
-    imageSrc,
+    backgroundImageSrc,
     profileImageSrc,
     backgroundUpload,
     profileUpload,
@@ -94,6 +104,8 @@ const useMypage = () => {
     EditStatusMsg,
     EditUserName,
     handleEditUser,
+    profileInput,
+    backgroundInput,
   };
 };
 export default useMypage;

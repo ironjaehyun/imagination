@@ -3,18 +3,18 @@ import useMypage from '../hooks/useMypage';
 const EditUser = () => {
   const {
     modalBubbling,
-    imageSrc,
-    profileImageSrc,
     profileUpload,
     backgroundUpload,
     EditStatusMsg,
     EditUserName,
     handleEditUser,
     handleEditModalClose,
+    profileInput,
+    backgroundInput,
   } = useMypage();
 
   return (
-    <div className="edit-modal" onClick={modalBubbling(close)}>
+    <div className="edit-modal" onClick={modalBubbling()}>
       <section className="edit-modal-box">
         <div>
           <div className="edit-modal-upload-bg">
@@ -29,11 +29,11 @@ const EditUser = () => {
               <span>배경 이미지</span>
             </div>
           </div>
-          <img src={imageSrc} className="edit-modal-background"></img>
+          <img src={backgroundInput} className="edit-modal-background"></img>
         </div>
 
         <div className="edit-modal-white">
-          <img src={profileImageSrc} className="edit-modal-photo"></img>
+          <img src={profileInput} className="edit-modal-photo"></img>
           <input
             type="file"
             accept="image/*"
