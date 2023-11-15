@@ -21,7 +21,8 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const startServer = () => {
+const startServer = async () => {
+  await connectToMongoDB();
   app.use('/join', joinRoute);
   app.use('/', loginRoute);
 
@@ -37,4 +38,3 @@ const startServer = () => {
 };
 
 startServer();
-connectToMongoDB();
