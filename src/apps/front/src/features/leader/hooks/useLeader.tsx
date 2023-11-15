@@ -1,5 +1,11 @@
 const useLeader = () => {
-  return <div>useLeader</div>;
+  const handleLeader = () => {
+    console.log('hi');
+  };
+
+  return {
+    handleLeader,
+  };
 };
 
 export default useLeader;
