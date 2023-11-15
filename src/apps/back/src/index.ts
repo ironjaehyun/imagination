@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import joinRoute from './features/auth/routes/joinRoute';
 import loginRoute from './features/auth/routes/loginRoute';
+import mypageRoute from './features/auth/routes/mypageRoute';
 import connectToMongoDB from './db';
 import { PORT } from '../../../packages/models/port';
 import cookieParser from 'cookie-parser';
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 const startServer = async () => {
   await connectToMongoDB();
   app.use('/join', joinRoute);
+  app.use('/mypage', mypageRoute);
   app.use('/', loginRoute);
 
   app.use((err, req, res, next) => {
