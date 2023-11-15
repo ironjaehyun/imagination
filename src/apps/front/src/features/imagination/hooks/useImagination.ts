@@ -63,7 +63,12 @@ export const useImagination = () => {
         },
       );
 
-      setImageUrls(response.data.images.map((image) => image.image));
+      const newImageUrls = response.data.images.map((image) => image.image);
+      setImageUrls(newImageUrls);
+      console.log('Sending request to server');
+      await axios.post('http://localhost:3000/imagination', {
+        images: newImageUrls,
+      });
     } catch (error) {
       console.error(error);
     } finally {
