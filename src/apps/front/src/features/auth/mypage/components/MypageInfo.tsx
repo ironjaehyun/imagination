@@ -1,21 +1,27 @@
 import useMypage from '../hooks/useMypage';
 
-const MypageInfo = ({ open }) => {
-  const { imageSrc, profileImageSrc } = useMypage();
+const MypageInfo = () => {
+  const {
+    imageSrc,
+    profileImageSrc,
+    userName,
+    statusMsg,
+    handleEditModalOpen,
+  } = useMypage();
   return (
     <div>
       <header className="mypage-header">
         <img src={imageSrc} className="mypage-background"></img>
         <section className="mypage-profile">
           <img src={profileImageSrc} className="mypage-profile-photo"></img>
-          <button className="mypage-edit" onClick={open}>
+          <button className="mypage-edit" onClick={handleEditModalOpen}>
             <img src="mypage/edit.png" alt="" />
           </button>
         </section>
         <section className="mypage-info">
           <div className="mypage-info-header">
-            <h1 className="mypage-username">leechi</h1>
-            <span className="mypage-desc">나는 최고다! </span>
+            <h1 className="mypage-username">{userName}</h1>
+            <span className="mypage-desc">{statusMsg} </span>
           </div>
           <div className="mypage-info-footer">
             <div className="mypage-info-post">
