@@ -1,44 +1,42 @@
 import useLikes from '../hooks/useLikes';
-
+export const posts = [
+  {
+    id: '1',
+    image: './img/card-img.png',
+    profileImage: './img/Rectangle 17.png',
+    username: 'leechi',
+    likeCount: 23,
+  },
+  {
+    id: '2',
+    image: './img/card-img.png',
+    profileImage: './img/Rectangle 17.png',
+    username: 'leechi',
+    likeCount: 23,
+  },
+  {
+    id: '3',
+    image: './img/card-img.png',
+    profileImage: './img/Rectangle 17.png',
+    username: 'leechi',
+    likeCount: 23,
+  },
+  {
+    id: '4',
+    image: './img/card-img.png',
+    profileImage: './img/Rectangle 17.png',
+    username: 'leechi',
+    likeCount: 23,
+  },
+  {
+    id: '5',
+    image: './img/card-img.png',
+    profileImage: './img/Rectangle 17.png',
+    username: 'leechi',
+    likeCount: 23,
+  },
+];
 const Post = ({ onImageClick }: { onImageClick: () => void }) => {
-  const posts = [
-    {
-      id: '1',
-      image: './img/card-img.png',
-      profileImage: './img/Rectangle 17.png',
-      username: 'leechi',
-      likeCount: 23,
-    },
-    {
-      id: '2',
-      image: './img/card-img.png',
-      profileImage: './img/Rectangle 17.png',
-      username: 'leechi',
-      likeCount: 23,
-    },
-    {
-      id: '3',
-      image: './img/card-img.png',
-      profileImage: './img/Rectangle 17.png',
-      username: 'leechi',
-      likeCount: 23,
-    },
-    {
-      id: '4',
-      image: './img/card-img.png',
-      profileImage: './img/Rectangle 17.png',
-      username: 'leechi',
-      likeCount: 23,
-    },
-    {
-      id: '5',
-      image: './img/card-img.png',
-      profileImage: './img/Rectangle 17.png',
-      username: 'leechi',
-      likeCount: 23,
-    },
-  ];
-
   const [isLiked, handleLike] = useLikes(posts);
 
   return (

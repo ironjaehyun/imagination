@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import useLogin from '../auth/login/hooks/useLogin';
+
 const BigGnb = () => {
   const location = useLocation();
   // checkActive 함수는 경로를 인자로 받는다

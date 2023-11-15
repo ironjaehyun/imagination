@@ -1,7 +1,10 @@
+@import './fadeinout';
+
 .AlarmModal {
   position: absolute;
   z-index: 1000;
   right: 10px;
+  animation: fadeIn 0.5s;
 }
 .AlarmModal-Size {
   width: 380px;

@@ -1,17 +1,18 @@
-import { FunctionComponent, MouseEventHandler, useState } from 'react';
+import { FunctionComponent, MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
+import useCopy from './hooks/useCopy';
 export type AlertpopProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
 const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
-  const [isLiked, setLiked] = useState(false);
-
-  const handleLikeClick: MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.stopPropagation();
-    setLiked(!isLiked);
-  };
+  // copy
+  const { isCopied: promptCopied, handleCopy: handleCopyPrompt } = useCopy();
+  const {
+    isCopied: negativePromptCopied,
+    handleCopy: handleCopyNegativePrompt,
+  } = useCopy();
 
   const handleBgClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation();
@@ -66,21 +67,16 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
                 <div className="modal-main-right-battom">
                   <h5>{data.hashtags}</h5>
                   <div className="modal-Btn">
-                    <button className="modal-LikeBtn" onClick={handleLikeClick}>
-                      <img
-                        src={
-                          isLiked ? './img/filledlike.png' : './img/like.png'
-                        }
-                        alt=""
-                      />
+                    <button className="modal-LikeBtn">
+                      <img src="./img/like.png" alt="" />
                       <span>{data.likeCount}</span>
                     </button>
-                    <Link to={'/imagination'}>
-                      <button className="modal-CreateImage">
+                    <button className="modal-CreateImage">
+                      <Link to={'/imagination'}>
                         <img src="./img/CreateImage.png" alt="" />
                         <span>Create Image</span>
-                      </button>
-                    </Link>
+                      </Link>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -90,9 +86,12 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
               <div>
                 <div className="modal-footer-prompt">
                   <h4>prompt</h4>
-                  <div>
+                  <div onClick={() => handleCopyPrompt(data.prompt)}>
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
+                    {promptCopied && (
+                      <span className="copy-tooltip">Copied!</span>
+                    )}
                   </div>
                 </div>
                 <div className="modal-footer-text">
@@ -102,9 +101,12 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
               <div className="prompt-div">
                 <div className="modal-footer-Nagative">
                   <h4>Negatice Prompt</h4>
-                  <div>
+                  <div onClick={() => handleCopyNegativePrompt(data.Nprompt)}>
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
+                    {negativePromptCopied && (
+                      <span className="copy-tooltip">Copied!</span>
+                    )}
                   </div>
                 </div>
                 <div className="modal-footer-text">
