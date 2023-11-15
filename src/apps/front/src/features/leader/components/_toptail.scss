@@ -1,2 +1,45 @@
 .Toptail {
+  // margin-top: 3em;
+  text-align: center;
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    text-align: left;
+    margin-bottom: 1%;
+
+    .number-box {
+      z-index: 10;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: #0288d1;
+      color: white;
+      border-radius: 20%;
+      margin-left: 1%;
+      // margin-right: 100%;
+      // background-color: blue;
+      color: white;
+      padding: 5px;
+      margin-right: 10px;
+      /* Add more styling as needed */
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 5%;
+        border-radius: 10%;
+      }
+
+      .info {
+        padding: 1em;
+      }
+    }
+  }
 }
