@@ -49,7 +49,7 @@ export const useImagination = () => {
         {
           prompt: prompt,
           negative_prompt: negative,
-          image_format: 'png',
+          image_format: 'webp',
           samples: selectedsamples,
           width: selectedSize[0],
           height: selectedSize[1],

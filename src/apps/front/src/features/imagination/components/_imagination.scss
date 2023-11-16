@@ -1,9 +1,9 @@
 .imagination-main {
-  max-width: 100%;
   display: flex;
+  margin: auto;
   justify-content: center;
   align-items: center;
-  margin-left: 5%;
+  margin-left: 13%;
   textarea {
     border-radius: 0.8rem;
     resize: none;
@@ -172,9 +172,9 @@
 }
 
 .imagination-lnb {
-  margin-left: 15.5rem;
+  position: absolute;
+  right: 17.8rem;
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  width: 85%;
+  padding: 20px;
 }
