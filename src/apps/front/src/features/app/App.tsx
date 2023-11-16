@@ -19,7 +19,7 @@ function App() {
           <Route path="/imagination" element={<Imagination />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/mypage" element={<Mypage />} />
+          <Route path="/mypage/:id" element={<Mypage />} />
         </Routes>
       </BrowserRouter>
     </>
