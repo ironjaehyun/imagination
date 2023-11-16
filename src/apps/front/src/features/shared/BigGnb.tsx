@@ -1,7 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+// import { useState } from 'react';
 import useLogin from '../auth/login/hooks/useLogin';
+
 const BigGnb = () => {
+  const { userData } = useLogin();
   const location = useLocation();
   // checkActive 함수는 경로를 인자로 받는다
   const checkActive = (path: string) => {
@@ -11,14 +13,14 @@ const BigGnb = () => {
   };
 
   // 임시 사용자 데이터
-  const [userData] = useState({
-    profileImg:
-      'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
-    name: 'Leechi',
-    posts: 1,
-    following: 123,
-    followers: 123,
-  });
+  // const [userData] = useState({
+  //   profileImg:
+  //     'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
+  //   name: 'Leechi',
+  //   posts: 1,
+  //   following: 123,
+  //   followers: 123,
+  // });
 
   const { handleLogout } = useLogin();
   return (
@@ -29,9 +31,9 @@ const BigGnb = () => {
             <img src="./img/Imagination.png" className="imagination"></img>
           </div>
           <div className="BigGnb-profile">
-            <Link to={'/mypage'}>
+            <Link to={`/mypage/${userData._id}`}>
               <img
-                src={userData.profileImg}
+                // src={userData.profileImg}
                 alt=""
                 className="BigGnb-profile-img"
               ></img>
@@ -39,15 +41,15 @@ const BigGnb = () => {
             </Link>
             <div className="profile-status">
               <div>
-                <p>{userData.posts}</p>
+                <p>{userData.posts.length}</p>
                 <p>게시물</p>
               </div>
               <div className="profile-status-middle">
-                <p>{userData.following}</p>
+                <p>{userData.follow.length}</p>
                 <p>팔로우</p>
               </div>
               <div>
-                <p>{userData.followers}</p>
+                <p>{userData.follower.length}</p>
                 <p>팔로워</p>
               </div>
             </div>
