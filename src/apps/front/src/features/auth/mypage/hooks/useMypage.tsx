@@ -9,6 +9,7 @@ import {
   followAtom,
   followerAtom,
 } from './MypageAtom';
+
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [followModal, setFollowModal] = useAtom(followAtom);
@@ -29,7 +30,7 @@ const useMypage = () => {
   };
 
   const handleFollowerClose = () => {
-    setFollowModal(false);
+    setFollowerModal(false);
   };
 
   const handleFollow = () => {
@@ -46,11 +47,17 @@ const useMypage = () => {
   const handleEditModalClose = () => {
     setMyPageModal(false);
   };
+
   const modalBubbling =
     () => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const target = e.target as HTMLElement;
       if (target.classList.contains('edit-modal')) return setMyPageModal(false);
+      if (target.classList.contains('follow-modal-bg')) {
+        setFollowModal(false);
+        setFollowerModal(false);
+      }
     };
+
   const handleCheckTab = (number: number) => {
     return number === clickTab;
   };
@@ -67,6 +74,7 @@ const useMypage = () => {
       console.error('올바른 형식의 파일이 아닙니다.');
     }
   };
+
   const onProfileImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     const reader = new FileReader();

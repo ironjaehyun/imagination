@@ -13,8 +13,8 @@ const Mypage = () => {
     <div>
       <div className="mypage-box">
         <Gnb />
-        {followModal && <Follower />}
-        {followerModal && <Follow />}
+        {followModal && <Follow />}
+        {followerModal && <Follower />}
         {myPageModal && <EditUser />}
         <div className="mypage">
           <MypageInfo />

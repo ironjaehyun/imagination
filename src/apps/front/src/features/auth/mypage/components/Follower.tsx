@@ -1,15 +1,15 @@
 import useMypage from '../hooks/useMypage';
 
-const Follow = () => {
-  const { handleFollowClose, modalBubbling } = useMypage();
+const Follower = () => {
+  const { handleFollowerClose, modalBubbling } = useMypage();
   const array = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   return (
     <div className="follow-modal-bg" onClick={modalBubbling()}>
       <div className="follow-modal">
         <div>
           <div></div>
-          <h3>follow</h3>
-          <button onClick={handleFollowClose}>X</button>
+          <h3>follower</h3>
+          <button onClick={handleFollowerClose}>X</button>
         </div>
         <hr />
         <ul>
@@ -34,4 +34,4 @@ const Follow = () => {
   );
 };
 
-export default Follow;
+export default Follower;
