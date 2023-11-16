@@ -1,9 +1,18 @@
-import { FunctionComponent } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-interface LnbRightProps {
-  onClick?: () => void;
-}
-const LnbRight: FunctionComponent<LnbRightProps> = ({ onClick }) => {
+import AlarmModal from './AlarmModal';
+
+const LnbRight = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleImageClick = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const handleClose = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div className="Lnb-right">
       <button className="Lnb-create-btn">
@@ -16,9 +25,12 @@ const LnbRight: FunctionComponent<LnbRightProps> = ({ onClick }) => {
           src="./img/alarm.png"
           alt=""
           className="Lnb-alarm"
-          onClick={onClick}
+          onClick={handleImageClick}
         />
-        <span>6</span>
+        {isModalVisible && (
+          <AlarmModal isOpen={isModalVisible} onClose={handleClose} />
+        )}
+        <span onClick={handleImageClick}>6</span>
         <Link to={'/chat'} className="Lnb-chat">
           <img src="./img/share.png" alt="" />
         </Link>
