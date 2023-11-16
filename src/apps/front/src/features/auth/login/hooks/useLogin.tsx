@@ -9,7 +9,6 @@ const useLogin = () => {
   const [msgLogin, setMsgLogin] = useState('');
   const [msgPassword, setMsgPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
-  console.log(userData);
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
