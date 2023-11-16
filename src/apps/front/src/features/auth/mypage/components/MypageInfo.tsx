@@ -1,3 +1,5 @@
+import { PUBLIC_URL } from '../../../../../../../packages/models/port';
+import useLogin from '../../login/hooks/useLogin';
 import useMypage from '../hooks/useMypage';
 
 const MypageInfo = () => {
@@ -7,7 +9,10 @@ const MypageInfo = () => {
     userName,
     statusMsg,
     handleEditModalOpen,
+    handleFollower,
+    handleFollow,
   } = useMypage();
+  const { userData } = useLogin();
   return (
     <div>
       <header className="mypage-header">
@@ -15,7 +20,7 @@ const MypageInfo = () => {
         <section className="mypage-profile">
           <img src={profileImageSrc} className="mypage-profile-photo"></img>
           <button className="mypage-edit" onClick={handleEditModalOpen}>
-            <img src="mypage/edit.png" alt="" />
+            <img src={PUBLIC_URL + "/mypage/edit.png"} alt="" />
           </button>
         </section>
         <section className="mypage-info">
@@ -25,15 +30,15 @@ const MypageInfo = () => {
           </div>
           <div className="mypage-info-footer">
             <div className="mypage-info-post">
-              <span>6</span>
+              <span>{userData.posts.length}</span>
               <span>Posts</span>
             </div>
-            <div className="mypage-info-follow">
-              <span>232</span>
+            <div onClick={handleFollower} className="mypage-info-follow">
+              <span>{userData.follower.length}</span>
               <span>Followers</span>
             </div>
-            <div className="mypage-info-follower">
-              <span>828</span>
+            <div onClick={handleFollow} className="mypage-info-follower">
+              <span>{userData.follow.length}</span>
               <span>Following</span>
             </div>
           </div>
