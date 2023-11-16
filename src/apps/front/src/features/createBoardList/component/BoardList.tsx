@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 import BoardModal from './BoardModal'; // 모달 컴포넌트 임포트
-
+// import axios from 'axios';
 type SelectedDataType = {
   ima: string;
   detail: string;
@@ -35,7 +35,10 @@ const Boardlist: React.FC = () => {
     }
   };
 
-  const handlePostClick = () => {
+  // const handleClick = () => {
+  //   axios.post("http://localhost:3000/create", { post_title: artTitle })
+  // }
+  const handlePostClick = async () => {
     if (!artTitle.trim()) {
       setTitleError(true);
       setShake(true);
