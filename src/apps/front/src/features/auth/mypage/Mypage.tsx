@@ -3,14 +3,18 @@ import Gnb from '../../shared/Gnb';
 import EditUser from './components/EditUser';
 import useMypage from './hooks/useMypage';
 import MypageTab from './components/MypageTab';
+import Follower from './components/Follower';
+import Follow from './components/follow';
 
 const Mypage = () => {
-  const { myPageModal } = useMypage();
+  const { myPageModal, followerModal, followModal } = useMypage();
 
   return (
     <div>
       <div className="mypage-box">
         <Gnb />
+        {followModal && <Follower />}
+        {followerModal && <Follow />}
         {myPageModal && <EditUser />}
         <div className="mypage">
           <MypageInfo />

@@ -1,6 +1,8 @@
 import { atom } from 'jotai';
 
 const editModal = atom(false);
+const followAtom = atom(false);
+const followerAtom = atom(false);
 const backgroundImage = atom(
   'https://img.freepik.com/free-photo/flowing-purple-mountain-spiral-a-bright-imagination-generated-by-ai_188544-9853.jpg',
 );
@@ -10,4 +12,12 @@ const profileImage = atom(
 const nameAtom = atom('leechi');
 const statusMsgAtom = atom('나는 최고다!');
 
-export { editModal, profileImage, backgroundImage, nameAtom, statusMsgAtom };
+export {
+  editModal,
+  profileImage,
+  backgroundImage,
+  nameAtom,
+  statusMsgAtom,
+  followAtom,
+  followerAtom,
+};

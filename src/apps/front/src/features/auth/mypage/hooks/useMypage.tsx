@@ -6,10 +6,15 @@ import {
   backgroundImage,
   nameAtom,
   statusMsgAtom,
+  followAtom,
+  followerAtom,
 } from './MypageAtom';
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
+  const [followModal, setFollowModal] = useAtom(followAtom);
+  const [followerModal, setFollowerModal] = useAtom(followerAtom);
   const [clickTab, setClickTab] = useState(0);
+
   const [backgroundImageSrc, setBackgroundImageSrc] = useAtom(backgroundImage);
   const [profileImageSrc, setProfileImageSrc] = useAtom(profileImage);
   const [userName, setUserName] = useAtom(nameAtom);
@@ -18,6 +23,22 @@ const useMypage = () => {
   const [msgInput, setMsgInput] = useState('');
   const [profileInput, setProfileInput] = useState(profileImageSrc);
   const [backgroundInput, setBackgroundInput] = useState(backgroundImageSrc);
+
+  const handleFollower = () => {
+    setFollowerModal(true);
+  };
+
+  const handleFollowerClose = () => {
+    setFollowModal(false);
+  };
+
+  const handleFollow = () => {
+    setFollowModal(true);
+  };
+
+  const handleFollowClose = () => {
+    setFollowModal(false);
+  };
 
   const handleEditModalOpen = () => {
     setMyPageModal(true);
@@ -106,6 +127,12 @@ const useMypage = () => {
     handleEditUser,
     profileInput,
     backgroundInput,
+    handleFollower,
+    handleFollow,
+    followModal,
+    followerModal,
+    handleFollowerClose,
+    handleFollowClose,
   };
 };
 export default useMypage;
