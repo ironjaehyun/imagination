@@ -7,35 +7,8 @@ export const posts = [
     username: 'leechi',
     likeCount: 23,
   },
-  {
-    id: '2',
-    image: './img/card-img.png',
-    profileImage: './img/Rectangle 17.png',
-    username: 'leechi',
-    likeCount: 23,
-  },
-  {
-    id: '3',
-    image: './img/card-img.png',
-    profileImage: './img/Rectangle 17.png',
-    username: 'leechi',
-    likeCount: 23,
-  },
-  {
-    id: '4',
-    image: './img/card-img.png',
-    profileImage: './img/Rectangle 17.png',
-    username: 'leechi',
-    likeCount: 23,
-  },
-  {
-    id: '5',
-    image: './img/card-img.png',
-    profileImage: './img/Rectangle 17.png',
-    username: 'leechi',
-    likeCount: 23,
-  },
 ];
+
 const Post = ({ onImageClick }: { onImageClick: () => void }) => {
   const [isLiked, handleLike] = useLikes(posts);
 
