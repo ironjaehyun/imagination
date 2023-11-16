@@ -1,14 +1,24 @@
 import { FunctionComponent, useState } from 'react';
 import BoardData from '../constatns/BoardData';
 
+interface Item {
+  id: number;
+  ima: string;
+  title: string;
+  detail: string;
+  negavibeDetail: string;
+}
+
 interface BoardModalProps {
   onClose: () => void;
   onSelect: (data: unknown) => void;
+  responseData: Item[]; // Boardlist에서 전달받은 데이터
 }
 
 const BoardModal: FunctionComponent<BoardModalProps> = ({
   onClose,
   onSelect,
+  responseData,
 }) => {
   const [isSelected, setIsSelected] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); // 선택한 아이템을 임시로 저장하는 상태
@@ -46,6 +56,7 @@ const BoardModal: FunctionComponent<BoardModalProps> = ({
           </button>
         </div>
         {/*여기서부터는 map 함수로 데이터를 가져올 생각입니다. */}
+        {responseData}
         {BoardData.map((item, i) => (
           <div className="modal-list" key={item.id}>
             <input
@@ -59,7 +70,7 @@ const BoardModal: FunctionComponent<BoardModalProps> = ({
             </div>
             <div className="modal-prompt-list">
               <div className="modal-prompt-positive">
-                <h4 onClick={() => console.log(item)}>
+                <h4>
                   Prompt{i} 작성자 {item.title}
                 </h4>
                 <p className="ellipsis">{item.detail}</p>
@@ -71,6 +82,7 @@ const BoardModal: FunctionComponent<BoardModalProps> = ({
             </div>
           </div>
         ))}
+
         <button
           onClick={handleSelectSureClick} // 선택완료 버튼을 눌렀을 때 handleSelectSureClick 함수를 호출
           className={`modal-select-sure ${isSelected ? 'enabled' : 'disabled'}`}

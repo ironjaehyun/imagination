@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 
 const PostSchema = new mongoose.Schema({
-  post_title: { type: String },
-  post_content: String,
-  post_prompt: String,
-  post_negative_prompt: String,
+  post_title: { type: String, required: true },
+  post_content: { type: String, required: true },
+  post_prompt: { type: String, required: true },
+  post_negative_prompt: { type: String, required: true },
   posted_at: { type: Date, default: Date.now },
   post_hashtag: String,
   post_img1: String,

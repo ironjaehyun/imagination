@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
 import BoardModal from './BoardModal'; // 모달 컴포넌트 임포트
-// import axios from 'axios';
+import axios from 'axios';
 type SelectedDataType = {
   ima: string;
   detail: string;
@@ -21,8 +21,12 @@ const Boardlist: React.FC = () => {
   const [shakeImage, setShakeImage] = useState(false);
   const [descriptionError, setDescriptionError] = useState<boolean>(false);
   const [shakeDescription, setShakeDescription] = useState(false);
+  const [description, setDescription] = useState<string>(''); // 상태 추가
+  const [responseData, setResponseData] = useState<ResponseType | null>(null);
+
   const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setBoardMaxText(Array.from(e.target.value).length);
+    setDescription(e.target.value); // textarea의 내용 저장
     if (e.target.value.trim()) {
       setDescriptionError(false);
     }
@@ -34,10 +38,27 @@ const Boardlist: React.FC = () => {
       setTitleError(false);
     }
   };
+  // 서버 3000에 데이터를 보냄 post임
+  const handleClick = () => {
+    axios
+      .post('http://localhost:3000/create', {
+        post_title: artTitle,
+        post_img1: selectedData?.ima,
+        post_prompt: selectedData?.detail,
+        post_negative_prompt: selectedData?.negavibeDetail,
+        post_content: description, // 서버에 전송
+      })
+      .then((response) => {
+        console.log(response.data);
+      });
+  };
+  const handleDbClick = () => {
+    axios.get('http://localhost:3000/create/getImage').then((response) => {
+      console.log(response.data); // 서버에서 받은 데이터
+      setResponseData(response.data);
+    });
+  };
 
-  // const handleClick = () => {
-  //   axios.post("http://localhost:3000/create", { post_title: artTitle })
-  // }
   const handlePostClick = async () => {
     if (!artTitle.trim()) {
       setTitleError(true);
@@ -56,6 +77,7 @@ const Boardlist: React.FC = () => {
     // ...
   };
   const openModal = () => {
+    handleDbClick(); // 모달이 열릴 때 handleDbClick 함수를 호출
     setIsModalOpen(true);
   };
 
@@ -81,9 +103,9 @@ const Boardlist: React.FC = () => {
           <h3 className={`bring-art-title ${shakeImage ? 'shake' : ''}`}>
             작품 전시를 해주세요
           </h3>
-          {isModalOpen && (
-            <BoardModal onClose={closeModal} onSelect={setSelectedData} />
-          )}
+          {/* {isModalOpen && (
+            <BoardModal onClose={closeModal} onSelect={setSelectedData} responseData={responseData} />
+          )} */}
           <div className="bring-art-list">
             <div className="bring-art-image" onClick={openModal}>
               <img src={selectedData?.ima} />
@@ -93,7 +115,11 @@ const Boardlist: React.FC = () => {
               <div className="bring-art-prompt-positive">
                 <h4>positive prompt</h4>
                 {isModalOpen && (
-                  <BoardModal onClose={closeModal} onSelect={setSelectedData} />
+                  <BoardModal
+                    onClose={closeModal}
+                    onSelect={setSelectedData}
+                    // responseData={responseData}  // responseData prop을 전달
+                  />
                 )}
                 {selectedData && (
                   <p className="ellipsis">
@@ -124,6 +150,7 @@ const Boardlist: React.FC = () => {
             onChange={handleTitleChange}
           ></input>
         </div>
+        {/* {responseData ? JSON.stringify(responseData) : 'Loading...'}  // state에 저장된 데이터를 보여줌 */}
         <div className="art-detail">
           <textarea
             maxLength={1500}
@@ -145,6 +172,9 @@ const Boardlist: React.FC = () => {
                 {`#${hashtag}`}
               </button>
             ))}
+            <button onClick={handleClick}>db 전송</button>
+            {/* <button onClick={handleDbClick}>db 수신</button> */}
+            {responseData}
             <input
               className="art-detail-textarea-hashtag"
               placeholder="해쉬태그 입력"
