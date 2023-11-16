@@ -5,11 +5,16 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   joined_at: { type: Date, default: Date.now },
-  user_grade: String,
-  user_profile_img: String,
-  user_background_img: String,
-  user_status_msg: String,
-  follow: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Follow' }],
+  user_grade: { type: String, default: 'nomal' },
+  user_profile_img: { type: String, default: '' },
+  user_background_img: { type: String, default: '' },
+  user_status_msg: { type: String, default: '' },
+  follow: [
+    { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Follow' },
+  ],
+  follower: [
+    { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Follower' },
+  ],
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
   saved_images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SavedImage' }],
 });
