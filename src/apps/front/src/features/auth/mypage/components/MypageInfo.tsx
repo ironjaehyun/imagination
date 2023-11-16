@@ -20,7 +20,7 @@ const MypageInfo = () => {
         <section className="mypage-profile">
           <img src={profileImageSrc} className="mypage-profile-photo"></img>
           <button className="mypage-edit" onClick={handleEditModalOpen}>
-            <img src={PUBLIC_URL + "/mypage/edit.png"} alt="" />
+            <img src={PUBLIC_URL + '/mypage/edit.png'} alt="" />
           </button>
         </section>
         <section className="mypage-info">
