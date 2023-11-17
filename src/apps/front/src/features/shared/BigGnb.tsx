@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 // import { useState } from 'react';
 import useLogin from '../auth/login/hooks/useLogin';
+import { useState } from 'react';
 
 const BigGnb = () => {
-  const { userData } = useLogin();
   const location = useLocation();
   // checkActive 함수는 경로를 인자로 받는다
   const checkActive = (path: string) => {
@@ -13,43 +13,45 @@ const BigGnb = () => {
   };
 
   // 임시 사용자 데이터
-  // const [userData] = useState({
-  //   profileImg:
-  //     'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
-  //   name: 'Leechi',
-  //   posts: 1,
-  //   following: 123,
-  //   followers: 123,
-  // });
+  const [userData] = useState({
+    profileImg:
+      'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
+    name: 'Leechi',
+    posts: 1,
+    following: 123,
+    followers: 123,
+    _id: 123,
+  });
+  const userId = sessionStorage.getItem('id');
+  const userObjectId = sessionStorage.getItem('_id');
+  const profileImg = sessionStorage.getItem('profile') ?? '';
 
   const { handleLogout } = useLogin();
   return (
     <div>
       <div className="BigGnb">
         <div className="BigGnb-main">
-          <div className="BigGnb-imagination-icon">
-            <img src="./img/Imagination.png" className="imagination"></img>
-          </div>
+          <Link to={'/'}>
+            <div className="BigGnb-imagination-icon">
+              <img src="./img/Imagination.png" className="imagination"></img>
+            </div>
+          </Link>
           <div className="BigGnb-profile">
-            <Link to={`/mypage/${userData._id}`}>
-              <img
-                // src={userData.profileImg}
-                alt=""
-                className="BigGnb-profile-img"
-              ></img>
-              <p>{userData.name}</p>
+            <Link to={`/mypage/${userObjectId}`}>
+              <img src={profileImg} alt="" className="BigGnb-profile-img"></img>
+              <p>{userId}</p>
             </Link>
             <div className="profile-status">
               <div>
-                <p>{userData.posts.length}</p>
+                <p>{userData.posts}</p>
                 <p>게시물</p>
               </div>
               <div className="profile-status-middle">
-                <p>{userData.follow.length}</p>
+                <p>{userData.following}</p>
                 <p>팔로우</p>
               </div>
               <div>
-                <p>{userData.follower.length}</p>
+                <p>{userData.followers}</p>
                 <p>팔로워</p>
               </div>
             </div>
