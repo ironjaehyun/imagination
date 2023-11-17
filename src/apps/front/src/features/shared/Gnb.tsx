@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { PUBLIC_URL } from '../../../../../packages/models/port';
+import useLogin from '../auth/login/hooks/useLogin';
 const Gnb = () => {
+  const { handleLogout } = useLogin();
   return (
     <div>
       <nav className="Gnb">
@@ -15,7 +17,7 @@ const Gnb = () => {
               className="Gnb-profile-img"
             ></img>
           </div>
-          <Link to={'/feed'}>
+          <Link to={'/'}>
             <div className="Gnb-hoverwhite">
               <img
                 src={PUBLIC_URL + '/img/feed.png'}
@@ -55,7 +57,7 @@ const Gnb = () => {
               />
             </Link>
           </div>
-          <div className="Gnb-hoverwhite">
+          <div onClick={handleLogout} className="Gnb-hoverwhite">
             <img
               src={PUBLIC_URL + '/img/logout.png'}
               className="Gnb-nav-icon"
