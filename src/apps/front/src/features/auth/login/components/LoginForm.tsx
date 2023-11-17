@@ -28,8 +28,6 @@ export const LoginForm = () => {
       <AuthOrDiv />
       <div className="social-login">
         <GoogleLogin />
-        {/* <KakaoLogin />
-        <NaverLogin /> */}
       </div>
     </form>
   );

@@ -43,7 +43,6 @@ const useLogin = () => {
       if (result.status === 200) {
         window.open('/', '_self');
       }
-      console.log('hi');
     });
   };
 
