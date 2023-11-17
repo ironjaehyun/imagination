@@ -1,0 +1,109 @@
+$topten-bg-color: #fff;
+$topten-white-color: #fff;
+$topten-blue-color: #0288d1;
+// $scroll-thumb-color: rgb(121, 121, 121);
+$scroll-thumb-color: #0288d1;
+$scroll-thumb-hover-color: #62c0f3;
+$scroll-track-color: #f9f9f9;
+
+// Container styles
+.top-ten {
+  display: flex;
+  margin-left: 200px;
+
+  .swiper-container {
+    display: flex;
+  }
+}
+
+// Swiper slide
+.swiper-slide {
+  padding-top: 50px;
+  width: 14rem;
+  height: 35rem;
+
+  .top-ten-span {
+    $topten-blue-color: #0288d1;
+  }
+
+  .top-ten-img-size {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    background: #f5f5f5;
+    border-radius: 10%;
+  }
+}
+
+// Slider controller
+.slider-controler {
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .slider-arrow {
+    padding-top: 70px;
+    width: 3.5rem;
+    left: 45%;
+    transform: translateX(-42%);
+    filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+
+    ion-icon {
+      font-size: 3rem;
+      color: $scroll-thumb-hover-color;
+    }
+
+    &::after {
+      content: '';
+    }
+  }
+
+  .swiper-button-next {
+    left: 55% !important;
+
+    @media (max-width: 0%) {
+    }
+
+    @media (max-width: 0%) {
+    }
+  }
+
+  .swiper-button-prev {
+    @media (max-width: 0%) {
+    }
+
+    @media (max-width: 0%) {
+    }
+  }
+}
+
+// Scrollbar styles
+::-webkit-scrollbar {
+  width: 1.1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: $scroll-thumb-color;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    background: $scroll-thumb-hover-color;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: $scroll-track-color;
+}
+
+// Swiper pagination
+.swiper-pagination {
+  padding-bottom: 200px;
+
+  .swiper-pagination-bullet {
+  }
+
+  .swiper-pagination-bullet-active {
+  }
+}

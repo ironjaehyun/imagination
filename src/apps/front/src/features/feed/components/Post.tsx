@@ -1,4 +1,3 @@
-import useLikes from '../hooks/useLikes';
 import axios from './../api/auth';
 import { useState, useEffect } from 'react';
 // export const posts = [

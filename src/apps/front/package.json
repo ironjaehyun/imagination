@@ -11,14 +11,17 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@ionic/react": "^7.5.5",
     "axios": "^1.6.0",
     "classnames": "^2.3.2",
+    "ionicons": "^7.2.1",
     "jotai": "^2.5.1",
     "justified-layout": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "swiper": "^11.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
