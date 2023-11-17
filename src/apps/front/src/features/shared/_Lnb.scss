@@ -6,9 +6,9 @@ $image: url('./img/search.png');
 .Lnb {
   margin-top: 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  width: 85%;
+  width: 1140px;
 
   &-create-btn {
     display: flex;
@@ -66,6 +66,7 @@ $image: url('./img/search.png');
     width: 16px;
     height: 19.5px;
     margin-top: 5px;
+    cursor: pointer;
   }
 
   &-allim {

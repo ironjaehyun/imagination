@@ -4,7 +4,7 @@
 
 @media screen and (max-width: 1536px) {
   .gnb-bug-protector {
-    margin-left: 240px;
+    margin-left: 300px;
   }
 }
 
@@ -14,3 +14,4 @@
 @import './components/_Post.scss';
 @import './components/_FeedLayout.scss';
 @import '../shared/AlertPop';
+@import '../shared/AlarmModal.scss';

@@ -6,7 +6,6 @@ import useModalAlert from './hooks/useModalAlert';
 
 const Feed = () => {
   const { isAlertOpen, handleOpenAlert, handleCloseAlert } = useModalAlert();
-
   return (
     <div>
       <section className="gnb-bug-protector">

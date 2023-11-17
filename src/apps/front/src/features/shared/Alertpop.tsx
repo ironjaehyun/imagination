@@ -1,11 +1,19 @@
 import { FunctionComponent, MouseEventHandler } from 'react';
-
+import { Link } from 'react-router-dom';
+import useCopy from './hooks/useCopy';
 export type AlertpopProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
 const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
+  // copy
+  const { isCopied: promptCopied, handleCopy: handleCopyPrompt } = useCopy();
+  const {
+    isCopied: negativePromptCopied,
+    handleCopy: handleCopyNegativePrompt,
+  } = useCopy();
+
   const handleBgClick: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation();
     onClose();
@@ -64,8 +72,10 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
                       <span>{data.likeCount}</span>
                     </button>
                     <button className="modal-CreateImage">
-                      <img src="./img/CreateImage.png" alt="" />
-                      <span>Create Image</span>
+                      <Link to={'/imagination'}>
+                        <img src="./img/CreateImage.png" alt="" />
+                        <span>Create Image</span>
+                      </Link>
                     </button>
                   </div>
                 </div>
@@ -76,9 +86,12 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
               <div>
                 <div className="modal-footer-prompt">
                   <h4>prompt</h4>
-                  <div>
+                  <div onClick={() => handleCopyPrompt(data.prompt)}>
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
+                    {promptCopied && (
+                      <span className="copy-tooltip">Copied!</span>
+                    )}
                   </div>
                 </div>
                 <div className="modal-footer-text">
@@ -88,9 +101,12 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
               <div className="prompt-div">
                 <div className="modal-footer-Nagative">
                   <h4>Negatice Prompt</h4>
-                  <div>
+                  <div onClick={() => handleCopyNegativePrompt(data.Nprompt)}>
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
+                    {negativePromptCopied && (
+                      <span className="copy-tooltip">Copied!</span>
+                    )}
                   </div>
                 </div>
                 <div className="modal-footer-text">
