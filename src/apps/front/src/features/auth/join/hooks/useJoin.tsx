@@ -41,8 +41,7 @@ const useJoin = () => {
       setAlertMsg('아이디를 입력해주세요');
       setDuplication(false);
       setIdPassMsg('');
-    }
-    if (!id.match(/[a-zA-Z]/)) {
+    } else if (!id.match(/[a-zA-Z]/)) {
       setAlertMsg('영문으로 입력해주세요');
       setDuplication(false);
       setIdPassMsg('');
