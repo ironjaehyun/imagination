@@ -15,13 +15,13 @@ const checkId = async (req, res, next) => {
 };
 
 const joinId = async (req, res) => {
-  const { name, id, password } = req.body;
+  const { id, password } = req.body;
 
   const hash = await bcrypt.hash(password, 10);
 
-  const user = new userModel({ id, password: hash, name });
-  const token = createAccessToken(user._id, id, name);
-  res.status(200).json({ name: user.name, id, token });
+  const user = new userModel({ id, password: hash });
+  const token = createAccessToken(user._id, id);
+  res.status(200).json({ id, token });
   await user.save();
 };
 
@@ -34,7 +34,7 @@ const handleLogin = async (req, res) => {
 
   if (!isValidPassword) return res.status(400).json('wrong password');
 
-  const accessToken = createAccessToken(user._id, user.id, user.name);
+  const accessToken = createAccessToken(user._id, user.id);
 
   res.cookie('accessToken', accessToken, {
     secure: false, // 현재 http를 사용중이라서 false

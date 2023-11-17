@@ -1,7 +1,5 @@
 import { AuthOrDiv } from '../../components/AuthOrDiv';
 import GoogleLogin from '../../components/GoogleLogin';
-import KakaoLogin from '../../components/KakaoLogin';
-import NaverLogin from '../../components/NaverLogin copy';
 import useLogin from '../hooks/useLogin';
 
 export const LoginForm = () => {
@@ -16,6 +14,7 @@ export const LoginForm = () => {
   return (
     <form className="login" onSubmit={handleLogin}>
       <h1 className="login-title">Imagination</h1>
+
       <input type="text" placeholder="아이디" onChange={handleLoginId} />
       <input type="password" placeholder="비밀번호" onChange={handleLoginPw} />
       <div className="login-alert">
@@ -29,8 +28,8 @@ export const LoginForm = () => {
       <AuthOrDiv />
       <div className="social-login">
         <GoogleLogin />
-        <KakaoLogin />
-        <NaverLogin />
+        {/* <KakaoLogin />
+        <NaverLogin /> */}
       </div>
     </form>
   );

@@ -4,7 +4,7 @@ export const GoogleLogin = () => {
   return (
     <Link to={'google'} className="google">
       <img src="join/google.jpg" alt="" />
-      구글로 회원가입
+      구글로 로그인
     </Link>
   );
 };
