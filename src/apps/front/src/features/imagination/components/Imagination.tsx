@@ -1,4 +1,4 @@
-import BigGnb from '../../shared/BigGnb';
+ import BigGnb from '../../shared/BigGnb';
 import LnbRight from '../../shared/LnbRight';
 import { useImagination } from '../hooks/useImagination';
 import { SampleButtton } from './button/button';
@@ -27,6 +27,7 @@ const Imagination = () => {
     sizeList,
   } = useImagination();
 
+  
   return (
     <div>
       <BigGnb />

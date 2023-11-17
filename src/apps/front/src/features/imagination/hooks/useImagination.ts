@@ -1,6 +1,8 @@
 import { useState, useEffect, FormEventHandler } from 'react';
 import axios from 'axios';
 import { REST_API_KEY } from '../components/constants';
+import useLogin from '../../auth/login/hooks/useLogin';
+
 
 interface Image {
   image: string;
@@ -9,6 +11,8 @@ interface Image {
 interface ResponseData {
   images: Image[];
 }
+
+
 
 export const useImagination = () => {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -33,6 +37,7 @@ export const useImagination = () => {
     [384, 640],
     [640, 384],
   ];
+  const {userData} = useLogin()
 
   const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
@@ -43,6 +48,7 @@ export const useImagination = () => {
       setButtonBg('#f5f5f6');
       setImgSrc('imagination/loading-loader.gif');
       setButtonText('');
+      
 
       const response = await axios.post<ResponseData>(
         'https://api.kakaobrain.com/v2/inference/karlo/t2i',
@@ -68,6 +74,7 @@ export const useImagination = () => {
       console.log('Sending request to server');
       await axios.post('http://localhost:3000/imagination', {
         images: newImageUrls,
+        userId : userData.id,
       });
     } catch (error) {
       console.error(error);
@@ -82,6 +89,7 @@ export const useImagination = () => {
 
   useEffect(() => {
     setButtonDisabled(isLoading);
+    console.log(userData.id)
   }, [isLoading]);
 
   const handleButtonClick = () => {
