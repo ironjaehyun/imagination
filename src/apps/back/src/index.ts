@@ -6,6 +6,7 @@ import loginRoute from './features/auth/routes/loginRoute';
 import GnbRoute from './features/feed/routes/GnbRoute';
 import LnbRoute from './features/feed/routes/LnbRoute';
 import FeedRoute from './features/feed/routes/FeedRoute';
+import ExploreRoute from './features/feed/routes/ExploreRoute'
 import connectToMongoDB from './db';
 import { PORT } from '../../../packages/models/port';
 import cookieParser from 'cookie-parser';
@@ -30,6 +31,7 @@ const startServer = () => {
   app.use('/Gnb', GnbRoute);
   app.use('/Lnb', LnbRoute);
   app.use('/Feed', FeedRoute);
+  app.use('/Explore',ExploreRoute)
 
   app.use((err, req, res, next) => {
     console.error(err);

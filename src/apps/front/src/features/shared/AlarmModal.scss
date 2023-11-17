@@ -2,13 +2,13 @@
 
 .AlarmModal {
   position: absolute;
-  z-index: 1000;
+  z-index: 1;
   right: 10px;
   top: 60px;
   animation: fadeIn 0.5s;
 }
 .AlarmModal-Size {
-  width: 350px;
+  width: 358px;
   height: 340px;
   overflow-y: auto;
   background-color: #f5f5f5;
