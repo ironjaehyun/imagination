@@ -10,7 +10,6 @@ export const JoinForm = () => {
     handleId,
     handlePw,
     handlePwCheck,
-    handleName,
     alertMsg,
     handleJoinBtn,
     duplicateId,
@@ -58,12 +57,12 @@ export const JoinForm = () => {
           onChange={handlePwCheck}
           className={classNames('join-alert-off', { 'join-alert-on': isZero })}
         />
-        <input
+        {/* <input
           type="text"
           placeholder="닉네임"
           className={classNames('join-alert-off', { 'join-alert-on': isZero })}
           onChange={handleName}
-        />
+        /> */}
         <div className="join-msg">
           <span className="join-alert">{alertMsg}</span>
           <span className="join-pass">{idPassMsg}</span>

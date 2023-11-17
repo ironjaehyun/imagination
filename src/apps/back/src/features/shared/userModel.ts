@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   id: { type: String, required: true },
   password: { type: String, required: true },
-  name: { type: String, required: true },
   joined_at: { type: Date, default: Date.now },
   user_grade: { type: String, default: 'nomal' },
   user_profile_img: { type: String, default: '' },

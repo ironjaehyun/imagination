@@ -15,7 +15,7 @@ const useJoin = () => {
 
   const handleJoin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    axios.post('join', { id: id, password: pw, name: name }).then((res) => {
+    axios.post('join', { id: id, password: pw }).then((res) => {
       console.log(res.data);
       if (res.status === 200 && duplication) {
         navigate('/');

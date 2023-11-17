@@ -15,7 +15,6 @@ const useMypage = () => {
   const [followModal, setFollowModal] = useAtom(followAtom);
   const [followerModal, setFollowerModal] = useAtom(followerAtom);
   const [clickTab, setClickTab] = useState(0);
-
   const [backgroundImageSrc, setBackgroundImageSrc] = useAtom(backgroundImage);
   const [profileImageSrc, setProfileImageSrc] = useAtom(profileImage);
   const [userName, setUserName] = useAtom(nameAtom);

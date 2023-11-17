@@ -1,0 +1,54 @@
+$font-family-default: Pretendard;
+$color-black: #000;
+$color-white: #fff;
+$font-size-large: 24px;
+$font-size-medium: 18px;
+$button-padding: 7px 15px;
+$border-radius-round: 30px;
+$box-shadow-light: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+// Define Mixins
+@mixin button-style {
+  display: inline-flex;
+  padding: $button-padding;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: $border-radius-round;
+  background: $color-white;
+  box-shadow: $box-shadow-light;
+
+  > button {
+    color: $color-black;
+    font-family: $font-family-default;
+    font-size: $font-size-medium;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+}
+
+// Top Header Styles
+.top-header {
+  text-align: center;
+  padding: 2%;
+  align-items: center;
+
+  // display: flex;
+  .leader-title {
+    color: $color-black;
+    font-family: $font-family-default;
+    font-size: $font-size-large;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .week-btn {
+    @include button-style;
+  }
+
+  .alltime-btn {
+    @include button-style;
+  }
+}

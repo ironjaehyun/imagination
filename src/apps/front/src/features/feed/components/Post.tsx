@@ -1,6 +1,5 @@
-import useLikes from '../hooks/useLikes';
 import axios from './../api/auth';
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react';
 // export const posts = [
 //   {
 //     id: '1',
@@ -32,10 +31,8 @@ import {useState,useEffect} from 'react'
 //   },
 // ];
 
-
 const Post = ({ onImageClick }: { onImageClick: () => void }) => {
   const [posts, setPosts] = useState([]);
-  const [isLiked, handleLike] = useLikes(posts);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -57,7 +54,10 @@ const Post = ({ onImageClick }: { onImageClick: () => void }) => {
           </div>
           <div className="post-card-footer">
             <div>
-              <img /*src={post.profileImage}*/ alt="" className='post-card-proflieImg'/>
+              <img
+                /*src={post.profileImage}*/ alt=""
+                className="post-card-proflieImg"
+              />
               <span>{/*post.username*/}</span>
             </div>
             <div>
