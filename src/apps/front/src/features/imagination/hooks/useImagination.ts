@@ -49,7 +49,7 @@ export const useImagination = () => {
         {
           prompt: prompt,
           negative_prompt: negative,
-          image_format: 'png',
+          image_format: 'webp',
           samples: selectedsamples,
           width: selectedSize[0],
           height: selectedSize[1],
@@ -63,7 +63,12 @@ export const useImagination = () => {
         },
       );
 
-      setImageUrls(response.data.images.map((image) => image.image));
+      const newImageUrls = response.data.images.map((image) => image.image);
+      setImageUrls(newImageUrls);
+      console.log('Sending request to server');
+      await axios.post('http://localhost:3000/imagination', {
+        images: newImageUrls,
+      });
     } catch (error) {
       console.error(error);
     } finally {
