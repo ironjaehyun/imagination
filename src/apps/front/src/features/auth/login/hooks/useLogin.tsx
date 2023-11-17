@@ -1,11 +1,8 @@
-import { useAtom } from 'jotai';
-import { userDataAtom } from '../../../shared/userAtom';
 import axios from '../../api/auth';
 import { useState, useEffect, SetStateAction } from 'react';
 const useLogin = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-  const [userData, setUserData] = useAtom(userDataAtom);
   const [msgLogin, setMsgLogin] = useState('');
   const [msgPassword, setMsgPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
@@ -33,7 +30,12 @@ const useLogin = () => {
   useEffect(() => {
     const loginSuccess = async () => {
       const response = await axios.get('/login/success');
-      setUserData(response.data);
+      sessionStorage.setItem('id', response.data.id);
+      sessionStorage.setItem('_id', response.data._id);
+      sessionStorage.setItem(
+        'profile',
+        'https://play-lh.googleusercontent.com/38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo=w240-h480-rw',
+      );
     };
     loginSuccess();
   }, []);
@@ -43,7 +45,6 @@ const useLogin = () => {
       if (result.status === 200) {
         window.open('/', '_self');
       }
-      console.log('hi');
     });
   };
 
@@ -73,7 +74,6 @@ const useLogin = () => {
     msgLogin,
     msgPassword,
     isDisable,
-    userData,
   };
 };
 

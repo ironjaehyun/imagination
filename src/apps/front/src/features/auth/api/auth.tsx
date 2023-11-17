@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { PORT } from '../../../../../../packages/models/port';
 
-const instance = axios.create({
+const auth = axios.create({
   baseURL: `http://localhost:${PORT}`,
   headers: {
     accept: 'application/json',
@@ -10,4 +10,4 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export default instance;
+export default auth;

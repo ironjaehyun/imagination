@@ -1,4 +1,4 @@
-import PostModel from '../../shared/postModel';
+import PostModel from '../../shared/db/postModel';
 
 const Postssearch = async (req) => {
   const inputValue = req.body.inputValue;

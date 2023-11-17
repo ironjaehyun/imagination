@@ -1,21 +1,26 @@
 import { Link } from 'react-router-dom';
 import { PUBLIC_URL } from '../../../../../packages/models/port';
+import useLogin from '../auth/login/hooks/useLogin';
 const Gnb = () => {
+  const profileImg = sessionStorage.getItem('profile') ?? '';
+  const { handleLogout } = useLogin();
   return (
     <div>
       <nav className="Gnb">
         <div className="Gnb-main">
-          <div className="Gnb-icon">
-            <img src={PUBLIC_URL + '/img/I.png'} alt="" className="Gnb-i"></img>
-          </div>
+          <Link to={'/'}>
+            <div className="Gnb-icon">
+              <img
+                src={PUBLIC_URL + '/img/I.png'}
+                alt=""
+                className="Gnb-i"
+              ></img>
+            </div>
+          </Link>
           <div>
-            <img
-              src="https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp"
-              alt=""
-              className="Gnb-profile-img"
-            ></img>
+            <img src={profileImg} alt="" className="Gnb-profile-img"></img>
           </div>
-          <Link to={'/feed'}>
+          <Link to={'/'}>
             <div className="Gnb-hoverwhite">
               <img
                 src={PUBLIC_URL + '/img/feed.png'}
@@ -55,7 +60,7 @@ const Gnb = () => {
               />
             </Link>
           </div>
-          <div className="Gnb-hoverwhite">
+          <div onClick={handleLogout} className="Gnb-hoverwhite">
             <img
               src={PUBLIC_URL + '/img/logout.png'}
               className="Gnb-nav-icon"
