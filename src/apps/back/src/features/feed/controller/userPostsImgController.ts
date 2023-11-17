@@ -1,4 +1,4 @@
-import PostModel from '../../shared/postModel';
+import PostModel from '../../shared/db/postModel';
 
 const postsImg = async (req, res) => {
   try {

@@ -1,4 +1,4 @@
-import userModel from '../../shared/userModel';
+import userModel from '../../shared/db/userModel';
 import bcrypt from 'bcrypt';
 import { createAccessToken } from '../helper/createToken';
 import jwt from 'jsonwebtoken';
