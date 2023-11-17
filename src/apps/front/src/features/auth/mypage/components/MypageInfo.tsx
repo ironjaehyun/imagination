@@ -1,5 +1,4 @@
 import { PUBLIC_URL } from '../../../../../../../packages/models/port';
-import useLogin from '../../login/hooks/useLogin';
 import useMypage from '../hooks/useMypage';
 
 const MypageInfo = () => {
@@ -12,7 +11,6 @@ const MypageInfo = () => {
     handleFollower,
     handleFollow,
   } = useMypage();
-  const { userData } = useLogin();
   return (
     <div>
       <header className="mypage-header">
@@ -30,15 +28,15 @@ const MypageInfo = () => {
           </div>
           <div className="mypage-info-footer">
             <div className="mypage-info-post">
-              <span>{userData.posts.length}</span>
+              <span>0</span>
               <span>Posts</span>
             </div>
             <div onClick={handleFollower} className="mypage-info-follow">
-              <span>{userData.follower.length}</span>
+              <span>0</span>
               <span>Followers</span>
             </div>
             <div onClick={handleFollow} className="mypage-info-follower">
-              <span>{userData.follow.length}</span>
+              <span>0</span>
               <span>Following</span>
             </div>
           </div>
