@@ -1,5 +1,5 @@
 import BigGnb from '../../shared/BigGnb';
-import Lnb from '../../shared/Lnb';
+import LnbRight from '../../shared/LnbRight';
 import { useImagination } from '../hooks/useImagination';
 import { SampleButtton } from './button/button';
 import { SizeButton } from './button/button';
@@ -31,7 +31,7 @@ const Imagination = () => {
     <div>
       <BigGnb />
       <div className="imagination-lnb">
-        <Lnb />
+        <LnbRight />
       </div>
       <div className="imagination-main">
         <form onSubmit={generateImage} className="imagination-form">

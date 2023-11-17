@@ -6,6 +6,7 @@ import Join from '../auth/join/components/Join';
 import Explore from '../feed/Explore';
 import Chat from '../chat/Chat';
 import Create from '../createBoardList/Create';
+import Mypage from '../auth/mypage/Mypage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/imagination" element={<Imagination />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/mypage/:id" element={<Mypage />} />
         </Routes>
       </BrowserRouter>
     </>
