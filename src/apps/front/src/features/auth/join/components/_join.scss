@@ -53,6 +53,9 @@
     border-radius: 10px;
     font-weight: 700;
     font-size: 15px;
+    &:disabled {
+      opacity: 0.4;
+    }
   }
 
   .or {
@@ -192,20 +195,26 @@
   }
 }
 
-#join-check {
+.join-check {
   width: 60px;
   height: 22px;
   border-radius: 5px;
   font-size: 10px;
-  color: #757575;
+  color: $white;
   position: absolute;
   top: 11px;
   right: 12px;
-  background-color: #e0e0e0;
+  background-color: $primary;
+  opacity: 0.6;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  font-weight: 700;
+  &-true {
+    background-color: $primary;
+    color: $white;
+    opacity: 1;
+  }
   &:hover {
     cursor: pointer;
   }

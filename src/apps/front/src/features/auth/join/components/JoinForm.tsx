@@ -1,8 +1,8 @@
 import useJoin from '../hooks/useJoin';
 import PasswordRequirements from './PasswordRequirements';
-import classNames from 'classnames';
 import { AuthOrDiv } from '../../components/AuthOrDiv';
 import GoogleLogin from '../../components/GoogleLogin';
+import classNames from 'classnames';
 
 export const JoinForm = () => {
   const {
@@ -11,14 +11,14 @@ export const JoinForm = () => {
     handlePw,
     handlePwCheck,
     alertMsg,
-    handleJoinBtn,
     duplicateId,
     idPassMsg,
     isValid,
     isNumber,
     isSpe,
     isUpper,
-    isZero,
+    isDisable,
+    duplication,
   } = useJoin();
   return (
     <form onSubmit={handleJoin} className="join">
@@ -30,21 +30,16 @@ export const JoinForm = () => {
       <GoogleLogin />
       <AuthOrDiv />
       <div className="join-main">
-        <span id="join-check" onClick={duplicateId}>
+        <span
+          className={classNames('join-check', {
+            'join-check-true': duplication,
+          })}
+          onClick={duplicateId}
+        >
           중복체크
         </span>
-        <input
-          type="id"
-          placeholder="아이디"
-          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
-          onChange={handleId}
-        />
-        <input
-          type="password"
-          placeholder="비밀번호"
-          onChange={handlePw}
-          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
-        />
+        <input type="id" placeholder="아이디" onChange={handleId} />
+        <input type="password" placeholder="비밀번호" onChange={handlePw} />
         <PasswordRequirements
           isValid={isValid}
           isNumber={isNumber}
@@ -55,19 +50,12 @@ export const JoinForm = () => {
           type="password"
           placeholder="비밀번호 확인"
           onChange={handlePwCheck}
-          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
         />
-        {/* <input
-          type="text"
-          placeholder="닉네임"
-          className={classNames('join-alert-off', { 'join-alert-on': isZero })}
-          onChange={handleName}
-        /> */}
         <div className="join-msg">
           <span className="join-alert">{alertMsg}</span>
           <span className="join-pass">{idPassMsg}</span>
         </div>
-        <button className="join-btn" onClick={handleJoinBtn}>
+        <button className="join-btn" disabled={isDisable}>
           회원가입
         </button>
       </div>

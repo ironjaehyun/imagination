@@ -33,7 +33,6 @@ const startServer = async () => {
   app.use('/join', joinRoute);
   app.use('/mypage', mypageRoute);
   app.use('/imagination', imageRoute);
-  app.use('/join', joinRoute);
   app.use('/chat', chatRoute);
   app.use('/Gnb', GnbRoute);
   app.use('/Lnb', LnbRoute);
@@ -44,7 +43,7 @@ const startServer = async () => {
   app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).json({ message: 'Internal Server Error' });
-    next();
+    next(err);
   });
 
   app.listen(PORT, () => {

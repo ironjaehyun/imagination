@@ -51,6 +51,8 @@ const useLogin = () => {
   useEffect(() => {
     if (id.length > 0 && pw.length > 0) {
       setIsDisable(false);
+    } else {
+      setIsDisable(true);
     }
   }, [id, pw]);
 
