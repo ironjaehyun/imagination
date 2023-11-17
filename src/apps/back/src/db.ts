@@ -5,6 +5,7 @@ dotenv.config();
 
 const uri = process.env.ATLAS_URI;
 mongoose.set('strictQuery', false);
+
 const connectToMongoDB = async () => {
   try {
     await mongoose.connect(uri);
