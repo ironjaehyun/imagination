@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-
+import { PUBLIC_URL } from '../../../../../packages/models/port';
 const Gnb = () => {
   return (
     <div>
       <nav className="Gnb">
         <div className="Gnb-main">
           <div className="Gnb-icon">
-            <img src="./img/I.png" alt="" className="Gnb-i"></img>
+            <img src={PUBLIC_URL + '/img/I.png'} alt="" className="Gnb-i"></img>
           </div>
           <div>
             <img
@@ -17,22 +17,31 @@ const Gnb = () => {
           </div>
           <Link to={'/feed'}>
             <div className="Gnb-hoverwhite">
-              <img src="./img/feed.png" className="Gnb-nav-icon" />
+              <img
+                src={PUBLIC_URL + '/img/feed.png'}
+                className="Gnb-nav-icon"
+              />
             </div>
           </Link>
           <Link to={'/leader'}>
             <div className="Gnb-hoverwhite">
-              <img src="./img/rank.png" className="Gnb-nav-icon" />
+              <img
+                src={PUBLIC_URL + '/img/rank.png'}
+                className="Gnb-nav-icon"
+              />
             </div>
           </Link>
           <Link to={'/explore'}>
             <div className="Gnb-hoverwhite">
-              <img src="./img/explore.png" className="Gnb-nav-icon" />
+              <img
+                src={PUBLIC_URL + '/img/explore.png'}
+                className="Gnb-nav-icon"
+              />
             </div>
           </Link>
           <Link to={'/imagination'}>
             <div className="Gnb-hoverwhite">
-              <img src="./img/ai.png" className="Gnb-nav-icon" />
+              <img src={PUBLIC_URL + '/img/ai.png'} className="Gnb-nav-icon" />
             </div>
           </Link>
         </div>
@@ -40,11 +49,17 @@ const Gnb = () => {
           <div className="Gnb-line"></div>
           <div className="setting Gnb-hoverwhite">
             <Link to={'/setting'}>
-              <img src="./img/setting.png" className="Gnb-nav-icon" />
+              <img
+                src={PUBLIC_URL + '/img/setting.png'}
+                className="Gnb-nav-icon"
+              />
             </Link>
           </div>
           <div className="Gnb-hoverwhite">
-            <img src="./img/logout.png" className="Gnb-nav-icon" />
+            <img
+              src={PUBLIC_URL + '/img/logout.png'}
+              className="Gnb-nav-icon"
+            />
           </div>
         </div>
       </nav>

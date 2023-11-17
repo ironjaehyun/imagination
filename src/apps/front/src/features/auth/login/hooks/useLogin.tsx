@@ -1,10 +1,11 @@
+import { useAtom } from 'jotai';
+import { userDataAtom } from '../../../shared/userAtom';
 import axios from '../../api/auth';
 import { useState, useEffect, SetStateAction } from 'react';
-
 const useLogin = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-
+  const [userData, setUserData] = useAtom(userDataAtom);
   const [msgLogin, setMsgLogin] = useState('');
   const [msgPassword, setMsgPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
@@ -28,6 +29,14 @@ const useLogin = () => {
         }
       });
   };
+
+  useEffect(() => {
+    const loginSuccess = async () => {
+      const response = await axios.get('/login/success');
+      setUserData(response.data);
+    };
+    loginSuccess();
+  }, []);
 
   const handleLogout = () => {
     axios.post('/logout').then((result) => {
@@ -64,6 +73,7 @@ const useLogin = () => {
     msgLogin,
     msgPassword,
     isDisable,
+    userData,
   };
 };
 

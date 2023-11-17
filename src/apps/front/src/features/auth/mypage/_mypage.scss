@@ -1,0 +1,179 @@
+@import './components/editUser';
+@import './components/follow';
+
+.mypage {
+  padding: 16px;
+  width: 100%;
+  height: 200vh;
+  margin-left: 75px;
+
+  .mypage-line-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mypage-line {
+    border: 1px solid $line;
+    margin: 30px 0;
+    width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mypage-tab {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 70px;
+    .mypage-tab-list {
+      display: flex;
+      width: 400px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: 700;
+      .tab-uncheck {
+        color: $gray;
+        width: 33%;
+        text-align: center;
+        &:hover {
+          cursor: pointer;
+          color: $black;
+        }
+      }
+      .tab-check {
+        color: $black;
+      }
+    }
+  }
+
+  .mypage-header {
+    width: 100%;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    top: 0;
+  }
+
+  .mypage-background {
+    width: 100%;
+    background-color: $border;
+    height: 250px;
+  }
+
+  .mypage-profile {
+    position: absolute;
+    top: 90px;
+    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mypage-profile-photo {
+    background-color: $background;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+  }
+
+  .mypage-edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $white;
+    box-shadow: $border-shadow2;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+
+    :focus {
+      box-shadow: $border-shadow2;
+    }
+  }
+
+  .mypage-info-header {
+    margin-top: 100px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+
+    .mypage-username {
+      font-size: $font-size-24;
+    }
+
+    .mypage-desc {
+      font-size: $font-size-14;
+      color: $placeholder;
+      width: 400px;
+      text-align: center;
+    }
+  }
+  .mypage-info-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    margin-top: 65px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      width: 33%;
+
+      span:first-child {
+        font-size: $font-size-18;
+        font-weight: bold;
+        margin-bottom: 14px;
+      }
+
+      span:last-child {
+        font-size: $font-size-14;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .mypage-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    section {
+      width: 1200px;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    img {
+      width: 330px;
+      margin: 0 24px;
+      height: 330px;
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.mypage-box {
+  display: flex;
+}
