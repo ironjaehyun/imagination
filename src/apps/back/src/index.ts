@@ -10,6 +10,7 @@ import ExploreRoute from './features/feed/routes/ExploreRoute';
 import mypageRoute from './features/auth/routes/mypageRoute';
 import imageRoute from './features/imagination/routes/imageRoute';
 import chatRoute from './features/chat/routes/chatRoute';
+import createRoute from './features/createBoardList/router/createRoute';
 import connectToMongoDB from './db';
 import { PORT } from '../../../packages/models/port';
 import cookieParser from 'cookie-parser';
@@ -38,6 +39,7 @@ const startServer = async () => {
   app.use('/Lnb', LnbRoute);
   app.use('/Feed', FeedRoute);
   app.use('/Explore', ExploreRoute);
+  app.use('/create', createRoute);
   app.use('/', loginRoute);
 
   app.use((err, req, res, next) => {
