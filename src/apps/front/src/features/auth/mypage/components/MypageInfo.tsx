@@ -3,28 +3,29 @@ import useMypage from '../hooks/useMypage';
 
 const MypageInfo = () => {
   const {
-    backgroundImageSrc,
-    profileImageSrc,
-    userName,
-    statusMsg,
     handleEditModalOpen,
     handleFollower,
     handleFollow,
+    profileimg,
+    backgroundimg,
+    userId,
+    statusStorage,
   } = useMypage();
+
   return (
     <div>
       <header className="mypage-header">
-        <img src={backgroundImageSrc} className="mypage-background"></img>
+        <img src={backgroundimg} className="mypage-background"></img>
         <section className="mypage-profile">
-          <img src={profileImageSrc} className="mypage-profile-photo"></img>
+          <img src={profileimg} className="mypage-profile-photo"></img>
           <button className="mypage-edit" onClick={handleEditModalOpen}>
             <img src={PUBLIC_URL + '/mypage/edit.png'} alt="" />
           </button>
         </section>
         <section className="mypage-info">
           <div className="mypage-info-header">
-            <h1 className="mypage-username">{userName}</h1>
-            <span className="mypage-desc">{statusMsg} </span>
+            <h1 className="mypage-username">{userId}</h1>
+            <span className="mypage-desc">{statusStorage}</span>
           </div>
           <div className="mypage-info-footer">
             <div className="mypage-info-post">

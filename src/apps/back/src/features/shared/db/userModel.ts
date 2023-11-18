@@ -5,8 +5,16 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   joined_at: { type: Date, default: Date.now },
   user_grade: { type: String, default: 'nomal' },
-  user_profile_img: { type: String, default: '' },
-  user_background_img: { type: String, default: '' },
+  user_profile_img: {
+    type: String,
+    default:
+      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/profile.png',
+  },
+  user_background_img: {
+    type: String,
+    default:
+      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/background.png',
+  },
   user_status_msg: { type: String, default: '' },
   follow: [
     { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Follow' },

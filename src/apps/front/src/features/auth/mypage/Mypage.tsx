@@ -5,7 +5,6 @@ import useMypage from './hooks/useMypage';
 import MypageTab from './components/MypageTab';
 import Follower from './components/Follower';
 import Follow from './components/Follow';
-
 const Mypage = () => {
   const { myPageModal, followerModal, followModal } = useMypage();
 

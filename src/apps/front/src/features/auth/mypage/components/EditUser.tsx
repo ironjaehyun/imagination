@@ -4,16 +4,16 @@ import useMypage from '../hooks/useMypage';
 const EditUser = () => {
   const {
     modalBubbling,
-    profileUpload,
-    backgroundUpload,
-    EditStatusMsg,
-    EditUserName,
-    handleEditUser,
     handleEditModalClose,
-    profileInput,
-    backgroundInput,
-    userName,
-    statusMsg,
+    profileimg,
+    backgroundimg,
+    userId,
+    handleBgFileChange,
+    bgImage,
+    imgUpload,
+    handleProfileFileChange,
+    handleStatusMsg,
+    profileImage,
   } = useMypage();
 
   return (
@@ -24,24 +24,32 @@ const EditUser = () => {
             <input
               type="file"
               accept="image/*"
-              onChange={backgroundUpload}
               className="edit-modal-upload--hidden-bg"
+              onChange={handleBgFileChange}
             />
             <div>
               <img src={PUBLIC_URL + '/mypage/add.png'} />
               <span>배경 이미지</span>
             </div>
           </div>
-          <img src={backgroundInput} className="edit-modal-background"></img>
+          <img
+            src={bgImage.preview === '' ? backgroundimg : bgImage.preview}
+            className="edit-modal-background"
+          ></img>
         </div>
 
         <div className="edit-modal-white">
-          <img src={profileInput} className="edit-modal-photo"></img>
+          <img
+            src={
+              profileImage.preview === '' ? profileimg : profileImage.preview
+            }
+            className="edit-modal-photo"
+          ></img>
           <input
             type="file"
             accept="image/*"
-            onChange={profileUpload}
             className="edit-modal-upload--hidden"
+            onChange={handleProfileFileChange}
           />
           <div className="edit-modal-upload">
             <img src={PUBLIC_URL + '/mypage/add.png'} />
@@ -49,17 +57,11 @@ const EditUser = () => {
           </div>
         </div>
         <div className="edit-modal-inputs">
+          <h3>{userId}</h3>
           <input
             type="text"
-            placeholder="이름을 입력해주세요"
-            defaultValue={userName}
-            onChange={EditUserName}
-          />
-          <input
-            type="text"
+            onChange={handleStatusMsg}
             placeholder="상태메시지를 입력해주세요"
-            defaultValue={statusMsg}
-            onChange={EditStatusMsg}
           />
         </div>
         <div className="edit-modal-footer">
@@ -71,7 +73,7 @@ const EditUser = () => {
             >
               취소하기
             </button>
-            <button className="edit-modal-change" onClick={handleEditUser}>
+            <button className="edit-modal-change" onClick={imgUpload}>
               정보변경
             </button>
           </div>

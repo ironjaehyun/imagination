@@ -32,10 +32,8 @@ const useLogin = () => {
       const response = await axios.get('/login/success');
       sessionStorage.setItem('id', response.data.id);
       sessionStorage.setItem('_id', response.data._id);
-      sessionStorage.setItem(
-        'profile',
-        'https://play-lh.googleusercontent.com/38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo=w240-h480-rw',
-      );
+      sessionStorage.setItem('profile', response.data.user_profile_img);
+      sessionStorage.setItem('background', response.data.user_background_img);
     };
     loginSuccess();
   }, []);
