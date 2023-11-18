@@ -8,12 +8,12 @@ const userSchema = new mongoose.Schema({
   user_profile_img: {
     type: String,
     default:
-      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/profile.png',
+      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/profile.webp',
   },
   user_background_img: {
     type: String,
     default:
-      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/background.png',
+      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/background.webp',
   },
   user_status_msg: { type: String, default: '' },
   follow: [
