@@ -1,6 +1,5 @@
 const imageUpload = (req) => {
-  console.log('test');
-  console.log(req.file);
+  console.log(req.file.location);
 };
 
 export { imageUpload };

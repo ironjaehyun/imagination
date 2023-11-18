@@ -5,6 +5,6 @@ import { imageUpload } from '../controller/mypageController';
 
 const router = express.Router();
 
-router.post('/', upload.single('img'), imageUpload);
+router.post('/submit', upload.single('file'), imageUpload);
 
 export default router;
