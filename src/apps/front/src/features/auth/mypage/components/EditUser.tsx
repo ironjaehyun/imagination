@@ -4,11 +4,16 @@ import useMypage from '../hooks/useMypage';
 const EditUser = () => {
   const {
     modalBubbling,
-    handleEditUser,
     handleEditModalClose,
     profileimg,
     backgroundimg,
     userId,
+    handleBgFileChange,
+    bgImage,
+    imgUpload,
+    handleProfileFileChange,
+    handleStatusMsg,
+    profileImage,
   } = useMypage();
 
   return (
@@ -20,21 +25,31 @@ const EditUser = () => {
               type="file"
               accept="image/*"
               className="edit-modal-upload--hidden-bg"
+              onChange={handleBgFileChange}
             />
             <div>
               <img src={PUBLIC_URL + '/mypage/add.png'} />
               <span>배경 이미지</span>
             </div>
           </div>
-          <img src={backgroundimg} className="edit-modal-background"></img>
+          <img
+            src={bgImage.preview === '' ? backgroundimg : bgImage.preview}
+            className="edit-modal-background"
+          ></img>
         </div>
 
         <div className="edit-modal-white">
-          <img src={profileimg} className="edit-modal-photo"></img>
+          <img
+            src={
+              profileImage.preview === '' ? profileimg : profileImage.preview
+            }
+            className="edit-modal-photo"
+          ></img>
           <input
             type="file"
             accept="image/*"
             className="edit-modal-upload--hidden"
+            onChange={handleProfileFileChange}
           />
           <div className="edit-modal-upload">
             <img src={PUBLIC_URL + '/mypage/add.png'} />
@@ -43,7 +58,11 @@ const EditUser = () => {
         </div>
         <div className="edit-modal-inputs">
           <h3>{userId}</h3>
-          <input type="text" placeholder="상태메시지를 입력해주세요" />
+          <input
+            type="text"
+            onChange={handleStatusMsg}
+            placeholder="상태메시지를 입력해주세요"
+          />
         </div>
         <div className="edit-modal-footer">
           <button className="edit-modal-reset">초기화하기</button>
@@ -54,7 +73,7 @@ const EditUser = () => {
             >
               취소하기
             </button>
-            <button className="edit-modal-change" onClick={handleEditUser}>
+            <button className="edit-modal-change" onClick={imgUpload}>
               정보변경
             </button>
           </div>

@@ -9,6 +9,7 @@ const MypageInfo = () => {
     profileimg,
     backgroundimg,
     userId,
+    statusStorage,
   } = useMypage();
 
   return (
@@ -24,7 +25,7 @@ const MypageInfo = () => {
         <section className="mypage-info">
           <div className="mypage-info-header">
             <h1 className="mypage-username">{userId}</h1>
-            <span className="mypage-desc">leechi </span>
+            <span className="mypage-desc">{statusStorage}</span>
           </div>
           <div className="mypage-info-footer">
             <div className="mypage-info-post">
