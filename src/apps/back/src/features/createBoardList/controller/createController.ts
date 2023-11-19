@@ -2,7 +2,7 @@ import SavedImageModel from '../../shared/db/savedImage';
 import PostModel from '../../shared/db/postModel';
 import mongoose from 'mongoose';
 
-const savedImage = async (req, res) => {
+const savedImage = async (req) => {
   const { img1, prompt, negative_prompt } = req.body;
   const ownerId = new mongoose.Types.ObjectId(req.body._id);
   const savedImg = new SavedImageModel({

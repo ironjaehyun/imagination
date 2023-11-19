@@ -28,7 +28,6 @@ const imageUpload = async (req, res) => {
 
 const clickPost = async (req, res) => {
   const ownerId = new mongoose.Types.ObjectId(req.query._id);
-  console.log(ownerId);
   const result = await PostModel.find({ owner: ownerId });
   res.json(result);
 };

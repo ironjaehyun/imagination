@@ -23,6 +23,8 @@ const useMypage = () => {
   const backgroundimg = sessionStorage.getItem('background') ?? '';
   const profileimg = sessionStorage.getItem('profile') ?? '';
   const userId = sessionStorage.getItem('id') ?? '';
+  const objectId = sessionStorage.getItem('_id') ?? '';
+
   const handleFollower = () => {
     setFollowerModal(true);
   };
@@ -115,13 +117,11 @@ const useMypage = () => {
     queryKey: [QUERY_KEY.post],
     queryFn: async () => {
       const res = await axios.get('http://localhost:3000/mypage/post', {
-        params: { _id: userId },
+        params: { _id: objectId },
       });
       return res.data;
     },
   });
-
-  console.log(query.data);
 
   return {
     query,

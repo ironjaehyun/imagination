@@ -12,7 +12,6 @@ const MypageInfo = () => {
     statusStorage,
     query: { data, isLoading },
   } = useMypage();
-  console.log(data);
   if (isLoading) return <div>Loding</div>;
   return (
     <div>
