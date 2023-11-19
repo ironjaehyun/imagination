@@ -25,4 +25,12 @@ const imageUpload = async (req, res) => {
   }
 };
 
-export { imageUpload };
+const postList: { title: string }[] = [{ title: '첫번째 포스트' }];
+
+const clickPost = (req, res) => {
+  if (req.query._id) {
+    res.send(JSON.stringify(postList));
+  }
+};
+
+export { imageUpload, clickPost };

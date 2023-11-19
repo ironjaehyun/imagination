@@ -10,10 +10,13 @@ const MypageInfo = () => {
     backgroundimg,
     userId,
     statusStorage,
+    query: { data, isFetching },
   } = useMypage();
-
+  console.log(data);
+  if (isFetching) return <div>Loding</div>;
   return (
     <div>
+      <h1>{data[0].title}</h1>
       <header className="mypage-header">
         <img src={backgroundimg} className="mypage-background"></img>
         <section className="mypage-profile">

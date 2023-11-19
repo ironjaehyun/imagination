@@ -2,6 +2,8 @@ import { useAtom } from 'jotai';
 import { editModal, followAtom, followerAtom } from './MypageAtom';
 import { useState } from 'react';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEY } from './constants';
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [followModal, setFollowModal] = useAtom(followAtom);
@@ -109,7 +111,20 @@ const useMypage = () => {
     setMyPageModal(false);
   };
 
+  const query = useQuery({
+    queryKey: [QUERY_KEY.post],
+    queryFn: async () => {
+      const res = await axios.get('http://localhost:3000/mypage/post', {
+        params: { _id: userId },
+      });
+      return res.data;
+    },
+  });
+
+  console.log(query.data);
+
   return {
+    query,
     myPageModal,
     handleEditModalClose,
     handleEditModalOpen,

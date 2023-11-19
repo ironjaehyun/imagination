@@ -8,7 +8,7 @@ import Chat from '../chat/Chat';
 import Create from '../createBoardList/Create';
 import Mypage from '../auth/mypage/Mypage';
 import Leader from '../leader/Leader';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient({
   defaultOptions: {
