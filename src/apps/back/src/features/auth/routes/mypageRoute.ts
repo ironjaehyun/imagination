@@ -1,7 +1,7 @@
 import express from 'express';
 import upload from '../../shared/imageUpload';
 
-import { imageUpload, clickPost } from '../controller/mypageController';
+import { imageUpload, getUserData } from '../controller/mypageController';
 
 const router = express.Router();
 
@@ -11,5 +11,5 @@ router.post(
   imageUpload,
 );
 
-router.get('/post', clickPost);
+router.get('/user', getUserData);
 export default router;

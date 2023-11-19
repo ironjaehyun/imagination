@@ -78,7 +78,7 @@ const MypageTab = () => {
       <div className="mypage-footer">
         {clickTab === 0 ? (
           <section className="mypage-posts">
-            {data.map(
+            {data.posts.map(
               (item: {
                 post_img1: string | undefined;
                 _id: Key | null | undefined;

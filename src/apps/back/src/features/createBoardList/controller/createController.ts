@@ -1,6 +1,7 @@
 import SavedImageModel from '../../shared/db/savedImage';
 import PostModel from '../../shared/db/postModel';
 import mongoose from 'mongoose';
+import userModel from '../../shared/db/userModel';
 
 const savedImage = async (req) => {
   const { img1, prompt, negative_prompt } = req.body;
@@ -39,7 +40,11 @@ const createPost = async (req, res) => {
     post_prompt: post_prompt,
     post_img1: post_img1,
   });
-  res.json({ msg: 'create post' });
   await post.save();
+
+  const user = await userModel.findById(ownerId);
+  user.posts.push(post._id);
+  await user.save();
+  res.json({ msg: 'create post' });
 };
 export { savedImage, getSavedImage, createPost };

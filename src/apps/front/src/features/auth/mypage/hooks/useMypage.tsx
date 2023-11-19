@@ -113,18 +113,31 @@ const useMypage = () => {
     setMyPageModal(false);
   };
 
+  // const userQuery = useQuery({
+  //   queryKey: [QUERY_KEY.user],
+  //   queryFn: async () =>{
+  //     const res = await axios.get('http://localhost:3000/mypage/user', {
+  //       params: {_id:objectId},
+  //     })
+  //     return res.data;
+  //   }
+  // })
+
   const query = useQuery({
-    queryKey: [QUERY_KEY.post],
+    queryKey: [QUERY_KEY.user],
     queryFn: async () => {
-      const res = await axios.get('http://localhost:3000/mypage/post', {
+      const res = await axios.get('http://localhost:3000/mypage/user', {
         params: { _id: objectId },
       });
       return res.data;
     },
   });
 
+  console.log(query.data);
+
   return {
     query,
+    // userQuery,
     myPageModal,
     handleEditModalClose,
     handleEditModalOpen,
