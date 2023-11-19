@@ -10,13 +10,12 @@ const MypageInfo = () => {
     backgroundimg,
     userId,
     statusStorage,
-    query: { data, isFetching },
+    query: { data, isLoading },
   } = useMypage();
   console.log(data);
-  if (isFetching) return <div>Loding</div>;
+  if (isLoading) return <div>Loding</div>;
   return (
     <div>
-      <h1>{data[0].title}</h1>
       <header className="mypage-header">
         <img src={backgroundimg} className="mypage-background"></img>
         <section className="mypage-profile">
@@ -32,7 +31,7 @@ const MypageInfo = () => {
           </div>
           <div className="mypage-info-footer">
             <div className="mypage-info-post">
-              <span>0</span>
+              <span>{data.length}</span>
               <span>Posts</span>
             </div>
             <div onClick={handleFollower} className="mypage-info-follow">

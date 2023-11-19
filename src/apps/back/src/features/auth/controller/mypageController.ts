@@ -1,5 +1,6 @@
 import userModel from '../../shared/db/userModel';
-
+import PostModel from '../../shared/db/postModel';
+import mongoose from 'mongoose';
 const imageUpload = async (req, res) => {
   console.log('test');
   console.log(req.files);
@@ -25,12 +26,11 @@ const imageUpload = async (req, res) => {
   }
 };
 
-const postList: { title: string }[] = [{ title: '첫번째 포스트' }];
-
-const clickPost = (req, res) => {
-  if (req.query._id) {
-    res.send(JSON.stringify(postList));
-  }
+const clickPost = async (req, res) => {
+  const ownerId = new mongoose.Types.ObjectId(req.query._id);
+  console.log(ownerId);
+  const result = await PostModel.find({ owner: ownerId });
+  res.json(result);
 };
 
 export { imageUpload, clickPost };
