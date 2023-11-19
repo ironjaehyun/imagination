@@ -81,13 +81,13 @@ const MypageTab = () => {
             {data.map(
               (item: {
                 post_img1: string | undefined;
-                post_id: Key | null | undefined;
+                _id: Key | null | undefined;
               }) => {
                 return (
                   <img
                     src={item.post_img1}
                     onClick={handleOpenAlert}
-                    key={item.post_id}
+                    key={item._id}
                   />
                 );
               },
