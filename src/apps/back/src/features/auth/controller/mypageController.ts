@@ -41,11 +41,10 @@ const imageUpload = async (req, res) => {
 };
 
 const getUserData = async (req, res) => {
-  const ownerId = new mongoose.Types.ObjectId(req.query._id);
-  console.log(ownerId);
+  const ownerId = new mongoose.Types.ObjectId(req.query.id);
+
   const result = await userModel.findById(ownerId).populate('posts');
   res.json(result);
-  console.log(result.posts);
 };
 
 export { imageUpload, getUserData };
