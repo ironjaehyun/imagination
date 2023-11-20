@@ -140,7 +140,7 @@ const useMypage = () => {
       setUnFollow(true);
     }
     // 데이터 연결할거 넣어두기
-
+    // git config 확인
     console.log(unfollow);
     const response = await axios.post('http://localhost:3000/mypage/follow', {
       owner: objectId,
