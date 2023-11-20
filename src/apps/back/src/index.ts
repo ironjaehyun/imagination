@@ -10,6 +10,7 @@ import ExploreRoute from './features/feed/routes/ExploreRoute';
 import mypageRoute from './features/auth/routes/mypageRoute';
 import imageRoute from './features/imagination/routes/imageRoute';
 import chatRoute from './features/chat/routes/chatRoute';
+import messageRoute from './features/chat/routes/messageRoute';
 import createRoute from './features/createBoardList/router/createRoute';
 import connectToMongoDB from './db';
 import { PORT } from '../../../packages/models/port';
@@ -35,11 +36,14 @@ const startServer = async () => {
   app.use('/mypage', mypageRoute);
   app.use('/imagination', imageRoute);
   app.use('/chat', chatRoute);
+  app.use('/messages', messageRoute);
   app.use('/Gnb', GnbRoute);
   app.use('/Lnb', LnbRoute);
   app.use('/Feed', FeedRoute);
   app.use('/Explore', ExploreRoute);
   app.use('/create', createRoute);
+  app.use('/api/chats', chatRoute);
+  app.use('/api/messages', messageRoute);
   app.use('/', loginRoute);
 
   app.use((err, req, res, next) => {
