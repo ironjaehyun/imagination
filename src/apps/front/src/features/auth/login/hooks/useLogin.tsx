@@ -42,6 +42,7 @@ const useLogin = () => {
     axios.post('/logout').then((result) => {
       if (result.status === 200) {
         window.open('/', '_self');
+        sessionStorage.clear();
       }
     });
   };

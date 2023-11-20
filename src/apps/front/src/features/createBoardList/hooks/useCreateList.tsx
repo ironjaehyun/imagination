@@ -41,8 +41,7 @@ const useCreatList = () => {
   const [postTitle, setPostTitle] = useState<string>('');
   const [postContent, setPostContent] = useState<string>('');
   const navigate = useNavigate();
-  console.log(postContent);
-
+  const objectId = sessionStorage.getItem('_id') ?? '';
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
@@ -78,13 +77,12 @@ const useCreatList = () => {
     }
   };
 
-  console.log('선택완료', selectedData);
   const createMockData = () => {
     axios.post('http://localhost:3000/create/savedimg', {
       img1: 'https://img.freepik.com/premium-photo/cool-wolf-illustration-design_780593-1864.jpg',
-      prompt: 'wolf',
-      negative_prompt: 'hi',
-      _id: '655835c6cd751e3a72064897',
+      prompt: '늑대',
+      negative_prompt: '단순한 늑대',
+      _id: objectId,
     });
   };
 
@@ -94,7 +92,7 @@ const useCreatList = () => {
     await axios
       .get('http://localhost:3000/create/getsavedimg', {
         params: {
-          _id: '655835c6cd751e3a72064897',
+          _id: objectId,
         },
       })
       .then((res) => {
@@ -114,6 +112,7 @@ const useCreatList = () => {
   };
 
   const postData = {
+    post_id: selectedData._id,
     post_title: postTitle,
     post_content: postContent,
     post_prompt: selectedData.prompt,
@@ -123,7 +122,7 @@ const useCreatList = () => {
     post_img2: '',
     post_img3: '',
     post_img4: '',
-    owner: selectedData._id,
+    owner: selectedData.owner,
   };
 
   const createPost = async () => {

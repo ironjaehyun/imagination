@@ -2,6 +2,8 @@ import { useAtom } from 'jotai';
 import { editModal, followAtom, followerAtom } from './MypageAtom';
 import { useState } from 'react';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEY } from './constants';
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [followModal, setFollowModal] = useAtom(followAtom);
@@ -21,6 +23,8 @@ const useMypage = () => {
   const backgroundimg = sessionStorage.getItem('background') ?? '';
   const profileimg = sessionStorage.getItem('profile') ?? '';
   const userId = sessionStorage.getItem('id') ?? '';
+  const objectId = sessionStorage.getItem('_id') ?? '';
+
   const handleFollower = () => {
     setFollowerModal(true);
   };
@@ -109,7 +113,31 @@ const useMypage = () => {
     setMyPageModal(false);
   };
 
+  // const userQuery = useQuery({
+  //   queryKey: [QUERY_KEY.user],
+  //   queryFn: async () =>{
+  //     const res = await axios.get('http://localhost:3000/mypage/user', {
+  //       params: {_id:objectId},
+  //     })
+  //     return res.data;
+  //   }
+  // })
+
+  const query = useQuery({
+    queryKey: [QUERY_KEY.user],
+    queryFn: async () => {
+      const res = await axios.get('http://localhost:3000/mypage/user', {
+        params: { _id: objectId },
+      });
+      return res.data;
+    },
+  });
+
+  console.log(query.data);
+
   return {
+    query,
+    // userQuery,
     myPageModal,
     handleEditModalClose,
     handleEditModalOpen,

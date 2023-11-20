@@ -1,40 +1,37 @@
 import SavedImageModel from '../../shared/db/savedImage';
 import PostModel from '../../shared/db/postModel';
 import mongoose from 'mongoose';
+import userModel from '../../shared/db/userModel';
 
-const savedImage = async (req, res) => {
-  console.log(req, res);
-  const { img1, prompt, negative_prompt, _id } = req.body;
-
+const savedImage = async (req) => {
+  const { img1, prompt, negative_prompt } = req.body;
+  const ownerId = new mongoose.Types.ObjectId(req.body._id);
   const savedImg = new SavedImageModel({
     img1: img1,
     prompt: prompt,
     negative_prompt: negative_prompt,
-    owner: _id,
+    owner: ownerId,
   });
   await savedImg.save();
-  console.log('mock데이터 넣기 성공');
 };
 
 const getSavedImage = async (req, res) => {
-  console.log(req.query._id);
   const ownerId = new mongoose.Types.ObjectId(req.query._id);
   const result = await SavedImageModel.find({ owner: ownerId });
-  console.log(result);
   res.json(result);
 };
 
 const createPost = async (req, res) => {
   console.log(req.body);
   const {
-    id,
+    owner,
     post_title,
     post_content,
     post_prompt,
     post_negative_prompt,
     post_img1,
   } = req.body;
-  const ownerId = new mongoose.Types.ObjectId(id);
+  const ownerId = new mongoose.Types.ObjectId(owner);
   const post = new PostModel({
     owner: ownerId,
     post_title: post_title,
@@ -43,7 +40,11 @@ const createPost = async (req, res) => {
     post_prompt: post_prompt,
     post_img1: post_img1,
   });
-  res.json({ msg: 'create post' });
   await post.save();
+
+  const user = await userModel.findById(ownerId);
+  user.posts.push(post._id);
+  await user.save();
+  res.json({ msg: 'create post' });
 };
 export { savedImage, getSavedImage, createPost };
