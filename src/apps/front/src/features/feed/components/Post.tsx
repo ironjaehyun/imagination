@@ -1,33 +1,42 @@
+import { useQuery } from '@tanstack/react-query';
 import useLikes from '../hooks/useLikes';
 import axios from './../api/auth';
 import { useState, useEffect } from 'react';
+import { PostType } from '../../shared/types/PostType';
 
-interface PostType {
-  _id: string;
-  post_img1: string;
-}
+const fetchPosts = async () => {
+  const response = await axios.get('/Feed/postsImg');
+  return response.data;
+};
 
-const Post = ({ onImageClick }: { onImageClick: () => void }) => {
+const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
   const [posts, setPosts] = useState<PostType[]>([]);
-  const [isLiked, handleLike] = useLikes(posts);
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+  });
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await axios.get('/Feed/postsImg');
-      const postsImg = response.data;
-      console.log(postsImg);
-      setPosts(postsImg);
-    };
+    if (data && Array.isArray(data)) {
+      setPosts(data);
+    }
+  }, [data]);
 
-    fetchPosts();
-  }, []);
+  const [isLiked, handleLike] = useLikes(posts);
+
+  if (isLoading) return <p>'Loading...'</p>;
+  if (error) return <p>An error has occurred: {error.message}</p>;
 
   return (
     <div className="feed-cards">
       {posts.map((post, index) => (
         <div className="post-card" key={index}>
           <div className="post-card-img">
-            <img src={post.post_img1} alt="" onClick={onImageClick} />
+            <img
+              src={post.post_img1}
+              alt=""
+              onClick={() => onImageClick(post)}
+            />
           </div>
           <div className="post-card-footer">
             <div>
