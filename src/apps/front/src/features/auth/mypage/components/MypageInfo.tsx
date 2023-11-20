@@ -1,4 +1,5 @@
 import { PUBLIC_URL } from '../../../../../../../packages/models/port';
+import Loading from '../../../shared/Loading';
 import useMypage from '../hooks/useMypage';
 import classNames from 'classnames';
 
@@ -15,7 +16,7 @@ const MypageInfo = () => {
     unfollow,
   } = useMypage();
 
-  if (isLoading) return <div>Loding</div>;
+  if (isLoading) return <Loading />;
   return (
     <div>
       <header className="mypage-header">
