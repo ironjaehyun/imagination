@@ -131,7 +131,7 @@ const useMypage = () => {
 
   const [follow, setFollow] = useState('follow');
   const [unfollow, setUnFollow] = useAtom(followBtnAtom);
-  const handleFollowBtn = () => {
+  const handleFollowBtn = async () => {
     if (unfollow === true) {
       setFollow('unfollow');
       setUnFollow(false);
@@ -142,6 +142,12 @@ const useMypage = () => {
     // 데이터 연결할거 넣어두기
 
     console.log(unfollow);
+    const response = await axios.post('http://localhost:3000/mypage/follow', {
+      owner: objectId,
+      follow: id,
+      unfollow: unfollow,
+    });
+    console.log(response);
   };
 
   const query = useQuery({
