@@ -4,6 +4,7 @@ const Boardlist: React.FC = () => {
   const {
     input,
     hashtags,
+    removeHashtag,
     boardMaxText,
     onChange,
     onKeyUp,
@@ -63,7 +64,10 @@ const Boardlist: React.FC = () => {
           <p>{boardMaxText}/1500자</p>
           <div className="hashtag-div">
             {hashtags.map((hashtag, index) => (
-              <button key={index}>{`#${hashtag}`}</button>
+              <button
+                key={index}
+                onClick={() => removeHashtag(index)}
+              >{`#${hashtag}`}</button>
             ))}
             <input
               className="art-detail-textarea-hashtag"
@@ -72,7 +76,6 @@ const Boardlist: React.FC = () => {
               onChange={onChange}
               onKeyUp={onKeyUp}
             />
-            {hashtags}
           </div>
           {/* <p># 해쉬태그 입력</p> */}
           <button onClick={createPost} className="art-button">
