@@ -1,8 +1,15 @@
+import classNames from 'classnames';
 import useMypage from '../hooks/useMypage';
-
 const Follow = () => {
-  const { handleFollowClose, modalBubbling } = useMypage();
-  const array = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  const {
+    handleFollowClose,
+    modalBubbling,
+    follow,
+    handleFollowBtn,
+    unfollow,
+    query: { data },
+  } = useMypage();
+
   return (
     <div className="follow-modal-bg" onClick={modalBubbling()}>
       <div className="follow-modal">
@@ -13,7 +20,7 @@ const Follow = () => {
         </div>
         <hr />
         <ul>
-          {array.map((item, i) => (
+          {data.follow.map((item, i) => (
             <li key={i} className="follow-list">
               <div>
                 <img
@@ -25,7 +32,14 @@ const Follow = () => {
                   <div>나는 최고다!</div>
                 </div>
               </div>
-              <button className="follow-btn">follow</button>
+              <button
+                onClick={handleFollowBtn}
+                className={classNames('mypage-follow-btn', {
+                  'mypage-follow-btn-unfollow': unfollow,
+                })}
+              >
+                {follow}
+              </button>
             </li>
           ))}
         </ul>

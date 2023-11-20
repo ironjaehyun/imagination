@@ -1,15 +1,21 @@
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { editModal, followAtom, followerAtom } from './MypageAtom';
 import { useState } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from './constants';
+import { useParams } from 'react-router-dom';
+
+const followBtnAtom = atom<boolean>(true);
+
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [followModal, setFollowModal] = useAtom(followAtom);
   const [followerModal, setFollowerModal] = useAtom(followerAtom);
   const [clickTab, setClickTab] = useState(0);
   const [statusMsg, setStatusMsg] = useState('');
+  const { id } = useParams();
+  console.log(id);
   const [bgImage, setBgImage] = useState({
     preview: '',
     data: '',
@@ -123,11 +129,36 @@ const useMypage = () => {
   //   }
   // })
 
+  const [follow, setFollow] = useState('follow');
+  const [unfollow, setUnFollow] = useAtom(followBtnAtom);
+  const handleFollowBtn = () => {
+    if (unfollow === true) {
+      setFollow('unfollow');
+      setUnFollow(false);
+    } else {
+      setFollow('follow');
+      setUnFollow(true);
+    }
+    // 데이터 연결할거 넣어두기
+
+    console.log(unfollow);
+  };
+
   const query = useQuery({
     queryKey: [QUERY_KEY.user],
     queryFn: async () => {
       const res = await axios.get('http://localhost:3000/mypage/user', {
-        params: { _id: objectId },
+        params: { _id: objectId, id: id },
+      });
+      return res.data;
+    },
+  });
+
+  const followQuery = useQuery({
+    queryKey: [QUERY_KEY.follow],
+    queryFn: async () => {
+      const res = await axios.get('http://localhost:3000/mypage/follow', {
+        params: { owner: objectId, follow: id },
       });
       return res.data;
     },
@@ -136,6 +167,10 @@ const useMypage = () => {
   console.log(query.data);
 
   return {
+    followQuery,
+    follow,
+    unfollow,
+    handleFollowBtn,
     query,
     // userQuery,
     myPageModal,
@@ -161,6 +196,8 @@ const useMypage = () => {
     handleStatusMsg,
     statusStorage,
     profileImage,
+    id,
+    objectId,
   };
 };
 export default useMypage;
