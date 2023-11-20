@@ -120,7 +120,7 @@ const useCreatList = () => {
     post_content: postContent,
     post_prompt: selectedData.prompt,
     post_negative_prompt: selectedData.negative_prompt,
-    post_hashtag: [],
+    post_hashtag: hashtags,
     post_img1: selectedData.img1,
     post_img2: '',
     post_img3: '',

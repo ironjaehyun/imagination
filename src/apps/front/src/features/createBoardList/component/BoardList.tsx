@@ -77,7 +77,6 @@ const Boardlist: React.FC = () => {
               onKeyUp={onKeyUp}
             />
           </div>
-          {/* <p># 해쉬태그 입력</p> */}
           <button onClick={createPost} className="art-button">
             게시하기
           </button>
