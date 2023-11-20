@@ -52,11 +52,11 @@ const MypageInfo = () => {
               <span>Posts</span>
             </div>
             <div onClick={handleFollower} className="mypage-info-follow">
-              <span>0</span>
+              <span>{data.follower.length}</span>
               <span>Followers</span>
             </div>
             <div onClick={handleFollow} className="mypage-info-follower">
-              <span>0</span>
+              <span>{data.follow.length}</span>
               <span>Following</span>
             </div>
           </div>

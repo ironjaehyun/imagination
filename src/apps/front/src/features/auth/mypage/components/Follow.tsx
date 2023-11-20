@@ -20,15 +20,15 @@ const Follow = () => {
         </div>
         <hr />
         <ul>
-          {data.follow.map((item, i) => (
-            <li key={i} className="follow-list">
+          {data?.follow?.map((item) => (
+            <li key={item._id} className="follow-list">
               <div>
                 <img
                   src="https://e0.pxfuel.com/wallpapers/868/601/desktop-wallpaper-cool-top-95-best-cool-background-awesome-mobile.jpg"
                   alt=""
                 />
                 <div className="follow-list-left">
-                  <h5>{item}</h5>
+                  <h5>{item._id}</h5>
                   <div>나는 최고다!</div>
                 </div>
               </div>
