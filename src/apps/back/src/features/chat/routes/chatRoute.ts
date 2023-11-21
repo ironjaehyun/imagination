@@ -1,9 +1,37 @@
+// import express from 'express';
+// const express = require('express');
 import express from 'express';
-import { getAllUserIds } from '../controller/chatController';
+
+import {
+  createChat,
+  findUserChats,
+  findChat,
+} from '../controller/chatController';
+
+// import {
+//   getChatRooms,
+//   createChatRoom,
+//   deleteChatRoom,
+//   inviteToChat,
+// } from '../controller/chatController';
 
 const router = express.Router();
 
-// 전체 사용자 아이디 목록 가져오기
-router.get('/', getAllUserIds);
+// 채팅 목록 가져오기
+// router.get('/', getChatRooms);
+
+router.post('/', createChat);
+router.get('/:userId', findUserChats);
+router.get('/find/:firstId/:secondId', findChat);
+
+module.exports = router;
+
+// router.post('/invite', inviteToChat);
+
+// // 채팅방 생성
+// router.post('/create', createChatRoom);
+
+// // 채팅방 삭제
+// router.delete('/:roomId', deleteChatRoom);
 
 export default router;

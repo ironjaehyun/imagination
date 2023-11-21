@@ -74,6 +74,9 @@ const ChatRoom = () => {
     chatDiv.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const objectId = sessionStorage.getItem('_id');
+  console.log(objectId);
+
   return (
     <div className="chatroom">
       <div className="chatroom-info">

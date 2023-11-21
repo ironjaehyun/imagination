@@ -2,12 +2,12 @@ import ChatList from './components/ChatList';
 import Gnb from '../shared/Gnb';
 import './components/_chatList.scss';
 
-const Chat = () => {
+const Chat: React.FC = () => {
   return (
     <div>
       <Gnb></Gnb>
       <div className="chatpage">
-        <ChatList></ChatList>
+        <ChatList />
       </div>
     </div>
   );

@@ -1,15 +1,13 @@
-import React, { useState, MouseEvent, useEffect } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
+import { atom, useAtom } from 'jotai'; // jotai 라이브러리에서 필요한 부분 추가
 import axios from 'axios';
 
-interface User {
-  id: string;
-  name: string;
-}
+// Jotai atom을 사용하여 전체 사용자 목록을 관리합니다.
+const userListAtom = atom([]); // Jotai atom 추가
 
 const ChatInvite: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [userList, setUserList] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState<string | null>(null);
+  const [userList, setUserList] = useAtom(userListAtom); // Jotai atom 사용
 
   const handleClose = () => {
     setIsOpen(false);
@@ -24,31 +22,48 @@ const ChatInvite: React.FC = () => {
     e.stopPropagation();
   };
 
+  const handleChatButtonClick = async () => {
+    // 선택된 사용자를 가져오는 로직
+    const selectedUserElement = document.querySelector(
+      'input[type="radio"]:checked + label',
+    );
+
+    if (selectedUserElement) {
+      const selectedUserName = selectedUserElement.textContent;
+      console.log('선택한 사용자:', selectedUserName);
+
+      try {
+        // 서버로 선택된 사용자 정보를 전송
+        await axios.post('http://localhost:3000/chat/invite', {
+          selectedUserName,
+        });
+        console.log('초대가 성공적으로 전송되었습니다!');
+
+        // 나중에 채팅방 생성 및 초대 로직을 추가하세요.
+
+        // 채팅 목록 업데이트
+        const updatedUserList = await axios.get('http://localhost:3000/chat');
+        setUserList(updatedUserList.data);
+      } catch (error) {
+        console.error('초대 전송 중 오류:', error);
+      }
+    } else {
+      console.warn('사용자가 선택되지 않았습니다!');
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUserList = async () => {
       try {
         const response = await axios.get('http://localhost:3000/chat');
         setUserList(response.data);
-
-        // 유저가 원하는 버튼이 클릭되게끔 선택된 유저의 ID를 설정
-        const initialSelectedUserId = '원하는 유저의 ID'; // 여기에 원하는 유저의 ID를 입력
-        setSelectedUser(initialSelectedUserId);
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error fetching user list:', error);
       }
     };
 
-    fetchData();
-  }, []);
-
-  const handleCheckboxChange = (userId: string) => {
-    setSelectedUser(userId);
-  };
-
-  const handleChatButtonClick = () => {
-    // onChatInvite(selectedUser); // prop 사용하지 않음
-    handleClose();
-  };
+    fetchUserList();
+  }, [setUserList]);
 
   return isOpen ? (
     <div className={`alertpop ${isOpen ? 'open' : ''}`}>
@@ -66,15 +81,10 @@ const ChatInvite: React.FC = () => {
 
           <div className="chat-invite-list">
             {userList.map((user) => (
-              <div className="chat-invite-elements" key={user.id}>
-                <span>{JSON.stringify(user, null, 2).replace(/"/g, '')}</span>
-                <input
-                  type="radio"
-                  id={`radio-${user.id}`}
-                  name={`userRadio-${user.id}`}
-                  checked={selectedUser === user.id}
-                  onChange={() => handleCheckboxChange(user.id)}
-                />
+              <div key={user} className="chat-invite-elements">
+                <span></span>
+                <input type="radio" />
+                <label>{user}</label>
               </div>
             ))}
           </div>
