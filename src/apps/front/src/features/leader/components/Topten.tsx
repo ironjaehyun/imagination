@@ -58,9 +58,18 @@ export default function Topten() {
     <div className="top-ten">
       <Swiper
         grabCursor={true}
-        centeredSlides={true}
         loop={false}
         slidesPerView="auto"
+        // spaceBetween={0}
+        // slideToClickedSlide={false}////////////
+        // loopAdditionalSlides={1}
+        // // centeredSlides={true}
+        // autoplay={{
+        //   delay: 100,
+        //   disableOnInteraction: true
+        // }}
+        slidesOffsetBefore={100}
+        slidesOffsetAfter={-100}
         className="swiper-container"
       >
         {Leaderboard.slice(3, 10).map((value, index) => (
