@@ -37,8 +37,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
     MainImg: post.post_img1,
     title: post.post_title,
     content: post.post_content,
-    // 해시태그와 좋아요 수는 post에 포함되어 있지 않으므로 임의의 값을 사용하였습니다.
-    hashtags: '#물감,#사랑,#바다',
+    hashtags: post.post_hashtag,
     likeCount: 22,
     prompt: post.post_prompt,
     Nprompt: post.post_negative_prompt,
