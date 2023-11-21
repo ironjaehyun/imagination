@@ -1,10 +1,6 @@
+// Topten.tsx
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { arrowBackOutline, arrowForwardOutline } from 'ionicons/icons';
-import { IonIcon } from '@ionic/react';
 import { useMemo } from 'react';
 import { useAtom } from 'jotai';
 import { periodAtom } from './Atoms';
@@ -41,30 +37,36 @@ const defaultLeaderboard: LeaderboardEntry[] = [
 
 export default function Topten() {
   const [period] = useAtom(periodAtom);
+  // const [sliderValue, setSliderValue] = useState(0);
+  // const swiperRef = useRef(null);
 
   const Leaderboard = useMemo(() => {
     return between(LeaderboardData, period) ?? defaultLeaderboard;
   }, [period]);
+
+  // useEffect(() => {
+  //   if (swiperRef.current) {
+  //     swiperRef.current.swiper.slideTo(sliderValue);
+  //   }
+  // }, [sliderValue]);
+
+  // const handleSliderChange = (event, newValue) => {
+  //   setSliderValue(newValue);
+  // };
 
   return (
     <div className="top-ten">
       <Swiper
         grabCursor={true}
         centeredSlides={true}
-        loop={true}
+        loop={false}
         slidesPerView="auto"
-        pagination={{ clickable: true }}
-        navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        }}
-        modules={[Pagination, Navigation, Mousewheel]}
         className="swiper-container"
       >
         {Leaderboard.slice(3, 10).map((value, index) => (
           <SwiperSlide key={index}>
             <div className="top-ten-box">
-              <div className="top-ten-span">{index + 4}</div>
+              <span className="top-ten-span">{index + 4}</span>
               <img
                 className="top-ten-img-size"
                 src={value.img}
@@ -73,16 +75,6 @@ export default function Topten() {
             </div>
           </SwiperSlide>
         ))}
-
-        <div className="slider-controler">
-          <div className="swiper-button-prev slider-arrow">
-            <IonIcon icon={arrowBackOutline} />
-          </div>
-          <div className="swiper-button-next slider-arrow">
-            <IonIcon icon={arrowForwardOutline} />
-          </div>
-          <div className="swiper-pagination"></div>
-        </div>
       </Swiper>
     </div>
   );

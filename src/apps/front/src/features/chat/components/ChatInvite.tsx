@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import { atom, useAtom } from 'jotai'; // jotai 라이브러리에서 필요한 부분 추가
 import axios from 'axios';
 
@@ -8,6 +8,17 @@ const userListAtom = atom([]); // Jotai atom 추가
 const ChatInvite: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [userList, setUserList] = useAtom(userListAtom); // Jotai atom 사용
+  const objectId = sessionStorage.getItem('_id');
+  console.log(objectId);
+  const [user] = useState('655ab5699b1f5147511a5afb');
+
+  const createChatRoom = () => {
+    axios.post('http://localhost:3000/chat/room', {
+      user: user,
+      me: objectId,
+      string: 'hihi',
+    });
+  };
 
   const handleClose = () => {
     setIsOpen(false);
@@ -52,18 +63,18 @@ const ChatInvite: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchUserList = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/chat');
-        setUserList(response.data);
-      } catch (error) {
-        console.error('Error fetching user list:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUserList = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:3000/chat');
+  //       setUserList(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching user list:', error);
+  //     }
+  //   };
 
-    fetchUserList();
-  }, [setUserList]);
+  //   fetchUserList();
+  // }, [setUserList]);
 
   return isOpen ? (
     <div className={`alertpop ${isOpen ? 'open' : ''}`}>
@@ -88,7 +99,7 @@ const ChatInvite: React.FC = () => {
               </div>
             ))}
           </div>
-
+          <button onClick={createChatRoom}>chatroom생성</button>
           <div className="chat-invite-btn">
             <button onClick={handleChatButtonClick}>Chat</button>
           </div>

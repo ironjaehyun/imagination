@@ -1,56 +1,46 @@
+import { useQuery } from '@tanstack/react-query';
+import useLikes from '../hooks/useLikes';
 import axios from './../api/auth';
 import { useState, useEffect } from 'react';
-// export const posts = [
-//   {
-//     id: '1',
-//     image: 'https://i.namu.wiki/i/xvoxl-3a4LfDwVO1j77XN702Cbj8xZv2wbKt3f4tZmPT_jb7ig4ffGCa0Xcg2B2n7gxkiYrp45LvAIX4V4rQ3qVd7AOW6w7XKsTPWWhkVb02xXJNPKtv6xZ56uyA__QmhT4EPvpQNmQwfjh9d2-2Vw.webp',
-//     profileImage: './img/Rectangle 17.png',
-//     username: 'leechi',
-//     likeCount: 23,
-//   },
-//   {
-//     id: '2',
-//     image: 'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/undefined/image0.webp',
-//     profileImage: './img/Rectangle 17.png',
-//     username: 'leechi',
-//     likeCount: 23,
-//   },
-//   {
-//     id: '4',
-//     image: './img/card-img.png',
-//     profileImage: './img/Rectangle 17.png',
-//     username: 'leechi',
-//     likeCount: 23,
-//   },
-//   {
-//     id: '5',
-//     image: './img/card-img.png',
-//     profileImage: './img/Rectangle 17.png',
-//     username: 'leechi',
-//     likeCount: 23,
-//   },
-// ];
+import { PostType } from '../../shared/types/PostType';
 
-const Post = ({ onImageClick }: { onImageClick: () => void }) => {
-  const [posts, setPosts] = useState([]);
+// 서버로부터 게시물 데이터를 가져오는 함수입니다.
+const fetchPosts = async () => {
+  const response = await axios.get('/Feed/postsImg');
+  return response.data;
+};
 
+const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
+  // 게시물 데이터를 관리하기 위한 state입니다.
+  const [posts, setPosts] = useState<PostType[]>([]);
+  // react-query를 사용하여 서버로부터 게시물 데이터를 가져옵니다.
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+  });
+
+  // 서버로부터 받아온 데이터를 posts state에 저장합니다.
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await axios.get('/Feed/postsImg');
-      const postsImg = response.data;
-      console.log(postsImg);
-      setPosts(postsImg);
-    };
+    if (data && Array.isArray(data)) {
+      setPosts(data);
+    }
+  }, [data]);
 
-    fetchPosts();
-  }, []);
+  const [isLiked, handleLike] = useLikes(posts);
+
+  if (isLoading) return <p>'Loading...'</p>;
+  if (error) return <p>An error has occurred: {error.message}</p>;
 
   return (
     <div className="feed-cards">
       {posts.map((post, index) => (
         <div className="post-card" key={index}>
           <div className="post-card-img">
-            <img /*src={post.post_img1}*/ alt="" onClick={onImageClick} />
+            <img
+              src={post.post_img1}
+              alt=""
+              onClick={() => onImageClick(post)}
+            />
           </div>
           <div className="post-card-footer">
             <div>
@@ -62,11 +52,11 @@ const Post = ({ onImageClick }: { onImageClick: () => void }) => {
             </div>
             <div>
               <img
-                /*src={
+                src={
                   isLiked[post._id] ? './img/filledlike.png' : './img/like.png'
-                }*/
+                }
                 alt=""
-                /*onClick={() => handleLike(post._id)}*/
+                onClick={() => handleLike(post._id)}
               />
               <span>{/*post.likeCount*/}</span>
             </div>

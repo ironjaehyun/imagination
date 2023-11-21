@@ -1,12 +1,19 @@
 import { FunctionComponent, MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 import useCopy from './hooks/useCopy';
+import { PostType } from './types/PostType';
+
 export type AlertpopProps = {
   isOpen: boolean;
   onClose: () => void;
+  post: PostType | null;
 };
 
-const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
+const Alertpop: FunctionComponent<AlertpopProps> = ({
+  isOpen,
+  onClose,
+  post,
+}) => {
   // copy
   const { isCopied: promptCopied, handleCopy: handleCopyPrompt } = useCopy();
   const {
@@ -23,25 +30,22 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({ isOpen, onClose }) => {
     event.stopPropagation();
   };
 
-  const data = {
+  const data = post && {
     userProfileImg:
       'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
     userName: 'leechi',
-    MainImg: './img/card-img.png',
-    title: '물감으로 만든 화려한 바다',
-    content:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.',
-    hashtags: '#물감,#사랑,#바다',
+    MainImg: post.post_img1,
+    title: post.post_title,
+    content: post.post_content,
+    hashtags: post.post_hashtag,
     likeCount: 22,
-    prompt:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.',
-    Nprompt:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti facere, illo accusantium quibusdam unde vitae qui libero. Fugiat maxime ea unde neque illo at. Eveniet quod dolor recusandae sed sit.',
+    prompt: post.post_prompt,
+    Nprompt: post.post_negative_prompt,
   };
 
   return (
     <div className={`alertpop ${isOpen ? 'open' : ''}`} onClick={handleBgClick}>
-      {isOpen && (
+      {isOpen && data && (
         <div className="modal-bg">
           <div className="modal-white" onClick={handleContentClick}>
             <div className="modal-header">
