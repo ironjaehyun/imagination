@@ -11,62 +11,47 @@ $color-white: #fff;
 // Container styles
 .top-ten {
   display: flex;
-  padding-right: 600px;
+  width: 75%;
 
   .swiper-container {
     display: flex;
+    // width: 70%;
+    margin-left: 10%;
+    // padding-left: 30%;
   }
 }
 
 // Swiper slide
 .swiper-slide {
+  display: flex;
+  right: 9%;
   padding-top: 5%;
-  width: 17%;
+  width: 20%;
   height: 20rem;
 
   .top-ten-span {
     background-color: #0288d1;
     $topten-blue-color: #0288d1;
-    transform: translate(0%, 0%); // Adjust for exact centering
-    padding: 10px;
+    // transform: translate(0%, 0%);
+    padding: 10px 15px;
     color: $color-white;
     position: relative;
-    top: -150px;
-    right: -30px;
+    bottom: 175px;
+    left: 40px;
     border-radius: 10px;
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 
   .top-ten-img-size {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     flex-shrink: 0;
     background: #f5f5f5;
     border-radius: 10%;
-  }
-}
-
-// Slider controller
-.slider-controler {
-  bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .swiper-button-next {
-    left: 55% !important;
-
-    @media (max-width: 0%) {
-    }
-
-    @media (max-width: 0%) {
-    }
-  }
-
-  .swiper-button-prev {
-    @media (max-width: 0%) {
-    }
-
-    @media (max-width: 0%) {
-    }
   }
 }

@@ -10,10 +10,12 @@ $flex-display-style: inline-flex;
 $font-weight-bold: 700;
 
 .top-three-box {
-  padding-left: 230px;
+  padding-left: 5%;
   align-items: center;
   display: flex;
   justify-content: center;
+  text-align: center;
+  position: relative;
 
   .top-one,
   .top-two,
@@ -61,7 +63,7 @@ $font-weight-bold: 700;
 
   .top-one {
     .top-one-span {
-      transform: translate(225%, -10%);
+      transform: translate(-30%, 0%);
       display: inline-flex;
       padding: 10px 20px;
       justify-content: center;
@@ -75,13 +77,13 @@ $font-weight-bold: 700;
     }
 
     .top-one-liked-score {
-      transform: translate(35%, 100%);
+      transform: translate(0%, 80%);
     }
   }
 
   .top-two {
     .top-two-span {
-      transform: translate(310%, -10%);
+      transform: translate(-20%, 0%);
       display: inline-flex;
       padding: 5px 10px;
       justify-content: center;
@@ -95,13 +97,13 @@ $font-weight-bold: 700;
     }
 
     .top-two-liked-score {
-      transform: translate(35%, 180%);
+      transform: translate(5%, 180%);
     }
   }
 
   .top-three {
     .top-three-span {
-      transform: translate(320%, -10%);
+      transform: translate(-10%, 0%);
       display: inline-flex;
       padding: 3px 7px;
       justify-content: center;
@@ -115,7 +117,7 @@ $font-weight-bold: 700;
     }
 
     .top-three-liked-score {
-      transform: translate(35%, 220%);
+      transform: translate(5%, 200%);
     }
   }
 }
