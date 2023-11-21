@@ -59,7 +59,7 @@ const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
                 alt=""
                 onClick={() => handleLike(post._id)}
               />
-              <span>{/*post.likeCount*/}</span>
+              <span>{/*post.likeCount*/}0</span>
             </div>
           </div>
         </div>
