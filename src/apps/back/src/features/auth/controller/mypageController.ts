@@ -47,9 +47,13 @@ const getUserData = async (req, res) => {
 
   const result = await userModel
     .findById(ownerId)
-    .populate('posts')
-    .populate('follow')
-    .populate('follower');
+    .populate({
+      path: 'posts',
+      populate: { path: 'owner', select: 'user_profile_img id' },
+    })
+    .populate({ path: 'follow', model: 'User', select: 'user_profile_img id' })
+    .populate('follower')
+    .populate('saved_images');
   console.log('resultuser', result);
   res.json(result);
 };
@@ -68,7 +72,6 @@ const AddFollow = async (req) => {
 
     user.follow.push(addFollow._id);
     await user.save();
-    console.log('user.follow들어갓냐', user.follow);
     const addFollower = new followerModel({
       owner: followId,
       follower: ownerId,
@@ -79,7 +82,6 @@ const AddFollow = async (req) => {
 
     followerUser.follower.push(addFollower._id);
     await followerUser.save();
-    console.log('follower 들어갓냐', followerUser.follower);
   } else {
     const ownerId = new mongoose.Types.ObjectId(owner);
     const followId = new mongoose.Types.ObjectId(follow);
