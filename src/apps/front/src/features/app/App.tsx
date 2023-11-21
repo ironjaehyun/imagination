@@ -32,6 +32,7 @@ function App() {
             <Route path="/create" element={<Create />} />
             <Route path="/leader" element={<Leader />} />
             <Route path="/mypage/:id" element={<Mypage />} />
+            <Route path="/userpage/:id" element={<Mypage />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

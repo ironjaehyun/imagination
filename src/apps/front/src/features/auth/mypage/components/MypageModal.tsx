@@ -7,20 +7,32 @@ const MypageModal = () => {
     modalBubbling,
     handlePostModalClose,
     query: { data },
+    postId,
   } = useMypage();
   const post = data.posts;
+
+  const targetPost = post.find(
+    (postItem: { _id: string }) => postItem._id === postId,
+  );
+  console.log(targetPost.owner.id);
+
   return (
     <div className="mypage-modal-bg" onClick={modalBubbling()}>
       <div className="mypage-modal">
         <div className="mypage-modal-user">
-          <div>
-            <img
-              className="user-profile"
-              src={data.user_profile_img}
-              alt="profile"
-            />
-            <h5>{data.id}</h5>
-          </div>
+          <Link
+            to={`/userpage/${targetPost.owner._id}`}
+            onClick={handlePostModalClose}
+          >
+            <div>
+              <img
+                className="user-profile"
+                src={targetPost.owner.user_profile_img}
+                alt="profile"
+              />
+              <h5>{targetPost.owner.id}</h5>
+            </div>
+          </Link>
           <img
             src={PUBLIC_URL + '/img/close.png'}
             onClick={handlePostModalClose}
@@ -29,11 +41,11 @@ const MypageModal = () => {
         </div>
         <hr className="modal-line" />
         <div className="mypage-modal-info">
-          <img src={post[0].post_img1} alt="" className="main-img" />
+          <img src={targetPost.post_img1} alt="" className="main-img" />
           <div className="info">
-            <h1 className="title">{post[0].post_title}</h1>
-            <p className="desc">{post[0].post_content}</p>
-            <span className="hashtag">{post[0].post_hashtag}</span>
+            <h1 className="title">{targetPost.post_title}</h1>
+            <p className="desc">{targetPost.post_content}</p>
+            <span className="hashtag">{targetPost.post_hashtag}</span>
             <div className="btns">
               <button className="like">
                 <img src={PUBLIC_URL + '/img/like.png'} alt="" />
@@ -59,7 +71,7 @@ const MypageModal = () => {
               </span>
             </div>
             <div className="bottom">
-              <p>{post[0].post_prompt}</p>
+              <p>{targetPost.post_prompt}</p>
             </div>
           </div>
           <div className="negative">
@@ -71,7 +83,7 @@ const MypageModal = () => {
               </span>
             </div>
             <div className="bottom">
-              <p>{post[0].post_negative_prompt}</p>
+              <p>{targetPost.post_negative_prompt}</p>
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
 import { atom, useAtom } from 'jotai';
 import { editModal, followAtom, followerAtom, imageAtom } from './MypageAtom';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from './constants';
 import { useParams } from 'react-router-dom';
 
 const followBtnAtom = atom<boolean>(true);
+const postIdAtom = atom('');
 
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
@@ -16,7 +17,6 @@ const useMypage = () => {
   const [clickTab, setClickTab] = useState(0);
   const [statusMsg, setStatusMsg] = useState('');
   const { id } = useParams();
-  console.log(id);
   const [bgImage, setBgImage] = useState({
     preview: '',
     data: '',
@@ -26,7 +26,7 @@ const useMypage = () => {
     data: '',
   });
   const statusStorage = sessionStorage.getItem('status');
-
+  const [postId, setPostId] = useAtom(postIdAtom);
   const backgroundimg = sessionStorage.getItem('background') ?? '';
   const profileimg = sessionStorage.getItem('profile') ?? '';
   const userId = sessionStorage.getItem('id') ?? '';
@@ -55,13 +55,16 @@ const useMypage = () => {
     setMyPageModal(false);
   };
 
-  const handlePostModalOpen = () => {
+  const handlePostModalOpen = (postId: string) => {
+    setPostId(postId);
+
     setPostModal(true);
   };
 
   const handlePostModalClose = () => {
     setPostModal(false);
   };
+
   const modalBubbling =
     () => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const target = e.target as HTMLElement;
@@ -80,7 +83,7 @@ const useMypage = () => {
     return number === clickTab;
   };
 
-  const handleProfileFileChange = (e) => {
+  const handleProfileFileChange = (e: { target: { files: never[] } }) => {
     const img = {
       preview: URL.createObjectURL(e.target.files[0]),
       data: e.target.files[0],
@@ -88,7 +91,7 @@ const useMypage = () => {
     setProfileImage(img);
   };
 
-  const handleBgFileChange = (e) => {
+  const handleBgFileChange = (e: { target: { files: never[] } }) => {
     const img = {
       preview: URL.createObjectURL(e.target.files[0]),
       data: e.target.files[0],
@@ -96,11 +99,13 @@ const useMypage = () => {
     setBgImage(img);
   };
 
-  const handleStatusMsg = (e) => {
+  const handleStatusMsg = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setStatusMsg(e.target.value);
   };
 
-  const imgUpload = async (e) => {
+  const imgUpload = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -119,7 +124,6 @@ const useMypage = () => {
           },
         })
         .then((res) => {
-          console.log(res);
           sessionStorage.setItem('profile', res.data.profile);
           sessionStorage.setItem('background', res.data.background);
           sessionStorage.setItem('status', res.data.status);
@@ -130,16 +134,6 @@ const useMypage = () => {
 
     setMyPageModal(false);
   };
-
-  // const userQuery = useQuery({
-  //   queryKey: [QUERY_KEY.user],
-  //   queryFn: async () =>{
-  //     const res = await axios.get('http://localhost:3000/mypage/user', {
-  //       params: {_id:objectId},
-  //     })
-  //     return res.data;
-  //   }
-  // })
 
   const [follow, setFollow] = useState('follow');
   const [unfollow, setUnFollow] = useAtom(followBtnAtom);
@@ -153,13 +147,11 @@ const useMypage = () => {
     }
     // 데이터 연결할거 넣어두기
     // git config 확인
-    console.log(unfollow);
-    const response = await axios.post('http://localhost:3000/mypage/follow', {
+    await axios.post('http://localhost:3000/mypage/follow', {
       owner: objectId,
       follow: id,
       unfollow: unfollow,
     });
-    console.log(response);
   };
 
   const query = useQuery({
@@ -172,20 +164,8 @@ const useMypage = () => {
     },
   });
 
-  const followQuery = useQuery({
-    queryKey: [QUERY_KEY.follow],
-    queryFn: async () => {
-      const res = await axios.get('http://localhost:3000/mypage/follow', {
-        params: { owner: objectId, follow: id },
-      });
-      return res.data;
-    },
-  });
-
-  console.log(query.data);
-
   return {
-    followQuery,
+    postId,
     follow,
     unfollow,
     handleFollowBtn,
