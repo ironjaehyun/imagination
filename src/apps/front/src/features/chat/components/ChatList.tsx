@@ -45,10 +45,10 @@ const ChatList: React.FC = () => {
         <div className="chat-list-contents" onClick={handleChatRoomToggle}>
           {userList.map((user) => (
             <div key={user} className="chat-list-elements">
-              <img src="../chatimg/Rectangle 17.png" alt="User Avatar" />
+              <img src={user} alt="User Avatar" />
               <div>
                 <h4>{user}</h4>
-                <span>어떻게 그런 프롬프트를 생각하셨나요?</span>
+                <span>{user}</span>
               </div>
             </div>
           ))}
