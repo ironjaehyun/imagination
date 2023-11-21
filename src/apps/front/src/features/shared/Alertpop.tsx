@@ -31,9 +31,8 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
   };
 
   const data = post && {
-    userProfileImg:
-      'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
-    userName: 'leechi',
+    userProfileImg: post.owner.user_profile_img,
+    userName: post.owner.id,
     MainImg: post.post_img1,
     title: post.post_title,
     content: post.post_content,

@@ -1,8 +1,11 @@
 import PostModel from '../../shared/db/postModel';
 
-const postsImg = async (req, res) => {
+const userpostslike = async (req, res) => {
   try {
-    const posts = await PostModel.find({});
+    const posts = await PostModel.find({}).populate({
+      path: 'owner',
+      select: 'user_profile_img id',
+    });
     console.log(posts);
     return res.json(posts);
   } catch (error) {
@@ -11,4 +14,4 @@ const postsImg = async (req, res) => {
   }
 };
 
-export { postsImg };
+export { userpostslike };

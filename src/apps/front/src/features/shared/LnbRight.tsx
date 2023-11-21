@@ -15,11 +15,11 @@ const LnbRight = () => {
 
   return (
     <div className="Lnb-right">
-      <button className="Lnb-create-btn">
-        <Link to={'/create'}>
+      <Link to={'/create'}>
+        <button className="Lnb-create-btn">
           <span className="Lnb-create-btn-plus">+</span>Create
-        </Link>
-      </button>
+        </button>
+      </Link>
       <div className="Lnb-allim">
         <img
           src="./img/alarm.png"

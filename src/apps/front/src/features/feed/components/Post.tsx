@@ -6,7 +6,7 @@ import { PostType } from '../../shared/types/PostType';
 
 // 서버로부터 게시물 데이터를 가져오는 함수입니다.
 const fetchPosts = async () => {
-  const response = await axios.get('/Feed/postsImg');
+  const response = await axios.get('/Feed/userpostslike');
   return response.data;
 };
 
@@ -15,7 +15,7 @@ const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
   const [posts, setPosts] = useState<PostType[]>([]);
   // react-query를 사용하여 서버로부터 게시물 데이터를 가져옵니다.
   const { data, error, isLoading } = useQuery({
-    queryKey: ['posts'],
+    queryKey: ['postsAll'],
     queryFn: fetchPosts,
   });
 
@@ -45,10 +45,11 @@ const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
           <div className="post-card-footer">
             <div>
               <img
-                /*src={post.profileImage}*/ alt=""
+                src={post.owner?.user_profile_img}
+                alt=""
                 className="post-card-proflieImg"
               />
-              <span>{/*post.username*/}</span>
+              <span>{post.owner?.id}</span>
             </div>
             <div>
               <img
