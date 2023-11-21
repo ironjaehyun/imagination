@@ -68,6 +68,8 @@
 
 .chat-invite-list {
   height: 75%;
+  overflow-y: auto;
+  padding: 0 10px;
 }
 
 .chat-invite-elements {
