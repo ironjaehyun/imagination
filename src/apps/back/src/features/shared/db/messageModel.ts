@@ -1,24 +1,17 @@
-// messageRoute.ts
-
-import mongoose, { Document, Schema } from 'mongoose';
-
-interface IMessage extends Document {
-  chatId: string;
-  senderId: string;
-  text: string;
-}
+import mongoose, { Schema } from 'mongoose';
 
 const messageSchema: Schema = new Schema(
   {
     chatId: String,
     senderId: String,
     text: String,
+    room: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Room' },
   },
   {
     timestamps: true,
   },
 );
 
-const messageModel = mongoose.model<IMessage>('Message', messageSchema);
+const messageModel = mongoose.model('Message', messageSchema);
 
 export default messageModel;

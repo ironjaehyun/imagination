@@ -24,6 +24,7 @@ const userSchema = new mongoose.Schema({
   ],
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
   saved_images: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SavedImage' }],
+  room: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Room' }],
 });
 
 // toJSON 메소드를 사용하여 반환되는 객체에서 password 필드 제외
