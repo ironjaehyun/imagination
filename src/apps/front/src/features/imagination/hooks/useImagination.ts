@@ -33,7 +33,7 @@ export const useImagination = () => {
     [384, 640],
     [640, 384],
   ];
-
+  const userId = sessionStorage.getItem('_id');
   const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
@@ -68,6 +68,9 @@ export const useImagination = () => {
       console.log('Sending request to server');
       await axios.post('http://localhost:3000/imagination', {
         images: newImageUrls,
+        userId: userId,
+        negative: negative,
+        prompt: prompt,
       });
     } catch (error) {
       console.error(error);
