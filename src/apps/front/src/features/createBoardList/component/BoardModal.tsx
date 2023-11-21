@@ -23,29 +23,35 @@ const BoardModal = () => {
         <div className="modal-content">
           {' '}
           {/* Add this wrapper */}
-          {savedImg.map((item) => (
-            <div className="modal-list" key={item.id}>
-              <input
-                className="modal-select-button"
-                type="radio"
-                name="modalDataGroup"
-                onChange={(e) => handleRadioChange(e, item)}
-              />
-              <div className="modal-list-img ">
-                <img src={item.img1} />
-              </div>
-              <div className="modal-prompt-list">
-                <div className="modal-prompt-positive">
-                  <h4 onClick={() => console.log(item)}>Prompt</h4>
-                  <p className="ellipsis">{item.prompt}</p>
+          {savedImg
+            .slice()
+            .reverse()
+            .map((item) => (
+              <div className="modal-list" key={item.id}>
+                <input
+                  className="modal-select-button"
+                  type="radio"
+                  name="modalDataGroup"
+                  onChange={(e) => handleRadioChange(e, item)}
+                />
+                <div className="modal-list-img ">
+                  <img src={item.img1} />
+                  <img src={item.img2} />
+                  <img src={item.img3} />
+                  <img src={item.img4} />
                 </div>
-                <div className="modal-prompt-negative">
-                  <h4>Negative Prompt</h4>
-                  <p className="ellipsis">{item.negative_prompt}</p>
+                <div className="modal-prompt-list">
+                  <div className="modal-prompt-positive">
+                    <h4 onClick={() => console.log(item)}>Prompt</h4>
+                    <p className="ellipsis">{item.prompt}</p>
+                  </div>
+                  <div className="modal-prompt-negative">
+                    <h4>Negative Prompt</h4>
+                    <p className="ellipsis">{item.negative_prompt}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
         <div className="modal-select-sure-div">
           <button

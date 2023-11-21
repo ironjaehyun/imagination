@@ -8,7 +8,6 @@ const Boardlist: React.FC = () => {
     boardMaxText,
     onChange,
     onKeyUp,
-    createMockData,
     openModal,
     selectedData,
     createPost,
@@ -18,7 +17,6 @@ const Boardlist: React.FC = () => {
 
   return (
     <div className="board-main">
-      <button onClick={createMockData}>mock</button>
       <section className="bring-art">
         <div className="bring-art-content">
           <h3 className="bring-art-title">작품 전시를 해주세요</h3>
@@ -26,6 +24,9 @@ const Boardlist: React.FC = () => {
           <div className="bring-art-list">
             <div className="bring-art-image" onClick={openModal}>
               <img src={selectedData.img1} />
+              <img src={selectedData.img2} />
+              <img src={selectedData.img3} />
+              <img src={selectedData.img4} />
               <h1 className="image-plus">+</h1>
             </div>
             <div className="bring-art-prompt">

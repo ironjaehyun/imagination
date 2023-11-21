@@ -2,18 +2,29 @@ import { ChangeEvent, KeyboardEvent } from 'react';
 
 import axios from 'axios';
 import { atom, useAtom } from 'jotai';
+import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-const data = atom({
+
+const initialData = {
   _id: '',
   img1: '',
+  img2: '',
+  img3: '',
+  img4: '',
   prompt: '',
   negative_prompt: '',
   owner: '',
-});
+};
+
+const postDataSets = atomWithReset({ ...initialData });
+
 interface Image {
   id: string;
   img1: string;
+  img2: string;
+  img3: string;
+  img4: string;
   prompt: string;
   negative_prompt: string;
   _id: string;
@@ -23,6 +34,9 @@ const modalAtom = atom(false);
 interface Item {
   _id: string;
   img1: string;
+  img2: string;
+  img3: string;
+  img4: string;
   prompt: string;
   negative_prompt: string;
   owner: string;
@@ -31,7 +45,8 @@ interface Item {
 const useCreatList = () => {
   const [isModalOpen, setIsModalOpen] = useAtom(modalAtom);
   const [savedImg, setSavedImg] = useAtom(imgAtom);
-  const [selectedData, setSelectedData] = useAtom(data);
+  const [selectedData, setSelectedData] = useAtom(postDataSets);
+  const resetData = useResetAtom(postDataSets);
   const [isSelected, setIsSelected] = useState(false);
   const [selectedItem, setSelectedItem] = useState(selectedData); // 선택한 아이템을 임시로 저장하는 상태
   const [input, setInput] = useState<string>('');
@@ -80,15 +95,6 @@ const useCreatList = () => {
     }
   };
 
-  const createMockData = () => {
-    axios.post('http://localhost:3000/create/savedimg', {
-      img1: 'https://img.freepik.com/premium-photo/cool-wolf-illustration-design_780593-1864.jpg',
-      prompt: '늑대',
-      negative_prompt: '단순한 늑대',
-      _id: objectId,
-    });
-  };
-
   const openModal = async () => {
     setIsModalOpen(true);
 
@@ -122,19 +128,16 @@ const useCreatList = () => {
     post_negative_prompt: selectedData.negative_prompt,
     post_hashtag: hashtags,
     post_img1: selectedData.img1,
-    post_img2: '',
-    post_img3: '',
-    post_img4: '',
+    post_img2: selectedData.img2,
+    post_img3: selectedData.img3,
+    post_img4: selectedData.img4,
     owner: selectedData.owner,
   };
 
-  const createPost = async () => {
+  const createPost = async (event) => {
+    event.preventDefault();
     if (!selectedData.img1) {
       alert('이미지를 선택해주세요.');
-      return;
-    }
-    if (hashtags.length === 0) {
-      alert('해쉬태그를 입력해주세요.');
       return;
     }
     if (!postTitle) {
@@ -152,11 +155,11 @@ const useCreatList = () => {
     );
     if (result.data.msg === 'create post') {
       navigate('/');
+      resetData();
     }
   };
 
   return {
-    createMockData,
     openModal,
     closeModal,
     isModalOpen,
