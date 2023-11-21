@@ -51,14 +51,20 @@ const getUserData = async (req, res) => {
       path: 'posts',
       populate: { path: 'owner', select: 'user_profile_img id' },
     })
-    .populate({ path: 'follow', model: 'User', select: 'user_profile_img id' })
-    .populate('follower')
+    .populate({
+      path: 'follow',
+      populate: { path: 'follow', select: 'user_profile_img id' },
+    })
+    .populate({
+      path: 'follower',
+      populate: { path: 'follower', select: 'user_profile_img id' },
+    })
     .populate('saved_images');
   console.log('resultuser', result);
   res.json(result);
 };
 
-const AddFollow = async (req) => {
+const AddFollow = async (req, res) => {
   const { owner, follow, unfollow } = req.body;
   console.log('owner, follow', owner, follow);
   console.log(unfollow);
@@ -88,6 +94,8 @@ const AddFollow = async (req) => {
     await followModel.deleteOne({ owner: ownerId, follow: followId });
     await followerModel.deleteOne({ owner: followId, follower: ownerId });
   }
+  // 만약에 userId랑 Id랑 같이 있다면 true값을 보내라..
+  res.json({ follow: 'true' });
 };
 
 export { imageUpload, getUserData, AddFollow };
