@@ -1,7 +1,11 @@
 import express from 'express';
 import upload from '../../shared/imageUpload';
 
-import { imageUpload, getUserData } from '../controller/mypageController';
+import {
+  imageUpload,
+  getUserData,
+  AddFollow,
+} from '../controller/mypageController';
 
 const router = express.Router();
 
@@ -10,6 +14,8 @@ router.post(
   upload.fields([{ name: 'bgImage' }, { name: 'profileImage' }]),
   imageUpload,
 );
+
+router.post('/follow', AddFollow);
 
 router.get('/user', getUserData);
 export default router;
