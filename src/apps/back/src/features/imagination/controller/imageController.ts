@@ -23,7 +23,7 @@ const imgUpload = async (req, res) => {
 
   const ownerId = new mongoose.Types.ObjectId(userId);
 
-  for (const [index, url] of images.entries()) {
+  for (const [url] of images.entries()) {
     const response = await axios.get(url, { responseType: 'arraybuffer' });
     const uniqueKey = uuidv4(); // 고유한 키 생성
     const uploadParams = {
