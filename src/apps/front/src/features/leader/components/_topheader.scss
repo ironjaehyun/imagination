@@ -17,38 +17,40 @@ $box-shadow-light: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: $border-radius-round;
   background: $color-white;
   box-shadow: $box-shadow-light;
-
-  > button {
-    color: $color-black;
-    font-family: $font-family-default;
-    font-size: $font-size-medium;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
+  color: $color-black; // Duplicate kept as per request
+  font-family: $font-family-default;
+  font-size: $font-size-medium;
+  font-weight: 700;
+  line-height: normal;
 }
 
 // Top Header Styles
 .top-header {
+  display: flex;
   text-align: center;
-  padding: 2%;
+  padding: 5% 5% 2% 5%;
   align-items: center;
 
-  // display: flex;
   .leader-title {
+    margin-right: 103.3px;
     color: $color-black;
     font-family: $font-family-default;
     font-size: $font-size-large;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
   }
 
-  .week-btn {
-    @include button-style;
-  }
-
+  .week-btn,
   .alltime-btn {
     @include button-style;
   }
+
+  .week-btn {
+    margin-right: 42.24px;
+  }
+}
+
+.week-btn button,
+.alltime-btn button {
+  font-weight: bold;
 }

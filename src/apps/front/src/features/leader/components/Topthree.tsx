@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useAtom } from 'jotai';
 import { periodAtom } from './Atoms';
 import { Leaderboard as LeaderboardData } from './Database';
+
 interface LeaderboardEntry {
   img: string;
   name: string;
@@ -52,7 +53,14 @@ export default function Topthree() {
           {/* <div className="name">{value.name}</div>
                         <div className="grade">{value.grade}</div> */}
           <br />
-          <div className="top-two-liked-score">❤️{value.score}</div>
+          <div className="top-two-liked-score">
+            <img
+              className="top-three-like"
+              src="./public/img/like.png"
+              alt="Like"
+            />
+            {value.score}
+          </div>
         </div>
       ))}
 
@@ -68,7 +76,14 @@ export default function Topthree() {
           {/* <div className="name">{value.name}</div>
                         <div className="grade">{value.grade}</div> */}
           <br />
-          <div className="top-one-liked-score">❤️{value.score}</div>
+          <div className="top-one-liked-score">
+            <img
+              className="top-three-like"
+              src="./public/img/like.png"
+              alt="Like"
+            />
+            {value.score}
+          </div>
         </div>
       ))}
 
@@ -83,7 +98,14 @@ export default function Topthree() {
           />
           {/* <div className="name">{value.name}</div>
                         <div className="grade">{value.grade}</div> */}
-          <div className="top-three-liked-score">❤️{value.score}</div>
+          <div className="top-three-liked-score">
+            <img
+              className="top-three-like"
+              src="./public/img/like.png"
+              alt="Like"
+            />
+            {value.score}
+          </div>
         </div>
       ))}
     </div>
