@@ -1,8 +1,8 @@
 import express from 'express';
-import { postsImg } from '../controller/userPostsImgController';
+import { userpostslike } from '../controller/userPostsImgController';
 
 const router = express.Router();
 
-router.get('/postsImg', postsImg);
+router.get('/userpostslike', userpostslike);
 
 export default router;
