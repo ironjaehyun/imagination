@@ -1,5 +1,7 @@
 import { PUBLIC_URL } from '../../../../../../../packages/models/port';
+import Loading from '../../../shared/Loading';
 import useMypage from '../hooks/useMypage';
+import classNames from 'classnames';
 
 const MypageInfo = () => {
   const {
@@ -7,8 +9,14 @@ const MypageInfo = () => {
     handleFollower,
     handleFollow,
     query: { data, isLoading },
+    id,
+    objectId,
+    handleFollowBtn,
+    follow,
+    unfollow,
   } = useMypage();
-  if (isLoading) return <div>Loding</div>;
+
+  if (isLoading) return <Loading />;
   return (
     <div>
       <header className="mypage-header">
@@ -18,9 +26,20 @@ const MypageInfo = () => {
             src={data.user_profile_img}
             className="mypage-profile-photo"
           ></img>
-          <button className="mypage-edit" onClick={handleEditModalOpen}>
-            <img src={PUBLIC_URL + '/mypage/edit.png'} alt="" />
-          </button>
+          {id !== objectId ? (
+            <button
+              onClick={handleFollowBtn}
+              className={classNames('mypage-follow-btn', {
+                'mypage-follow-btn-unfollow': unfollow,
+              })}
+            >
+              {follow}
+            </button>
+          ) : (
+            <button className="mypage-edit" onClick={handleEditModalOpen}>
+              <img src={PUBLIC_URL + '/mypage/edit.png'} alt="" />
+            </button>
+          )}
         </section>
         <section className="mypage-info">
           <div className="mypage-info-header">
@@ -33,11 +52,11 @@ const MypageInfo = () => {
               <span>Posts</span>
             </div>
             <div onClick={handleFollower} className="mypage-info-follow">
-              <span>0</span>
+              <span>{data.follower.length}</span>
               <span>Followers</span>
             </div>
             <div onClick={handleFollow} className="mypage-info-follower">
-              <span>0</span>
+              <span>{data.follow.length}</span>
               <span>Following</span>
             </div>
           </div>

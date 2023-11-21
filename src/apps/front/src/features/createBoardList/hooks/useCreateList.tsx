@@ -26,7 +26,6 @@ interface Item {
   prompt: string;
   negative_prompt: string;
   owner: string;
-  // ... (다른 필드들)
 }
 
 const useCreatList = () => {
@@ -42,6 +41,7 @@ const useCreatList = () => {
   const [postContent, setPostContent] = useState<string>('');
   const navigate = useNavigate();
   const objectId = sessionStorage.getItem('_id') ?? '';
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
@@ -51,6 +51,9 @@ const useCreatList = () => {
       setHashtags([...hashtags, input.trim()]);
       setInput('');
     }
+  };
+  const removeHashtag = (index: number) => {
+    setHashtags(hashtags.filter((_, i) => i !== index));
   };
 
   const handleRadioChange = (
@@ -117,7 +120,7 @@ const useCreatList = () => {
     post_content: postContent,
     post_prompt: selectedData.prompt,
     post_negative_prompt: selectedData.negative_prompt,
-    post_hashtag: [],
+    post_hashtag: hashtags,
     post_img1: selectedData.img1,
     post_img2: '',
     post_img3: '',
@@ -126,6 +129,23 @@ const useCreatList = () => {
   };
 
   const createPost = async () => {
+    if (!selectedData.img1) {
+      alert('이미지를 선택해주세요.');
+      return;
+    }
+    if (hashtags.length === 0) {
+      alert('해쉬태그를 입력해주세요.');
+      return;
+    }
+    if (!postTitle) {
+      alert('제목을 입력해주세요.');
+      return;
+    }
+    if (!postContent) {
+      alert('내용을 입력해주세요.');
+      return;
+    }
+
     const result = await axios.post(
       'http://localhost:3000/create/post',
       postData,
@@ -155,6 +175,7 @@ const useCreatList = () => {
     createPost,
     handlePostTitle,
     handlePostContent,
+    removeHashtag,
   };
 };
 

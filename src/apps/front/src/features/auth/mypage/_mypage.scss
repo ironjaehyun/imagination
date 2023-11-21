@@ -104,6 +104,53 @@
       box-shadow: $border-shadow2;
     }
   }
+  .mypage-follow-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 13px;
+    border-radius: 10px;
+    background-color: $white;
+    box-shadow: $border-shadow2;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: $background;
+    color: black;
+
+    :focus {
+      box-shadow: $border-shadow2;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  .mypage-follow-btn-unfollow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 13px;
+    border-radius: 10px;
+    background-color: $white;
+    box-shadow: $border-shadow2;
+    position: absolute;
+    bottom: 30px;
+    right: 10px;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: $blue;
+    color: white;
+
+    :focus {
+      box-shadow: $border-shadow2;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
 
   .mypage-info-header {
     margin-top: 100px;

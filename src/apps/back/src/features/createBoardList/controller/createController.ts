@@ -30,6 +30,7 @@ const createPost = async (req, res) => {
     post_prompt,
     post_negative_prompt,
     post_img1,
+    post_hashtag,
   } = req.body;
   const ownerId = new mongoose.Types.ObjectId(owner);
   const post = new PostModel({
@@ -39,6 +40,7 @@ const createPost = async (req, res) => {
     post_negative_prompt: post_negative_prompt,
     post_prompt: post_prompt,
     post_img1: post_img1,
+    post_hashtag: post_hashtag,
   });
   await post.save();
 
