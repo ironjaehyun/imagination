@@ -2,7 +2,7 @@ import PostModel from '../../shared/db/postModel';
 
 const postsImg = async (req, res) => {
   try {
-    const posts = await PostModel.find({}, 'post_img1 _id');
+    const posts = await PostModel.find({});
     console.log(posts);
     return res.json(posts);
   } catch (error) {

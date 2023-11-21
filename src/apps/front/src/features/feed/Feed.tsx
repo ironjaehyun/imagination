@@ -5,7 +5,8 @@ import Alertpop from '../shared/Alertpop';
 import useModalAlert from './hooks/useModalAlert';
 
 const Feed = () => {
-  const { isAlertOpen, handleOpenAlert, handleCloseAlert } = useModalAlert();
+  const { isAlertOpen, handleOpenAlert, handleCloseAlert, selectedPost } =
+    useModalAlert();
   return (
     <div>
       <section className="gnb-bug-protector">
@@ -13,7 +14,11 @@ const Feed = () => {
         <Post onImageClick={handleOpenAlert} />
       </section>
       <BigGnb />
-      <Alertpop isOpen={isAlertOpen} onClose={handleCloseAlert} />
+      <Alertpop
+        isOpen={isAlertOpen}
+        onClose={handleCloseAlert}
+        post={selectedPost}
+      />
     </div>
   );
 };
