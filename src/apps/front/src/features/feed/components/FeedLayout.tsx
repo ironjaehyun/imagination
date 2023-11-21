@@ -57,27 +57,30 @@ const FeedLayout = ({
     <div className="layout-container">
       <div className="layout-position">
         {posts &&
-          geometry.boxes.map((box: Box, index: number) => (
-            <div
-              onClick={() => onImageClick(posts[index])}
-              key={index}
-              className={`image-box ${hoverIndex === index ? 'hover' : ''}`}
-              style={{
-                top: `${box.top}px`,
-                left: `${box.left}px`,
-                width: `${box.width}px`,
-                height: `${box.height}px`,
-                backgroundImage: `url(${posts[index].post_img1})`,
-              }}
-              onMouseOver={() => handleMouseOver(index)}
-              onMouseOut={handleMouseOut}
-            >
-              <div className="Feed-overlay">
-                <img src="./img/whitelike.png" alt="" />
-                <span className="Feed-like-count">{/*post.likeCount*/}0</span>
+          geometry.boxes
+            .slice()
+            .reverse()
+            .map((box: Box, index: number) => (
+              <div
+                onClick={() => onImageClick(posts[index])}
+                key={index}
+                className={`image-box ${hoverIndex === index ? 'hover' : ''}`}
+                style={{
+                  top: `${box.top}px`,
+                  left: `${box.left}px`,
+                  width: `${box.width}px`,
+                  height: `${box.height}px`,
+                  backgroundImage: `url(${posts[index].post_img1})`,
+                }}
+                onMouseOver={() => handleMouseOver(index)}
+                onMouseOut={handleMouseOut}
+              >
+                <div className="Feed-overlay">
+                  <img src="./img/whitelike.png" alt="" />
+                  <span className="Feed-like-count">{/*post.likeCount*/}0</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
       </div>
     </div>
   );
