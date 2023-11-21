@@ -1,5 +1,5 @@
 import { atom, useAtom } from 'jotai';
-import { editModal, followAtom, followerAtom } from './MypageAtom';
+import { editModal, followAtom, followerAtom, imageAtom } from './MypageAtom';
 import { useState } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
@@ -12,6 +12,7 @@ const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [followModal, setFollowModal] = useAtom(followAtom);
   const [followerModal, setFollowerModal] = useAtom(followerAtom);
+  const [postModal, setPostModal] = useAtom(imageAtom);
   const [clickTab, setClickTab] = useState(0);
   const [statusMsg, setStatusMsg] = useState('');
   const { id } = useParams();
@@ -54,13 +55,24 @@ const useMypage = () => {
     setMyPageModal(false);
   };
 
+  const handlePostModalOpen = () => {
+    setPostModal(true);
+  };
+
+  const handlePostModalClose = () => {
+    setPostModal(false);
+  };
   const modalBubbling =
     () => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const target = e.target as HTMLElement;
       if (target.classList.contains('edit-modal')) return setMyPageModal(false);
-      if (target.classList.contains('follow-modal-bg')) {
+      if (
+        target.classList.contains('follow-modal-bg') ||
+        target.classList.contains('mypage-modal-bg')
+      ) {
         setFollowModal(false);
         setFollowerModal(false);
+        setPostModal(false);
       }
     };
 
@@ -204,6 +216,9 @@ const useMypage = () => {
     profileImage,
     id,
     objectId,
+    handlePostModalOpen,
+    handlePostModalClose,
+    postModal,
   };
 };
 export default useMypage;

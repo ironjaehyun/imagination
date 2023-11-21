@@ -1,8 +1,7 @@
 import useMypage from '../hooks/useMypage';
 import classNames from 'classnames';
-import useModalAlert from '../../../feed/hooks/useModalAlert';
-import Alertpop from '../../../shared/Alertpop';
 import { Key } from 'react';
+import MypageModal from './MypageModal';
 
 const MypageTab = () => {
   const {
@@ -10,8 +9,9 @@ const MypageTab = () => {
     handleCheckTab,
     clickTab,
     query: { data, isLoading },
+    postModal,
+    handlePostModalOpen,
   } = useMypage();
-  const { isAlertOpen, handleOpenAlert, handleCloseAlert } = useModalAlert();
   const likeData = [
     {
       post_id: 1,
@@ -40,7 +40,7 @@ const MypageTab = () => {
   if (isLoading) return <div>Loding</div>;
   return (
     <>
-      <Alertpop isOpen={isAlertOpen} onClose={handleCloseAlert} />
+      {postModal === true ? <MypageModal /> : null}
       <div className="mypage-tab">
         <ul className="mypage-tab-list">
           <li
@@ -85,8 +85,8 @@ const MypageTab = () => {
               }) => {
                 return (
                   <img
+                    onClick={handlePostModalOpen}
                     src={item.post_img1}
-                    onClick={handleOpenAlert}
                     key={item._id}
                   />
                 );
@@ -97,26 +97,14 @@ const MypageTab = () => {
         {clickTab === 1 ? (
           <section className="mypage-likes">
             {likeData.map((img) => {
-              return (
-                <img
-                  src={img.img}
-                  onClick={handleOpenAlert}
-                  key={img.post_id}
-                />
-              );
+              return <img src={img.img} key={img.post_id} />;
             })}
           </section>
         ) : null}
         {clickTab === 2 ? (
           <section className="mypage-images">
             {savedImgData.map((img) => {
-              return (
-                <img
-                  src={img.img}
-                  onClick={handleOpenAlert}
-                  key={img.post_id}
-                />
-              );
+              return <img src={img.img} key={img.post_id} />;
             })}
           </section>
         ) : null}
