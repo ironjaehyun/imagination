@@ -1,6 +1,6 @@
 import { atom, useAtom } from 'jotai';
 import { editModal, followAtom, followerAtom, imageAtom } from './MypageAtom';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from './constants';
@@ -138,20 +138,14 @@ const useMypage = () => {
   const [follow, setFollow] = useState('follow');
   const [unfollow, setUnFollow] = useAtom(followBtnAtom);
   const handleFollowBtn = async () => {
-    if (unfollow === true) {
-      setFollow('unfollow');
-      setUnFollow(false);
-    } else {
-      setFollow('follow');
-      setUnFollow(true);
-    }
-    // 데이터 연결할거 넣어두기
-    // git config 확인
-    await axios.post('http://localhost:3000/mypage/follow', {
+    const response = await axios.post('http://localhost:3000/mypage/follow', {
       owner: objectId,
       follow: id,
       unfollow: unfollow,
     });
+    if (response.data.follow === 'true') {
+      window.location.reload();
+    }
   };
 
   const query = useQuery({
@@ -163,6 +157,23 @@ const useMypage = () => {
       return res.data;
     },
   });
+  // 만약에 이 데이터가 있다면?
+  useEffect(() => {
+    if (query?.data?.follower) {
+      // some이 무엇이냐.. find는 undefind를 반환하지만 some은 true false를 반환한다.
+      const isFollowing = query.data.follower.some(
+        (follower: { follower: { _id: string } }) =>
+          follower.follower?._id === objectId,
+      );
+      if (isFollowing) {
+        setFollow('unfollow');
+        setUnFollow(false);
+      } else {
+        setFollow('follow');
+        setUnFollow(true);
+      }
+    }
+  }, [query, objectId]);
 
   return {
     postId,
