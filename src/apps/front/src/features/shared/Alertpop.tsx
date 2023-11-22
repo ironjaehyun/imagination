@@ -33,6 +33,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
   const data = post && {
     userProfileImg: post.owner.user_profile_img,
     userName: post.owner.id,
+    objectId: post.owner._id,
     MainImg: post.post_img1,
     title: post.post_title,
     content: post.post_content,
@@ -41,21 +42,29 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
     prompt: post.post_prompt,
     Nprompt: post.post_negative_prompt,
   };
-
+  const objectId = sessionStorage.getItem('_id');
   return (
     <div className={`alertpop ${isOpen ? 'open' : ''}`} onClick={handleBgClick}>
       {isOpen && data && (
         <div className="modal-bg">
           <div className="modal-white" onClick={handleContentClick}>
             <div className="modal-header">
-              <div className="modal-header-profile">
-                <img
-                  src={data.userProfileImg}
-                  alt=""
-                  className="modal-header-img"
-                />
-                <span>{data.userName}</span>
-              </div>
+              <a
+                href={
+                  data.objectId === objectId
+                    ? `/mypage/${objectId}`
+                    : `/userpage/${data.objectId}`
+                }
+              >
+                <div className="modal-header-profile">
+                  <img
+                    src={data.userProfileImg}
+                    alt=""
+                    className="modal-header-img"
+                  />
+                  <span>{data.userName}</span>
+                </div>
+              </a>
               <button onClick={onClose}>
                 <img src="./img/close.png" alt="" />
               </button>

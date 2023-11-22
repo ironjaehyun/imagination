@@ -13,7 +13,7 @@ const Lnb = () => {
     event.preventDefault();
     try {
       const response = await axios.post('/Lnb/Postssearch', { inputValue });
-      console.log(response.data);
+      return response.data;
     } catch (error) {
       console.error(error);
     }

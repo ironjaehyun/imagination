@@ -33,37 +33,42 @@ const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
 
   return (
     <div className="feed-cards">
-      {posts.map((post, index) => (
-        <div className="post-card" key={index}>
-          <div className="post-card-img">
-            <img
-              src={post.post_img1}
-              alt=""
-              onClick={() => onImageClick(post)}
-            />
-          </div>
-          <div className="post-card-footer">
-            <div>
+      {posts
+        .slice()
+        .reverse()
+        .map((post, index) => (
+          <div className="post-card" key={index}>
+            <div className="post-card-img">
               <img
-                src={post.owner?.user_profile_img}
+                src={post.post_img1}
                 alt=""
-                className="post-card-proflieImg"
+                onClick={() => onImageClick(post)}
               />
-              <span>{post.owner?.id}</span>
             </div>
-            <div>
-              <img
-                src={
-                  isLiked[post._id] ? './img/filledlike.png' : './img/like.png'
-                }
-                alt=""
-                onClick={() => handleLike(post._id)}
-              />
-              <span>{/*post.likeCount*/}0</span>
+            <div className="post-card-footer">
+              <div>
+                <img
+                  src={post.owner?.user_profile_img}
+                  alt=""
+                  className="post-card-proflieImg"
+                />
+                <span>{post.owner?.id}</span>
+              </div>
+              <div>
+                <img
+                  src={
+                    isLiked[post._id]
+                      ? './img/filledlike.png'
+                      : './img/like.png'
+                  }
+                  alt=""
+                  onClick={() => handleLike(post._id)}
+                />
+                <span>{/*post.likeCount*/}0</span>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
