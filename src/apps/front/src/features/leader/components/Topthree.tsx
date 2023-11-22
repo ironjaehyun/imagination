@@ -6,9 +6,9 @@ import { Leaderboard as LeaderboardData } from './Database';
 
 interface LeaderboardEntry {
   img: string;
-  name: string;
-  grade: string;
-  score: number;
+  title: string;
+  content: string;
+  likeCount: number;
   dt: string;
 }
 
@@ -23,7 +23,7 @@ const between = (data: LeaderboardEntry[], period: number) => {
       if (period === 0) return true;
       return previous <= userDate && today >= userDate;
     })
-    .sort((a, b) => b.score - a.score);
+    .sort((a, b) => b.likeCount - a.likeCount);
 };
 
 const defaultLeaderboard: LeaderboardEntry[] = [
@@ -60,7 +60,7 @@ export default function Topthree() {
               src="./public/img/like.png"
               alt="Like"
             />
-            {value.score}
+            {value.likeCount}
           </div>
         </div>
       ))}
@@ -83,7 +83,7 @@ export default function Topthree() {
               src="./public/img/like.png"
               alt="Like"
             />
-            {value.score}
+            {value.likeCount}
           </div>
         </div>
       ))}
@@ -105,7 +105,7 @@ export default function Topthree() {
               src="./public/img/like.png"
               alt="Like"
             />
-            {value.score}
+            {value.likeCount}
           </div>
         </div>
       ))}
