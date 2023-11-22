@@ -1,13 +1,9 @@
-import classNames from 'classnames';
 import useMypage from '../hooks/useMypage';
 
 const Follow = () => {
   const {
     handleFollowClose,
     modalBubbling,
-    follow,
-    handleFollowBtn,
-    unfollow,
     query: { data },
   } = useMypage();
   const objectId = sessionStorage.getItem('_id');
@@ -38,14 +34,7 @@ const Follow = () => {
                   </div>
                 </div>
               </a>
-              <button
-                onClick={handleFollowBtn}
-                className={classNames('mypage-follow-btn', {
-                  'mypage-follow-btn-unfollow': unfollow,
-                })}
-              >
-                {follow}
-              </button>
+              <button></button>
             </li>
           ))}
         </ul>

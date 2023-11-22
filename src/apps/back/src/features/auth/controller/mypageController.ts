@@ -4,42 +4,34 @@ import followerModel from '../../shared/db/followerModel';
 import mongoose from 'mongoose';
 
 const imageUpload = async (req, res) => {
-  try {
-    console.log('test');
-    console.log(req.files);
-    const userProfilePath = req.files['profileImage'][0].location;
-    const userBackgroundlPath = req.files['bgImage'][0].location;
-    const id = req.body.id;
-    const status = req.body.status;
-    console.log(status);
+  const userProfilePath = req.files['profileImage'][0].location;
+  const userBackgroundlPath = req.files['bgImage'][0].location;
+  const id = req.body.id;
+  const status = req.body.status;
 
-    const updatedUser = await userModel
-      .findOneAndUpdate(
-        { id: id },
-        {
-          $set: {
-            user_background_img: userBackgroundlPath,
-            user_profile_img: userProfilePath,
-            user_status_msg: status,
-          },
+  const updatedUser = await userModel
+    .findOneAndUpdate(
+      { id: id },
+      {
+        $set: {
+          user_background_img: userBackgroundlPath,
+          user_profile_img: userProfilePath,
+          user_status_msg: status,
         },
-        { new: true },
-      )
-      .exec();
+      },
+      { new: true },
+    )
+    .exec();
 
-    if (!updatedUser) {
-      return res.json({ msg: 'User does not exist' });
-    }
-
-    return res.json({
-      background: userBackgroundlPath,
-      profile: userProfilePath,
-      status: status,
-    });
-  } catch (error) {
-    console.error('Error occurred:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+  if (!updatedUser) {
+    return res.json({ msg: 'User does not exist' });
   }
+
+  return res.json({
+    background: userBackgroundlPath,
+    profile: userProfilePath,
+    status: status,
+  });
 };
 
 const getUserData = async (req, res) => {
@@ -60,18 +52,14 @@ const getUserData = async (req, res) => {
       populate: { path: 'follower', select: 'user_profile_img id' },
     })
     .populate('saved_images');
-  console.log('resultuser', result);
   res.json(result);
 };
 
 const AddFollow = async (req, res) => {
   const { owner, follow, unfollow } = req.body;
-  console.log('owner, follow', owner, follow);
-  console.log(unfollow);
   const ownerId = new mongoose.Types.ObjectId(req.body.owner);
   const followId = new mongoose.Types.ObjectId(req.body.follow);
   if (unfollow) {
-    console.log('ownerId', ownerId);
     const addFollow = new followModel({ owner: ownerId, follow: followId });
     await addFollow.save();
     const user = await userModel.findById(ownerId);

@@ -7,13 +7,11 @@ const userSchema = new mongoose.Schema({
   user_grade: { type: String, default: 'nomal' },
   user_profile_img: {
     type: String,
-    default:
-      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/profile.webp',
+    default: '/default/profile.webp',
   },
   user_background_img: {
     type: String,
-    default:
-      'https://imagination-leechi.s3.ap-northeast-2.amazonaws.com/background.webp',
+    default: '/default/background.webp',
   },
   user_status_msg: { type: String, default: '' },
   follow: [
