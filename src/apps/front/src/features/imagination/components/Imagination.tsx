@@ -61,6 +61,7 @@ const Imagination = () => {
                 placeholder="ex. scary, dirty"
                 cols={15}
                 rows={3}
+                value="low quality, worst quality, mutated, mutation, distorted, deformed, wrong shape, text"
               ></textarea>
             </div>
           </div>
@@ -113,7 +114,7 @@ const Imagination = () => {
           </div>
           <div className="image-history">
             <h2>Image Generation History</h2>
-            <p>
+            {/* <p>
               <b>2023/11/01</b>
             </p>
             <textarea
@@ -124,7 +125,7 @@ const Imagination = () => {
               value={
                 '입력한 프롬프트 값입니다.입력한 프롬프트 값입니다.입력한 프롬프트 값입니다.'
               }
-            />
+            /> */}
           </div>
           <div className="Generated-imgs">
             {isLoading
@@ -139,10 +140,21 @@ const Imagination = () => {
                       />
                     </div>
                   ))
-              : imageUrls &&
-                imageUrls.map((imageUrl, index) => (
-                  <div className="Generated-img" key={index}>
-                    <img src={imageUrl} alt="Generated" className="img" />
+              : imageUrls.map((imageUrl, index) => (
+                  <div key={index}>
+                    <h4>{new Date(imageUrl.date).toLocaleString()}</h4>
+                    <textarea
+                      readOnly
+                      value={imageUrl.prompt}
+                      className="prompt-input"
+                    />
+                    <div className="images-row">
+                      {imageUrl.images.map((image, idx) => (
+                        <div className="Generated-img" key={idx}>
+                          <img src={image} alt="Generated" className="img" />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
           </div>

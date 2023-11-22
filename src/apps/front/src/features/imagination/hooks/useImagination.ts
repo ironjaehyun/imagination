@@ -15,7 +15,7 @@ export const useImagination = () => {
   const [prompt, setPrompt] = useState('');
   const [negative, setNegative] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [settingOption, setSettingOption] = useState('flex');
+  const [settingOption, setSettingOption] = useState('none');
   const [rotationState, setRotationState] = useState('rotate(0deg)');
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [buttonBg, setButtonBg] = useState('');
@@ -34,6 +34,7 @@ export const useImagination = () => {
     [640, 384],
   ];
   const userId = sessionStorage.getItem('_id');
+
   const generateImage: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
 
@@ -64,7 +65,7 @@ export const useImagination = () => {
       );
 
       const newImageUrls = response.data.images.map((image) => image.image);
-      setImageUrls(newImageUrls);
+
       console.log('Sending request to server');
       await axios.post('http://localhost:3000/imagination', {
         images: newImageUrls,
@@ -72,6 +73,9 @@ export const useImagination = () => {
         negative: negative,
         prompt: prompt,
       });
+
+      // Call getSavedImages function after the new images have been saved to the server
+      getSavedImages();
     } catch (error) {
       console.error(error);
     } finally {
@@ -83,8 +87,34 @@ export const useImagination = () => {
     }
   };
 
+  const getSavedImages = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/imagination`, {
+        params: { userId: userId },
+      });
+
+      // Sort the data by date in descending order
+      const sortedData = response.data.sort(
+        (a, b) =>
+          new Date(b.saved_at).getTime() - new Date(a.saved_at).getTime(),
+      );
+
+      const transformedData = sortedData.map((item) => ({
+        date: item.saved_at,
+        images: [item.img1, item.img2, item.img3, item.img4].filter(Boolean),
+        prompt: item.prompt,
+      }));
+
+      setImageUrls(transformedData);
+      console.log(transformedData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     setButtonDisabled(isLoading);
+    getSavedImages();
   }, [isLoading]);
 
   const handleButtonClick = () => {
