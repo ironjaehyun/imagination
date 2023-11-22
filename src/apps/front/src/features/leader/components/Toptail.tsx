@@ -21,14 +21,14 @@ const between: BetweenFunction = (data, period) => {
   });
 
   // sort with ascending order
-  return filter.sort((a, b) => b.score - a.score);
+  return filter.sort((a, b) => b.likeCount - a.likeCount);
 };
 
 interface LeaderboardEntry {
   img: string;
-  name: string;
-  grade: string;
-  score: number;
+  title: string;
+  content: string;
+  likeCount: number;
   dt: string;
 }
 // interface ToptailProps {
@@ -56,13 +56,13 @@ export default function Toptail() {
             <span>{index + 11}</span>
           </div>
           <div className="top-tail-post">
-            <img className="top-tail-img" src={value.img} alt={value.name} />
+            <img className="top-tail-img" src={value.img} alt={value.title} />
             <div className="top-tail-info">
-              <h2 className="top-tail-title">{value.name}</h2>
-              <h3 className="top-tail-detail">{value.grade}</h3>
+              <h2 className="top-tail-title">{value.title}</h2>
+              <h3 className="top-tail-detail">{value.content}</h3>
             </div>
             <div className="top-tail-liked">
-              <span>❤️{value.score}</span>
+              <span>❤️{value.likeCount}</span>
             </div>
           </div>
         </div>
