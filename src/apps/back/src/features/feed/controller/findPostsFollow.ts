@@ -4,7 +4,7 @@ const findPostsFollow = async (req, res) => {
   try {
     const user = await userModel.findOne({ id: req.params.userId });
     if (user) {
-      console.log(user);
+      // console.log(user);
       res.json(user);
     } else {
       res.status(404).json({ message: 'User not found' });

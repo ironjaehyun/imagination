@@ -25,7 +25,7 @@ const Postssearch = async (req, res) => {
     await PostModel.find({ $text: { $search: inputValue } }),
   );
 
-  console.log(posts);
+  // console.log(posts);
   return res.json(posts);
 };
 
