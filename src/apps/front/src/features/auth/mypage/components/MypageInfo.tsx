@@ -1,7 +1,6 @@
 import { PUBLIC_URL } from '../../../../../../../packages/models/port';
 import Loading from '../../../shared/Loading';
 import useMypage from '../hooks/useMypage';
-import classNames from 'classnames';
 
 const MypageInfo = () => {
   const {
@@ -9,11 +8,6 @@ const MypageInfo = () => {
     handleFollower,
     handleFollow,
     query: { data, isLoading },
-    id,
-    objectId,
-    handleFollowBtn,
-    follow,
-    unfollow,
   } = useMypage();
 
   if (isLoading) return <Loading />;
@@ -26,20 +20,9 @@ const MypageInfo = () => {
             src={data.user_profile_img}
             className="mypage-profile-photo"
           ></img>
-          {id !== objectId ? (
-            <button
-              onClick={handleFollowBtn}
-              className={classNames('mypage-follow-btn', {
-                'mypage-follow-btn-unfollow': unfollow,
-              })}
-            >
-              {follow}
-            </button>
-          ) : (
-            <button className="mypage-edit" onClick={handleEditModalOpen}>
-              <img src={PUBLIC_URL + '/mypage/edit.png'} alt="" />
-            </button>
-          )}
+          <button className="mypage-edit" onClick={handleEditModalOpen}>
+            <img src={PUBLIC_URL + '/mypage/edit.png'} alt="" />
+          </button>
         </section>
         <section className="mypage-info">
           <div className="mypage-info-header">

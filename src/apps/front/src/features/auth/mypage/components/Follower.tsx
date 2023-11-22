@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import useMypage from '../hooks/useMypage';
+
 const Follower = () => {
   const {
     handleFollowerClose,
@@ -9,6 +10,7 @@ const Follower = () => {
     unfollow,
     query: { data },
   } = useMypage();
+  const objectId = sessionStorage.getItem('_id');
   return (
     <div className="follow-modal-bg" onClick={modalBubbling()}>
       <div className="follow-modal">
@@ -21,13 +23,22 @@ const Follower = () => {
         <ul>
           {data?.follower?.map((item) => (
             <li key={item.follower._id} className="follow-list">
-              <div>
-                <img src={item.follower.user_profile_img} alt="" />
-                <div className="follow-list-left">
-                  <h5>{item.follower.id}</h5>
-                  <div>나는 최고다!</div>
+              <a
+                href={
+                  objectId === item.follower._id
+                    ? `/mypage/${objectId}`
+                    : `/userpage/${item.follower._id}`
+                }
+                onClick={handleFollowerClose}
+              >
+                <div>
+                  <img src={item.follower.user_profile_img} alt="" />
+                  <div className="follow-list-left">
+                    <h5>{item.follower.id}</h5>
+                    <div>나는 최고다!</div>
+                  </div>
                 </div>
-              </div>
+              </a>
               <button
                 onClick={handleFollowBtn}
                 className={classNames('mypage-follow-btn', {
