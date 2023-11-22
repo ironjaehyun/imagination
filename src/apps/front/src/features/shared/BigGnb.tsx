@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
-// import { useState } from 'react';
 import useLogin from '../auth/login/hooks/useLogin';
-import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import axios from './../auth/api/auth';
 
 const BigGnb = () => {
   const location = useLocation();
@@ -12,21 +12,30 @@ const BigGnb = () => {
       : 'BigGnb-hoverwhite';
   };
 
-  // 임시 사용자 데이터
-  const [userData] = useState({
-    profileImg:
-      'https://i.namu.wiki/i/xl7WXBmp2VQ7mQRz53DlZ_7S1O4CEA_6RERhydKMTPYsdK9oXAcvqhtijh_rHQNw1fYt7skGA4vnMOJNg40jQA.webp',
-    name: 'Leechi',
-    posts: 1,
-    following: 123,
-    followers: 123,
-    _id: 123,
-  });
   const userId = sessionStorage.getItem('id');
   const userObjectId = sessionStorage.getItem('_id');
   const profileImg = sessionStorage.getItem('profile') ?? '';
 
   const { handleLogout } = useLogin();
+
+  const fetchData = async () => {
+    const response = await axios.get(`/Gnb/findPostsFollow/${userId}`);
+    return response.data;
+  };
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['fetchData'],
+    queryFn: fetchData,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  console.log(data);
   return (
     <div>
       <div className="BigGnb">
@@ -43,15 +52,15 @@ const BigGnb = () => {
             </Link>
             <div className="profile-status">
               <div>
-                <p>{userData.posts}</p>
+                <p>{data.posts.length}</p>
                 <p>게시물</p>
               </div>
               <div className="profile-status-middle">
-                <p>{userData.following}</p>
+                <p>{data.follow.length}</p>
                 <p>팔로우</p>
               </div>
               <div>
-                <p>{userData.followers}</p>
+                <p>{data.follower.length}</p>
                 <p>팔로워</p>
               </div>
             </div>
