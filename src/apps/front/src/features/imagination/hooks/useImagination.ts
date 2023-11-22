@@ -6,14 +6,33 @@ interface Image {
   image: string;
 }
 
+interface ImageUrl {
+  date: string;
+  images: string[];
+  prompt: string;
+}
+
+interface Item {
+  saved_at: string;
+  img1: string;
+  img2: string;
+  img3: string;
+  img4: string;
+  prompt: string;
+  // 필요한 프로퍼티를 추가하세요.
+}
+
 interface ResponseData {
   images: Image[];
 }
 
 export const useImagination = () => {
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [imageUrls, setImageUrls] = useState<ImageUrl[]>([]);
   const [prompt, setPrompt] = useState('');
-  const [negative, setNegative] = useState('');
+  const [currentPrompt, setCurrentPrompt] = useState('');
+  const [negative, setNegative] = useState(
+    'low quality, worst quality, mutated, mutation, distorted, deformed, wrong shape, text',
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [settingOption, setSettingOption] = useState('none');
   const [rotationState, setRotationState] = useState('rotate(0deg)');
@@ -44,6 +63,7 @@ export const useImagination = () => {
       setButtonBg('#f5f5f6');
       setImgSrc('imagination/loading-loader.gif');
       setButtonText('');
+      setCurrentPrompt(prompt);
 
       const response = await axios.post<ResponseData>(
         'https://api.kakaobrain.com/v2/inference/karlo/t2i',
@@ -73,9 +93,14 @@ export const useImagination = () => {
         negative: negative,
         prompt: prompt,
       });
-
-      // Call getSavedImages function after the new images have been saved to the server
-      getSavedImages();
+      setImageUrls((prevImageUrls) => [
+        {
+          date: new Date().toLocaleDateString(),
+          images: newImageUrls,
+          prompt: prompt,
+        },
+        ...prevImageUrls,
+      ]);
     } catch (error) {
       console.error(error);
     } finally {
@@ -93,13 +118,12 @@ export const useImagination = () => {
         params: { userId: userId },
       });
 
-      // Sort the data by date in descending order
       const sortedData = response.data.sort(
-        (a, b) =>
+        (a: { saved_at: string }, b: { saved_at: string }) =>
           new Date(b.saved_at).getTime() - new Date(a.saved_at).getTime(),
       );
 
-      const transformedData = sortedData.map((item) => ({
+      const transformedData = sortedData.map((item: Item) => ({
         date: item.saved_at,
         images: [item.img1, item.img2, item.img3, item.img4].filter(Boolean),
         prompt: item.prompt,
@@ -113,9 +137,8 @@ export const useImagination = () => {
   };
 
   useEffect(() => {
-    setButtonDisabled(isLoading);
     getSavedImages();
-  }, [isLoading]);
+  }, []);
 
   const handleButtonClick = () => {
     setSettingOption(settingOption === 'flex' ? 'none' : 'flex');
@@ -135,6 +158,7 @@ export const useImagination = () => {
   return {
     imageUrls,
     setPrompt,
+    negative,
     setNegative,
     buttonDisabled,
     buttonBg,
@@ -152,5 +176,6 @@ export const useImagination = () => {
     buttonList,
     selectedSize,
     sizeList,
+    currentPrompt,
   };
 };
