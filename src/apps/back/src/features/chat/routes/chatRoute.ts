@@ -5,13 +5,15 @@ import {
   createChatRoom,
   deleteChatRoom,
   inviteToChat,
+  getUser,
 } from '../controller/chatController';
 
 const router = express.Router();
 
 // 채팅 목록 가져오기
-router.get('/chat', getChatRooms);
-// router.get('/', getChatRooms);
+router.get('/list', getChatRooms);
+
+router.get('/user', getUser);
 
 router.post('/invite', inviteToChat);
 

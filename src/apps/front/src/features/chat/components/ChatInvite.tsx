@@ -1,9 +1,15 @@
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { MouseEvent, useLayoutEffect, useState } from 'react';
 import { atom, useAtom } from 'jotai';
-
+import classNames from 'classnames';
 import axios from 'axios';
 
-const userListAtom = atom([]);
+export interface UserItem {
+  _id: string;
+  id: string;
+  user_profile_img: string;
+}
+
+const userListAtom = atom<UserItem[]>([]);
 
 const ChatInvite: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,49 +24,32 @@ const ChatInvite: React.FC = () => {
     handleClose();
   };
 
-  const handleClickInside = (e: MouseEvent) => {
-    e.stopPropagation();
+  const handleRadioClick = (_id: string) => {
+    setSelected_Id(_id);
   };
 
-  // const handleChatButtonClick = async () => {
-  //   const selectedUserElement = document.querySelector(
-  //     'input[type="radio"]:checked + label',
-  //   );
+  const handleChatButtonClick = async () => {
+    try {
+      console.log('fire', selected_Id);
 
-  //   if (selectedUserElement) {
-  //     const selectedUserName = selectedUserElement.textContent;
-  //     console.log('Selected User:', selectedUserName);
+      const body = {
+        user: selected_Id,
+        me: sessionStorage.getItem('_id'),
+        string: '허걱슨',
+      };
 
-  //     try {
-  //       // 클라이언트 콘솔에 사용자 아이디 출력
-  //       const userId = sessionStorage.getItem('id');
-  //       console.log('User ID:', userId);
+      await axios.post('http://localhost:3000/chat/room', body);
+      console.log('Invitation sent successfully!');
+      setIsOpen(false);
+    } catch (error) {
+      console.error('Error sending invitation:', error);
+    }
+  };
 
-  //       // 서버로 선택된 사용자 정보를 전송
-  //       await axios.post('http://localhost:3000/chat/invite', {
-  //         selectedUserName,
-  //         userId,
-  //       }, {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': `Bearer ${userId}`, // 여기서 'Bearer'는 사용자를 인증하는 방법에 따라 달라질 수 있습니다.
-  //         },
-  //       });
-
-  //       console.log('Invitation sent successfully!');
-  //       // 나중에 채팅방 생성 및 초대 로직을 추가하세요.
-  //     } catch (error) {
-  //       console.error('Error sending invitation:', error);
-  //     }
-  //   } else {
-  //     console.warn('No user selected!');
-  //   }
-  // };
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fetchUserList = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/chat');
+        const response = await axios.get('http://localhost:3000/chat/user');
         setUserList(response.data);
       } catch (error) {
         console.error('Error fetching user list:', error);
@@ -68,14 +57,11 @@ const ChatInvite: React.FC = () => {
     };
 
     fetchUserList();
-  }, [setUserList]);
+  }, []);
 
-  const createChatRoom = () => {
-    axios.post('http://localhost:3000/chat/room', {
-      user: '655ab5699b1f5147511a5afb', // Replace with the appropriate user
-      me: sessionStorage.getItem('_id'),
-      string: 'hihi',
-    });
+  const [selected_Id, setSelected_Id] = useState<string>();
+  const handleClickInside = (e: MouseEvent) => {
+    e.stopPropagation();
   };
 
   return isOpen ? (
@@ -94,16 +80,20 @@ const ChatInvite: React.FC = () => {
 
           <div className="chat-invite-list">
             {userList.map((user) => (
-              <div key={user} className="chat-invite-elements">
-                <input type="radio" />
-                <label>{user}</label>
+              <div key={user._id} className="chat-invite-elements">
+                <div
+                  className={classNames('radio', {
+                    selected: user._id === selected_Id,
+                  })}
+                  onClick={() => handleRadioClick(user._id)}
+                ></div>
+                <label>{user.id}</label>
               </div>
             ))}
           </div>
 
-          <button onClick={createChatRoom}>chatroom 생성</button>
           <div className="chat-invite-btn">
-            <button>Chat</button>
+            <button onClick={handleChatButtonClick}>Chat</button>
           </div>
         </div>
       </div>

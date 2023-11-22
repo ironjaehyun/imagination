@@ -1,12 +1,22 @@
 import { Request, Response } from 'express';
 import express from 'express';
 import userModel from '../../shared/db/userModel';
+import roomModels from '../../shared/db/chatRoomModel';
+
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const users = await userModel.find({}, `_id id user_profile_img`);
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error in getChatRooms:', error);
+    res.status(500).json({ message: `Internal Server Error` });
+  }
+};
 
 export const getChatRooms = async (req: Request, res: Response) => {
   try {
-    const users = await userModel.find({}, '_id id user_profile_img');
-    console.log(users);
-    res.status(200).json(users);
+    const rooms = await roomModels.find({ members: req.query.id });
+    res.status(200).json(rooms);
   } catch (error) {
     console.error('Error in getChatRooms:', error);
     res.status(500).json({ message: 'Internal Server Error' });
