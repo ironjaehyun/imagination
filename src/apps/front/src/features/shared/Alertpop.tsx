@@ -2,7 +2,28 @@ import { FunctionComponent, MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 import useCopy from './hooks/useCopy';
 import { PostType } from './types/PostType';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
+// Carousel responsive 설정
+const responsive = {
+  superLargeDesktop: {
+    breakpoint: { max: 4000, min: 3000 },
+    items: 1,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 export type AlertpopProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -34,7 +55,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
     userProfileImg: post.owner.user_profile_img,
     userName: post.owner.id,
     objectId: post.owner._id,
-    MainImg: post.post_img1,
+    MainImg: [post.post_img1, post.post_img2, post.post_img3, post.post_img4],
     title: post.post_title,
     content: post.post_content,
     hashtags: post.post_hashtag,
@@ -70,7 +91,13 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
               </button>
             </div>
             <div className="modal-main">
-              <img src={data.MainImg} alt="" className="modal-main-img" />
+              <Carousel responsive={responsive} className="modal-main-img">
+                {data.MainImg.filter(Boolean).map((img, index) => (
+                  <div key={index} className="modal-main-imgcnt">
+                    <img src={img} alt="" />
+                  </div>
+                ))}
+              </Carousel>
               <div className="modal-main-right-div">
                 <div className="modal-main-right">
                   <h3>{data.title}</h3>

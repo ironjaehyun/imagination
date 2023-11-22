@@ -14,6 +14,9 @@ export type PostType = {
   post_negative_prompt: string;
   post_hashtag: string[];
   post_img1: string;
+  post_img2: string;
+  post_img3: string;
+  post_img4: string;
   owner: OwnerType;
   posted_at: Date;
   __v: number;
