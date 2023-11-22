@@ -7,6 +7,7 @@ import Explore from '../feed/Explore';
 import Chat from '../chat/Chat';
 import Create from '../createBoardList/Create';
 import Mypage from '../auth/mypage/Mypage';
+import UserPage from '../auth/mypage/UserPage';
 import Leader from '../leader/Leader';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -32,7 +33,7 @@ function App() {
             <Route path="/create" element={<Create />} />
             <Route path="/leader" element={<Leader />} />
             <Route path="/mypage/:id" element={<Mypage />} />
-            <Route path="/userpage/:id" element={<Mypage />} />
+            <Route path="/userpage/:id" element={<UserPage />} />
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>

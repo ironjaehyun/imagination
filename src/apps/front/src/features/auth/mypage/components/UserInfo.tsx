@@ -1,13 +1,15 @@
-import { PUBLIC_URL } from '../../../../../../../packages/models/port';
 import Loading from '../../../shared/Loading';
 import useMypage from '../hooks/useMypage';
+import classNames from 'classnames';
 
-const MypageInfo = () => {
+const UserInfo = () => {
   const {
-    handleEditModalOpen,
     handleFollower,
     handleFollow,
     query: { data, isLoading },
+    handleFollowBtn,
+    follow,
+    unfollow,
   } = useMypage();
 
   if (isLoading) return <Loading />;
@@ -20,8 +22,13 @@ const MypageInfo = () => {
             src={data.user_profile_img}
             className="mypage-profile-photo"
           ></img>
-          <button className="mypage-edit" onClick={handleEditModalOpen}>
-            <img src={PUBLIC_URL + '/mypage/edit.png'} alt="" />
+          <button
+            onClick={handleFollowBtn}
+            className={classNames('mypage-follow-btn', {
+              'mypage-follow-btn-unfollow': unfollow,
+            })}
+          >
+            {follow}
           </button>
         </section>
         <section className="mypage-info">
@@ -49,4 +56,4 @@ const MypageInfo = () => {
   );
 };
 
-export default MypageInfo;
+export default UserInfo;
