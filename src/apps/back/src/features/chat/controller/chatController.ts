@@ -3,6 +3,7 @@ import express from 'express';
 import userModel from '../../shared/db/userModel';
 import roomModels from '../../shared/db/chatRoomModel';
 
+// 채팅 초대모달 아이디 이미지
 export const getUser = async (req: Request, res: Response) => {
   try {
     const users = await userModel.find({}, `_id id user_profile_img`);
@@ -13,9 +14,15 @@ export const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export const getChatRooms = async (req: Request, res: Response) => {
+//
+export const getChatRooms = async (req, res) => {
   try {
-    const rooms = await roomModels.find({ members: req.query.id });
+    const rooms = await roomModels.find({ members: req.query.id }).populate({
+      path: 'members',
+      select: '_id id user_profile_img',
+      model: 'User',
+    });
+
     res.status(200).json(rooms);
   } catch (error) {
     console.error('Error in getChatRooms:', error);
@@ -34,11 +41,6 @@ export const inviteToChat = (req: express.Request, res: express.Response) => {
     console.error('Error sending invitation:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
-
-export const createChatRoom = async (req: Request, res: Response) => {
-  // 해당 컨트롤러에서 새로운 채팅방을 생성하는 로직을 추가하면 됩니다.
-  res.status(201).json({ message: 'Create chat room endpoint' });
 };
 
 export const deleteChatRoom = async (req: Request, res: Response) => {

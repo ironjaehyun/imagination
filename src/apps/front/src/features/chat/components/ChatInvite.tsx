@@ -30,8 +30,6 @@ const ChatInvite: React.FC = () => {
 
   const handleChatButtonClick = async () => {
     try {
-      console.log('fire', selected_Id);
-
       const body = {
         user: selected_Id,
         me: sessionStorage.getItem('_id'),
@@ -51,6 +49,7 @@ const ChatInvite: React.FC = () => {
       try {
         const response = await axios.get('http://localhost:3000/chat/user');
         setUserList(response.data);
+        console.log(setUserList);
       } catch (error) {
         console.error('Error fetching user list:', error);
       }
@@ -81,13 +80,14 @@ const ChatInvite: React.FC = () => {
           <div className="chat-invite-list">
             {userList.map((user) => (
               <div key={user._id} className="chat-invite-elements">
+                <img src={user.user_profile_img} />
+                <label>{user.id}</label>
                 <div
                   className={classNames('radio', {
                     selected: user._id === selected_Id,
                   })}
                   onClick={() => handleRadioClick(user._id)}
                 ></div>
-                <label>{user.id}</label>
               </div>
             ))}
           </div>

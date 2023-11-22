@@ -2,11 +2,12 @@ import express from 'express';
 
 import {
   getChatRooms,
-  createChatRoom,
   deleteChatRoom,
   inviteToChat,
   getUser,
 } from '../controller/chatController';
+
+import { createRoom } from '../controller/chatLeechi';
 
 const router = express.Router();
 
@@ -17,8 +18,7 @@ router.get('/user', getUser);
 
 router.post('/invite', inviteToChat);
 
-// 채팅방 생성
-router.post('/create', createChatRoom);
+router.post('/room', createRoom);
 
 // 채팅방 삭제
 router.delete('/:roomId', deleteChatRoom);
