@@ -3,6 +3,7 @@ import { PUBLIC_URL } from '../../../../../packages/models/port';
 import useLogin from '../auth/login/hooks/useLogin';
 const Gnb = () => {
   const profileImg = sessionStorage.getItem('profile') ?? '';
+  const objcetId = sessionStorage.getItem('_id');
   const { handleLogout } = useLogin();
   return (
     <div>
@@ -18,7 +19,9 @@ const Gnb = () => {
             </div>
           </Link>
           <div>
-            <img src={profileImg} alt="" className="Gnb-profile-img"></img>
+            <Link to={`/mypage/${objcetId}`}>
+              <img src={profileImg} alt="" className="Gnb-profile-img"></img>
+            </Link>
           </div>
           <Link to={'/'}>
             <div className="Gnb-hoverwhite">
