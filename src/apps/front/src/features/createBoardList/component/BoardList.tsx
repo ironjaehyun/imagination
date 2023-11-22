@@ -1,3 +1,4 @@
+import { PUBLIC_URL } from '../../../../../../packages/models/port';
 import useCreatList from '../hooks/useCreateList';
 
 const Boardlist: React.FC = () => {
@@ -23,10 +24,11 @@ const Boardlist: React.FC = () => {
           <h3 className="bring-art-title">작품 전시를 해주세요</h3>
 
           <div className="bring-art-list">
-            <div className="bring-art-image" onClick={openModal}>
-              <img src={selectedData.img1} />
-              <h1 className="image-plus">+</h1>
-            </div>
+            <img
+              src={selectedData.img1 || PUBLIC_URL + '/img/get_post.png'}
+              className="bring-art-image"
+              onClick={openModal}
+            ></img>
             <div className="bring-art-prompt">
               <div className="bring-art-prompt-positive">
                 <h4>positive prompt</h4>
