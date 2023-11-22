@@ -9,6 +9,8 @@ const BoardModal = () => {
     ModalBgClose,
     savedImg,
     isSelected,
+    responsive,
+    Carousel,
   } = useCreatList();
 
   return (
@@ -23,29 +25,37 @@ const BoardModal = () => {
         <div className="modal-content">
           {' '}
           {/* Add this wrapper */}
-          {savedImg.map((item) => (
-            <div className="modal-list" key={item.id}>
-              <input
-                className="modal-select-button"
-                type="radio"
-                name="modalDataGroup"
-                onChange={(e) => handleRadioChange(e, item)}
-              />
-              <div className="modal-list-img ">
-                <img src={item.img1} />
-              </div>
-              <div className="modal-prompt-list">
-                <div className="modal-prompt-positive">
-                  <h4 onClick={() => console.log(item)}>Prompt</h4>
-                  <p className="ellipsis">{item.prompt}</p>
+          {savedImg
+            .slice()
+            .reverse()
+            .map((item) => (
+              <div className="modal-list" key={item.id}>
+                <input
+                  className="modal-select-button"
+                  type="radio"
+                  name="modalDataGroup"
+                  onChange={(e) => handleRadioChange(e, item)}
+                />
+                <Carousel className="modal-list-img" responsive={responsive}>
+                  {[item.img1, item.img2, item.img3, item.img4] // 이미지 URL들을 배열에 담기
+                    .filter(Boolean) // 무효한 값들 제거
+                    .map((img, idx) => (
+                      <img key={idx} src={img} />
+                    ))}
+                </Carousel>
+
+                <div className="modal-prompt-list">
+                  <div className="modal-prompt-positive">
+                    <h4 onClick={() => console.log(item)}>Prompt</h4>
+                    <p className="ellipsis">{item.prompt}</p>
+                  </div>
+                  <div className="modal-prompt-negative">
+                    <h4>Negative Prompt</h4>
+                    <p className="ellipsis">{item.negative_prompt}</p>
+                  </div>
                 </div>
-                <div className="modal-prompt-negative">
-                  <h4>Negative Prompt</h4>
-                  <p className="ellipsis">{item.negative_prompt}</p>
-                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
         <div className="modal-select-sure-div">
           <button

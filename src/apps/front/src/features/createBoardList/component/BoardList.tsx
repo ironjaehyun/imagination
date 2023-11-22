@@ -8,17 +8,16 @@ const Boardlist: React.FC = () => {
     boardMaxText,
     onChange,
     onKeyUp,
-    createMockData,
     openModal,
     selectedData,
     createPost,
     handlePostTitle,
     handlePostContent,
+    postDisable,
   } = useCreatList();
 
   return (
     <div className="board-main">
-      <button onClick={createMockData}>mock</button>
       <section className="bring-art">
         <div className="bring-art-content">
           <h3 className="bring-art-title">작품 전시를 해주세요</h3>
@@ -77,7 +76,11 @@ const Boardlist: React.FC = () => {
               onKeyUp={onKeyUp}
             />
           </div>
-          <button onClick={createPost} className="art-button">
+          <button
+            onClick={createPost}
+            className="art-button"
+            disabled={postDisable}
+          >
             게시하기
           </button>
         </div>

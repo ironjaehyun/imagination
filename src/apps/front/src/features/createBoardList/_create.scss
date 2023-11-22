@@ -212,6 +212,12 @@
   color: white;
   font-size: 16px;
   font-weight: bold;
+
+  &:disabled {
+    background-color: $primary;
+    opacity: 0.8;
+    cursor: default;
+  }
 }
 
 .board-modal-black-bg {
@@ -273,13 +279,12 @@
 
 .modal-list-img {
   width: 240px;
-  height: auto;
+  height: 230px;
   overflow: hidden;
-  background-color: #d9d9d9;
+  // background-color: #d9d9d9;
   margin-left: 13px;
   border-radius: 5px;
   display: flex;
-  justify-content: center;
   align-items: center;
   font-size: 30px;
 
