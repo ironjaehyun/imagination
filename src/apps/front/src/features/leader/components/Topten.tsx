@@ -69,7 +69,7 @@ export default function Topten() {
         //   disableOnInteraction: true
         // }}
         slidesOffsetBefore={100}
-        slidesOffsetAfter={-100}
+        slidesOffsetAfter={-38}
         className="swiper-container"
       >
         {Leaderboard.slice(3, 10).map((value, index) => (
