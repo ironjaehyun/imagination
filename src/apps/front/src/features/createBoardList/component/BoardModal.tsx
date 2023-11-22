@@ -9,6 +9,8 @@ const BoardModal = () => {
     ModalBgClose,
     savedImg,
     isSelected,
+    responsive,
+    Carousel,
   } = useCreatList();
 
   return (
@@ -34,12 +36,14 @@ const BoardModal = () => {
                   name="modalDataGroup"
                   onChange={(e) => handleRadioChange(e, item)}
                 />
-                <div className="modal-list-img ">
-                  <img src={item.img1} />
-                  <img src={item.img2} />
-                  <img src={item.img3} />
-                  <img src={item.img4} />
-                </div>
+                <Carousel className="modal-list-img" responsive={responsive}>
+                  {[item.img1, item.img2, item.img3, item.img4] // 이미지 URL들을 배열에 담기
+                    .filter(Boolean) // 무효한 값들 제거
+                    .map((img, idx) => (
+                      <img key={idx} src={img} />
+                    ))}
+                </Carousel>
+
                 <div className="modal-prompt-list">
                   <div className="modal-prompt-positive">
                     <h4 onClick={() => console.log(item)}>Prompt</h4>
