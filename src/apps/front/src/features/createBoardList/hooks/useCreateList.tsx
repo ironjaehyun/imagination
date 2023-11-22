@@ -1,10 +1,12 @@
-import { ChangeEvent, KeyboardEvent } from 'react';
+import { ChangeEvent, KeyboardEvent, useEffect } from 'react';
 
 import axios from 'axios';
 import { atom, useAtom } from 'jotai';
 import { atomWithReset, useResetAtom } from 'jotai/utils';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const initialData = {
   _id: '',
@@ -136,18 +138,6 @@ const useCreatList = () => {
 
   const createPost = async (event) => {
     event.preventDefault();
-    if (!selectedData.img1) {
-      alert('이미지를 선택해주세요.');
-      return;
-    }
-    if (!postTitle) {
-      alert('제목을 입력해주세요.');
-      return;
-    }
-    if (!postContent) {
-      alert('내용을 입력해주세요.');
-      return;
-    }
 
     const result = await axios.post(
       'http://localhost:3000/create/post',
@@ -159,7 +149,36 @@ const useCreatList = () => {
     }
   };
 
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+  const [postDisable, setPostDisable] = useState(true);
+  useEffect(() => {
+    if (postTitle.length > 0 && postContent.length > 0 && selectedData.img1) {
+      setPostDisable(false);
+    } else {
+      setPostDisable(true);
+    }
+  });
+
   return {
+    postDisable,
     openModal,
     closeModal,
     isModalOpen,
@@ -179,6 +198,8 @@ const useCreatList = () => {
     handlePostTitle,
     handlePostContent,
     removeHashtag,
+    responsive,
+    Carousel,
   };
 };
 

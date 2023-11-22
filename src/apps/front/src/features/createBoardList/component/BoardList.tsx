@@ -13,6 +13,7 @@ const Boardlist: React.FC = () => {
     createPost,
     handlePostTitle,
     handlePostContent,
+    postDisable,
   } = useCreatList();
 
   return (
@@ -24,9 +25,6 @@ const Boardlist: React.FC = () => {
           <div className="bring-art-list">
             <div className="bring-art-image" onClick={openModal}>
               <img src={selectedData.img1} />
-              <img src={selectedData.img2} />
-              <img src={selectedData.img3} />
-              <img src={selectedData.img4} />
               <h1 className="image-plus">+</h1>
             </div>
             <div className="bring-art-prompt">
@@ -78,7 +76,11 @@ const Boardlist: React.FC = () => {
               onKeyUp={onKeyUp}
             />
           </div>
-          <button onClick={createPost} className="art-button">
+          <button
+            onClick={createPost}
+            className="art-button"
+            disabled={postDisable}
+          >
             게시하기
           </button>
         </div>
