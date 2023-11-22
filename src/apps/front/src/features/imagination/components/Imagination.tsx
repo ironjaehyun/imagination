@@ -10,6 +10,7 @@ const Imagination = () => {
     setPrompt,
     setNegative,
     buttonDisabled,
+    negative,
     buttonBg,
     imgSrc,
     buttonText,
@@ -25,6 +26,7 @@ const Imagination = () => {
     buttonList,
     selectedSize,
     sizeList,
+    currentPrompt,
   } = useImagination();
 
   return (
@@ -61,7 +63,7 @@ const Imagination = () => {
                 placeholder="ex. scary, dirty"
                 cols={15}
                 rows={3}
-                value="low quality, worst quality, mutated, mutation, distorted, deformed, wrong shape, text"
+                value={negative}
               ></textarea>
             </div>
           </div>
@@ -128,35 +130,46 @@ const Imagination = () => {
             /> */}
           </div>
           <div className="Generated-imgs">
-            {isLoading
-              ? Array(selectedsamples)
-                  .fill(null)
-                  .map((_, idx) => (
-                    <div className="loading-img" key={idx}>
-                      <img
-                        src="imagination/funder-the-sea-octopus.gif"
-                        alt="Loading"
-                        className="loding-img"
-                      />
+            {isLoading && (
+              <div className="loading-images">
+                <h4>{new Date().toLocaleDateString()}</h4>
+                <textarea
+                  readOnly
+                  value={currentPrompt}
+                  className="prompt-input"
+                />
+                <div className="loading-imgs-row">
+                  {Array(selectedsamples)
+                    .fill(null)
+                    .map((_, idx) => (
+                      <div className="loading-img" key={idx}>
+                        <img
+                          src="imagination/funder-the-sea-octopus.gif"
+                          alt="Loading"
+                          className="loading-img"
+                        />
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+            {imageUrls.map((imageUrl, index) => (
+              <div key={index}>
+                <h4>{new Date(imageUrl.date).toLocaleDateString()}</h4>
+                <textarea
+                  readOnly
+                  value={imageUrl.prompt}
+                  className="prompt-input"
+                />
+                <div className="images-row">
+                  {imageUrl.images.map((image, idx) => (
+                    <div className="Generated-img" key={idx}>
+                      <img src={image} alt="Generated" />
                     </div>
-                  ))
-              : imageUrls.map((imageUrl, index) => (
-                  <div key={index}>
-                    <h4>{new Date(imageUrl.date).toLocaleString()}</h4>
-                    <textarea
-                      readOnly
-                      value={imageUrl.prompt}
-                      className="prompt-input"
-                    />
-                    <div className="images-row">
-                      {imageUrl.images.map((image, idx) => (
-                        <div className="Generated-img" key={idx}>
-                          <img src={image} alt="Generated" className="img" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </form>
       </div>
