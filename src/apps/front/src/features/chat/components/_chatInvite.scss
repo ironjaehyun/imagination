@@ -135,4 +135,9 @@
     color: white;
     border-radius: 10px;
   }
+
+  .chat-btn-selected {
+    transition: 0.5s;
+    background-color: $primary;
+  }
 }

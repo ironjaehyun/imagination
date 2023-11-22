@@ -61,6 +61,20 @@ const ChatInvite: React.FC = () => {
   const [selected_Id, setSelected_Id] = useState<string>();
   const handleClickInside = (e: MouseEvent) => {
     e.stopPropagation();
+
+    const isRadioButtonSelected = userList.some(
+      (user) => user._id === selected_Id,
+    );
+    const buttonClass = classNames({
+      'chat-btn-selected': isRadioButtonSelected,
+    });
+    const buttonElement = document.querySelector(
+      '.chat-invite-btn button',
+    ) as HTMLButtonElement | null;
+    if (buttonElement) {
+      buttonElement.className = buttonClass;
+      buttonElement.disabled = !isRadioButtonSelected;
+    }
   };
 
   return isOpen ? (
