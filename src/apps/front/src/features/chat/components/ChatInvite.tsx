@@ -14,6 +14,8 @@ const userListAtom = atom<UserItem[]>([]);
 const ChatInvite: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [userList, setUserList] = useAtom(userListAtom);
+  const [searchValue, setSearchValue] = useState<string>(''); // searchValue 초기화 추가
+  const [selected_Id, setSelected_Id] = useState<string>();
 
   const handleClose = () => {
     setIsOpen(false);
@@ -58,7 +60,6 @@ const ChatInvite: React.FC = () => {
     fetchUserList();
   }, []);
 
-  const [selected_Id, setSelected_Id] = useState<string>();
   const handleClickInside = (e: MouseEvent) => {
     e.stopPropagation();
 
@@ -77,6 +78,11 @@ const ChatInvite: React.FC = () => {
     }
   };
 
+  // 사용자 목록 필터링
+  const filteredUserList = userList.filter((user) =>
+    user.id.toLowerCase().includes(searchValue.toLowerCase()),
+  );
+
   return isOpen ? (
     <div className={`alertpop ${isOpen ? 'open' : ''}`}>
       <div className="chat-invite-bg" onClick={handleClickOutside}>
@@ -87,27 +93,38 @@ const ChatInvite: React.FC = () => {
           </div>
 
           <div className="chat-invite-search">
-            <textarea placeholder="search"></textarea>
+            <input
+              type="text"
+              placeholder="search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
             <img src="../chatimg/Vector.svg" />
           </div>
 
           <div className="chat-invite-list">
-            {userList.map((user) => (
-              <div key={user._id} className="chat-invite-elements">
-                <img src={user.user_profile_img} />
-                <label>{user.id}</label>
-                <div
-                  className={classNames('radio', {
-                    selected: user._id === selected_Id,
-                  })}
-                  onClick={() => handleRadioClick(user._id)}
-                ></div>
-              </div>
-            ))}
+            {searchValue.trim() !== '' &&
+              filteredUserList.map((user) => (
+                <div key={user._id} className="chat-invite-elements">
+                  <img
+                    src={user.user_profile_img}
+                    alt={`Profile of ${user.id}`}
+                  />
+                  <label>{user.id}</label>
+                  <div
+                    className={classNames('radio', {
+                      selected: user._id === selected_Id,
+                    })}
+                    onClick={() => handleRadioClick(user._id)}
+                  ></div>
+                </div>
+              ))}
           </div>
 
           <div className="chat-invite-btn">
-            <button onClick={handleChatButtonClick}>Chat</button>
+            <button onClick={handleChatButtonClick} disabled={!selected_Id}>
+              Chat
+            </button>
           </div>
         </div>
       </div>

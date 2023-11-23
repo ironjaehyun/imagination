@@ -26,10 +26,12 @@ const ChatList: React.FC = () => {
   }, []);
 
   const handleChatInviteToggle = () => {
+    setChatRoomOpen(false);
     setChatInviteOpen(!chatInviteOpen);
   };
 
   const handleChatRoomToggle = () => {
+    setChatInviteOpen(false);
     setChatRoomOpen(!chatRoomOpen);
   };
 
