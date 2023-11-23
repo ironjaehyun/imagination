@@ -61,26 +61,37 @@ const AddFollow = async (req, res) => {
   const followId = new mongoose.Types.ObjectId(req.body.follow);
   if (unfollow) {
     const addFollow = new followModel({ owner: ownerId, follow: followId });
-    await addFollow.save();
-    const user = await userModel.findById(ownerId);
-
-    user.follow.push(addFollow._id);
-    await user.save();
     const addFollower = new followerModel({
       owner: followId,
       follower: ownerId,
     });
-    await addFollower.save();
 
-    const followerUser = await userModel.findById(followId);
+    const [user, followerUser] = await Promise.all([
+      userModel.findById(ownerId),
+      userModel.findById(followId),
+    ]);
 
-    followerUser.follower.push(addFollower._id);
-    await followerUser.save();
+    await Promise.all([
+      addFollow.save(),
+      addFollower.save(),
+      new Promise((resolve) => {
+        user.follow.push(addFollow._id);
+        user.save();
+        resolve({});
+      }),
+      new Promise((resolve) => {
+        followerUser.follower.push(addFollower._id);
+        followerUser.save();
+        resolve({});
+      }),
+    ]);
   } else {
     const ownerId = new mongoose.Types.ObjectId(owner);
     const followId = new mongoose.Types.ObjectId(follow);
-    await followModel.deleteOne({ owner: ownerId, follow: followId });
-    await followerModel.deleteOne({ owner: followId, follower: ownerId });
+    await Promise.all([
+      followModel.deleteOne({ owner: ownerId, follow: followId }),
+      followerModel.deleteOne({ owner: followId, follower: ownerId }),
+    ]);
   }
   // 만약에 userId랑 Id랑 같이 있다면 true값을 보내라..
   res.json({ follow: 'true' });

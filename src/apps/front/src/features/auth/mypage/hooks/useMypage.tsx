@@ -2,7 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { editModal, followAtom, followerAtom, imageAtom } from './MypageAtom';
 import { SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from './constants';
 import { useParams } from 'react-router-dom';
 
@@ -148,14 +148,13 @@ const useMypage = () => {
     }
   };
 
-  const query = useQuery({
+  const query = useSuspenseQuery({
     queryKey: [QUERY_KEY.user],
-    queryFn: async () => {
-      const res = await axios.get('http://localhost:3000/mypage/user', {
+    queryFn: async () =>
+      await axios.get('http://localhost:3000/mypage/user', {
         params: { _id: objectId, id: id },
-      });
-      return res.data;
-    },
+      }),
+    select: (data) => data.data,
   });
   // 만약에 이 데이터가 있다면?
   useEffect(() => {

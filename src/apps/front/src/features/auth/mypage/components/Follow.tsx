@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import useMypage from '../hooks/useMypage';
 
 const Follow = () => {
@@ -17,26 +18,28 @@ const Follow = () => {
         </div>
         <hr />
         <ul>
-          {data?.follow?.map((item) => (
-            <li key={item._id} className="follow-list">
-              <a
-                href={
-                  objectId === item.follow._id
-                    ? `/mypage/${objectId}`
-                    : `/userpage/${item.follow._id}`
-                }
-                onClick={handleFollowClose}
-              >
-                <div>
-                  <img src={item.follow.user_profile_img} alt="" />
-                  <div className="follow-list-left">
-                    <h5>{item.follow.id}</h5>
+          <Suspense fallback={<li className="follow-list"></li>}>
+            {data.follow.map((item) => (
+              <li key={item._id} className="follow-list">
+                <a
+                  href={
+                    objectId === item.follow._id
+                      ? `/mypage/${objectId}`
+                      : `/userpage/${item.follow._id}`
+                  }
+                  onClick={handleFollowClose}
+                >
+                  <div>
+                    <img src={item.follow.user_profile_img} alt="" />
+                    <div className="follow-list-left">
+                      <h5>{item.follow.id}</h5>
+                    </div>
                   </div>
-                </div>
-              </a>
-              <button></button>
-            </li>
-          ))}
+                </a>
+                <button></button>
+              </li>
+            ))}
+          </Suspense>
         </ul>
       </div>
     </div>
