@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 
 const checkId = async (req, res, next) => {
   const user = await userModel.findOne({ id: req.body.id });
-  console.log(user);
   if (user) {
     res.json({ msg: 'User already exists' });
   } else {
@@ -62,9 +61,6 @@ const loginSuccess = async (req, res) => {
   try {
     const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const user = await userModel.findOne({ _id: data._id });
-    console.log(user);
-
-    // 비밀번호를 제외한 사용자 데이터를 가져옴
 
     res.status(200).json(user);
   } catch (error) {
@@ -79,15 +75,9 @@ const logout = (req, res) => {
 };
 
 const userId = async (req, res) => {
-  try {
-    const _id = 'leechi';
-    const user = await userModel.findOne({ _id });
-    console.log(user); // 사용자 데이터를 콘솔에 출력합니다.
-    res.status(200).json(user); // 혹은 사용자 데이터를 JSON으로 응답할 수 있습니다.
-  } catch (error) {
-    console.error(error); // 오류가 발생하면 콘솔에 오류를 출력합니다.
-    res.status(500).json({ error: 'Internal Server Error' }); // 오류 응답을 클라이언트에게 전달합니다.
-  }
+  const _id = 'leechi';
+  const user = await userModel.findOne({ _id });
+  res.status(200).json(user);
 };
 
 export {

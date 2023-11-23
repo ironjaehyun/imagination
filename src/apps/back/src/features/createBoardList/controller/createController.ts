@@ -25,7 +25,6 @@ const getSavedImage = async (req, res) => {
 };
 
 const createPost = async (req, res) => {
-  console.log(req.body);
   const {
     owner,
     post_title,

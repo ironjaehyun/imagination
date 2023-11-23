@@ -14,7 +14,6 @@ const MypageModal = () => {
   const targetPost = post.find(
     (postItem: { _id: string }) => postItem._id === postId,
   );
-  console.log(targetPost.owner.id);
 
   return (
     <div className="mypage-modal-bg" onClick={modalBubbling()}>
