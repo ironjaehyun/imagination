@@ -1,14 +1,24 @@
 import { useState } from 'react';
+import axios from './../api/auth';
 
-const useLikes = (posts: Array<{ _id: string }>) => {
+const useLikes = (post: Array<{ _id: string }>) => {
   // 모든 id값의 좋아요 상태를 false로 둔다
   const [isLiked, setIsLiked] = useState<Record<string, boolean>>(
-    posts.reduce((acc, post) => ({ ...acc, [post._id]: false }), {}),
+    post.reduce((acc, post) => ({ ...acc, [post._id]: false }), {}),
   );
 
   // 좋아요 상태를 바꾸는 작업
-  const handleLike = (_id: string) => {
+  const handleLike = async (_id: string) => {
+    const currentIsLiked = !isLiked[_id];
     setIsLiked((prev) => ({ ...prev, [_id]: !prev[_id] }));
+    try {
+      // 서버에 좋아요 요청을 보냅니다.
+      await axios.post('/Feed/likes', { _id, isLiked: currentIsLiked });
+      // 클라이언트에서의 좋아요 상태를 업데이트합니다.
+      // ...
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return [isLiked, handleLike] as const;

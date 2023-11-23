@@ -35,7 +35,7 @@ const BigGnb = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <div className="BigGnb">

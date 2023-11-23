@@ -4,6 +4,7 @@ import useCopy from './hooks/useCopy';
 import { PostType } from './types/PostType';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import useLikes from '../feed/hooks/useLikes';
 
 // Carousel responsive 설정
 const responsive = {
@@ -59,11 +60,13 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
     title: post.post_title,
     content: post.post_content,
     hashtags: post.post_hashtag,
-    likeCount: 22,
+    likeCount: post.likes,
     prompt: post.post_prompt,
     Nprompt: post.post_negative_prompt,
   };
   const objectId = sessionStorage.getItem('_id');
+  const [isLiked, handleLike] = useLikes(post ? [post] : []);
+
   return (
     <div className={`alertpop ${isOpen ? 'open' : ''}`} onClick={handleBgClick}>
       {isOpen && data && (
@@ -106,9 +109,19 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
                 <div className="modal-main-right-battom">
                   <h5>{data.hashtags}</h5>
                   <div className="modal-Btn">
-                    <button className="modal-LikeBtn">
-                      <img src="./img/like.png" alt="" />
-                      <span>{data.likeCount}</span>
+                    <button
+                      className="modal-LikeBtn"
+                      onClick={() => handleLike(post._id)}
+                    >
+                      <img
+                        src={
+                          isLiked[post._id]
+                            ? './img/filledlike.png'
+                            : './img/like.png'
+                        }
+                        alt=""
+                      />
+                      <span>{data.likeCount.toString()}</span>
                     </button>
                     <button className="modal-CreateImage">
                       <Link to={'/imagination'}>
@@ -129,7 +142,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
                     {promptCopied && (
-                      <span className="copy-tooltip">Copied!</span>
+                      <span className="copy-tooltip">✓ Copied!</span>
                     )}
                   </div>
                 </div>
@@ -144,7 +157,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
                     {negativePromptCopied && (
-                      <span className="copy-tooltip">Copied!</span>
+                      <span className="copy-tooltip">✓ Copied!</span>
                     )}
                   </div>
                 </div>

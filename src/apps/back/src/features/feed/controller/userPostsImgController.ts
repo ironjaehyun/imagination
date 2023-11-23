@@ -6,7 +6,7 @@ const userpostslike = async (req, res) => {
       path: 'owner',
       select: 'user_profile_img _id id',
     });
-    console.log(posts);
+    // console.log(posts);
     return res.json(posts);
   } catch (error) {
     console.error(error);
