@@ -9,7 +9,6 @@ const ChatList: React.FC = () => {
   const [userList, setUserList] = useState<UserItem[]>([]);
 
   useLayoutEffect(() => {
-    // 서버로부터 사용자 목록을 받아옴
     const fetchUserList = async () => {
       try {
         const response = await axios.get(
@@ -20,7 +19,21 @@ const ChatList: React.FC = () => {
         console.error('Error fetching user list:', error);
       }
     };
+    console.log(fetchUserList);
+    fetchUserList();
+  }, []);
 
+  useLayoutEffect(() => {
+    const fetchUserList = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/chat/list?id=${sessionStorage.getItem('_id')}`,
+        );
+        setUserList((prevState) => [...prevState, response.data]); // 기존 userList에 새로 받아온 데이터를 추가
+      } catch (error) {
+        console.error('Error fetching user list:', error);
+      }
+    };
     fetchUserList();
   }, []);
 

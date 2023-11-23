@@ -15,7 +15,6 @@ export const getUser = async (req: Request, res: Response) => {
   }
 };
 
-//
 export const getChatRooms = async (req, res) => {
   try {
     const rooms = await roomModels.find({ members: req.query.id }).populate({
@@ -49,7 +48,7 @@ export const deleteChatRoom = async (req: Request, res: Response) => {
   res.status(200).json({ message: 'Delete chat room endpoint' });
 };
 
-export const createRoom = async (req) => {
+export const createRoom = async (req, res) => {
   const { user, me, string } = req.body;
   console.log(user);
 
@@ -67,6 +66,11 @@ export const createRoom = async (req) => {
   AUser.room.push(room._id);
   BUser.room.push(room._id);
 
+  console.log('사용자아이디', AUser);
+  console.log('받는아이디', BUser);
+
   await AUser.save();
   await BUser.save();
+
+  res.send(BUser);
 };

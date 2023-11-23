@@ -38,8 +38,11 @@ const ChatInvite: React.FC = () => {
         string: 'room title',
       };
 
-      await axios.post('http://localhost:3000/chat/room', body);
-      console.log('Invitation sent successfully!');
+      const response = await axios.post(
+        'http://localhost:3000/chat/room',
+        body,
+      );
+      console.log('Invitation sent successfully!', response.data); // 응답으로 받은 BUser를 출력합니다.
       setIsOpen(false);
     } catch (error) {
       console.error('Error sending invitation:', error);
