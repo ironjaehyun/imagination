@@ -72,7 +72,7 @@ const Boardlist: React.FC = () => {
             ))}
             <input
               className="art-detail-textarea-hashtag"
-              placeholder="해쉬태그 입력"
+              placeholder="해시태그 입력"
               value={input}
               onChange={onChange}
               onKeyUp={onKeyUp}
