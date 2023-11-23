@@ -2,11 +2,7 @@ import mongoose from 'mongoose';
 
 const roomSchema = new mongoose.Schema(
   {
-    roomTitle: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'Message',
-    },
+    room: String,
     members: [
       { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
     ],

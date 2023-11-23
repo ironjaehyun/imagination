@@ -35,7 +35,7 @@ const ChatInvite: React.FC = () => {
       const body = {
         user: selected_Id,
         me: sessionStorage.getItem('_id'),
-        string: '허걱슨',
+        string: 'room title',
       };
 
       await axios.post('http://localhost:3000/chat/room', body);

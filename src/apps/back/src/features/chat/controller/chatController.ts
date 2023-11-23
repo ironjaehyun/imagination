@@ -50,8 +50,8 @@ export const deleteChatRoom = async (req: Request, res: Response) => {
 };
 
 export const createRoom = async (req) => {
-  console.log(req.body);
   const { user, me, string } = req.body;
+  console.log(user);
 
   const userId = new mongoose.Types.ObjectId(user);
   const meId = new mongoose.Types.ObjectId(me);
@@ -59,6 +59,14 @@ export const createRoom = async (req) => {
     room: string,
     members: [userId, meId],
   });
-
   await room.save();
+
+  const AUser = await userModel.findById(meId);
+  const BUser = await userModel.findById(userId);
+
+  AUser.room.push(room._id);
+  BUser.room.push(room._id);
+
+  await AUser.save();
+  await BUser.save();
 };

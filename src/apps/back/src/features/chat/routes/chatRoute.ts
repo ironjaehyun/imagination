@@ -5,9 +5,8 @@ import {
   deleteChatRoom,
   inviteToChat,
   getUser,
+  createRoom,
 } from '../controller/chatController';
-
-import { createRoom } from '../controller/chatLeechi';
 
 const router = express.Router();
 
