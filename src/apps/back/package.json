@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Test",
   "scripts": {
-    "dev": "--exec ts-node-dev src/index.ts"
+    "dev": "ts-node-dev src/index.ts"
   },
   "author": "leechi",
   "license": "MIT",
