@@ -107,15 +107,24 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+
+  .ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* 라인 수 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .bring-art-prompt-positive {
   width: 624px;
-  height: 75px;
+  height: 80px;
   background-color: #f5f5f5;
   display: flex;
   border-radius: 5px;
-  padding: 1%;
+  padding: 1.5%;
   flex-direction: column;
 
   p {
@@ -125,11 +134,11 @@
 
 .bring-art-prompt-negative {
   width: 624px;
-  height: 75px;
+  height: 80px;
   background-color: #f5f5f5;
   display: flex;
   border-radius: 5px;
-  padding: 1%;
+  padding: 1.5%;
   flex-direction: column;
 
   p {
@@ -164,13 +173,19 @@
   p {
     float: right;
   }
+
+  ::placeholder {
+    color: #d9d9d9;
+  }
 }
 
 .board-title {
   width: 90%;
-  color: #d9d9d9;
-  border-bottom: #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
+
+  ::placeholder {
+    color: #d9d9d9;
+  }
 }
 
 .art-detail-textarea-title {
@@ -357,7 +372,7 @@
 
 .ellipsis {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   /* 라인 수 */
   -webkit-box-orient: vertical;
   overflow: hidden;
