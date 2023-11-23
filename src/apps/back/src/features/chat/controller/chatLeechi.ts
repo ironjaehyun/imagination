@@ -1,5 +1,4 @@
 import roomModels from '../../shared/db/chatRoomModel';
-import userModel from '../../shared/db/userModel';
 import mongoose from 'mongoose';
 
 export const createRoom = async (req) => {
