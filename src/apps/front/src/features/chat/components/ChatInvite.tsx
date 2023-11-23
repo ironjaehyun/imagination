@@ -51,7 +51,6 @@ const ChatInvite: React.FC = () => {
       try {
         const response = await axios.get('http://localhost:3000/chat/user');
         setUserList(response.data);
-        console.log(setUserList);
       } catch (error) {
         console.error('Error fetching user list:', error);
       }

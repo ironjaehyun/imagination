@@ -26,20 +26,19 @@ const ChatRoom = () => {
   };
 
   useEffect(() => {
-    // 새로운 메시지가 추가될 때마다 스크롤을 최하단으로 이동
     scrollToBottom();
-    // 스크롤 이벤트 등록
+
     const handleScroll = () => {
       const { current: chatDiv } = chatContainer;
       if (!chatDiv) return;
       setShowScrollToTopButton(chatDiv.scrollTop > 0);
     };
     chatContainer.current?.addEventListener('scroll', handleScroll);
-    // 컴포넌트 언마운트 시 이벤트 제거
+
     return () => {
       chatContainer.current?.removeEventListener('scroll', handleScroll);
     };
-  }, [messages]);
+  }, [messages, isFetching]);
 
   const scrollToBottom = () => {
     const { current: chatDiv } = chatContainer;
@@ -59,7 +58,6 @@ const ChatRoom = () => {
       event.preventDefault();
       handleSend();
     } else {
-      // 텍스트 입력 중에 isFetching 상태를 설정
       setIsFetching(event.currentTarget.value.trim() !== '');
     }
   };

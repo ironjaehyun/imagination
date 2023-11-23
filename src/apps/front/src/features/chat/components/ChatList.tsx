@@ -16,7 +16,6 @@ const ChatList: React.FC = () => {
           `http://localhost:3000/chat/list?id=${sessionStorage.getItem('_id')}`,
         );
         setUserList(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching user list:', error);
       }
