@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import express from 'express';
 import userModel from '../../shared/db/userModel';
 import roomModels from '../../shared/db/chatRoomModel';
+import mongoose from 'mongoose';
 
 // 채팅 초대모달 아이디 이미지
 export const getUser = async (req: Request, res: Response) => {
@@ -46,4 +47,18 @@ export const inviteToChat = (req: express.Request, res: express.Response) => {
 export const deleteChatRoom = async (req: Request, res: Response) => {
   // 해당 컨트롤러에서 채팅방을 삭제하는 로직을 추가하면 됩니다.
   res.status(200).json({ message: 'Delete chat room endpoint' });
+};
+
+export const createRoom = async (req) => {
+  console.log(req.body);
+  const { user, me, string } = req.body;
+
+  const userId = new mongoose.Types.ObjectId(user);
+  const meId = new mongoose.Types.ObjectId(me);
+  const room = new roomModels({
+    room: string,
+    members: [userId, meId],
+  });
+
+  await room.save();
 };

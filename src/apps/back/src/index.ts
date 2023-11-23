@@ -11,7 +11,6 @@ import mypageRoute from './features/auth/routes/mypageRoute';
 import imageRoute from './features/imagination/routes/imageRoute';
 import chatRoute from './features/chat/routes/chatRoute';
 import createRoute from './features/createBoardList/router/createRoute';
-import chatLeechi from './features/chat/routes/chat';
 import connectToMongoDB from './db';
 import { PORT } from '../../../packages/models/port';
 import cookieParser from 'cookie-parser';
@@ -34,7 +33,6 @@ const startServer = async () => {
   await connectToMongoDB();
   app.use('/join', joinRoute);
   app.use('/chat', chatRoute);
-  app.use('/chat', chatLeechi);
   app.use('/mypage', mypageRoute);
   app.use('/imagination', imageRoute);
   app.use('/Gnb', GnbRoute);
@@ -42,7 +40,6 @@ const startServer = async () => {
   app.use('/Feed', FeedRoute);
   app.use('/Explore', ExploreRoute);
   app.use('/create', createRoute);
-  app.use('/api/chats', chatRoute);
   app.use('/', loginRoute);
 
   app.use((err, req, res, next) => {
