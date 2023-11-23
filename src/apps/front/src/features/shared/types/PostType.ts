@@ -18,7 +18,7 @@ export type PostType = {
   post_img3: string;
   post_img4: string;
   owner: OwnerType;
-  likes: Number;
+  likes: number;
   posted_at: Date;
   __v: number;
 };

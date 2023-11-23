@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import useLikes from '../hooks/useLikes';
 import axios from './../api/auth';
 import { useState, useEffect } from 'react';
 import { PostType } from '../../shared/types/PostType';
@@ -26,10 +25,9 @@ const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
     }
   }, [data]);
 
-  const [isLiked, handleLike] = useLikes(posts);
-
   if (isLoading) return <p>'Loading...'</p>;
   if (error) return <p>An error has occurred: {error.message}</p>;
+  const objectId = sessionStorage.getItem('_id');
 
   return (
     <div className="feed-cards">
@@ -46,25 +44,25 @@ const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
               />
             </div>
             <div className="post-card-footer">
+              <a
+                href={
+                  post.owner._id === objectId
+                    ? `/mypage/${objectId}`
+                    : `/userpage/${post.owner._id}`
+                }
+              >
+                <div className="post-card-userProfile">
+                  <img
+                    src={post.owner?.user_profile_img}
+                    alt=""
+                    className="post-card-proflieImg"
+                  />
+                  <span>{post.owner?.id}</span>
+                </div>
+              </a>
               <div>
-                <img
-                  src={post.owner?.user_profile_img}
-                  alt=""
-                  className="post-card-proflieImg"
-                />
-                <span>{post.owner?.id}</span>
-              </div>
-              <div>
-                <img
-                  src={
-                    isLiked[post._id]
-                      ? './img/filledlike.png'
-                      : './img/like.png'
-                  }
-                  alt=""
-                  onClick={() => handleLike(post._id)}
-                />
-                <span>{/*post.likeCount*/}0</span>
+                <img src="./img/like.png" alt="" />
+                <span>{post.likes.toString()}</span>
               </div>
             </div>
           </div>
