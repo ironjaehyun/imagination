@@ -21,6 +21,21 @@
   display: flex;
   align-items: center;
 
+  h3 {
+    cursor: pointer;
+  }
+
+  div {
+    display: flex;
+    font-size: 12px;
+
+    span {
+      flex: 1;
+      text-align: right;
+      white-space: nowrap;
+    }
+  }
+
   hr {
     border: none;
     height: 1px;
