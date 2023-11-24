@@ -68,7 +68,7 @@ const Imagination = () => {
             </div>
           </div>
           <div className="prompt-setting">
-            <h3>Setting</h3>
+            <h3 onClick={handleButtonClick}>Setting</h3>
             <img
               src="imagination/expand_less.png"
               alt=""
@@ -77,6 +77,18 @@ const Imagination = () => {
               style={{ transform: rotationState }}
             />
             <hr />
+            <div>
+              <span>
+                Number of Images <b>{selectedsamples}</b>
+              </span>
+              &nbsp;
+              <span>
+                Image Dimensions{' '}
+                <b>
+                  {selectedSize[0] * 2}X{selectedSize[1] * 2}
+                </b>
+              </span>
+            </div>
           </div>
           <div className="settings-options" style={{ display: settingOption }}>
             <p>Number of Images</p>
@@ -116,18 +128,6 @@ const Imagination = () => {
           </div>
           <div className="image-history">
             <h2>Image Generation History</h2>
-            {/* <p>
-              <b>2023/11/01</b>
-            </p>
-            <textarea
-              readOnly={true}
-              cols={15}
-              rows={3}
-              className="prompt-input"
-              value={
-                '입력한 프롬프트 값입니다.입력한 프롬프트 값입니다.입력한 프롬프트 값입니다.'
-              }
-            /> */}
           </div>
           <div className="Generated-imgs">
             {isLoading && (
