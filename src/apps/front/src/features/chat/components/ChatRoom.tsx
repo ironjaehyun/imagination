@@ -5,28 +5,70 @@ import {
   KeyboardEventHandler,
   MouseEventHandler,
   useRef,
+  FunctionComponent,
 } from 'react';
+import { UserItem } from './ChatInvite';
+import io from 'socket.io-client';
+import axios from 'axios';
 
-const ChatRoom = () => {
+type ChatRoomProps = {
+  invitedUser: UserItem;
+};
+
+const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<string[]>([]);
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
-  const [isFetching, setIsFetching] = useState(false); // 새로 추가된 상태
+  const [isFetching, setIsFetching] = useState(false);
   const chatContainer = useRef<HTMLDivElement>(null);
+
+  const socket = io('http://localhost:5545', { transports: ['websocket'] });
 
   const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (message.trim() === '') return;
-    setMessages([...messages, message]);
-    setMessage('');
-    setIsFetching(false);
+
+    try {
+      axios.post('http://localhost:3000/chat/savemsg', {
+        chatId: invitedUser._id,
+        senderId: sessionStorage.getItem('_id'),
+        text: message,
+      });
+
+      // 메시지 전송 후 소켓을 통해 실시간으로 메시지 수신하도록
+      await socket.emit('chat message', { user: invitedUser.id, message });
+
+      setMessages([...messages, message]);
+      setMessage('');
+      setIsFetching(false);
+
+      socket.emit('chat message', { user: invitedUser.id, message });
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
   };
 
   useEffect(() => {
+    const fetchMessages = async () => {
+      const response = await axios.get(
+        `/chat/getmsg?chatId=${invitedUser._id}`,
+      );
+      const messages = response.data;
+      setMessages(messages);
+    };
+
+    fetchMessages();
+
     scrollToBottom();
+
+    socket.on('chat message', (data) => {
+      // 수신한 메시지를 state에 추가
+      setMessages([...messages, data.message]);
+      scrollToBottom(); // 화면을 항상 가장 아래로 스크롤
+    });
 
     const handleScroll = () => {
       const { current: chatDiv } = chatContainer;
@@ -37,8 +79,9 @@ const ChatRoom = () => {
 
     return () => {
       chatContainer.current?.removeEventListener('scroll', handleScroll);
+      socket.off('chat message');
     };
-  }, [messages, isFetching]);
+  }, [messages, isFetching, invitedUser._id]);
 
   const scrollToBottom = () => {
     const { current: chatDiv } = chatContainer;
@@ -72,15 +115,16 @@ const ChatRoom = () => {
     chatDiv.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const objectId = sessionStorage.getItem('_id');
-  console.log(objectId);
-
   return (
     <div className="chatroom">
       <div className="chatroom-info">
         <div>
-          <img src="../chatimg/Rectangle 17.png" alt="User Avatar" />
-          <span>Leechi</span>
+          <img
+            className="chatroom-info-profileimg"
+            src={invitedUser.user_profile_img}
+            alt="User Avatar"
+          />
+          <span>{invitedUser.id}</span>
         </div>
         <img src="../chatimg/logout.svg" alt="Logout" />
       </div>
@@ -95,7 +139,7 @@ const ChatRoom = () => {
           {isFetching && (
             <div className="chat-bubble-right">
               <p>
-                <img src="../chatimg/talking.gif" />
+                <img src="../chatimg/talking.gif" alt="Talking" />
               </p>
             </div>
           )}
@@ -105,14 +149,14 @@ const ChatRoom = () => {
           onClick={handleScrollToTop}
         >
           <span>
-            <img src="../chatimg/whitearrow.png" alt="Scroll To Top"></img>
+            <img src="../chatimg/whitearrow.png" alt="Scroll To Top" />
           </span>
         </div>
       </div>
 
       <div className="chatroom-inputarea">
         <div className="chatroom-inputbox">
-          <img src="../chatimg/smile.svg" />
+          <img src="../chatimg/smile.svg" alt="Smile" />
           <textarea
             className="chat-input"
             placeholder="메시지를 입력해주세요"

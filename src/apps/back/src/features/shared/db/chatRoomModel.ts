@@ -14,4 +14,6 @@ const roomSchema = new mongoose.Schema(
 
 const roomModels = mongoose.model('Room', roomSchema);
 
+console.log(roomModels.schema.paths.room);
+
 export default roomModels;

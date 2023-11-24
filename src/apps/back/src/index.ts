@@ -14,6 +14,7 @@ import createRoute from './features/createBoardList/router/createRoute';
 import connectToMongoDB from './db';
 import { PORT } from '../../../packages/models/port';
 import cookieParser from 'cookie-parser';
+import initSocket from './socket';
 dotenv.config();
 
 const app = express();
@@ -21,7 +22,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
     methods: ['GET', 'POST'],
     credentials: true,
   }),
@@ -51,6 +52,8 @@ const startServer = async () => {
   app.listen(PORT, () => {
     console.log(`Server running... ${PORT}`);
   });
+
+  initSocket(app);
 };
 
 startServer();

@@ -11,14 +11,18 @@ export interface UserItem {
 
 const userListAtom = atom<UserItem[]>([]);
 
-const ChatInvite: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
+type ChatInviteProps = {
+  onClose: () => void;
+  onInvited: (data: UserItem) => void;
+};
+
+const ChatInvite: React.FC<ChatInviteProps> = ({ onClose, onInvited }) => {
   const [userList, setUserList] = useAtom(userListAtom);
   const [searchValue, setSearchValue] = useState<string>(''); // searchValue 초기화 추가
   const [selected_Id, setSelected_Id] = useState<string>();
 
   const handleClose = () => {
-    setIsOpen(false);
+    onClose();
   };
 
   const handleClickOutside = (e: MouseEvent) => {
@@ -38,9 +42,12 @@ const ChatInvite: React.FC = () => {
         string: 'room title',
       };
 
-      await axios.post('http://localhost:3000/chat/room', body);
-      console.log('Invitation sent successfully!');
-      setIsOpen(false);
+      const response = await axios.post<UserItem>(
+        'http://localhost:3000/chat/room',
+        body,
+      );
+      console.log('Invitation sent successfully!', response.data); // 응답으로 받은 BUser를 출력합니다.
+      onInvited({ ...response.data });
     } catch (error) {
       console.error('Error sending invitation:', error);
     }
@@ -82,8 +89,8 @@ const ChatInvite: React.FC = () => {
     user.id.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
-  return isOpen ? (
-    <div className={`alertpop ${isOpen ? 'open' : ''}`}>
+  return (
+    <div className={`alertpop open`}>
       <div className="chat-invite-bg" onClick={handleClickOutside}>
         <div className="chat-invite-box" onClick={handleClickInside}>
           <div className="chat-invite-title">
@@ -128,7 +135,7 @@ const ChatInvite: React.FC = () => {
         </div>
       </div>
     </div>
-  ) : null;
+  );
 };
 
 export default ChatInvite;

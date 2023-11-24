@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import express from 'express';
 import userModel from '../../shared/db/userModel';
 import roomModels from '../../shared/db/chatRoomModel';
+import messageModel from '../../shared/db/messageModel';
 import mongoose from 'mongoose';
 
 // 채팅 초대모달 아이디 이미지
@@ -15,7 +16,6 @@ export const getUser = async (req: Request, res: Response) => {
   }
 };
 
-//
 export const getChatRooms = async (req, res) => {
   try {
     const rooms = await roomModels.find({ members: req.query.id }).populate({
@@ -23,7 +23,6 @@ export const getChatRooms = async (req, res) => {
       select: '_id id user_profile_img',
       model: 'User',
     });
-
     res.status(200).json(rooms);
   } catch (error) {
     console.error('Error in getChatRooms:', error);
@@ -49,9 +48,9 @@ export const deleteChatRoom = async (req: Request, res: Response) => {
   res.status(200).json({ message: 'Delete chat room endpoint' });
 };
 
-export const createRoom = async (req) => {
+//
+export const createRoom = async (req, res) => {
   const { user, me, string } = req.body;
-  console.log(user);
 
   const userId = new mongoose.Types.ObjectId(user);
   const meId = new mongoose.Types.ObjectId(me);
@@ -69,4 +68,50 @@ export const createRoom = async (req) => {
 
   await AUser.save();
   await BUser.save();
+
+  res.status(200).json({ room: room._id, members: [AUser, BUser] });
+};
+
+export const saveMessage = async (req: Request, res: Response) => {
+  try {
+    const { chatId, senderId, text } = req.body;
+
+    // chatId에 연결된 채팅방(Room)을 찾습니다.
+    const room = await roomModels.findById(chatId);
+
+    // 채팅방이 존재하는지 확인합니다.
+    if (!room) {
+      return res.status(404).json({ message: '채팅방을 찾을 수 없습니다.' });
+    }
+
+    // 새로운 메시지를 생성합니다.
+    const message = new messageModel({
+      chatId,
+      senderId,
+      text,
+      room: room._id, // 메시지에 채팅방 ID를 설정합니다.
+    });
+
+    // 메시지를 저장합니다.
+    await message.save();
+
+    res.status(200).json({ message: '메시지가 성공적으로 저장되었습니다!' });
+  } catch (error) {
+    console.error('메시지 저장 중 오류 발생:', error);
+    res.status(500).json({ message: '내부 서버 오류' });
+  }
+};
+
+export const getMessages = async (req: Request, res: Response) => {
+  try {
+    const { chatId } = req.query;
+
+    // 채팅 메시지 불러오기
+    const messages = await messageModel.find({ chatId });
+
+    res.status(200).json(messages);
+  } catch (error) {
+    console.error('Error fetching messages:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 };
