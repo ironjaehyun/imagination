@@ -50,7 +50,6 @@ export const deleteChatRoom = async (req: Request, res: Response) => {
 
 export const createRoom = async (req, res) => {
   const { user, me, string } = req.body;
-  console.log(user);
 
   const userId = new mongoose.Types.ObjectId(user);
   const meId = new mongoose.Types.ObjectId(me);
@@ -66,11 +65,8 @@ export const createRoom = async (req, res) => {
   AUser.room.push(room._id);
   BUser.room.push(room._id);
 
-  console.log('사용자아이디', AUser);
-  console.log('받는아이디', BUser);
-
   await AUser.save();
   await BUser.save();
 
-  res.send(BUser);
+  res.status(200).json({ room: room._id, members: [AUser, BUser] });
 };

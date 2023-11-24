@@ -1,5 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import axios from 'axios';
+import io from 'socket.io-client';
 import ChatRoom from './ChatRoom';
 import ChatInvite, { UserItem } from './ChatInvite';
 
@@ -22,6 +23,9 @@ const ChatList: React.FC = () => {
   };
 
   useLayoutEffect(() => {
+    const socket = io('http://localhost:5545', { transports: ['websocket'] });
+    socket.on('ping', () => console.log('pong'));
+
     fetchUserList();
   }, []);
 
