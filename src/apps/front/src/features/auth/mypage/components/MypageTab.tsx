@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Key } from 'react';
 import MypageModal from './MypageModal';
 import { Link } from 'react-router-dom';
+import LikeModal from './LikeModal';
 
 const MypageTab = () => {
   const {
@@ -12,22 +13,14 @@ const MypageTab = () => {
     query: { data, isLoading },
     postModal,
     handlePostModalOpen,
+    handleLikeModalOpen,
+    likeModal,
   } = useMypage();
-  const likeData = [
-    {
-      post_id: 1,
-      img: 'https://img.freepik.com/free-photo/pink-sky-background-with-crescent-moon_53876-129048.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699833600&semt=sph',
-    },
-    {
-      post_id: 2,
-      img: 'https://images.unsplash.com/photo-1484542603127-984f4f7d14cb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D',
-    },
-  ];
-
   if (isLoading) return <div>Loding</div>;
   return (
     <>
       {postModal === true ? <MypageModal /> : null}
+      {likeModal === true ? <LikeModal /> : null}
       <div className="mypage-tab">
         <ul className="mypage-tab-list">
           <li
@@ -83,8 +76,14 @@ const MypageTab = () => {
         ) : null}
         {clickTab === 1 ? (
           <section className="mypage-likes">
-            {likeData.map((img) => {
-              return <img src={img.img} key={img.post_id} />;
+            {data.like.map((img) => {
+              return (
+                <img
+                  onClick={() => handleLikeModalOpen(img._id)}
+                  src={img.post_img1}
+                  key={img._id}
+                />
+              );
             })}
           </section>
         ) : null}

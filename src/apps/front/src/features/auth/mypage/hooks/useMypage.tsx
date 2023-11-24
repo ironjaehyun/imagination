@@ -1,5 +1,11 @@
 import { atom, useAtom } from 'jotai';
-import { editModal, followAtom, followerAtom, imageAtom } from './MypageAtom';
+import {
+  editModal,
+  followAtom,
+  followerAtom,
+  imageAtom,
+  likeAtom,
+} from './MypageAtom';
 import { SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
@@ -31,6 +37,7 @@ const useMypage = () => {
   const profileimg = sessionStorage.getItem('profile') ?? '';
   const userId = sessionStorage.getItem('id') ?? '';
   const objectId = sessionStorage.getItem('_id') ?? '';
+  const [likeModal, setLikeModal] = useAtom(likeAtom);
 
   const handleFollower = () => {
     setFollowerModal(true);
@@ -61,6 +68,13 @@ const useMypage = () => {
     setPostModal(true);
   };
 
+  const handleLikeModalOpen = (postId: string) => {
+    setPostId(postId);
+    setLikeModal(true);
+  };
+  const handleLikeModalClose = () => {
+    setLikeModal(false);
+  };
   const handlePostModalClose = () => {
     setPostModal(false);
   };
@@ -209,6 +223,9 @@ const useMypage = () => {
     handlePostModalOpen,
     handlePostModalClose,
     postModal,
+    handleLikeModalOpen,
+    handleLikeModalClose,
+    likeModal,
   };
 };
 export default useMypage;
