@@ -1,5 +1,6 @@
 import useCreatList from '../hooks/useCreateList';
 import { PUBLIC_URL } from '../../../../../../packages/models/port';
+import { Link } from 'react-router-dom';
 
 const BoardModal = () => {
   const {
@@ -58,15 +59,21 @@ const BoardModal = () => {
             ))}
         </div>
         <div className="modal-select-sure-div">
-          <button
-            onClick={handleSelectSureClick} // 선택완료 버튼을 눌렀을 때 handleSelectSureClick 함수를 호출
-            className={`modal-select-sure ${
-              isSelected ? 'enabled' : 'disabled'
-            }`}
-            disabled={!isSelected}
-          >
-            선택완료
-          </button>
+          {savedImg.length != 0 ? (
+            <button
+              onClick={handleSelectSureClick} // 선택완료 버튼을 눌렀을 때 handleSelectSureClick 함수를 호출
+              className={`modal-select-sure ${
+                isSelected ? 'enabled' : 'disabled'
+              }`}
+              disabled={!isSelected}
+            >
+              선택완료
+            </button>
+          ) : (
+            <Link to={'/imagination'}>
+              <button className="modal-create-button">이미지 만들기</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
