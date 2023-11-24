@@ -10,6 +10,7 @@ import Mypage from '../auth/mypage/Mypage';
 import UserPage from '../auth/mypage/UserPage';
 import Leader from '../leader/Leader';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Feed from '../feed/Feed';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +26,8 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Feed />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/join" element={<Join />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/imagination" element={<Imagination />} />
