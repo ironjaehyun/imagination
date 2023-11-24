@@ -51,7 +51,11 @@ const getUserData = async (req, res) => {
       path: 'follower',
       populate: { path: 'follower', select: 'user_profile_img id' },
     })
-    .populate('saved_images');
+    .populate('saved_images')
+    .populate({
+      path: 'like',
+      populate: { path: 'owner', select: 'user_profile_img id' },
+    });
   res.json(result);
 };
 
