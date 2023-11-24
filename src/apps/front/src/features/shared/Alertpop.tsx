@@ -113,7 +113,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
                   <p>{data.content}</p>
                 </div>
                 <div className="modal-main-right-battom">
-                  <h5>{data.hashtags}</h5>
+                  <h5>{data.hashtags.map((tag) => `#${tag}`).join(', ')}</h5>
                   <div className="modal-Btn">
                     <button
                       className="modal-LikeBtn"
@@ -139,7 +139,10 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
               <div>
                 <div className="modal-footer-prompt">
                   <h4>prompt</h4>
-                  <div onClick={() => handleCopyPrompt(data.prompt)}>
+                  <div
+                    onClick={() => handleCopyPrompt(data.prompt)}
+                    className="modal-copy"
+                  >
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
                     {promptCopied && (
@@ -154,7 +157,10 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
               <div className="prompt-div">
                 <div className="modal-footer-Nagative">
                   <h4>Negatice Prompt</h4>
-                  <div onClick={() => handleCopyNegativePrompt(data.Nprompt)}>
+                  <div
+                    onClick={() => handleCopyNegativePrompt(data.Nprompt)}
+                    className="modal-copy"
+                  >
                     <img src="./img/copy.png" alt="" />
                     <span>copy</span>
                     {negativePromptCopied && (
