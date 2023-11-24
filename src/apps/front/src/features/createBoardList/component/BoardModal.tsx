@@ -1,6 +1,5 @@
 import useCreatList from '../hooks/useCreateList';
 import { PUBLIC_URL } from '../../../../../../packages/models/port';
-import { Link } from 'react-router-dom';
 
 const BoardModal = () => {
   const {
@@ -23,41 +22,51 @@ const BoardModal = () => {
           </button>
         </div>
         {/* 여기서부터는 map 함수로 데이터를 가져올 생각입니다. */}
-        <div className="modal-content">
-          {' '}
-          {/* Add this wrapper */}
-          {savedImg
-            .slice()
-            .reverse()
-            .map((item) => (
-              <div className="modal-list" key={item.id}>
-                <input
-                  className="modal-select-button"
-                  type="radio"
-                  name="modalDataGroup"
-                  onChange={(e) => handleRadioChange(e, item)}
-                />
-                <Carousel className="modal-list-img" responsive={responsive}>
-                  {[item.img1, item.img2, item.img3, item.img4] // 이미지 URL들을 배열에 담기
-                    .filter(Boolean) // 무효한 값들 제거
-                    .map((img, idx) => (
-                      <img key={idx} src={img} />
-                    ))}
-                </Carousel>
+        {savedImg.length == 0 ? (
+          <div
+            className="modal-nocontent"
+            onClick={() => (location.href = '/imagination')}
+          >
+            <img src={PUBLIC_URL + '/img/noContent.png'}></img>
+          </div>
+        ) : (
+          <div className="modal-content">
+            {' '}
+            {/* Add this wrapper */}
+            {savedImg
+              .slice()
+              .reverse()
+              .map((item) => (
+                <div className="modal-list" key={item.id}>
+                  <input
+                    className="modal-select-button"
+                    type="radio"
+                    name="modalDataGroup"
+                    onChange={(e) => handleRadioChange(e, item)}
+                  />
+                  <Carousel className="modal-list-img" responsive={responsive}>
+                    {[item.img1, item.img2, item.img3, item.img4] // 이미지 URL들을 배열에 담기
+                      .filter(Boolean) // 무효한 값들 제거
+                      .map((img, idx) => (
+                        <img key={idx} src={img} />
+                      ))}
+                  </Carousel>
 
-                <div className="modal-prompt-list">
-                  <div className="modal-prompt-positive">
-                    <h4 onClick={() => console.log(item)}>Prompt</h4>
-                    <p className="ellipsis">{item.prompt}</p>
-                  </div>
-                  <div className="modal-prompt-negative">
-                    <h4>Negative Prompt</h4>
-                    <p className="ellipsis">{item.negative_prompt}</p>
+                  <div className="modal-prompt-list">
+                    <div className="modal-prompt-positive">
+                      <h4 onClick={() => console.log(item)}>Prompt</h4>
+                      <p className="ellipsis">{item.prompt}</p>
+                    </div>
+                    <div className="modal-prompt-negative">
+                      <h4>Negative Prompt</h4>
+                      <p className="ellipsis">{item.negative_prompt}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-        </div>
+              ))}
+          </div>
+        )}
+
         <div className="modal-select-sure-div">
           {savedImg.length != 0 ? (
             <button
@@ -69,11 +78,7 @@ const BoardModal = () => {
             >
               선택완료
             </button>
-          ) : (
-            <Link to={'/imagination'}>
-              <button className="modal-create-button">이미지 만들기</button>
-            </Link>
-          )}
+          ) : null}
         </div>
       </div>
     </div>

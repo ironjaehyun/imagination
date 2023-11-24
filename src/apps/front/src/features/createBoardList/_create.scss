@@ -293,6 +293,24 @@
   /* Other styles... */
 }
 
+.modal-nocontent {
+  overflow-y: auto;
+  /* Add scrolling to modal content */
+  flex-grow: 1;
+  /* Allow content to take up all available space */
+  /* Other styles... */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  flex-direction: column;
+  color: #d9d9d9;
+
+  img {
+    height: 100%;
+  }
+}
+
 .modal-list-img {
   width: 240px;
   height: 230px;
