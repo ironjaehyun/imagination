@@ -5,9 +5,15 @@ import {
   KeyboardEventHandler,
   MouseEventHandler,
   useRef,
+  FunctionComponent,
 } from 'react';
+import { UserItem } from './ChatInvite';
 
-const ChatRoom = () => {
+type ChatRoomProps = {
+  invitedUser: UserItem;
+};
+
+const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<string[]>([]);
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
@@ -76,8 +82,12 @@ const ChatRoom = () => {
     <div className="chatroom">
       <div className="chatroom-info">
         <div>
-          <img src="../chatimg/Rectangle 17.png" alt="User Avatar" />
-          <span>Leechi</span>
+          <img
+            className="chatroom-info-profileimg"
+            src={invitedUser.user_profile_img}
+            alt="User Avatar"
+          />
+          <span>{invitedUser.id}</span>
         </div>
         <img src="../chatimg/logout.svg" alt="Logout" />
       </div>

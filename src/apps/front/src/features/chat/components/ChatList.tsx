@@ -4,47 +4,46 @@ import ChatRoom from './ChatRoom';
 import ChatInvite, { UserItem } from './ChatInvite';
 
 const ChatList: React.FC = () => {
-  const [chatRoomOpen, setChatRoomOpen] = useState(false);
+  const [invitedUser, setInvitedUser] = useState<UserItem>();
   const [chatInviteOpen, setChatInviteOpen] = useState(false);
-  const [userList, setUserList] = useState<UserItem[]>([]);
+  const [roomList, setRoomList] = useState<
+    { members?: UserItem[]; _id: string; createdAt: string }[]
+  >([]);
+
+  const fetchUserList = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/chat/list?id=${sessionStorage.getItem('_id')}`,
+      );
+      setRoomList([...response.data].reverse());
+    } catch (error) {
+      console.error('Error fetching user list:', error);
+    }
+  };
 
   useLayoutEffect(() => {
-    const fetchUserList = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/chat/list?id=${sessionStorage.getItem('_id')}`,
-        );
-        setUserList(response.data);
-      } catch (error) {
-        console.error('Error fetching user list:', error);
-      }
-    };
-    console.log(fetchUserList);
-    fetchUserList();
-  }, []);
-
-  useLayoutEffect(() => {
-    const fetchUserList = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/chat/list?id=${sessionStorage.getItem('_id')}`,
-        );
-        setUserList((prevState) => [...prevState, response.data]); // 기존 userList에 새로 받아온 데이터를 추가
-      } catch (error) {
-        console.error('Error fetching user list:', error);
-      }
-    };
     fetchUserList();
   }, []);
 
   const handleChatInviteToggle = () => {
-    setChatRoomOpen(false);
+    setInvitedUser(undefined);
     setChatInviteOpen(!chatInviteOpen);
   };
 
-  const handleChatRoomToggle = () => {
+  const handleChatRoomToggle = (user: UserItem) => {
     setChatInviteOpen(false);
-    setChatRoomOpen(!chatRoomOpen);
+    setInvitedUser(user);
+  };
+
+  const handleInviteClose = () => {
+    setChatInviteOpen(false);
+  };
+  const handleInvited = (data: UserItem) => {
+    setChatInviteOpen(false);
+    setInvitedUser(data);
+    // TODO: axios 통해서 fetchList를 한번더 호출 해야함.
+    // NOTE: RQ 캐시로 관리하면 훨씬 편해짐
+    fetchUserList();
   };
 
   return (
@@ -58,21 +57,29 @@ const ChatList: React.FC = () => {
             alt="Add"
           />
         </div>
-
-        <div className="chat-list-contents" onClick={handleChatRoomToggle}>
-          {userList.map((user) => (
-            <div key={user._id} className="chat-list-elements">
-              <img src={user.user_profile_img} alt="User Avatar" />
-              <div>
-                <h4>{user.id}</h4>
+        <div className="chat-list-contents">
+          {roomList.map(({ members, _id }) => {
+            if (!members) return <div />;
+            return (
+              <div
+                key={_id}
+                className="chat-list-elements"
+                onClick={() => handleChatRoomToggle(members[0])}
+              >
+                <img src={members[0].user_profile_img} alt="User Avatar" />
+                <div>
+                  <h4>{members[0].id}</h4>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
-      {chatRoomOpen && <ChatRoom />}
-      {chatInviteOpen && <ChatInvite />}
+      {invitedUser?._id && <ChatRoom invitedUser={invitedUser} />}
+      {chatInviteOpen && (
+        <ChatInvite onClose={handleInviteClose} onInvited={handleInvited} />
+      )}
     </>
   );
 };
