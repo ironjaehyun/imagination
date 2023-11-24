@@ -2,7 +2,7 @@ import { atom, useAtom } from 'jotai';
 import { editModal, followAtom, followerAtom, imageAtom } from './MypageAtom';
 import { SetStateAction, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from './constants';
 import { useParams } from 'react-router-dom';
 
@@ -148,7 +148,7 @@ const useMypage = () => {
     }
   };
 
-  const query = useSuspenseQuery({
+  const query = useQuery({
     queryKey: [QUERY_KEY.user],
     queryFn: async () =>
       await axios.get('http://localhost:3000/mypage/user', {
