@@ -4,8 +4,7 @@ import useCopy from './hooks/useCopy';
 import { PostType } from './types/PostType';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import useLikes from '../feed/hooks/useLikes';
-
+import axios from 'axios';
 // Carousel responsive 설정
 const responsive = {
   superLargeDesktop: {
@@ -60,12 +59,19 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
     title: post.post_title,
     content: post.post_content,
     hashtags: post.post_hashtag,
-    likeCount: post.likes,
+    likeCount: post.like.length,
     prompt: post.post_prompt,
     Nprompt: post.post_negative_prompt,
   };
   const objectId = sessionStorage.getItem('_id');
-  const [isLiked, handleLike] = useLikes(post ? [post] : []);
+
+  const handleLike = (postId: string) => {
+    const res = axios.post('http://localhost:3000/Feed/likes', {
+      userId: objectId,
+      postId: postId,
+    });
+    console.log(res);
+  };
 
   return (
     <div className={`alertpop ${isOpen ? 'open' : ''}`} onClick={handleBgClick}>
@@ -111,17 +117,12 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
                   <div className="modal-Btn">
                     <button
                       className="modal-LikeBtn"
-                      onClick={() => handleLike(post._id)}
+                      onClick={() => {
+                        handleLike(post._id);
+                      }}
                     >
-                      <img
-                        src={
-                          isLiked[post._id]
-                            ? './img/filledlike.png'
-                            : './img/like.png'
-                        }
-                        alt=""
-                      />
-                      <span>{data.likeCount.toString()}</span>
+                      <img src={'./img/like.png'} alt="" />
+                      <span>{data.likeCount}</span>
                     </button>
                     <button className="modal-CreateImage">
                       <Link to={'/imagination'}>

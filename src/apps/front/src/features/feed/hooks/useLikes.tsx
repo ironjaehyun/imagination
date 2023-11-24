@@ -8,20 +8,22 @@ const useLikes = (post: Array<{ _id: string }>) => {
   );
 
   // 좋아요 상태를 바꾸는 작업
-  const handleLike = async (_id: string) => {
-    const currentIsLiked = !isLiked[_id];
-    setIsLiked((prev) => ({ ...prev, [_id]: !prev[_id] }));
+  const objectId = sessionStorage.getItem('_id');
+  const handleLike = async (post_id: string) => {
+    const currentIsLiked = !isLiked[post_id];
+    setIsLiked((prev) => ({ ...prev, [post_id]: !prev[post_id] }));
     try {
-      // 서버에 좋아요 요청을 보냅니다.
-      await axios.post('/Feed/likes', { _id, isLiked: currentIsLiked });
-      // 클라이언트에서의 좋아요 상태를 업데이트합니다.
-      // ...
+      axios.post('http://localhost:3000/Feed/likes', {
+        _id: objectId,
+        postId: post_id,
+        isLiked: currentIsLiked,
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
-  return [isLiked, handleLike] as const;
+  return { isLiked, handleLike };
 };
 
 export default useLikes;

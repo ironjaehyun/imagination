@@ -13,6 +13,7 @@ const PostSchema = new mongoose.Schema({
   post_img4: { type: String },
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
   likes: { type: Number, default: 0 },
+  like: [{ type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' }],
 });
 
 const PostModel = mongoose.model('Post', PostSchema);

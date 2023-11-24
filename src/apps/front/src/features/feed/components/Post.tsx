@@ -62,7 +62,7 @@ const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
               </a>
               <div>
                 <img src="./img/like.png" alt="" />
-                <span>{post.likes.toString()}</span>
+                <span>{post.like.length}</span>
               </div>
             </div>
           </div>
