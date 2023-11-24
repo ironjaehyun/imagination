@@ -1,3 +1,5 @@
+//_topheader.scss
+
 $font-family-default: Pretendard;
 $color-black: #000;
 $color-white: #fff;
@@ -43,6 +45,31 @@ $box-shadow-light: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   .week-btn,
   .alltime-btn {
     @include button-style;
+    transition: background-color 0.5s ease;
+
+    &:hover {
+      background-color: #245696;
+
+      button {
+        color: #fff;
+      }
+    }
+
+    &.clicked {
+      background-color: #245696;
+
+      button {
+        color: #fff;
+      }
+    }
+
+    button {
+      font-weight: bold;
+      // color: black; // Default text color
+    }
+
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   }
 
   .week-btn {
@@ -53,4 +80,13 @@ $box-shadow-light: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 .week-btn button,
 .alltime-btn button {
   font-weight: bold;
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &.clicked {
+    // background-color: #245696;
+  }
 }
