@@ -9,7 +9,6 @@ const initSocket = (app: Express) => {
   const io = new Server(server);
 
   io.on('connection', (socket) => {
-    console.log('User connected');
     socket.emit('ping');
 
     socket.on('chat message', (data) => {

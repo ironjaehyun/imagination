@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { UserItem } from './ChatInvite';
 import io from 'socket.io-client';
+import axios from 'axios';
 
 type ChatRoomProps = {
   invitedUser: UserItem;
@@ -27,16 +28,40 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
     setMessage(event.target.value);
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (message.trim() === '') return;
-    setMessages([...messages, message]);
-    setMessage('');
-    setIsFetching(false);
 
-    socket.emit('chat message', { user: invitedUser.id, message });
+    try {
+      axios.post('http://localhost:3000/chat/savemsg', {
+        chatId: invitedUser._id,
+        senderId: sessionStorage.getItem('_id'),
+        text: message,
+      });
+
+      // 메시지 전송 후 소켓을 통해 실시간으로 메시지 수신하도록
+      await socket.emit('chat message', { user: invitedUser.id, message });
+
+      setMessages([...messages, message]);
+      setMessage('');
+      setIsFetching(false);
+
+      socket.emit('chat message', { user: invitedUser.id, message });
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
   };
 
   useEffect(() => {
+    const fetchMessages = async () => {
+      const response = await axios.get(
+        `/chat/getmsg?chatId=${invitedUser._id}`,
+      );
+      const messages = response.data;
+      setMessages(messages);
+    };
+
+    fetchMessages();
+
     scrollToBottom();
 
     socket.on('chat message', (data) => {
@@ -56,7 +81,7 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
       chatContainer.current?.removeEventListener('scroll', handleScroll);
       socket.off('chat message');
     };
-  }, [messages, isFetching]);
+  }, [messages, isFetching, invitedUser._id]);
 
   const scrollToBottom = () => {
     const { current: chatDiv } = chatContainer;
