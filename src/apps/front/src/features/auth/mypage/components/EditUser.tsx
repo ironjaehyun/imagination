@@ -1,7 +1,7 @@
 import { PUBLIC_URL } from '../../../../../../../packages/models/port';
 import useMypage from '../hooks/useMypage';
 
-const EditUser = () => {
+const EditUser: React.FC = () => {
   const {
     modalBubbling,
     handleEditModalClose,

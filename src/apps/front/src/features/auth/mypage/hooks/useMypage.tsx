@@ -14,12 +14,16 @@ import { useParams } from 'react-router-dom';
 
 const followBtnAtom = atom<boolean>(true);
 const postIdAtom = atom('');
+const mainProfileAtom = atom('');
+const mainBackgroundAtom = atom('');
 
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [followModal, setFollowModal] = useAtom(followAtom);
   const [followerModal, setFollowerModal] = useAtom(followerAtom);
   const [postModal, setPostModal] = useAtom(imageAtom);
+  const [mainProfile, setMainProfile] = useAtom(mainProfileAtom);
+  const [mainBackground, setMainBackground] = useAtom(mainBackgroundAtom);
   const [clickTab, setClickTab] = useState(0);
   const [statusMsg, setStatusMsg] = useState('');
   const { id } = useParams();
@@ -141,6 +145,8 @@ const useMypage = () => {
           sessionStorage.setItem('profile', res.data.profile);
           sessionStorage.setItem('background', res.data.background);
           sessionStorage.setItem('status', res.data.status);
+          setMainProfile(res.data.profile);
+          setMainBackground(res.data.background);
         });
     } catch (err) {
       console.error('Error during request:', err);
@@ -170,6 +176,7 @@ const useMypage = () => {
       }),
     select: (data) => data.data,
   });
+
   // 만약에 이 데이터가 있다면?
   useEffect(() => {
     if (query?.data?.follower) {
@@ -226,6 +233,8 @@ const useMypage = () => {
     handleLikeModalOpen,
     handleLikeModalClose,
     likeModal,
+    mainProfile,
+    mainBackground,
   };
 };
 export default useMypage;
