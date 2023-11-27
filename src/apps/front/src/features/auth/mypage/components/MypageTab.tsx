@@ -58,25 +58,27 @@ const MypageTab = () => {
       <div className="mypage-footer">
         {clickTab === 0 ? (
           <section className="mypage-posts">
-            {data.posts.map(
-              (item: {
-                post_img1: string | undefined;
-                _id: Key | null | undefined;
-              }) => {
-                return (
-                  <img
-                    onClick={() => handlePostModalOpen(item._id)}
-                    src={item.post_img1}
-                    key={item._id}
-                  />
-                );
-              },
-            )}
+            {data.posts
+              .reverse()
+              .map(
+                (item: {
+                  post_img1: string | undefined;
+                  _id: Key | null | undefined;
+                }) => {
+                  return (
+                    <img
+                      onClick={() => handlePostModalOpen(item._id)}
+                      src={item.post_img1}
+                      key={item._id}
+                    />
+                  );
+                },
+              )}
           </section>
         ) : null}
         {clickTab === 1 ? (
           <section className="mypage-likes">
-            {data.like.map((img) => {
+            {data.like.reverse().map((img) => {
               return (
                 <img
                   onClick={() => handleLikeModalOpen(img._id)}
@@ -89,7 +91,7 @@ const MypageTab = () => {
         ) : null}
         {clickTab === 2 ? (
           <section className="mypage-images">
-            {data.saved_images.map((img) => {
+            {data.saved_images.reverse().map((img) => {
               return (
                 <Link to={'/imagination'}>
                   <img src={img.img1} key={img.post_id} />

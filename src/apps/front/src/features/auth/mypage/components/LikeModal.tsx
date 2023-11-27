@@ -47,8 +47,8 @@ const LikeModal = () => {
             <span className="hashtag">{targetPost.post_hashtag}</span>
             <div className="btns">
               <button className="like">
-                <img src={PUBLIC_URL + '/img/like.png'} alt="" />
-                <span>하트</span>
+                <img src={PUBLIC_URL + '/img/filledlike.png'} alt="" />
+                <span>{targetPost.like.length}</span>
               </button>
               <Link to={'/imagination'}>
                 <button className="create">
