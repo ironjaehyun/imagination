@@ -69,7 +69,7 @@ const MypageTab = () => {
                     <img
                       onClick={() => handlePostModalOpen(item._id)}
                       src={item.post_img1}
-                      key={item._id}
+                      key={item.post_img1}
                     />
                   );
                 },
@@ -78,12 +78,12 @@ const MypageTab = () => {
         ) : null}
         {clickTab === 1 ? (
           <section className="mypage-likes">
-            {data.like.reverse().map((img) => {
+            {data.like.reverse().map((img, i) => {
               return (
                 <img
                   onClick={() => handleLikeModalOpen(img._id)}
                   src={img.post_img1}
-                  key={img._id}
+                  key={i}
                 />
               );
             })}
@@ -91,10 +91,10 @@ const MypageTab = () => {
         ) : null}
         {clickTab === 2 ? (
           <section className="mypage-images">
-            {data.saved_images.reverse().map((img) => {
+            {data.saved_images.reverse().map((img, i) => {
               return (
                 <Link to={'/imagination'}>
-                  <img src={img.img1} key={img.post_id} />
+                  <img src={img.img1} key={i} />
                 </Link>
               );
             })}
