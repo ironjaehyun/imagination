@@ -14,6 +14,7 @@ interface LeaderModalProps {
   {
     // Define the structure of 'data' here
     // userProfileImg: string
+    _id: string;
     img: string;
     title: string;
     content: string;
@@ -50,13 +51,7 @@ const LeaderModal: React.FC<LeaderModalProps> = ({ isOpen, onClose, data }) => {
   } = useCopy();
   // const objectId = sessionStorage.getItem('_id');
 
-  const { isLiked, handleLike } = useLikes(
-    data
-      ? [
-          // data
-        ]
-      : [],
-  );
+  const { isLiked, handleLike } = useLikes(data ? [data] : []);
   // const [isLiked, handleLike] = useLikes([{ _id: data._id, ...data }]);
 
   if (!isOpen || !data) {
@@ -87,7 +82,8 @@ const LeaderModal: React.FC<LeaderModalProps> = ({ isOpen, onClose, data }) => {
                 alt="profile"
               />
               <h5>
-                imagination
+                {data._id}
+                {/* imagination */}
                 {/* {targetPost.owner.id} */}
               </h5>
             </div>
