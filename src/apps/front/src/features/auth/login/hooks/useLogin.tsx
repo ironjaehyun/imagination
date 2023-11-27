@@ -22,7 +22,7 @@ const useLogin = () => {
       .post('/', { id: id, password: pw }, { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
-          navigate('/');
+          navigate('/feed');
         }
       })
       .catch((error) => {
@@ -52,7 +52,7 @@ const useLogin = () => {
   const handleLogout = () => {
     axios.post('/logout').then((result) => {
       if (result.status === 200) {
-        navigate('/login');
+        navigate('/');
         sessionStorage.clear();
       }
     });
