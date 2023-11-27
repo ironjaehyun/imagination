@@ -167,7 +167,7 @@ const useMypage = () => {
       window.location.reload();
     }
   };
-
+  // useSuspenseQuery를 사용하게 mypage 들어갔을때 _id값이 아닌 null값이 뜨게 됨
   const query = useQuery({
     queryKey: [QUERY_KEY.user],
     queryFn: async () =>
@@ -193,7 +193,7 @@ const useMypage = () => {
         setUnFollow(true);
       }
     }
-  }, [query, objectId]);
+  }, [objectId]);
 
   return {
     postId,
