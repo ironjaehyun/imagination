@@ -7,6 +7,7 @@ export interface UserItem {
   _id: string;
   id: string;
   user_profile_img: string;
+  room: string;
 }
 
 const userListAtom = atom<UserItem[]>([]);

@@ -33,7 +33,7 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
 
     try {
       axios.post('http://localhost:3000/chat/savemsg', {
-        chatId: invitedUser._id,
+        chatId: invitedUser.room,
         senderId: sessionStorage.getItem('_id'),
         text: message,
       });
