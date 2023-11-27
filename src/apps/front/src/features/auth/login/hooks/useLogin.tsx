@@ -5,6 +5,7 @@ import { atom, useAtom } from 'jotai';
 
 const profileImgAtom = atom('');
 const userIdAtom = atom('');
+const userObjectIdAtom = atom('');
 
 const useLogin = () => {
   const [id, setId] = useState('');
@@ -14,6 +15,7 @@ const useLogin = () => {
   const [isDisable, setIsDisable] = useState(true);
   const [profileImg, setProfileImg] = useAtom(profileImgAtom);
   const [userId, setUserId] = useAtom(userIdAtom);
+  const [userObjectId, setUserObjectId] = useAtom(userObjectIdAtom);
   const navigate = useNavigate();
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -43,6 +45,7 @@ const useLogin = () => {
       sessionStorage.setItem('_id', response.data._id);
       setProfileImg(response.data.user_profile_img);
       setUserId(response.data.id);
+      setUserObjectId(response.data._id);
       sessionStorage.setItem('profile', response.data.user_profile_img);
       sessionStorage.setItem('background', response.data.user_background_img);
     };
@@ -88,6 +91,7 @@ const useLogin = () => {
     isDisable,
     profileImg,
     userId,
+    userObjectId,
   };
 };
 

@@ -168,6 +168,7 @@ const useMypage = () => {
     }
   };
   // useSuspenseQuery를 사용하게 mypage 들어갔을때 _id값이 아닌 null값이 뜨게 됨
+  // atom으로 해결을 했지만 무한로딩 에러가 생겨남 useEffect 문제인 거 같음
   const query = useQuery({
     queryKey: [QUERY_KEY.user],
     queryFn: async () =>
@@ -193,7 +194,7 @@ const useMypage = () => {
         setUnFollow(true);
       }
     }
-  }, [objectId]);
+  }, [query.data, objectId]);
 
   return {
     postId,

@@ -10,10 +10,9 @@ const BigGnb = () => {
       : 'BigGnb-hoverwhite';
   };
 
-  const userObjectId = sessionStorage.getItem('_id');
   // const profileImg = sessionStorage.getItem('profile') ?? '';
 
-  const { handleLogout, profileImg, userId } = useLogin();
+  const { handleLogout, profileImg, userId, userObjectId } = useLogin();
 
   return (
     <div>
