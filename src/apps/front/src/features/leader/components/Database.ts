@@ -1,8 +1,16 @@
+// Database.ts
 export interface LeaderboardEntry {
+  // userProfileImg: post.owner.user_profile_img,
+  // userName: post.owner.id,
+  // objectId: post.owner._id,
+  img: string;
   title: string;
   content: string;
+  // hashtags: string;
+  // likeCount: post.likes,
   likeCount: number;
-  img: string;
+  prompt: string;
+  Nprompt: string;
   dt: string;
 }
 
@@ -16,195 +24,257 @@ const getTodayDate = () => {
 
 export const Leaderboard: LeaderboardEntry[] = [
   {
-    title: '구름 너머의 세계',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNGJzbmQ%3D-c46ed8cc-cac8-4503-84b8-f599e7a7a709.webp?alt=media',
+    title: '겨울밤의 은하수',
     content:
-      '이 작품은 구름 위로 펼쳐진 신비로운 세계를 그려냅니다. 구름 사이의 틈에서 우리는 어떤 감정을 느낄 수 있을까요? 호기심? 탐험? 아니면 자유? 구름 너머의 세계를 통해 우리는 상상력의 한계를 넘어서는 여행을 경험합니다.',
-    likeCount: 500,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/mo%2FmoupCElIc4OeUrlDStsy5lj5OlE2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtbWhuODY%3D-988d93b4-e4a5-4d82-84c7-65c69c7a6b4a.webp?alt=media',
-    dt: '2023-11-14',
-  },
-  {
-    title: '추상의 미로',
-    content:
-      '추상적인 형태와 색채를 사용하여 복잡한 감정과 생각의 미로를 표현합니다. 추상의 형태에서 우리는 어떤 감정을 찾을 수 있을까요? 혼란? 탐구? 아니면 창조? 추상적인 미로를 통해 우리는 자신만의 해석과 감정을 탐색합니다.',
-    likeCount: 400,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/ZF%2FZFWS7bnwAwaQoDlLrHOKMQH81Lt1%2Fgenerated%2F33%2F330f2215-2063-44ba-8874-f863ac5563c3.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '거울에 비친 현실',
-    content:
-      '거울을 통해 비친 세상의 모습을 통해 현실과 환상의 경계를 탐구합니다. 거울 속의 반영에서 우리는 어떤 감정을 발견할 수 있을까요? 자아성찰? 현실도피? 아니면 진실의 탐색? 거울에 비친 세상을 통해 우리는 현실과 환상의 균형을 찾습니다.',
-    likeCount: 300,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/Nw%2FNwHefuEEpObQ61fundUTfQbH1Z73%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtc3o0YnA%3D-89ce23f4-65cd-48ec-8bd1-3944814f0f94.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '낙엽이 떨어지는 길',
-    content:
-      '가을 길을 따라 떨어지는 낙엽의 모습을 통해 변화와 시간의 흐름을 탐구합니다. 낙엽의 소리에서 우리는 어떤 감정을 느낄 수 있을까요? 성찰? 아쉬움? 아니면 자연의 순환? 가을 길의 낙엽을 통해 우리는 삶의 순환과 변화를 느낍니다.',
-    likeCount: 270,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/js%2FjsR8anQkJteCZtTt9uDzaL1GwKG3%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNDI1bGQ%3D-0c03ad18-8e03-4b16-86ae-17b2f5e90c86.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '고요한 호수의 아침',
-    content:
-      '새벽녘 호수의 평온한 모습을 통해 자연의 고요함과 아름다움을 그려냅니다. 호수의 정적에서 우리는 어떤 감정을 찾을 수 있을까요? 평화? 사색? 아니면 새로운 시작? 조용한 호수가 선사하는 평온함 속에서 우리는 내면의 조화를 발견합니다.',
-    likeCount: 260,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/m6%2Fm6ovHLTEtEdFxmv9lix7ZFqMF7j1%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtc3o0YnA%3D-f6711984-759a-4c0b-9ffd-ab3c43bc2835.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '별들의 교향곡',
-    content:
-      '밤하늘의 별들이 만들어내는 환상적인 광경을 통해 우주의 신비와 아름다움을 탐구합니다. 별들의 빛에서 우리는 어떤 감정을 느낄 수 있을까요? 경외감? 호기심? 아니면 무한의 가능성? 별들이 만들어내는 광채를 통해 우리는 우주의 신비로움을 경험합니다.',
-    likeCount: 250,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/Mb%2FMb8jCxgK5qNPTejCWoRe2XIC0zx2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtc3o0YnA%3D-d76b5392-1710-4bee-b8b3-9ad41f8b74ee.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '바다의 속삭임',
-    content:
-      '바다의 파도와 해안선을 통해 바다의 신비롭고 평화로운 면모를 탐구합니다. 파도의 소리에서 우리는 어떤 감정을 발견할 수 있을까요? 평온? 그리움? 아니면 자유? 바다의 속삭임을 통해 우리는 내면의 깊이를 탐색합니다.',
-    likeCount: 240,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/W9%2FW9s072cWtqVJ7YXR7XsXlhoqNIG2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtdmoyazQ%3D-2c8a5feb-d675-4802-a164-146df815bdaa.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '거리의 음악가',
-    content:
-      '거리에서 연주하는 음악가들의 열정과 삶을 담아냅니다. 거리의 멜로디에서 우리는 어떤 감정을 느낄 수 있을까요? 열정? 공감? 아니면 여유? 거리의 음악가들이 만들어내는 음악을 통해 우리는 일상 속의 작은 기쁨을 찾습니다.',
-    likeCount: 230,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/dX%2FdXzefbfMvoSN892DGzzvky5RTek2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtZ25oazI%3D-549fef8f-a11e-41f1-b7ea-d37727fc0983.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '산들바람에 흩날리는 꽃잎',
-    content:
-      '꽃잎이 바람에 날리는 모습을 통해 봄의 생명력과 아름다움을 표현합니다. 꽃잎의 춤에서 우리는 어떤 감정을 발견할 수 있을까요? 부드러움? 새로운 시작? 아니면 떠나는 것에 대한 슬픔? 꽃잎이 만들어내는 우아한 춤을 통해 우리는 계절의 변화를 느낍니다.',
-    likeCount: 220,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/4F%2F4F2ypQNKNnVELWKcka4DDLPxapJ3%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtdmoyazQ%3D-8fb66cc9-70a2-4153-97ab-d34838f905b4.webp?alt=media',
-    dt: '2023-11-15',
-  },
-  {
-    title: '겨울 숲의 고요함',
-    content:
-      '눈 덮인 숲과 그 속의 조용한 풍경을 통해 겨울의 고요함과 아름다움을 탐구합니다. 추운 공기와 눈 덮인 나무에서 우리는 어떤 감정을 느낄 수 있을까요? 평온? 쓸쓸함? 아니면 자연의 순수함? 겨울 숲의 고요한 풍경을 통해 우리는 마음의 평화를 발견합니다.',
+      '차가운 겨울밤에 반짝이는 은하수를 통해 우주의 신비를 탐구합니다. 겨울밤의 은하수는 어떤 감정을 불러일으키나요? 경이? 무한함? 아니면 조용한 감탄?',
     likeCount: 210,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/1F%2F1FfFlAjwfIMxkL7rWUP4pDj0mqy2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNDI1bGQ%3D-9762f821-6115-450c-a02e-11eaf814630b.webp?alt=media',
-    dt: '2023-11-15',
+    prompt: 'winter, galaxy, stars, awe, cosmos',
+    Nprompt: 'night sky, cold, solitude',
+    // dt: '2023-11-27',
+    dt: getTodayDate(),
   },
   {
-    title: '춤추는 불꽃의 밤',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtanM2cGM%3D-af3bb57b-e0cd-40b0-89af-aeec621108dc.webp?alt=media',
+    title: '봄날의 꽃길',
     content:
-      '불꽃놀이의 화려한 색상과 움직임을 통해 축제의 기쁨과 열정을 그려냅니다. 불꽃의 춤에서 우리는 어떤 감정을 느낄 수 있을까요? 환희? 열정? 아니면 순간의 아름다움? 불꽃놀이의 빛과 색채가 만들어내는 환상적인 밤을 통해 우리는 즐거움과 감동을 경험합니다.',
+      '따스한 봄날, 꽃으로 가득한 길을 거닐며 자연의 아름다움을 느낍니다. 봄날의 꽃길은 어떤 기분을 줄까요? 활기? 희망? 아니면 재생?',
+    likeCount: 220,
+    prompt: 'spring, flowers, bloom, rejuvenation, hope',
+    Nprompt: 'petals, fragrance, renewal',
+    dt: '2023-11-27',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNnp4dzg%3D-b33db80b-f7f2-4389-afb0-77c9f26a46f8.webp?alt=media',
+    title: '고대 숲의 신비',
+    content:
+      '오랜 시간을 거쳐온 고대 숲의 신비로움과 고요함을 탐구합니다. 고대 숲은 어떤 느낌을 줄까요? 신비? 고요함? 아니면 영원성?',
+    likeCount: 230,
+    prompt: 'ancient, forest, mystery, serenity, eternity',
+    Nprompt: 'trees, age, timelessness',
+    dt: '2023-11-27',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNGJzbmQ%3D-dbc0e7f0-af9f-4319-bb5e-781c86d00ba0.webp?alt=media',
+    title: '도심의 비 오는 거리',
+    content:
+      '도시의 번화가에서 내리는 비를 통해 도시의 다른 면을 탐구합니다. 비 오는 거리의 모습은 어떤 감정을 자아낼까요? 반짝임? 몽환? 아니면 잔잔함?',
+    likeCount: 240,
+    prompt: 'rain, city, lights, reflection, tranquility',
+    Nprompt: 'urban, wet streets, solitude',
+    dt: '2023-11-10',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtOXpmcGM%3D-f0239be6-f246-4255-bfa5-ae0152fbe327.webp?alt=media',
+    title: '해변의 일몰',
+    content:
+      '해변에서 바라보는 일몰의 아름다움을 통해 평화와 성찰의 순간을 포착합니다. 해변의 일몰은 어떤 느낌을 줄까요? 평온? 아름다움? 아니면 새로운 시작?',
+    likeCount: 250,
+    prompt: 'sunset, beach, sea, calm, beauty',
+    Nprompt: 'ocean, horizon, solitude',
+    dt: '2023-11-10',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtbGtxbjc%3D-2296417b-90c1-473f-bfcb-30decd8bc182.webp?alt=media',
+    title: '가을 숲의 산책',
+    content:
+      '가을에 산책하는 숲의 모습을 통해 자연의 변화와 아름다움을 탐구합니다. 가을 숲에서의 산책은 어떤 감정을 자아내는가요? 성찰? 평온함? 아니면 변화?',
     likeCount: 200,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/z3%2Fz3ymSa8lntTYwx1ONRCMzGvMAIv1%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNDI1bGQ%3D-bc8748bb-1d50-43ce-ad0a-2fefab8239b4.webp?alt=media',
-    dt: '2023-11-15',
+    prompt: 'autumn, forest, walk, peaceful, change',
+    Nprompt: 'leaves, colors, solitude',
+    dt: '2023-11-16',
   },
   {
-    title: '가로등 아래의 그림자',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtZ2hodmQ%3D-0758815c-1e15-4a2d-9988-182cdd994136.webp?alt=media',
+    title: '산 속의 아침',
     content:
-      '밤거리의 가로등 아래에서 만들어지는 그림자들을 통해 도시의 이면을 탐구합니다. 그림자의 형태와 움직임에서 우리는 어떤 감정을 발견할 수 있을까요? 고독? 몽상? 아니면 안식? 가로등 빛과 그림자가 만들어내는 모호한 분위기를 통해 우리는 도시의 숨겨진 면모를 탐험합니다.',
+      '평화로운 산속 아침의 모습을 담은 이 작품은 자연의 아름다움과 고요함을 그려냅니다. 새벽의 산에서 우리는 어떤 감정을 느낄까요? 명상? 신비?',
     likeCount: 190,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/vt%2FvtdFsYuNIFUl84H3SgKKWgLs0OA3%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtOWtzcXo%3D-6d04a9cd-7118-4fa8-87bc-5c4e0b9e6e04.webp?alt=media',
-    dt: '2023-11-15',
+    prompt: 'mountains, dawn, nature, calm, beauty',
+    Nprompt: 'forest, mist, tranquility',
+    dt: '2023-11-26',
   },
   {
-    title: '서커스의 밤',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNXJ4OXI%3D-cc795e80-4acf-4cfe-afa9-03a8788b75cc.webp?alt=media',
+    title: '도심 속 조용한 카페',
     content:
-      '화려한 서커스의 밤을 통해 즐거움과 흥분을 포착합니다. 서커스의 다채로운 빛과 곡예사의 움직임에서 우리는 어떤 감정을 느낄 수 있을까요? 경이로움? 즐거움? 아니면 모험? 서커스의 매혹적인 밤을 통해 우리는 삶의 기쁨을 발견합니다.',
+      '번잡한 도시 속의 한적한 카페에서의 한 때를 포착한 이 작품은 현대 생활의 여유와 사색을 담아냅니다. 카페에서 우리는 어떤 감정을 느낄까요? 여유? 반성?',
     likeCount: 180,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/Zj%2FZj5Hk6u4qwcEq1mmpKmcBnd5HQB3%2Fgenerated%2F09%2F0995b929-aa1a-48f8-a1f0-ffba0e66afdd.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'cafe, city life, relaxation, contemplation',
+    Nprompt: 'urban, solitude, coffee',
+    dt: '2023-11-26',
   },
   {
-    title: '비 오는 날의 카페',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtZ2hodmQ%3D-b74d885d-3ed9-4fc6-a9c6-793e3f062f6d.webp?alt=media',
+    title: '밤하늘의 별빛',
     content:
-      '이 작품은 창밖으로 내리는 비를 바라보는 카페의 모습을 담아냅니다. 빗방울과 커피잔의 조화에서 우리는 어떤 감정을 느낄 수 있을까요? 여유? 사색? 아니면 그리움? 비 오는 날의 카페에서 우리는 일상의 작은 평화를 느낍니다.',
+      '밤하늘을 수놓는 별들의 이야기와 그들의 신비로운 광채를 탐구합니다. 별빛이 주는 감정은 무엇일까요? 경이? 평온함? 아니면 무한한 꿈?',
     likeCount: 170,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/2N%2F2NWwFrGFpAgK8L8BxXccewUAD9d2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtdmoyazQ%3D-0c7d3019-06cd-45c6-80f7-103aa9ddaeaa.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'stars, night, galaxy, dreams, peace',
+    Nprompt: 'universe, solitude, space',
+    dt: '2023-11-26',
   },
   {
-    title: '옛날 이야기의 책',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNGJzbmQ%3D-a9d940e1-5743-4c65-8dc5-fa9ea9127829.webp?alt=media',
+    title: '강변의 황혼',
     content:
-      '이 작품은 오래된 책에서 풍겨 나오는 이야기들을 통해 역사와 전설을 탐구합니다. 책장을 넘기는 손길에서 우리는 어떤 감정을 발견할 수 있을까요? 호기심? 추억? 아니면 모험? 오래된 책의 이야기를 통해 우리는 과거와 현재를 잇는 다리를 건넙니다.',
+      '강가에서 바라보는 황혼의 모습을 통해 평화와 사색의 순간을 포착합니다. 강변의 황혼은 어떤 느낌을 줄까요? 성찰? 안식? 아니면 그리움?',
     likeCount: 160,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/Mb%2FMb8jCxgK5qNPTejCWoRe2XIC0zx2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtc3o0YnA%3D-2f91df37-7b69-4f7b-b796-f4167120f777.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'river, dusk, serenity, reflection',
+    Nprompt: 'water, twilight, solitude',
+    dt: '2023-11-26',
   },
   {
-    title: '도심 속 숨겨진 공원',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtZnFwenM%3D-637d1acf-8c85-4910-9f51-405fa6651b13.webp?alt=media',
+    title: '도시의 야경',
     content:
-      '이 작품은 도시 한복판에 위치한 작은 공원의 아름다움을 포착합니다. 공원의 나무와 꽃에서 우리는 어떤 감정을 느낄 수 있을까요? 안식? 평온? 아니면 자연의 위안? 도심 속의 작은 공원을 통해 우리는 자연과 도시의 조화를 경험합니다.',
+      '밤하늘 아래 빛나는 도시의 야경을 통해 현대 생활의 에너지를 탐구합니다. 번화가의 밤은 어떤 감정을 자아내나요? 활기? 도전? 아니면 꿈?',
     likeCount: 150,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/HR%2FHRbzMtjoqteakrh6NWAxSNGnuOK2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYta2ZxajI%3D-3a9d6496-7c81-4dd5-9486-ea733e5ccdbc.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'cityscape, night, lights, energy',
+    Nprompt: 'urban glow, nightlife, excitement',
+    dt: '2023-11-26',
   },
   {
-    title: '추억 속의 놀이터',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtbGtxbjc%3D-3c28478b-63ed-4105-bcca-d0d82824fbce.webp?alt=media',
+    title: '얼어붙은 호수',
     content:
-      '이 작품은 어린 시절 추억이 담긴 놀이터의 모습을 그려냅니다. 놀이터의 놀이기구와 아이들의 웃음에서 우리는 어떤 감정을 발견할 수 있을까요? 즐거움? 추억? 아니면 순수함? 추억 속의 놀이터를 통해 우리는 어린 시절의 소중한 순간을 되새깁니다.',
+      '겨울철 얼어붙은 호수의 고요함과 순수함을 탐구합니다. 얼음으로 뒤덮인 호수는 어떤 느낌을 줄까요? 고요함? 순수함? 아니면 멈춤?',
     likeCount: 140,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/HR%2FHRbzMtjoqteakrh6NWAxSNGnuOK2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYta2tuZDU%3D-eedf6415-69c5-476d-97f0-a334bb8dc7f5.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'frozen lake, winter, stillness, purity',
+    Nprompt: 'ice, cold, tranquility',
+    dt: '2023-11-26',
   },
   {
-    title: '도시의 빛과 그림자',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNGJzbmQ%3D-88ee2830-c6f0-449e-9139-ff70667c73c3.webp?alt=media',
+    title: '사막의 별밤',
     content:
-      '이 작품은 도시의 활기찬 거리와 조용한 골목을 통해 대조되는 분위기를 탐구합니다. 빛과 그림자의 대비에서 우리는 어떤 감정을 느낄 수 있을까요? 활력? 외로움? 아니면 기대감? 도시의 다채로운 색채와 그림자가 만드는 이야기를 통해 삶의 다양성을 발견합니다.',
+      '사막의 밤하늘 아래 빛나는 별들을 통해 자연의 광활함과 아름다움을 탐구합니다. 사막의 밤은 어떤 감정을 불러일으킬까요? 무한함? 경이? 아니면 고독?',
     likeCount: 130,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/HR%2FHRbzMtjoqteakrh6NWAxSNGnuOK2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtZ25oazI%3D-f71faf43-45d3-4bfa-b780-ecd3fc7a3e04.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'desert, stars, vastness, awe',
+    Nprompt: 'night sky, solitude, infinity',
+    dt: '2023-11-26',
   },
   {
-    title: '추상의 미로',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtY3BtenA%3D-f9e8e98e-6ea4-4b6f-a338-33f2c80de6b4.webp?alt=media',
+    title: '고즈넉한 마을의 아침',
     content:
-      '이 작품은 추상적인 형태와 색채를 사용하여 복잡한 감정과 생각의 미로를 표현합니다. 추상의 형태에서 우리는 어떤 감정을 찾을 수 있을까요? 혼란? 탐구? 아니면 창조? 추상적인 미로를 통해 우리는 자신만의 해석과 감정을 탐색합니다.',
+      '조용한 마을에서 맞이하는 평화로운 아침의 모습을 담아냅니다. 이른 아침의 마을은 어떤 감정을 불러일으키나요? 평화? 새로운 시작? 아니면 여유?',
     likeCount: 120,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/rU%2FrUbpEh62J2esf47YzsY3Tk81ySe2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtaGQ3Zjk%3D-950c4a48-4b91-4026-a18a-6475aa3ee661.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'village, morning, peace, new beginnings',
+    Nprompt: 'quiet, dawn, serenity',
+    dt: '2023-11-26',
   },
   {
-    title: '구름 너머의 세계',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtOXpmcGM%3D-825da662-701b-4dcf-987e-739843539f66.webp?alt=media',
+    title: '공원의 가을',
     content:
-      '이 작품은 구름 위로 펼쳐진 신비로운 세계를 그려냅니다. 구름 사이의 틈에서 우리는 어떤 감정을 느낄 수 있을까요? 호기심? 탐험? 아니면 자유? 구름 너머의 세계를 통해 우리는 상상력의 한계를 넘어서는 여행을 경험합니다.',
+      '가을이 찾아온 공원의 다채로운 색채와 생명력을 탐구합니다. 가을 공원은 어떤 느낌을 줄까요? 변화? 생명? 아니면 색채?',
     likeCount: 110,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/We%2FWezmS86BcrchhuFXi6XvvnUCZcz1%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNjY3eGM%3D-1695e053-41b1-428e-805a-6fdba7f58a33.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'park, autumn, colors, life',
+    Nprompt: 'leaves, changing seasons, vibrancy',
+    dt: '2023-11-26',
   },
   {
-    title: '거울에 비친 현실',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtY3BtenA%3D-6d4ca42c-b8b5-4eaa-ad68-2ac527225b1d.webp?alt=media',
+    title: '바람이 만든 언덕',
     content:
-      '이 작품은 거울을 통해 비친 세상의 모습을 통해 현실과 환상의 경계를 탐구합니다. 거울 속의 반영에서 우리는 어떤 감정을 발견할 수 있을까요? 자아성찰? 현실도피? 아니면 진실의 탐색? 거울에 비친 세상을 통해 우리는 현실과 환상의 균형을 찾습니다.',
+      '시간과 바람에 의해 조각된 언덕의 모습을 통해 자연의 창조적 힘을 탐구합니다. 언덕의 곡선은 어떤 느낌을 줄까요? 유연함? 지속성? 아니면 조화?',
     likeCount: 100,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/HR%2FHRbzMtjoqteakrh6NWAxSNGnuOK2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtbWhuODY%3D-21fb60d7-7731-4886-bec7-eb3bca26438e.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'hills, wind, nature, creation, harmony',
+    Nprompt: 'landscapes, erosion, beauty',
+    dt: '2023-11-26',
   },
   {
-    title: '낙엽이 떨어지는 길',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNGJzbmQ%3D-f3b403a2-990a-45f0-82c6-c3b8dc059839.webp?alt=media',
+    title: '구시가지의 밤',
     content:
-      '이 작품은 가을 길을 따라 떨어지는 낙엽의 모습을 통해 변화와 시간의 흐름을 탐구합니다. 낙엽의 소리에서 우리는 어떤 감정을 느낄 수 있을까요? 성찰? 아쉬움? 아니면 자연의 순환? 가을 길의 낙엽을 통해 우리는 삶의 순환과 변화를 느낍니다.',
+      '역사가 깃든 구시가지의 밤 풍경을 통해 과거와 현재의 만남을 탐구합니다. 구시가지의 밤은 어떤 감정을 자아내나요? 추억? 멜랑콜리? 아니면 숨겨진 이야기?',
     likeCount: 90,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/hW%2FhWbxksorq3P7mQ6T0iQmdwyebdC3%2Fgenerated%2F00%2F0094e9dc-4cf8-4712-bcca-9194d171acc5.webp?alt=media',
-    dt: getTodayDate(),
+    prompt: 'old town, night, history, nostalgia',
+    Nprompt: 'streets, past, melancholy',
+    dt: '2023-11-26',
   },
   {
-    title: '고요한 호수의 아침',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtZ2hodmQ%3D-8cd881e6-4e21-4b95-87cb-3d3a97ad78ba.webp?alt=media',
+    title: '초원의 아침',
     content:
-      '이 작품은 새벽녘 호수의 평온한 모습을 통해 자연의 고요함과 아름다움을 그려냅니다. 호수의 정적에서 우리는 어떤 감정을 찾을 수 있을까요? 평화? 사색? 아니면 새로운 시작? 조용한 호수가 선사하는 평온함 속에서 우리는 내면의 조화를 발견합니다.',
+      '넓게 펼쳐진 초원에서 맞이하는 아침의 모습을 통해 평온과 자유를 탐구합니다. 초원의 아침은 어떤 느낌을 줄까요? 개방성? 평화? 아니면 새로운 시작?',
     likeCount: 80,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/We%2FWezmS86BcrchhuFXi6XvvnUCZcz1%2Fgenerated%2Fc5%2Fc5ca0b9f-3e98-4bd6-9e5c-3d25dc59715c.webp?alt=media',
+    prompt: 'meadow, morning, freedom, peace',
+    Nprompt: 'grassland, sunrise, openness',
+    dt: '2023-11-26',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNnp4dzg%3D-def9b27a-08fc-4876-8600-5bae71f5c96a.webp?alt=media',
+    title: '비오는 숲 속 오두막',
+    content:
+      '비가 내리는 숲 속의 오두막에서 평온함과 고립의 감정을 탐구합니다. 비 오는 오두막은 어떤 느낌을 줄까요? 고독? 안식? 아니면 명상?',
+    likeCount: 70,
+    prompt: 'cabin, rain, forest, solitude, reflection',
+    Nprompt: 'woods, shelter, quiet',
+    dt: '2023-11-26',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtbGtxbjc%3D-3548b0c3-89e5-4d31-a0da-06ac860ebe65.webp?alt=media',
+    title: '장미 정원의 오후',
+    content:
+      '향기로운 장미가 가득한 정원에서 오후의 여유를 즐기는 모습을 그려냅니다. 장미 정원의 오후는 어떤 감정을 불러일으킬까요? 행복? 사랑? 아니면 아름다움?',
+    likeCount: 60,
+    prompt: 'rose garden, afternoon, leisure, love',
+    Nprompt: 'flowers, fragrance, beauty',
+    dt: '2023-11-26',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtOXpmcGM%3D-882b9d30-96fb-4092-ba3f-2eefd24f7382.webp?alt=media',
+    title: '폭포 아래의 비밀',
+    content:
+      '폭포의 장엄한 모습과 그 아래 숨겨진 비밀을 탐구합니다. 폭포 아래의 세계는 어떤 느낌을 줄까요? 웅장함? 신비? 아니면 숨겨진 삶?',
+    likeCount: 50,
+    prompt: 'waterfall, secret, majesty, mystery',
+    Nprompt: 'nature, hidden, life',
+    dt: '2023-11-26',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNnp4dzg%3D-f522af98-dcfd-4b43-bf67-2b38e77e53d2.webp?alt=media',
+    title: '산 정상의 일출',
+    content:
+      '산 정상에서 바라보는 일출의 장엄한 모습을 통해 새로운 시작과 희망을 탐구합니다. 산 정상의 일출은 어떤 감정을 자아내나요? 감동? 영감? 아니면 경이?',
+    likeCount: 40,
+    prompt: 'mountaintop, sunrise, inspiration, awe',
+    Nprompt: 'peak, dawn, new beginnings',
+    dt: '2023-11-26',
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtOXpmcGM%3D-9585c81f-eee2-491b-8d32-17c6756ccbcc.webp?alt=media',
+    title: '별빛 아래의 침묵',
+    content:
+      '별이 가득한 밤하늘 아래 조용히 깔린 침묵을 통해 우주의 깊이와 고요함을 탐구합니다. 별빛 아래의 침묵은 어떤 느낌을 줄까요? 고요함? 심오함? 아니면 신비?',
+    likeCount: 30,
+    prompt: 'starry night, silence, depth, universe',
+    Nprompt: 'stars, quiet, profundity',
+    // dt: '2023-11-27',
     dt: getTodayDate(),
   },
   {
-    title: '별들의 교향곡',
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtNXJ4OXI%3D-0878b9b5-00e0-4ee7-80bf-636193799ea2.webp?alt=media',
+    title: '늦가을의 연못',
     content:
-      '이 작품은 밤하늘의 별들이 만들어내는 환상적인 광경을 통해 우주의 신비와 아름다움을 탐구합니다. 별들의 빛에서 우리는 어떤 감정을 느낄 수 있을까요? 경외감? 호기심? 아니면 무한의 가능성? 별들이 만들어내는 광채를 통해 우리는 우주의 신비로움을 경험합니다.',
-    likeCount: 70,
-    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/ge%2Fgexqq7FTmgPlkBsg3oKfGEO677e2%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtcHdrNHY%3D-563a340e-f8d7-49e0-a221-539755cc2217.webp?alt=media',
+      '늦가을에 찾아온 연못의 평온한 모습을 통해 자연의 순환과 아름다움을 탐구합니다. 늦가을 연못은 어떤 느낌을 줄까요? 생명력? 반성? 아니면 변화?',
+    likeCount: 20,
+    prompt: 'autumn pond, nature, cycle, beauty',
+    Nprompt: 'water, leaves, reflection',
+    // dt: '2023-11-27',
+    dt: getTodayDate(),
+  },
+  {
+    img: 'https://firebasestorage.googleapis.com/v0/b/karlo-generation-images-prod/o/NB%2FNBs4hsgU7pYABhiSxajJ5Grxzy53%2Fgenerated%2Fa2%2Fa2FybG8tdHJpdG9uLTY5NDliOGRjNWYtbGtxbjc%3D-696be887-86c6-4b9f-a775-e709b5ce93e0.webp?alt=media',
+    title: '도서관의 고요한 오후',
+    content:
+      '책들로 가득한 도서관에서의 고요하고 평화로운 오후를 그려냅니다. 도서관의 오후는 어떤 감정을 자아내나요? 지식? 여유? 아니면 사색?',
+    likeCount: 10,
+    prompt: 'library, afternoon, peace, knowledge',
+    Nprompt: 'books, quiet, contemplation',
+    // dt: '2023-11-27',
     dt: getTodayDate(),
   },
 ];

@@ -1,4 +1,4 @@
-//Leader.ts
+//Leader.tsx
 import React from 'react';
 import Topheader from './components/Topheader';
 import Topthree from './components/Topthree';

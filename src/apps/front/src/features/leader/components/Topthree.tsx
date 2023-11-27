@@ -1,44 +1,64 @@
 //Topthree.tsx
-import { useMemo } from 'react';
+
+import { useState, useMemo } from 'react';
+
+// import { useMemo } from 'react';
 import { useAtom } from 'jotai';
 import { periodAtom } from './Atoms';
-import { Leaderboard as LeaderboardData } from './Database';
+// import { Leaderboard as LeaderboardData } from './Database';
+import { Leaderboard as LeaderboardData, LeaderboardEntry } from './Database';
+import LeaderModal from './LeaderModal'; // Make sure the path is correct based on your project structure
+// interface LeaderboardEntry {
+//   img: string;
+//   title: string;
+//   content: string;
+//   likeCount: number;
+//   dt: string;
+// }
 
-interface LeaderboardEntry {
-  img: string;
-  title: string;
-  content: string;
-  likeCount: number;
-  dt: string;
-}
-
-const between = (data: LeaderboardEntry[], period: number) => {
-  const today = new Date();
-  const previous = new Date(today);
-  previous.setDate(previous.getDate() - (period + 1));
-
-  return data
-    .filter((val) => {
-      const userDate = new Date(val.dt);
-      if (period === 0) return true;
-      return previous <= userDate && today >= userDate;
-    })
-    .sort((a, b) => b.likeCount - a.likeCount);
-};
-
-const defaultLeaderboard: LeaderboardEntry[] = [
-  // Example default data
-  // { img: "path_to_image", name: "John Doe", grade: "A", score: 95 },
-  // { img: "path_to_image", name: "Jane Smith", grade: "A", score: 93 },
-  // ... more entries
-];
+// const defaultLeaderboard: LeaderboardEntry[] = [
+//   // Example default data
+//   // { img: "path_to_image", name: "John Doe", grade: "A", score: 95 },
+//   // { img: "path_to_image", name: "Jane Smith", grade: "A", score: 93 },
+//   // ... more entries
+// ];
 
 export default function Topthree() {
   const [period] = useAtom(periodAtom);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState<LeaderboardEntry | null>(
+    null,
+  );
+
+  const between = (
+    data: LeaderboardEntry[],
+    period: number,
+  ): LeaderboardEntry[] => {
+    const today = new Date();
+    const previous = new Date(today);
+    previous.setDate(previous.getDate() - (period + 1));
+
+    return data
+      .filter((val) => {
+        const userDate = new Date(val.dt);
+        if (period === 0) return true;
+        return previous <= userDate && today >= userDate;
+      })
+      .sort((a, b) => b.likeCount - a.likeCount);
+  };
 
   const Leaderboard = useMemo(() => {
-    return between(LeaderboardData, period) ?? defaultLeaderboard;
+    return between(LeaderboardData, period);
   }, [period]);
+
+  const openModal = (data: LeaderboardEntry) => {
+    setSelectedData(data);
+    setModalOpen(true);
+  };
+
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
 
   return (
     <div className="top-three-box">
@@ -50,6 +70,7 @@ export default function Topthree() {
             className="top-two-img"
             src={value.img}
             alt={`Leader ${index + 2}`}
+            onClick={() => openModal(value)}
           />
           {/* <div className="name">{value.name}</div>
                         <div className="grade">{value.grade}</div> */}
@@ -59,6 +80,7 @@ export default function Topthree() {
               className="top-three-like"
               src="./public/img/like.png"
               alt="Like"
+              // onClick={() => openModal(value)}
             />
             {value.likeCount}
           </div>
@@ -73,6 +95,7 @@ export default function Topthree() {
             className="top-one-img"
             src={value.img}
             alt={`Leader ${index + 1}`}
+            onClick={() => openModal(value)}
           />
           {/* <div className="name">{value.name}</div>
                         <div className="grade">{value.grade}</div> */}
@@ -82,6 +105,7 @@ export default function Topthree() {
               className="top-three-like"
               src="./public/img/like.png"
               alt="Like"
+              // onClick={() => openModal(value)}
             />
             {value.likeCount}
           </div>
@@ -96,6 +120,7 @@ export default function Topthree() {
             className="top-three-img"
             src={value.img}
             alt={`Leader ${index + 3}`}
+            onClick={() => openModal(value)}
           />
           {/* <div className="name">{value.name}</div>
                         <div className="grade">{value.grade}</div> */}
@@ -104,11 +129,22 @@ export default function Topthree() {
               className="top-three-like"
               src="./public/img/like.png"
               alt="Like"
+              // onClick={() => openModal(value)}
             />
             {value.likeCount}
           </div>
         </div>
       ))}
+
+      {selectedData && (
+        <LeaderModal
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          data={selectedData}
+        />
+      )}
     </div>
   );
 }
+
+// export default Topthree;
