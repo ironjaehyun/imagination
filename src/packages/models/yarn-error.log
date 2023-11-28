@@ -1,0 +1,31 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\gjaischool\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Program Files\MongoDB\Server\7.0\bin;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Bandizip\;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\gjaischool\AppData\Local\Microsoft\WindowsApps;C:\Users\gjaischool\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\gjaischool\AppData\Roaming\npm;C:\Users\gjaischool\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.17.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\gjaischool\Desktop\nat\imagination\src\packages\models\package.json: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at C:\Users\gjaischool\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\gjaischool\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\gjaischool\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

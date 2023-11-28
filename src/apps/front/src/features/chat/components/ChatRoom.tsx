@@ -10,6 +10,7 @@ import {
 import { UserItem } from './ChatInvite';
 import io from 'socket.io-client';
 import axios from 'axios';
+import { SOCKET_EVENT } from '../../../../../../packages/models/socket';
 
 type ChatRoomProps = {
   invitedUser: UserItem;
@@ -33,41 +34,41 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
 
     try {
       axios.post('http://localhost:3000/chat/savemsg', {
-        chatId: invitedUser.room,
+        chatId: invitedUser.roomId,
         senderId: sessionStorage.getItem('_id'),
         text: message,
       });
 
-      // 메시지 전송 후 소켓을 통해 실시간으로 메시지 수신하도록
-      await socket.emit('chat message', { user: invitedUser.id, message });
+      // // 메시지 전송 후 소켓을 통해 실시간으로 메시지 수신하도록
+      // await socket.emit('chat message', { user: invitedUser.id, message });
 
       setMessages([...messages, message]);
       setMessage('');
       setIsFetching(false);
 
-      socket.emit('chat message', { user: invitedUser.id, message });
+      await socket.emit('chat message', { user: invitedUser.id, message });
     } catch (error) {
       console.error('Error sending message:', error);
     }
   };
 
   useEffect(() => {
-    const fetchMessages = async () => {
-      const response = await axios.get(
-        `/chat/getmsg?chatId=${invitedUser._id}`,
-      );
-      const messages = response.data;
-      setMessages(messages);
-    };
+    // const fetchMessages = async () => {
+    //   const response = await axios.get(
+    //     `/chat/getmsg?chatId=${invitedUser._id}`,
+    //   );
+    //   const messages = response.data;
+    //   setMessages(messages);
+    // };
 
-    fetchMessages();
+    // fetchMessages();
 
     scrollToBottom();
 
-    socket.on('chat message', (data) => {
-      // 수신한 메시지를 state에 추가
+    socket.emit(SOCKET_EVENT.open, { roomId: 'hello' });
+    socket.on(SOCKET_EVENT.hello, (data) => {
       setMessages([...messages, data.message]);
-      scrollToBottom(); // 화면을 항상 가장 아래로 스크롤
+      scrollToBottom();
     });
 
     const handleScroll = () => {
