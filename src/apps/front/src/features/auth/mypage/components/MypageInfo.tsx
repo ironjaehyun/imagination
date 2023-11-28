@@ -2,11 +2,13 @@ import { PUBLIC_URL } from '../../../../../../../packages/models/port';
 import Loading from '../../../shared/Loading';
 import useMypage from '../hooks/useMypage';
 
-const MypageInfo = () => {
+const MypageInfo: React.FC = () => {
   const {
     handleEditModalOpen,
     handleFollower,
     handleFollow,
+    mainProfile,
+    mainBackground,
     query: { data, isLoading },
   } = useMypage();
 
@@ -14,10 +16,15 @@ const MypageInfo = () => {
   return (
     <div>
       <header className="mypage-header">
-        <img src={data.user_background_img} className="mypage-background"></img>
+        <img
+          src={
+            mainBackground === '' ? data.user_background_img : mainBackground
+          }
+          className="mypage-background"
+        ></img>
         <section className="mypage-profile">
           <img
-            src={data.user_profile_img}
+            src={mainProfile === '' ? data.user_profile_img : mainProfile}
             className="mypage-profile-photo"
           ></img>
           <button className="mypage-edit" onClick={handleEditModalOpen}>

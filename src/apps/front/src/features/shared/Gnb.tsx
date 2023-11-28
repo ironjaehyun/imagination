@@ -9,7 +9,7 @@ const Gnb = () => {
     <div>
       <nav className="Gnb">
         <div className="Gnb-main">
-          <Link to={'/'}>
+          <Link to={'/feed'}>
             <div className="Gnb-icon">
               <img
                 src={PUBLIC_URL + '/img/I.png'}
@@ -23,7 +23,7 @@ const Gnb = () => {
               <img src={profileImg} alt="" className="Gnb-profile-img"></img>
             </Link>
           </div>
-          <Link to={'/'}>
+          <Link to={'/feed'}>
             <div className="Gnb-hoverwhite">
               <img
                 src={PUBLIC_URL + '/img/feed.png'}

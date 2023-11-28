@@ -10,16 +10,15 @@ const BigGnb = () => {
       : 'BigGnb-hoverwhite';
   };
 
-  const userObjectId = sessionStorage.getItem('_id');
   // const profileImg = sessionStorage.getItem('profile') ?? '';
 
-  const { handleLogout, profileImg, userId } = useLogin();
+  const { handleLogout, profileImg, userId, userObjectId } = useLogin();
 
   return (
     <div>
       <div className="BigGnb">
         <div className="BigGnb-main">
-          <Link to={'/'}>
+          <Link to={'/feed'}>
             <div className="BigGnb-imagination-icon">
               <img src="./img/Imagination.png" className="imagination"></img>
             </div>
@@ -33,7 +32,7 @@ const BigGnb = () => {
 
           <div className="BigGnb-btn">
             {[
-              { to: '/', img: './img/feed.png', text: 'Feed' },
+              { to: '/feed', img: './img/feed.png', text: 'Feed' },
               { to: '/leader', img: './img/rank.png', text: 'Rank' },
               { to: '/explore', img: './img/explore.png', text: 'Explore' },
               { to: '/imagination', img: './img/ai.png', text: 'AI' },

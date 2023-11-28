@@ -14,12 +14,16 @@ import { useParams } from 'react-router-dom';
 
 const followBtnAtom = atom<boolean>(true);
 const postIdAtom = atom('');
+const mainProfileAtom = atom('');
+const mainBackgroundAtom = atom('');
 
 const useMypage = () => {
   const [myPageModal, setMyPageModal] = useAtom(editModal);
   const [followModal, setFollowModal] = useAtom(followAtom);
   const [followerModal, setFollowerModal] = useAtom(followerAtom);
   const [postModal, setPostModal] = useAtom(imageAtom);
+  const [mainProfile, setMainProfile] = useAtom(mainProfileAtom);
+  const [mainBackground, setMainBackground] = useAtom(mainBackgroundAtom);
   const [clickTab, setClickTab] = useState(0);
   const [statusMsg, setStatusMsg] = useState('');
   const { id } = useParams();
@@ -141,6 +145,8 @@ const useMypage = () => {
           sessionStorage.setItem('profile', res.data.profile);
           sessionStorage.setItem('background', res.data.background);
           sessionStorage.setItem('status', res.data.status);
+          setMainProfile(res.data.profile);
+          setMainBackground(res.data.background);
         });
     } catch (err) {
       console.error('Error during request:', err);
@@ -161,7 +167,8 @@ const useMypage = () => {
       window.location.reload();
     }
   };
-
+  // useSuspenseQuery를 사용하게 mypage 들어갔을때 _id값이 아닌 null값이 뜨게 됨
+  // atom으로 해결을 했지만 무한로딩 에러가 생겨남 useEffect 문제인 거 같음
   const query = useQuery({
     queryKey: [QUERY_KEY.user],
     queryFn: async () =>
@@ -170,6 +177,7 @@ const useMypage = () => {
       }),
     select: (data) => data.data,
   });
+
   // 만약에 이 데이터가 있다면?
   useEffect(() => {
     if (query?.data?.follower) {
@@ -186,7 +194,7 @@ const useMypage = () => {
         setUnFollow(true);
       }
     }
-  }, [query, objectId]);
+  }, [query.data, objectId]);
 
   return {
     postId,
@@ -226,6 +234,8 @@ const useMypage = () => {
     handleLikeModalOpen,
     handleLikeModalClose,
     likeModal,
+    mainProfile,
+    mainBackground,
   };
 };
 export default useMypage;

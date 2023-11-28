@@ -14,7 +14,6 @@ const MypageModal = () => {
   const targetPost = post.find(
     (postItem: { _id: string }) => postItem._id === postId,
   );
-
   return (
     <div className="mypage-modal-bg" onClick={modalBubbling()}>
       <div className="mypage-modal">
@@ -48,7 +47,7 @@ const MypageModal = () => {
             <div className="btns">
               <button className="like">
                 <img src={PUBLIC_URL + '/img/like.png'} alt="" />
-                <span>하트</span>
+                <span>{targetPost.like.length}</span>
               </button>
               <Link to={'/imagination'}>
                 <button className="create">
