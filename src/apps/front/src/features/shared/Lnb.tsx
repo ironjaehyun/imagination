@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { Dispatch } from 'react';
 import axios from './../auth/api/auth';
 import LnbRight from './LnbRight';
-
-const Lnb = () => {
-  const [inputValue, setInputValue] = useState('');
-
+import { SetStateAction } from 'jotai';
+interface LnbProps {
+  inputValue: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
+}
+const Lnb = ({ inputValue, setInputValue }: LnbProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -13,6 +15,7 @@ const Lnb = () => {
     event.preventDefault();
     try {
       const response = await axios.post('/Lnb/Postssearch', { inputValue });
+      setInputValue('');
       return response.data;
     } catch (error) {
       console.error(error);

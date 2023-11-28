@@ -77,7 +77,9 @@ const FeedLayout = ({
               >
                 <div className="Feed-overlay">
                   <img src="./img/whitelike.png" alt="" />
-                  <span className="Feed-like-count">{posts[index].likes}</span>
+                  <span className="Feed-like-count">
+                    {posts[index].like.length}
+                  </span>
                 </div>
               </div>
             ))}

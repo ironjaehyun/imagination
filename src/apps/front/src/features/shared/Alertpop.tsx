@@ -5,6 +5,7 @@ import { PostType } from './types/PostType';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import axios from 'axios';
+import { useState } from 'react';
 // Carousel responsive 설정
 const responsive = {
   superLargeDesktop: {
@@ -66,13 +67,20 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
   const objectId = sessionStorage.getItem('_id');
 
   const handleLike = (postId: string) => {
+    const isLiked = likeImage === './img/like.png';
     const res = axios.post('http://localhost:3000/Feed/likes', {
       userId: objectId,
       postId: postId,
+      isLiked: isLiked,
     });
     console.log(res);
+    if (isLiked) {
+      setLikeImage('./img/filledlike.png');
+    } else {
+      setLikeImage('./img/like.png');
+    }
   };
-
+  const [likeImage, setLikeImage] = useState('./img/like.png');
   return (
     <div className={`alertpop ${isOpen ? 'open' : ''}`} onClick={handleBgClick}>
       {isOpen && data && (
@@ -121,7 +129,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
                         handleLike(post._id);
                       }}
                     >
-                      <img src={'./img/like.png'} alt="" />
+                      <img src={likeImage} alt="" />
                       <span>{data.likeCount}</span>
                     </button>
                     <button className="modal-CreateImage">

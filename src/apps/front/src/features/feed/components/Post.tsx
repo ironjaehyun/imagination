@@ -4,18 +4,30 @@ import { useState, useEffect } from 'react';
 import { PostType } from '../../shared/types/PostType';
 
 // 서버로부터 게시물 데이터를 가져오는 함수입니다.
-const fetchPosts = async () => {
-  const response = await axios.get('/Feed/userpostslike');
+const fetchPosts = async (inputValue: string) => {
+  let response;
+  if (inputValue) {
+    response = await axios.post('/Lnb/Postssearch', { inputValue });
+  } else {
+    response = await axios.get('/Feed/userpostslike');
+  }
+  console.log('Server response:', response.data);
   return response.data;
 };
 
-const Post = ({ onImageClick }: { onImageClick: (post: PostType) => void }) => {
+const Post = ({
+  onImageClick,
+  inputValue,
+}: {
+  onImageClick: (post: PostType) => void;
+  inputValue: string;
+}) => {
   // 게시물 데이터를 관리하기 위한 state입니다.
   const [posts, setPosts] = useState<PostType[]>([]);
   // react-query를 사용하여 서버로부터 게시물 데이터를 가져옵니다.
   const { data, error, isLoading } = useQuery({
-    queryKey: ['postsAll'],
-    queryFn: fetchPosts,
+    queryKey: ['postsData', inputValue],
+    queryFn: () => fetchPosts(inputValue),
   });
 
   // 서버로부터 받아온 데이터를 posts state에 저장합니다.
