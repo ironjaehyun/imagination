@@ -10,6 +10,18 @@
   }
 }
 
+@keyframes slideAndScaleFromLeft {
+  from {
+    transform: translateX(-100%) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
 .chatroom {
   position: absolute;
   overflow: hidden;
@@ -67,23 +79,30 @@
 
   .chat-bubble-right {
     display: flex;
-    justify-content: flex-end;
+    animation: slideAndScaleFromLeft 0.5s;
     width: 100%;
-    animation: slideAndScale 0.5s;
-
     p {
       max-width: 450px;
       padding: 10px;
       margin-top: 20px;
-      margin-right: 20px;
+      margin-left: 20px;
       border-radius: 10px;
       word-wrap: break-word;
-      color: $white;
-      background-color: $primary;
+      background-color: #f5f5f5;
     }
 
     img {
       width: 18px;
+    }
+  }
+
+  .me {
+    justify-content: flex-end;
+    animation: slideAndScale 0.5s;
+    color: white;
+    p {
+      background-color: $primary;
+      margin-right: 10px;
     }
   }
 

@@ -8,9 +8,10 @@ import {
   FunctionComponent,
 } from 'react';
 import { UserItem } from './ChatInvite';
-import io from 'socket.io-client';
-import axios from 'axios';
+import io, { Socket } from 'socket.io-client';
+// import axios from 'axios';
 import { SOCKET_EVENT } from '../../../../../../packages/models/socket';
+import classNames from 'classnames';
 
 type ChatRoomProps = {
   invitedUser: UserItem;
@@ -18,12 +19,13 @@ type ChatRoomProps = {
 
 const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
   const [message, setMessage] = useState<string>('');
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<
+    { message: string; sender: string }[]
+  >([]);
   const [showScrollToTopButton, setShowScrollToTopButton] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const [socket, setSocket] = useState<Socket>();
   const chatContainer = useRef<HTMLDivElement>(null);
-
-  const socket = io('http://localhost:5545', { transports: ['websocket'] });
 
   const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -33,41 +35,45 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
     if (message.trim() === '') return;
 
     try {
-      axios.post('http://localhost:3000/chat/savemsg', {
-        chatId: invitedUser.roomId,
-        senderId: sessionStorage.getItem('_id'),
-        text: message,
-      });
+      // axios.post('http://localhost:3000/chat/savemsg', {
+      //   chatId: invitedUser.roomId,
+      //   senderId: sessionStorage.getItem('_id'),
+      //   text: message,
+      // });
 
       // // 메시지 전송 후 소켓을 통해 실시간으로 메시지 수신하도록
       // await socket.emit('chat message', { user: invitedUser.id, message });
 
-      setMessages([...messages, message]);
+      // setMessages([...messages, message]);
       setMessage('');
-      setIsFetching(false);
+      // setIsFetching(false);
 
-      await socket.emit('chat message', { user: invitedUser.id, message });
+      socket?.emit(SOCKET_EVENT.received, {
+        roomId: 'hello',
+        message,
+        sender: socket.id,
+      });
     } catch (error) {
       console.error('Error sending message:', error);
     }
   };
 
   useEffect(() => {
-    // const fetchMessages = async () => {
-    //   const response = await axios.get(
-    //     `/chat/getmsg?chatId=${invitedUser._id}`,
-    //   );
-    //   const messages = response.data;
-    //   setMessages(messages);
-    // };
-
-    // fetchMessages();
-
     scrollToBottom();
+    const initSocket = io('http://localhost:5545', {
+      transports: ['websocket'],
+    });
+    setSocket(initSocket);
 
-    socket.emit(SOCKET_EVENT.open, { roomId: 'hello' });
-    socket.on(SOCKET_EVENT.hello, (data) => {
-      setMessages([...messages, data.message]);
+    initSocket.emit(SOCKET_EVENT.open, { roomId: 'hello' });
+    initSocket.on(SOCKET_EVENT.hello, (data) => {
+      console.log('get hello data', data.message);
+      setIsFetching(false);
+      // Case 1.  // [[] data.message]
+      // setMessages([...messages, data.message]);
+
+      // Case 2. // prev 이전 값을 가져와서 체이닝을 걸기 때문에 기억 가능
+      setMessages((prev) => [...prev, { ...data }]);
       scrollToBottom();
     });
 
@@ -80,12 +86,13 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
 
     return () => {
       chatContainer.current?.removeEventListener('scroll', handleScroll);
-      socket.off('chat message');
+      initSocket.disconnect();
     };
-  }, [messages, isFetching, invitedUser._id]);
+  }, [invitedUser._id]);
 
   const scrollToBottom = () => {
     const { current: chatDiv } = chatContainer;
+    console.log('scroll to bottom', chatDiv);
     if (!chatDiv) return;
     chatDiv.scrollTo({ top: chatDiv.scrollHeight, behavior: 'smooth' });
   };
@@ -132,8 +139,13 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
 
       <div className="chatroom-contents">
         <div ref={chatContainer} className="chatroom-scroll-box">
-          {messages.map((message, index) => (
-            <div className="chat-bubble-right" key={index}>
+          {messages.map(({ message, sender }, index) => (
+            <div
+              className={classNames('chat-bubble-right', {
+                me: socket?.id === sender,
+              })}
+              key={index}
+            >
               <p>{message}</p>
             </div>
           ))}

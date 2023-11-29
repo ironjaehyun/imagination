@@ -9,4 +9,5 @@ export enum SOCKET_EVENT {
   received = 'received',
   serverSend = 'serverSend',
   serverReceived = 'serverReceived',
+  typing = 'typing',
 }

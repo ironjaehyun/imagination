@@ -32,7 +32,7 @@ const ChatInvite: React.FC<ChatInviteProps> = ({ onClose, onInvited }) => {
   };
 
   const handleRadioClick = (_id: string) => {
-    setSelected_Id(_id);
+    setSelected_Id(selected_Id === _id ? undefined : _id);
   };
 
   const handleChatButtonClick = async () => {
@@ -70,19 +70,20 @@ const ChatInvite: React.FC<ChatInviteProps> = ({ onClose, onInvited }) => {
   const handleClickInside = (e: MouseEvent) => {
     e.stopPropagation();
 
-    const isRadioButtonSelected = userList.some(
-      (user) => user._id === selected_Id,
-    );
-    const buttonClass = classNames({
-      'chat-btn-selected': isRadioButtonSelected,
-    });
-    const buttonElement = document.querySelector(
-      '.chat-invite-btn button',
-    ) as HTMLButtonElement | null;
-    if (buttonElement) {
-      buttonElement.className = buttonClass;
-      buttonElement.disabled = !isRadioButtonSelected;
-    }
+    // NOTE: 절대 노
+    // const isRadioButtonSelected = userList.some(
+    //   (user) => user._id === selected_Id,
+    // );
+    // const buttonClass = classNames({
+    //   'chat-btn-selected': isRadioButtonSelected,
+    // });
+    // const buttonElement = document.querySelector(
+    //   '.chat-invite-btn button',
+    // ) as HTMLButtonElement | null;
+    // if (buttonElement) {
+    //   buttonElement.className = buttonClass;
+    //   buttonElement.disabled = !isRadioButtonSelected;
+    // }
   };
 
   // 사용자 목록 필터링
@@ -128,8 +129,14 @@ const ChatInvite: React.FC<ChatInviteProps> = ({ onClose, onInvited }) => {
               ))}
           </div>
 
-          <div className="chat-invite-btn">
-            <button onClick={handleChatButtonClick} disabled={!selected_Id}>
+          <div className={'chat-invite-btn'}>
+            <button
+              className={classNames({
+                'chat-btn-selected': selected_Id,
+              })}
+              onClick={handleChatButtonClick}
+              disabled={!selected_Id}
+            >
               Chat
             </button>
           </div>

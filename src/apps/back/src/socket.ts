@@ -5,8 +5,7 @@ import { SOCKET_EVENT } from '../../../packages/models/socket';
 
 export const SOCKET_PORT = 5545;
 
-const { connection, disconnect, ping, send, received, open, hello } =
-  SOCKET_EVENT;
+const { connection, disconnect, ping, received, open, hello } = SOCKET_EVENT;
 
 type Room = {
   roomId: string;
@@ -33,18 +32,44 @@ const initSocket = (app: Express) => {
         return { roomId, users };
       })();
       roomList.push(room);
-      room.users.forEach((userSocket) => {
-        console.log('Fire', userSocket.id);
-        userSocket.emit(hello, {
-          message: `User ${userSocket.id}is connected!`,
-        });
-      });
+      // room.users.forEach((userSocket, index) => {
+      //   // console.log('Fire', userSocket.id);
+      //   if (room.users.length < 2) return;
+      //   userSocket.emit(hello, {
+      //     // message: `User ${room.users[(index + 1) % 2].id}is connected!`,
+      //     sender: userSocket.id,
+      //     // XXX: 더 풍부하게 메시지를 꾸밀꺼라면 이렇게 데이터 넘기면 돼요
+      //     // {
+      //     //   socketId: userSocket.id,
+      //     //   profileImage: '',
+      //     //   nickname: '',
+      //     // }
+      //   });
+      // });
     });
 
-    socket.on(received, (data) => {
-      // TODO : 해당 룸의 소켓 두개한테 emit
+    socket.on('clear', () => {
+      roomList.splice(0, roomList.length);
+    });
 
-      io.emit(send, { user: data.user, message: data.message });
+    // NOTE: 해당 룸의 소켓 두개한테 emit
+    socket.on(received, (data) => {
+      const room = roomList.find((room) => room.roomId === data.roomId);
+      if (!room) {
+        console.log('room 없음', data.roomId);
+        return;
+      }
+      room.users.forEach((userSocket) => {
+        console.log('Fire', userSocket.id);
+        if (room.users.length < 2) {
+          console.log('아직 상대방이 들어오지 않음');
+          return;
+        }
+        userSocket.emit(hello, {
+          message: data.message,
+          sender: data.sender,
+        });
+      });
     });
 
     socket.on(disconnect, () => {
