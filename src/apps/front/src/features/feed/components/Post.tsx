@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from './../api/auth';
 import { useState, useEffect } from 'react';
 import { PostType } from '../../shared/types/PostType';
+import Loading from '../../shared/Loading';
 
 // 서버로부터 게시물 데이터를 가져오는 함수입니다.
 const fetchPosts = async (inputValue: string) => {
@@ -37,7 +38,7 @@ const Post = ({
     }
   }, [data]);
 
-  if (isLoading) return <p>'Loading...'</p>;
+  if (isLoading) return <Loading />;
   if (error) return <p>An error has occurred: {error.message}</p>;
   const objectId = sessionStorage.getItem('_id');
 

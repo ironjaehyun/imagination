@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useFeedHover } from '../hooks/useFeedHover';
 import { PostType } from '../../shared/types/PostType';
 import justifiedLayout from 'justified-layout';
-
+import Loading from '../../shared/Loading';
 type Box = {
   top: number;
   left: number;
@@ -57,7 +57,7 @@ const FeedLayout = ({
     targetRowHeight: 200, // 각 행의 높이
   });
 
-  if (isLoading) return <p>'Loading...'</p>;
+  if (isLoading) return <Loading />;
   if (error) return <p>An error has occurred: {error.message}</p>;
 
   return (
