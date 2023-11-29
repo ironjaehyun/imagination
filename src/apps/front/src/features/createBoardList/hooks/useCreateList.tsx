@@ -144,7 +144,7 @@ const useCreatList = () => {
       postData,
     );
     if (result.data.msg === 'create post') {
-      navigate('/');
+      navigate('/feed');
       resetData();
     }
   };
