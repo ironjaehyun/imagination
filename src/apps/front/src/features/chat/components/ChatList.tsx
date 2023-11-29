@@ -34,9 +34,9 @@ const ChatList: React.FC = () => {
     setChatInviteOpen(!chatInviteOpen);
   };
 
-  const handleChatRoomToggle = (user: UserItem) => {
+  const handleChatRoomToggle = (user: UserItem, roomId: string) => {
     setChatInviteOpen(false);
-    setInvitedUser(user);
+    setInvitedUser({ ...user, roomId });
   };
 
   const handleInviteClose = () => {
@@ -68,7 +68,7 @@ const ChatList: React.FC = () => {
               <div
                 key={_id}
                 className="chat-list-elements"
-                onClick={() => handleChatRoomToggle(members[0])}
+                onClick={() => handleChatRoomToggle(members[0], _id)}
               >
                 <img src={members[0].user_profile_img} alt="User Avatar" />
                 <div>
