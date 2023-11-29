@@ -151,9 +151,7 @@ const ChatRoom: FunctionComponent<ChatRoomProps> = ({ invitedUser }) => {
           ))}
           {isFetching && (
             <div className="chat-bubble-right">
-              <p>
-                <img src="../chatimg/talking.gif" alt="Talking" />
-              </p>
+              <p>{/* <img src="../chatimg/talking.gif" alt="Talking" /> */}</p>
             </div>
           )}
         </div>

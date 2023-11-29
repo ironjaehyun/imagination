@@ -155,7 +155,7 @@
 
     img {
       position: absolute;
-      left: 4%;
+      left: 4.5%;
     }
 
     button {
@@ -174,10 +174,10 @@
     height: 50%;
     border-radius: 10px;
     resize: none;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    padding-left: 4%;
-    padding-right: 6%;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-left: 4em;
+    padding-right: 9%;
 
     &:focus::placeholder {
       color: transparent;
