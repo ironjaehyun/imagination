@@ -13,15 +13,22 @@ type Box = {
 };
 
 // 서버로부터 게시물 데이터를 가져오는 함수입니다.
-const fetchPosts = async () => {
-  const response = await axios.get('/Feed/userpostslike');
+const fetchPosts = async (inputValue: string) => {
+  let response;
+  if (inputValue) {
+    response = await axios.post('/Lnb/Postssearch', { inputValue });
+  } else {
+    response = await axios.get('/Feed/userpostslike');
+  }
   return response.data;
 };
 
 const FeedLayout = ({
   onImageClick,
+  inputValue,
 }: {
   onImageClick: (post: PostType) => void;
+  inputValue: string;
 }) => {
   const { hoverIndex, handleMouseOver, handleMouseOut } = useFeedHover();
   const {
@@ -29,8 +36,8 @@ const FeedLayout = ({
     error,
     isLoading,
   } = useQuery<PostType[]>({
-    queryKey: ['postsAll'],
-    queryFn: fetchPosts,
+    queryKey: ['postsAll', inputValue],
+    queryFn: () => fetchPosts(inputValue),
   });
 
   // 각각의 이미지에 대한 가로세로 비율
@@ -77,7 +84,9 @@ const FeedLayout = ({
               >
                 <div className="Feed-overlay">
                   <img src="./img/whitelike.png" alt="" />
-                  <span className="Feed-like-count">{posts[index].likes}</span>
+                  <span className="Feed-like-count">
+                    {posts[index].like.length}
+                  </span>
                 </div>
               </div>
             ))}
