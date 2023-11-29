@@ -1,4 +1,4 @@
-import { FunctionComponent, MouseEventHandler } from 'react';
+import { FunctionComponent, MouseEventHandler, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useCopy from './hooks/useCopy';
 import { PostType } from './types/PostType';
@@ -66,9 +66,9 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
   };
   const objectId = sessionStorage.getItem('_id');
 
-  const handleLike = (postId: string) => {
+  const handleLike = async (postId: string) => {
     const isLiked = likeImage === './img/like.png';
-    const res = axios.post('http://localhost:3000/Feed/likes', {
+    const res = await axios.post('http://localhost:3000/Feed/likes', {
       userId: objectId,
       postId: postId,
       isLiked: isLiked,
@@ -76,11 +76,21 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
     console.log(res);
     if (isLiked) {
       setLikeImage('./img/filledlike.png');
+      setLikeCount(likeCount + 1); // 좋아요 수 증가
     } else {
       setLikeImage('./img/like.png');
+      setLikeCount(likeCount - 1); // 좋아요 수 감소
     }
   };
   const [likeImage, setLikeImage] = useState('./img/like.png');
+  const [likeCount, setLikeCount] = useState(0);
+
+  useEffect(() => {
+    if (post) {
+      setLikeCount(post.like.length);
+    }
+  }, [post]);
+
   return (
     <div className={`alertpop ${isOpen ? 'open' : ''}`} onClick={handleBgClick}>
       {isOpen && data && (
@@ -130,7 +140,7 @@ const Alertpop: FunctionComponent<AlertpopProps> = ({
                       }}
                     >
                       <img src={likeImage} alt="" />
-                      <span>{data.likeCount}</span>
+                      <span>{likeCount}</span>
                     </button>
                     <button className="modal-CreateImage">
                       <Link to={'/imagination'}>

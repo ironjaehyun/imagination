@@ -28,7 +28,7 @@ const likes = async (req, res) => {
 
   await post.save();
   await user.save();
-  res.json(user);
+  res.json({ likeCount: post.like.length });
 };
 
 export { likes };
